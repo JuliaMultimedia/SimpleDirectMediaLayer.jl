@@ -1,9 +1,6 @@
-#module SDL
-
-# package code goes here
-
-#end # module
 cd("/Users/bieler/.julia/v0.6/SDL/src/")
+
+using Cairo
 
 const libSDL = "/Users/bieler/.julia/v0.6/Homebrew/deps/usr/Cellar/sdl2/2.0.5/lib/libSDL2.dylib"
 const SDL_ttf = "/Users/bieler/.julia/v0.6/Homebrew/deps/usr/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.dylib"
@@ -28,21 +25,41 @@ SDL_LoadBMP(src::String) = SDL_LoadBMP_RW(src,Int32(1))
 
 bkg = SDL_Color(200, 200, 200, 255)
 
-font = TTF_OpenFont("../assets/fonts/FiraCode/ttf/FiraCode-Regular.ttf", 14)
-#font = TTF_OpenFont("../assets/fonts/Bitstream-Vera-Sans-Mono/VeraMono.ttf", 23)
 
-txt = "@BinDeps.install Dict([ (:glib, :libglib) ])"
+    surface = SDL_CreateRGBSurfaceWithFormat(0, 800, 600, 32, SDL_PIXELFORMAT_ARGB32)
+    surf = unsafe_load(surface)
+    SDL_FillRect(surface, C_NULL, SDL_MapRGBA(surf.format,155,2,3,255))
 
-text = TTF_RenderText_Blended(font, txt, SDL_Color(20,20,20,255))
-tex = SDL_CreateTextureFromSurface(renderer,text)
 
-fx,fy = Int[1], Int[1]
-TTF_SizeText(font, txt, pointer(fx), pointer(fy))
-fx,fy = fx[1],fy[1]
+    format = Cairo.FORMAT_ARGB32
+    w,h = 800,600
+    stride = Cairo.format_stride_for_width(format, w)
+    @assert stride == 4w
 
-#img = SDL_LoadBMP("LB2951.jpg")
-#tex = SDL_CreateTextureFromSurface(ren, img)
-#SDL_FreeSurface(img)
+    ptr = ccall((:cairo_image_surface_create_for_data,Cairo._jl_libcairo),
+                Ptr{Void}, (Ptr{Void},Int32,Int32,Int32,Int32),
+                surface, format, w, h, stride)
+    cr = CairoContext(ptr)
+    # draw
+    save(cr);
+    set_source_rgb(cr,0.8,0.8,0.8);    # light gray
+    rectangle(cr,0.0,0.0,256.0,256.0); # background
+    fill(cr);
+    restore(cr);
+
+    ## original example, following here
+    xc = 128.0;
+    yc = 128.0;
+    radius = 100.0;
+    angle1 = 45.0  * (pi/180.0);  # angles are specified
+    angle2 = 180.0 * (pi/180.0);  # in radians
+
+    set_line_width(cr, 10.0);
+    arc(cr, xc, yc, radius, angle1, angle2);
+    stroke(cr);
+
+    tex = SDL_CreateTextureFromSurface(renderer,surface)
+    surf = unsafe_load(surface)
 
 for i = 1:200
     x,y = Int[1], Int[1]
@@ -57,12 +74,11 @@ for i = 1:200
     rect = SDL_Rect(1,1,200,200)
 
     SDL_SetRenderDrawColor(renderer, 20, 50, 105, 255)
-    SDL_RenderDrawLine(renderer,0,0,100,100)
-
     SDL_RenderFillRect(renderer, pointer_from_objref(rect) )
-    SDL_RenderCopy(renderer, tex, C_NULL, pointer_from_objref(SDL_Rect(x[1],y[1],fx,fy)))
+
+    SDL_RenderCopy(renderer, tex, C_NULL, C_NULL)
 
     SDL_RenderPresent(renderer)
     sleep(0.001)
 end
-#SDL_Quit()
+SDL_Quit()
