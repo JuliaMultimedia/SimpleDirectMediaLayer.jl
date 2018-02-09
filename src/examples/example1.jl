@@ -1,11 +1,5 @@
 cd(joinpath(Pkg.dir(),"SDL/src/"))
 
-const libSDL = "/Users/bieler/.julia/v0.6/Homebrew/deps/usr/Cellar/sdl2/2.0.5/lib/libSDL2.dylib"
-const SDL_ttf = "/Users/bieler/.julia/v0.6/Homebrew/deps/usr/Cellar/sdl2_ttf/2.0.14/lib/libSDL2_ttf.dylib"
-
-include(joinpath(Pkg.dir(),"SDL/src/lib/SDL.jl"))
-include(joinpath(Pkg.dir(),"SDL/src/lib/SDL_ttf.jl"))
-
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16)
 SDL_Init(Int32(SDL_INIT_VIDEO))

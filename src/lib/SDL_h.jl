@@ -6,10 +6,10 @@ using Compat
 
 const OBJC_NEW_PROPERTIES = 1
 
-# Skipping MacroDefinition: SDL_DEPRECATED __attribute__ ( ( deprecated ) )
-# Skipping MacroDefinition: SDL_UNUSED __attribute__ ( ( unused ) )
+# Skipping MacroDefinition: DEPRECATED __attribute__ ( ( deprecated ) )
+# Skipping MacroDefinition: UNUSED __attribute__ ( ( unused ) )
 # Skipping MacroDefinition: DECLSPEC __attribute__ ( ( visibility ( "default" ) ) )
-# Skipping MacroDefinition: SDL_FORCE_INLINE __attribute__ ( ( always_inline ) ) static __inline__
+# Skipping MacroDefinition: FORCE_INLINE __attribute__ ( ( always_inline ) ) static __inline__
 
 const SIZEOF_VOIDP = 8
 const HAVE_ALLOCA_H = 1
@@ -82,38 +82,38 @@ const HAVE_ATAN = 1
 const HAVE_ATAN2 = 1
 const HAVE_ACOS = 1
 const HAVE_ASIN = 1
-const SDL_AUDIO_DRIVER_COREAUDIO = 1
-const SDL_AUDIO_DRIVER_DISK = 1
-const SDL_AUDIO_DRIVER_DUMMY = 1
-const SDL_JOYSTICK_IOKIT = 1
-const SDL_HAPTIC_IOKIT = 1
-const SDL_LOADSO_DLOPEN = 1
-const SDL_THREAD_PTHREAD = 1
-const SDL_THREAD_PTHREAD_RECURSIVE_MUTEX = 1
-const SDL_TIMER_UNIX = 1
-const SDL_VIDEO_DRIVER_COCOA = 1
-const SDL_VIDEO_DRIVER_DUMMY = 1
-const SDL_VIDEO_DRIVER_X11_DYNAMIC = "/usr/X11R6/lib/libX11.6.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XEXT = "/usr/X11R6/lib/libXext.6.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XINERAMA = "/usr/X11R6/lib/libXinerama.1.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XINPUT2 = "/usr/X11R6/lib/libXi.6.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR = "/usr/X11R6/lib/libXrandr.2.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XSS = "/usr/X11R6/lib/libXss.1.dylib"
-const SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE = "/usr/X11R6/lib/libXxf86vm.1.dylib"
-const SDL_VIDEO_DRIVER_X11_XDBE = 1
-const SDL_VIDEO_DRIVER_X11_XINERAMA = 1
-const SDL_VIDEO_DRIVER_X11_XRANDR = 1
-const SDL_VIDEO_DRIVER_X11_XSCRNSAVER = 1
-const SDL_VIDEO_DRIVER_X11_XSHAPE = 1
-const SDL_VIDEO_DRIVER_X11_XVIDMODE = 1
-const SDL_VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM = 1
-const SDL_VIDEO_RENDER_OGL = 1
-const SDL_VIDEO_OPENGL = 1
-const SDL_VIDEO_OPENGL_CGL = 1
-const SDL_VIDEO_OPENGL_GLX = 1
-const SDL_POWER_MACOSX = 1
-const SDL_FILESYSTEM_COCOA = 1
-const SDL_ASSEMBLY_ROUTINES = 1
+const AUDIO_DRIVER_COREAUDIO = 1
+const AUDIO_DRIVER_DISK = 1
+const AUDIO_DRIVER_DUMMY = 1
+const JOYSTICK_IOKIT = 1
+const HAPTIC_IOKIT = 1
+const LOADSO_DLOPEN = 1
+const THREAD_PTHREAD = 1
+const THREAD_PTHREAD_RECURSIVE_MUTEX = 1
+const TIMER_UNIX = 1
+const VIDEO_DRIVER_COCOA = 1
+const VIDEO_DRIVER_DUMMY = 1
+const VIDEO_DRIVER_X11_DYNAMIC = "/usr/X11R6/lib/libX11.6.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XEXT = "/usr/X11R6/lib/libXext.6.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XINERAMA = "/usr/X11R6/lib/libXinerama.1.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XINPUT2 = "/usr/X11R6/lib/libXi.6.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XRANDR = "/usr/X11R6/lib/libXrandr.2.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XSS = "/usr/X11R6/lib/libXss.1.dylib"
+const VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE = "/usr/X11R6/lib/libXxf86vm.1.dylib"
+const VIDEO_DRIVER_X11_XDBE = 1
+const VIDEO_DRIVER_X11_XINERAMA = 1
+const VIDEO_DRIVER_X11_XRANDR = 1
+const VIDEO_DRIVER_X11_XSCRNSAVER = 1
+const VIDEO_DRIVER_X11_XSHAPE = 1
+const VIDEO_DRIVER_X11_XVIDMODE = 1
+const VIDEO_DRIVER_X11_HAS_XKBKEYCODETOKEYSYM = 1
+const VIDEO_RENDER_OGL = 1
+const VIDEO_OPENGL = 1
+const VIDEO_OPENGL_CGL = 1
+const VIDEO_OPENGL_GLX = 1
+const POWER_MACOSX = 1
+const FILESYSTEM_COCOA = 1
+const ASSEMBLY_ROUTINES = 1
 
 # Skipping MacroDefinition: NULL ( ( void * ) 0 )
 # Skipping MacroDefinition: offsetof ( t , d ) __builtin_offsetof ( t , d )
@@ -121,67 +121,67 @@ const SDL_ASSEMBLY_ROUTINES = 1
 # Skipping MacroDefinition: va_end ( ap ) __builtin_va_end ( ap )
 # Skipping MacroDefinition: va_arg ( ap , type ) __builtin_va_arg ( ap , type )
 # Skipping MacroDefinition: va_copy ( dest , src ) __builtin_va_copy ( dest , src )
-# Skipping MacroDefinition: SDL_arraysize ( array ) ( sizeof ( array ) / sizeof ( array [ 0 ] ) )
-# Skipping MacroDefinition: SDL_TABLESIZE ( table ) SDL_arraysize ( table )
-# Skipping MacroDefinition: SDL_STRINGIFY_ARG ( arg ) # arg
-# Skipping MacroDefinition: SDL_reinterpret_cast ( type , expression ) ( ( type ) ( expression ) )
-# Skipping MacroDefinition: SDL_static_cast ( type , expression ) ( ( type ) ( expression ) )
-# Skipping MacroDefinition: SDL_const_cast ( type , expression ) ( ( type ) ( expression ) )
-# Skipping MacroDefinition: SDL_FOURCC ( A , B , C , D ) ( ( SDL_static_cast ( Uint32 , SDL_static_cast ( Uint8 , ( A ) ) ) << 0 ) | ( SDL_static_cast ( Uint32 , SDL_static_cast ( Uint8 , ( B ) ) ) << 8 ) | ( SDL_static_cast ( Uint32 , SDL_static_cast ( Uint8 , ( C ) ) ) << 16 ) | ( SDL_static_cast ( Uint32 , SDL_static_cast ( Uint8 , ( D ) ) ) << 24 ) )
+# Skipping MacroDefinition: arraysize ( array ) ( sizeof ( array ) / sizeof ( array [ 0 ] ) )
+# Skipping MacroDefinition: TABLESIZE ( table ) arraysize ( table )
+# Skipping MacroDefinition: STRINGIFY_ARG ( arg ) # arg
+# Skipping MacroDefinition: reinterpret_cast ( type , expression ) ( ( type ) ( expression ) )
+# Skipping MacroDefinition: static_cast ( type , expression ) ( ( type ) ( expression ) )
+# Skipping MacroDefinition: const_cast ( type , expression ) ( ( type ) ( expression ) )
+# Skipping MacroDefinition: FOURCC ( A , B , C , D ) ( ( static_cast ( Uint32 , static_cast ( Uint8 , ( A ) ) ) << 0 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( B ) ) ) << 8 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( C ) ) ) << 16 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( D ) ) ) << 24 ) )
 
-const SDL_PRIs64 = "lld"
-const SDL_PRIu64 = "llu"
-const SDL_PRIx64 = "llx"
-const SDL_PRIX64 = "llX"
+const PRIs64 = "lld"
+const PRIu64 = "llu"
+const PRIx64 = "llx"
+const PRIX64 = "llX"
 
-#const SDL_IN_BYTECAP = x
-#const SDL_INOUT_Z_CAP = x
-#const SDL_OUT_Z_CAP = x
-#const SDL_OUT_CAP = x
-#const SDL_OUT_BYTECAP = x
-#const SDL_OUT_Z_BYTECAP = x
+#const IN_BYTECAP = x
+#const INOUT_Z_CAP = x
+#const OUT_Z_CAP = x
+#const OUT_CAP = x
+#const OUT_BYTECAP = x
+#const OUT_Z_BYTECAP = x
 
-# Skipping MacroDefinition: SDL_PRINTF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __printf__ , fmtargnumber , fmtargnumber + 1 ) ) )
-# Skipping MacroDefinition: SDL_SCANF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __scanf__ , fmtargnumber , fmtargnumber + 1 ) ) )
-# Skipping MacroDefinition: SDL_COMPILE_TIME_ASSERT ( name , x ) typedef int SDL_dummy_ ## name [ ( x ) * 2 - 1 ]
-# Skipping MacroDefinition: SDL_stack_alloc ( type , count ) ( type * ) alloca ( sizeof ( type ) * ( count ) )
+# Skipping MacroDefinition: PRINTF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __printf__ , fmtargnumber , fmtargnumber + 1 ) ) )
+# Skipping MacroDefinition: SCANF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __scanf__ , fmtargnumber , fmtargnumber + 1 ) ) )
+# Skipping MacroDefinition: COMPILE_TIME_ASSERT ( name , x ) typedef int dummy_ ## name [ ( x ) * 2 - 1 ]
+# Skipping MacroDefinition: stack_alloc ( type , count ) ( type * ) alloca ( sizeof ( type ) * ( count ) )
 
-#const SDL_stack_free = data
+#const stack_free = data
 
-# Skipping MacroDefinition: SDL_min ( x , y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
-# Skipping MacroDefinition: SDL_max ( x , y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
-# Skipping MacroDefinition: SDL_zero ( x ) SDL_memset ( & ( x ) , 0 , sizeof ( ( x ) ) )
-# Skipping MacroDefinition: SDL_zerop ( x ) SDL_memset ( ( x ) , 0 , sizeof ( * ( x ) ) )
+# Skipping MacroDefinition: min ( x , y ) ( ( ( x ) < ( y ) ) ? ( x ) : ( y ) )
+# Skipping MacroDefinition: max ( x , y ) ( ( ( x ) > ( y ) ) ? ( x ) : ( y ) )
+# Skipping MacroDefinition: zero ( x ) memset ( & ( x ) , 0 , sizeof ( ( x ) ) )
+# Skipping MacroDefinition: zerop ( x ) memset ( ( x ) , 0 , sizeof ( * ( x ) ) )
 
 const M_PI = 3.141592653589793
 
-# Skipping MacroDefinition: SDL_ICONV_ERROR ( size_t ) - 1
-# Skipping MacroDefinition: SDL_ICONV_E2BIG ( size_t ) - 2
-# Skipping MacroDefinition: SDL_ICONV_EILSEQ ( size_t ) - 3
-# Skipping MacroDefinition: SDL_ICONV_EINVAL ( size_t ) - 4
-# Skipping MacroDefinition: SDL_iconv_utf8_locale ( S ) SDL_iconv_string ( "" , "UTF-8" , S , SDL_strlen ( S ) + 1 )
-# Skipping MacroDefinition: SDL_iconv_utf8_ucs2 ( S ) ( Uint16 * ) SDL_iconv_string ( "UCS-2-INTERNAL" , "UTF-8" , S , SDL_strlen ( S ) + 1 )
-# Skipping MacroDefinition: SDL_iconv_utf8_ucs4 ( S ) ( Uint32 * ) SDL_iconv_string ( "UCS-4-INTERNAL" , "UTF-8" , S , SDL_strlen ( S ) + 1 )
+# Skipping MacroDefinition: ICONV_ERROR ( size_t ) - 1
+# Skipping MacroDefinition: ICONV_E2BIG ( size_t ) - 2
+# Skipping MacroDefinition: ICONV_EILSEQ ( size_t ) - 3
+# Skipping MacroDefinition: ICONV_EINVAL ( size_t ) - 4
+# Skipping MacroDefinition: iconv_utf8_locale ( S ) iconv_string ( "" , "UTF-8" , S , strlen ( S ) + 1 )
+# Skipping MacroDefinition: iconv_utf8_ucs2 ( S ) ( Uint16 * ) iconv_string ( "UCS-2-INTERNAL" , "UTF-8" , S , strlen ( S ) + 1 )
+# Skipping MacroDefinition: iconv_utf8_ucs4 ( S ) ( Uint32 * ) iconv_string ( "UCS-4-INTERNAL" , "UTF-8" , S , strlen ( S ) + 1 )
 
-const SDL_ASSERT_LEVEL = 2
+const ASSERT_LEVEL = 2
 
-# Skipping MacroDefinition: SDL_TriggerBreakpoint ( ) __asm__ __volatile__ ( "int $3\n\t" )
+# Skipping MacroDefinition: TriggerBreakpoint ( ) __asm__ __volatile__ ( "int $3\n\t" )
 
-#const SDL_FILE = __FILE__
-#const SDL_LINE = __LINE__
-const SDL_NULL_WHILE_LOOP_CONDITION = 0
+#const FILE = __FILE__
+#const LINE = __LINE__
+const NULL_WHILE_LOOP_CONDITION = 0
 
-# Skipping MacroDefinition: SDL_disabled_assert ( condition ) do { ( void ) sizeof ( ( condition ) ) ; } while ( SDL_NULL_WHILE_LOOP_CONDITION )
-# Skipping MacroDefinition: SDL_enabled_assert ( condition ) do { while ( ! ( condition ) ) { static struct SDL_AssertData sdl_assert_data = { 0 , 0 , # condition , 0 , 0 , 0 , 0 } ; const SDL_AssertState sdl_assert_state = SDL_ReportAssertion ( & sdl_assert_data , SDL_FUNCTION , SDL_FILE , SDL_LINE ) ; if ( sdl_assert_state == SDL_ASSERTION_RETRY ) { continue ; /* go again. */ } else if ( sdl_assert_state == SDL_ASSERTION_BREAK ) { SDL_TriggerBreakpoint ( ) ; } break ; /* not retrying. */ } } while ( SDL_NULL_WHILE_LOOP_CONDITION )
-# Skipping MacroDefinition: SDL_assert ( condition ) SDL_enabled_assert ( condition )
-# Skipping MacroDefinition: SDL_assert_release ( condition ) SDL_enabled_assert ( condition )
-# Skipping MacroDefinition: SDL_assert_paranoid ( condition ) SDL_disabled_assert ( condition )
-# Skipping MacroDefinition: SDL_assert_always ( condition ) SDL_enabled_assert ( condition )
+# Skipping MacroDefinition: disabled_assert ( condition ) do { ( void ) sizeof ( ( condition ) ) ; } while ( NULL_WHILE_LOOP_CONDITION )
+# Skipping MacroDefinition: enabled_assert ( condition ) do { while ( ! ( condition ) ) { static struct AssertData assert_data = { 0 , 0 , # condition , 0 , 0 , 0 , 0 } ; const AssertState assert_state = ReportAssertion ( & assert_data , FUNCTION , FILE , LINE ) ; if ( assert_state == ASSERTION_RETRY ) { continue ; /* go again. */ } else if ( assert_state == ASSERTION_BREAK ) { TriggerBreakpoint ( ) ; } break ; /* not retrying. */ } } while ( NULL_WHILE_LOOP_CONDITION )
+# Skipping MacroDefinition: assert ( condition ) enabled_assert ( condition )
+# Skipping MacroDefinition: assert_release ( condition ) enabled_assert ( condition )
+# Skipping MacroDefinition: assert_paranoid ( condition ) disabled_assert ( condition )
+# Skipping MacroDefinition: assert_always ( condition ) enabled_assert ( condition )
 
-# const SDL_AssertState = Void
-# const SDL_assert_state = SDL_AssertState
+# const AssertState = Void
+# const assert_state = AssertState
 
-mutable struct SDL_AssertData
+mutable struct AssertData
     always_ignore::Cint
     trigger_count::UInt32
     condition::Cstring
@@ -191,65 +191,65 @@ mutable struct SDL_AssertData
     next::Ptr{Void}
 end
 
-const SDL_assert_data = SDL_AssertData
+const assert_data = AssertData
 
-# Skipping MacroDefinition: SDL_CompilerBarrier ( ) __asm__ __volatile__ ( "" : : : "memory" )
-# Skipping MacroDefinition: SDL_MemoryBarrierRelease ( ) SDL_CompilerBarrier ( )
-# Skipping MacroDefinition: SDL_MemoryBarrierAcquire ( ) SDL_CompilerBarrier ( )
-# Skipping MacroDefinition: SDL_AtomicIncRef ( a ) SDL_AtomicAdd ( a , 1 )
-# Skipping MacroDefinition: SDL_AtomicDecRef ( a ) ( SDL_AtomicAdd ( a , - 1 ) == 1 )
-# Skipping MacroDefinition: SDL_OutOfMemory ( ) SDL_Error ( SDL_ENOMEM )
-# Skipping MacroDefinition: SDL_Unsupported ( ) SDL_Error ( SDL_UNSUPPORTED )
-# Skipping MacroDefinition: SDL_InvalidParamError ( param ) SDL_SetError ( "Parameter '%s' is invalid" , ( param ) )
+# Skipping MacroDefinition: CompilerBarrier ( ) __asm__ __volatile__ ( "" : : : "memory" )
+# Skipping MacroDefinition: MemoryBarrierRelease ( ) CompilerBarrier ( )
+# Skipping MacroDefinition: MemoryBarrierAcquire ( ) CompilerBarrier ( )
+# Skipping MacroDefinition: AtomicIncRef ( a ) AtomicAdd ( a , 1 )
+# Skipping MacroDefinition: AtomicDecRef ( a ) ( AtomicAdd ( a , - 1 ) == 1 )
+# Skipping MacroDefinition: OutOfMemory ( ) Error ( ENOMEM )
+# Skipping MacroDefinition: Unsupported ( ) Error ( UNSUPPORTED )
+# Skipping MacroDefinition: InvalidParamError ( param ) SetError ( "Parameter '%s' is invalid" , ( param ) )
 
-const SDL_LIL_ENDIAN = 1234
-const SDL_BIG_ENDIAN = 4321
-const SDL_BYTEORDER = SDL_LIL_ENDIAN
+const LIL_ENDIAN = 1234
+const BIG_ENDIAN = 4321
+const BYTEORDER = LIL_ENDIAN
 
-# Skipping MacroDefinition: SDL_SwapLE16 ( X ) ( X )
-# Skipping MacroDefinition: SDL_SwapLE32 ( X ) ( X )
-# Skipping MacroDefinition: SDL_SwapLE64 ( X ) ( X )
-# Skipping MacroDefinition: SDL_SwapFloatLE ( X ) ( X )
-# Skipping MacroDefinition: SDL_SwapBE16 ( X ) SDL_Swap16 ( X )
-# Skipping MacroDefinition: SDL_SwapBE32 ( X ) SDL_Swap32 ( X )
-# Skipping MacroDefinition: SDL_SwapBE64 ( X ) SDL_Swap64 ( X )
-# Skipping MacroDefinition: SDL_SwapFloatBE ( X ) SDL_SwapFloat ( X )
+# Skipping MacroDefinition: SwapLE16 ( X ) ( X )
+# Skipping MacroDefinition: SwapLE32 ( X ) ( X )
+# Skipping MacroDefinition: SwapLE64 ( X ) ( X )
+# Skipping MacroDefinition: SwapFloatLE ( X ) ( X )
+# Skipping MacroDefinition: SwapBE16 ( X ) Swap16 ( X )
+# Skipping MacroDefinition: SwapBE32 ( X ) Swap32 ( X )
+# Skipping MacroDefinition: SwapBE64 ( X ) Swap64 ( X )
+# Skipping MacroDefinition: SwapFloatBE ( X ) SwapFloat ( X )
 
-const SDL_MUTEX_TIMEDOUT = 1
+const MUTEX_TIMEDOUT = 1
 
-# Skipping MacroDefinition: SDL_MUTEX_MAXWAIT ( ~ ( Uint32 ) 0 )
-# Skipping MacroDefinition: SDL_mutexP ( m ) SDL_LockMutex ( m )
-# Skipping MacroDefinition: SDL_mutexV ( m ) SDL_UnlockMutex ( m )
+# Skipping MacroDefinition: MUTEX_MAXWAIT ( ~ ( Uint32 ) 0 )
+# Skipping MacroDefinition: mutexP ( m ) LockMutex ( m )
+# Skipping MacroDefinition: mutexV ( m ) UnlockMutex ( m )
 
-const SDL_RWOPS_UNKNOWN = UInt32(0)
-const SDL_RWOPS_WINFILE = UInt32(1)
-const SDL_RWOPS_STDFILE = UInt32(2)
-const SDL_RWOPS_JNIFILE = UInt32(3)
-const SDL_RWOPS_MEMORY = UInt32(4)
-const SDL_RWOPS_MEMORY_RO = UInt32(5)
+const RWOPS_UNKNOWN = UInt32(0)
+const RWOPS_WINFILE = UInt32(1)
+const RWOPS_STDFILE = UInt32(2)
+const RWOPS_JNIFILE = UInt32(3)
+const RWOPS_MEMORY = UInt32(4)
+const RWOPS_MEMORY_RO = UInt32(5)
 const RW_SEEK_SET = 0
 const RW_SEEK_CUR = 1
 const RW_SEEK_END = 2
 
-# Skipping MacroDefinition: SDL_RWsize ( ctx ) ( ctx ) -> size ( ctx )
-# Skipping MacroDefinition: SDL_RWseek ( ctx , offset , whence ) ( ctx ) -> seek ( ctx , offset , whence )
-# Skipping MacroDefinition: SDL_RWtell ( ctx ) ( ctx ) -> seek ( ctx , 0 , RW_SEEK_CUR )
-# Skipping MacroDefinition: SDL_RWread ( ctx , ptr , size , n ) ( ctx ) -> read ( ctx , ptr , size , n )
-# Skipping MacroDefinition: SDL_RWwrite ( ctx , ptr , size , n ) ( ctx ) -> write ( ctx , ptr , size , n )
-# Skipping MacroDefinition: SDL_RWclose ( ctx ) ( ctx ) -> close ( ctx )
+# Skipping MacroDefinition: RWsize ( ctx ) ( ctx ) -> size ( ctx )
+# Skipping MacroDefinition: RWseek ( ctx , offset , whence ) ( ctx ) -> seek ( ctx , offset , whence )
+# Skipping MacroDefinition: RWtell ( ctx ) ( ctx ) -> seek ( ctx , 0 , RW_SEEK_CUR )
+# Skipping MacroDefinition: RWread ( ctx , ptr , size , n ) ( ctx ) -> read ( ctx , ptr , size , n )
+# Skipping MacroDefinition: RWwrite ( ctx , ptr , size , n ) ( ctx ) -> write ( ctx , ptr , size , n )
+# Skipping MacroDefinition: RWclose ( ctx ) ( ctx ) -> close ( ctx )
 
-const SDL_AUDIO_MASK_BITSIZE = Float32(0x0f)
-const SDL_AUDIO_MASK_DATATYPE = 1 << 8
-const SDL_AUDIO_MASK_ENDIAN = 1 << 12
-const SDL_AUDIO_MASK_SIGNED = 1 << 15
+const AUDIO_MASK_BITSIZE = Float32(0x0f)
+const AUDIO_MASK_DATATYPE = 1 << 8
+const AUDIO_MASK_ENDIAN = 1 << 12
+const AUDIO_MASK_SIGNED = 1 << 15
 
-# Skipping MacroDefinition: SDL_AUDIO_BITSIZE ( x ) ( x & SDL_AUDIO_MASK_BITSIZE )
-# Skipping MacroDefinition: SDL_AUDIO_ISFLOAT ( x ) ( x & SDL_AUDIO_MASK_DATATYPE )
-# Skipping MacroDefinition: SDL_AUDIO_ISBIGENDIAN ( x ) ( x & SDL_AUDIO_MASK_ENDIAN )
-# Skipping MacroDefinition: SDL_AUDIO_ISSIGNED ( x ) ( x & SDL_AUDIO_MASK_SIGNED )
-# Skipping MacroDefinition: SDL_AUDIO_ISINT ( x ) ( ! SDL_AUDIO_ISFLOAT ( x ) )
-# Skipping MacroDefinition: SDL_AUDIO_ISLITTLEENDIAN ( x ) ( ! SDL_AUDIO_ISBIGENDIAN ( x ) )
-# Skipping MacroDefinition: SDL_AUDIO_ISUNSIGNED ( x ) ( ! SDL_AUDIO_ISSIGNED ( x ) )
+# Skipping MacroDefinition: AUDIO_BITSIZE ( x ) ( x & AUDIO_MASK_BITSIZE )
+# Skipping MacroDefinition: AUDIO_ISFLOAT ( x ) ( x & AUDIO_MASK_DATATYPE )
+# Skipping MacroDefinition: AUDIO_ISBIGENDIAN ( x ) ( x & AUDIO_MASK_ENDIAN )
+# Skipping MacroDefinition: AUDIO_ISSIGNED ( x ) ( x & AUDIO_MASK_SIGNED )
+# Skipping MacroDefinition: AUDIO_ISINT ( x ) ( ! AUDIO_ISFLOAT ( x ) )
+# Skipping MacroDefinition: AUDIO_ISLITTLEENDIAN ( x ) ( ! AUDIO_ISBIGENDIAN ( x ) )
+# Skipping MacroDefinition: AUDIO_ISUNSIGNED ( x ) ( ! AUDIO_ISSIGNED ( x ) )
 
 const AUDIO_U8 = 0x0008
 const AUDIO_S8 = 0x8008
@@ -269,70 +269,70 @@ const AUDIO_U16SYS = AUDIO_U16LSB
 const AUDIO_S16SYS = AUDIO_S16LSB
 const AUDIO_S32SYS = AUDIO_S32LSB
 const AUDIO_F32SYS = AUDIO_F32LSB
-const SDL_AUDIO_ALLOW_FREQUENCY_CHANGE = 0x00000001
-const SDL_AUDIO_ALLOW_FORMAT_CHANGE = 0x00000002
-const SDL_AUDIO_ALLOW_CHANNELS_CHANGE = 0x00000004
-const SDL_AUDIO_ALLOW_ANY_CHANGE = (SDL_AUDIO_ALLOW_FREQUENCY_CHANGE | SDL_AUDIO_ALLOW_FORMAT_CHANGE) | SDL_AUDIO_ALLOW_CHANNELS_CHANGE
+const AUDIO_ALLOW_FREQUENCY_CHANGE = 0x00000001
+const AUDIO_ALLOW_FORMAT_CHANGE = 0x00000002
+const AUDIO_ALLOW_CHANNELS_CHANGE = 0x00000004
+const AUDIO_ALLOW_ANY_CHANGE = (AUDIO_ALLOW_FREQUENCY_CHANGE | AUDIO_ALLOW_FORMAT_CHANGE) | AUDIO_ALLOW_CHANNELS_CHANGE
 
-# Skipping MacroDefinition: SDL_AUDIOCVT_PACKED __attribute__ ( ( packed ) )
-# Skipping MacroDefinition: SDL_LoadWAV ( file , spec , audio_buf , audio_len ) SDL_LoadWAV_RW ( SDL_RWFromFile ( file , "rb" ) , 1 , spec , audio_buf , audio_len )
+# Skipping MacroDefinition: AUDIOCVT_PACKED __attribute__ ( ( packed ) )
+# Skipping MacroDefinition: LoadWAV ( file , spec , audio_buf , audio_len ) LoadWAV_RW ( RWFromFile ( file , "rb" ) , 1 , spec , audio_buf , audio_len )
 
-const SDL_MIX_MAXVOLUME = 128
-const SDL_CACHELINE_SIZE = 128
-const SDL_ALPHA_OPAQUE = 255
-const SDL_ALPHA_TRANSPARENT = 0
+const MIX_MAXVOLUME = 128
+const CACHELINE_SIZE = 128
+const ALPHA_OPAQUE = 255
+const ALPHA_TRANSPARENT = 0
 
-# Skipping MacroDefinition: SDL_DEFINE_PIXELFOURCC ( A , B , C , D ) SDL_FOURCC ( A , B , C , D )
-# Skipping MacroDefinition: SDL_DEFINE_PIXELFORMAT ( type , order , layout , bits , bytes ) ( ( 1 << 28 ) | ( ( type ) << 24 ) | ( ( order ) << 20 ) | ( ( layout ) << 16 ) | ( ( bits ) << 8 ) | ( ( bytes ) << 0 ) )
-# Skipping MacroDefinition: SDL_PIXELFLAG ( X ) ( ( ( X ) >> 28 ) & 0x0F )
-# Skipping MacroDefinition: SDL_PIXELTYPE ( X ) ( ( ( X ) >> 24 ) & 0x0F )
-# Skipping MacroDefinition: SDL_PIXELORDER ( X ) ( ( ( X ) >> 20 ) & 0x0F )
-# Skipping MacroDefinition: SDL_PIXELLAYOUT ( X ) ( ( ( X ) >> 16 ) & 0x0F )
-# Skipping MacroDefinition: SDL_BITSPERPIXEL ( X ) ( ( ( X ) >> 8 ) & 0xFF )
-# Skipping MacroDefinition: SDL_BYTESPERPIXEL ( X ) ( SDL_ISPIXELFORMAT_FOURCC ( X ) ? ( ( ( ( X ) == SDL_PIXELFORMAT_YUY2 ) || ( ( X ) == SDL_PIXELFORMAT_UYVY ) || ( ( X ) == SDL_PIXELFORMAT_YVYU ) ) ? 2 : 1 ) : ( ( ( X ) >> 0 ) & 0xFF ) )
-# Skipping MacroDefinition: SDL_ISPIXELFORMAT_INDEXED ( format ) ( ! SDL_ISPIXELFORMAT_FOURCC ( format ) && ( ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_INDEX1 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_INDEX4 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_INDEX8 ) ) )
-# Skipping MacroDefinition: SDL_ISPIXELFORMAT_PACKED ( format ) ( ! SDL_ISPIXELFORMAT_FOURCC ( format ) && ( ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_PACKED8 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_PACKED16 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_PACKED32 ) ) )
-# Skipping MacroDefinition: SDL_ISPIXELFORMAT_ARRAY ( format ) ( ! SDL_ISPIXELFORMAT_FOURCC ( format ) && ( ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_ARRAYU8 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_ARRAYU16 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_ARRAYU32 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_ARRAYF16 ) || ( SDL_PIXELTYPE ( format ) == SDL_PIXELTYPE_ARRAYF32 ) ) )
-# Skipping MacroDefinition: SDL_ISPIXELFORMAT_ALPHA ( format ) ( ( SDL_ISPIXELFORMAT_PACKED ( format ) && ( ( SDL_PIXELORDER ( format ) == SDL_PACKEDORDER_ARGB ) || ( SDL_PIXELORDER ( format ) == SDL_PACKEDORDER_RGBA ) || ( SDL_PIXELORDER ( format ) == SDL_PACKEDORDER_ABGR ) || ( SDL_PIXELORDER ( format ) == SDL_PACKEDORDER_BGRA ) ) ) || ( SDL_ISPIXELFORMAT_ARRAY ( format ) && ( ( SDL_PIXELORDER ( format ) == SDL_ARRAYORDER_ARGB ) || ( SDL_PIXELORDER ( format ) == SDL_ARRAYORDER_RGBA ) || ( SDL_PIXELORDER ( format ) == SDL_ARRAYORDER_ABGR ) || ( SDL_PIXELORDER ( format ) == SDL_ARRAYORDER_BGRA ) ) ) )
-# Skipping MacroDefinition: SDL_ISPIXELFORMAT_FOURCC ( format ) ( ( format ) && ( SDL_PIXELFLAG ( format ) != 1 ) )
+# Skipping MacroDefinition: DEFINE_PIXELFOURCC ( A , B , C , D ) FOURCC ( A , B , C , D )
+# Skipping MacroDefinition: DEFINE_PIXELFORMAT ( type , order , layout , bits , bytes ) ( ( 1 << 28 ) | ( ( type ) << 24 ) | ( ( order ) << 20 ) | ( ( layout ) << 16 ) | ( ( bits ) << 8 ) | ( ( bytes ) << 0 ) )
+# Skipping MacroDefinition: PIXELFLAG ( X ) ( ( ( X ) >> 28 ) & 0x0F )
+# Skipping MacroDefinition: PIXELTYPE ( X ) ( ( ( X ) >> 24 ) & 0x0F )
+# Skipping MacroDefinition: PIXELORDER ( X ) ( ( ( X ) >> 20 ) & 0x0F )
+# Skipping MacroDefinition: PIXELLAYOUT ( X ) ( ( ( X ) >> 16 ) & 0x0F )
+# Skipping MacroDefinition: BITSPERPIXEL ( X ) ( ( ( X ) >> 8 ) & 0xFF )
+# Skipping MacroDefinition: BYTESPERPIXEL ( X ) ( ISPIXELFORMAT_FOURCC ( X ) ? ( ( ( ( X ) == PIXELFORMAT_YUY2 ) || ( ( X ) == PIXELFORMAT_UYVY ) || ( ( X ) == PIXELFORMAT_YVYU ) ) ? 2 : 1 ) : ( ( ( X ) >> 0 ) & 0xFF ) )
+# Skipping MacroDefinition: ISPIXELFORMAT_INDEXED ( format ) ( ! ISPIXELFORMAT_FOURCC ( format ) && ( ( PIXELTYPE ( format ) == PIXELTYPE_INDEX1 ) || ( PIXELTYPE ( format ) == PIXELTYPE_INDEX4 ) || ( PIXELTYPE ( format ) == PIXELTYPE_INDEX8 ) ) )
+# Skipping MacroDefinition: ISPIXELFORMAT_PACKED ( format ) ( ! ISPIXELFORMAT_FOURCC ( format ) && ( ( PIXELTYPE ( format ) == PIXELTYPE_PACKED8 ) || ( PIXELTYPE ( format ) == PIXELTYPE_PACKED16 ) || ( PIXELTYPE ( format ) == PIXELTYPE_PACKED32 ) ) )
+# Skipping MacroDefinition: ISPIXELFORMAT_ARRAY ( format ) ( ! ISPIXELFORMAT_FOURCC ( format ) && ( ( PIXELTYPE ( format ) == PIXELTYPE_ARRAYU8 ) || ( PIXELTYPE ( format ) == PIXELTYPE_ARRAYU16 ) || ( PIXELTYPE ( format ) == PIXELTYPE_ARRAYU32 ) || ( PIXELTYPE ( format ) == PIXELTYPE_ARRAYF16 ) || ( PIXELTYPE ( format ) == PIXELTYPE_ARRAYF32 ) ) )
+# Skipping MacroDefinition: ISPIXELFORMAT_ALPHA ( format ) ( ( ISPIXELFORMAT_PACKED ( format ) && ( ( PIXELORDER ( format ) == PACKEDORDER_ARGB ) || ( PIXELORDER ( format ) == PACKEDORDER_RGBA ) || ( PIXELORDER ( format ) == PACKEDORDER_ABGR ) || ( PIXELORDER ( format ) == PACKEDORDER_BGRA ) ) ) || ( ISPIXELFORMAT_ARRAY ( format ) && ( ( PIXELORDER ( format ) == ARRAYORDER_ARGB ) || ( PIXELORDER ( format ) == ARRAYORDER_RGBA ) || ( PIXELORDER ( format ) == ARRAYORDER_ABGR ) || ( PIXELORDER ( format ) == ARRAYORDER_BGRA ) ) ) )
+# Skipping MacroDefinition: ISPIXELFORMAT_FOURCC ( format ) ( ( format ) && ( PIXELFLAG ( format ) != 1 ) )
 
 #const Uint8 = Cint
 const Uint8 = Cint
 
-mutable struct SDL_Color
+mutable struct Color
     r::Uint8
     g::Uint8
     b::Uint8
     a::Uint8
 end
 
-const SDL_Colour = SDL_Color
-const SDL_SWSURFACE = 0
-const SDL_PREALLOC = 0x00000001
-const SDL_RLEACCEL = 0x00000002
-const SDL_DONTFREE = 0x00000004
+const Colour = Color
+const SWSURFACE = 0
+const PREALLOC = 0x00000001
+const RLEACCEL = 0x00000002
+const DONTFREE = 0x00000004
 
-# Skipping MacroDefinition: SDL_MUSTLOCK ( S ) ( ( ( S ) -> flags & SDL_RLEACCEL ) != 0 )
-# Skipping MacroDefinition: SDL_LoadBMP ( file ) SDL_LoadBMP_RW ( SDL_RWFromFile ( file , "rb" ) , 1 )
-# Skipping MacroDefinition: SDL_SaveBMP ( surface , file ) SDL_SaveBMP_RW ( surface , SDL_RWFromFile ( file , "wb" ) , 1 )
+# Skipping MacroDefinition: MUSTLOCK ( S ) ( ( ( S ) -> flags & RLEACCEL ) != 0 )
+# Skipping MacroDefinition: LoadBMP ( file ) LoadBMP_RW ( RWFromFile ( file , "rb" ) , 1 )
+# Skipping MacroDefinition: SaveBMP ( surface , file ) SaveBMP_RW ( surface , RWFromFile ( file , "wb" ) , 1 )
 
-#const SDL_BlitSurface = SDL_UpperBlit
-#const SDL_BlitScaled = SDL_UpperBlitScaled
-const SDL_WINDOWPOS_UNDEFINED_MASK = UInt32(0x1fff0000)
+#const BlitSurface = UpperBlit
+#const BlitScaled = UpperBlitScaled
+const WINDOWPOS_UNDEFINED_MASK = UInt32(0x1fff0000)
 
-# Skipping MacroDefinition: SDL_WINDOWPOS_UNDEFINED_DISPLAY ( X ) ( SDL_WINDOWPOS_UNDEFINED_MASK | ( X ) )
-# Skipping MacroDefinition: SDL_WINDOWPOS_UNDEFINED SDL_WINDOWPOS_UNDEFINED_DISPLAY ( 0 )
-# Skipping MacroDefinition: SDL_WINDOWPOS_ISUNDEFINED ( X ) ( ( ( X ) & 0xFFFF0000 ) == SDL_WINDOWPOS_UNDEFINED_MASK )
+# Skipping MacroDefinition: WINDOWPOS_UNDEFINED_DISPLAY ( X ) ( WINDOWPOS_UNDEFINED_MASK | ( X ) )
+# Skipping MacroDefinition: WINDOWPOS_UNDEFINED WINDOWPOS_UNDEFINED_DISPLAY ( 0 )
+# Skipping MacroDefinition: WINDOWPOS_ISUNDEFINED ( X ) ( ( ( X ) & 0xFFFF0000 ) == WINDOWPOS_UNDEFINED_MASK )
 
-const SDL_WINDOWPOS_CENTERED_MASK = UInt32(0x2fff0000)
+const WINDOWPOS_CENTERED_MASK = UInt32(0x2fff0000)
 
-# Skipping MacroDefinition: SDL_WINDOWPOS_CENTERED_DISPLAY ( X ) ( SDL_WINDOWPOS_CENTERED_MASK | ( X ) )
-# Skipping MacroDefinition: SDL_WINDOWPOS_CENTERED SDL_WINDOWPOS_CENTERED_DISPLAY ( 0 )
-# Skipping MacroDefinition: SDL_WINDOWPOS_ISCENTERED ( X ) ( ( ( X ) & 0xFFFF0000 ) == SDL_WINDOWPOS_CENTERED_MASK )
+# Skipping MacroDefinition: WINDOWPOS_CENTERED_DISPLAY ( X ) ( WINDOWPOS_CENTERED_MASK | ( X ) )
+# Skipping MacroDefinition: WINDOWPOS_CENTERED WINDOWPOS_CENTERED_DISPLAY ( 0 )
+# Skipping MacroDefinition: WINDOWPOS_ISCENTERED ( X ) ( ( ( X ) & 0xFFFF0000 ) == WINDOWPOS_CENTERED_MASK )
 
 const SDLK_SCANCODE_MASK = 1 << 30
 
-# Skipping MacroDefinition: SDL_SCANCODE_TO_KEYCODE ( X ) ( X | SDLK_SCANCODE_MASK )
+# Skipping MacroDefinition: SCANCODE_TO_KEYCODE ( X ) ( X | SDLK_SCANCODE_MASK )
 
 # begin enum ANONYMOUS_23
 const ANONYMOUS_23 = UInt32
@@ -356,138 +356,138 @@ const KMOD_SHIFT = KMOD_LSHIFT | KMOD_RSHIFT
 const KMOD_ALT = KMOD_LALT | KMOD_RALT
 const KMOD_GUI = KMOD_LGUI | KMOD_RGUI
 
-# Skipping MacroDefinition: SDL_BUTTON ( X ) ( 1 << ( ( X ) - 1 ) )
+# Skipping MacroDefinition: BUTTON ( X ) ( 1 << ( ( X ) - 1 ) )
 
-const SDL_BUTTON_LEFT = 1
-const SDL_BUTTON_MIDDLE = 2
-const SDL_BUTTON_RIGHT = 3
-const SDL_BUTTON_X1 = 4
-const SDL_BUTTON_X2 = 5
+const BUTTON_LEFT = 1
+const BUTTON_MIDDLE = 2
+const BUTTON_RIGHT = 3
+const BUTTON_X1 = 4
+const BUTTON_X2 = 5
 
-# Skipping MacroDefinition: SDL_BUTTON_LMASK SDL_BUTTON ( SDL_BUTTON_LEFT )
-# Skipping MacroDefinition: SDL_BUTTON_MMASK SDL_BUTTON ( SDL_BUTTON_MIDDLE )
-# Skipping MacroDefinition: SDL_BUTTON_RMASK SDL_BUTTON ( SDL_BUTTON_RIGHT )
-# Skipping MacroDefinition: SDL_BUTTON_X1MASK SDL_BUTTON ( SDL_BUTTON_X1 )
-# Skipping MacroDefinition: SDL_BUTTON_X2MASK SDL_BUTTON ( SDL_BUTTON_X2 )
+# Skipping MacroDefinition: BUTTON_LMASK BUTTON ( BUTTON_LEFT )
+# Skipping MacroDefinition: BUTTON_MMASK BUTTON ( BUTTON_MIDDLE )
+# Skipping MacroDefinition: BUTTON_RMASK BUTTON ( BUTTON_RIGHT )
+# Skipping MacroDefinition: BUTTON_X1MASK BUTTON ( BUTTON_X1 )
+# Skipping MacroDefinition: BUTTON_X2MASK BUTTON ( BUTTON_X2 )
 
-const SDL_HAT_CENTERED = 0x00
-const SDL_HAT_UP = 0x01
-const SDL_HAT_RIGHT = 0x02
-const SDL_HAT_DOWN = 0x04
-const SDL_HAT_LEFT = 0x08
-const SDL_HAT_RIGHTUP = SDL_HAT_RIGHT | SDL_HAT_UP
-const SDL_HAT_RIGHTDOWN = SDL_HAT_RIGHT | SDL_HAT_DOWN
-const SDL_HAT_LEFTUP = SDL_HAT_LEFT | SDL_HAT_UP
-const SDL_HAT_LEFTDOWN = SDL_HAT_LEFT | SDL_HAT_DOWN
+const HAT_CENTERED = 0x00
+const HAT_UP = 0x01
+const HAT_RIGHT = 0x02
+const HAT_DOWN = 0x04
+const HAT_LEFT = 0x08
+const HAT_RIGHTUP = HAT_RIGHT | HAT_UP
+const HAT_RIGHTDOWN = HAT_RIGHT | HAT_DOWN
+const HAT_LEFTUP = HAT_LEFT | HAT_UP
+const HAT_LEFTDOWN = HAT_LEFT | HAT_DOWN
 
-# Skipping MacroDefinition: SDL_GameControllerAddMappingsFromFile ( file ) SDL_GameControllerAddMappingsFromRW ( SDL_RWFromFile ( file , "rb" ) , 1 )
-# Skipping MacroDefinition: SDL_QuitRequested ( ) ( SDL_PumpEvents ( ) , ( SDL_PeepEvents ( NULL , 0 , SDL_PEEKEVENT , SDL_QUIT , SDL_QUIT ) > 0 ) )
-# Skipping MacroDefinition: SDL_TOUCH_MOUSEID ( ( Uint32 ) - 1 )
+# Skipping MacroDefinition: GameControllerAddMappingsFromFile ( file ) GameControllerAddMappingsFromRW ( RWFromFile ( file , "rb" ) , 1 )
+# Skipping MacroDefinition: QuitRequested ( ) ( PumpEvents ( ) , ( PeepEvents ( NULL , 0 , PEEKEVENT , QUIT , QUIT ) > 0 ) )
+# Skipping MacroDefinition: TOUCH_MOUSEID ( ( Uint32 ) - 1 )
 
-const SDL_RELEASED = 0
-const SDL_PRESSED = 1
-const SDL_TEXTEDITINGEVENT_TEXT_SIZE = 32
-const SDL_TEXTINPUTEVENT_TEXT_SIZE = 32
-const SDL_QUERY = -1
-const SDL_IGNORE = 0
-const SDL_DISABLE = 0
-const SDL_ENABLE = 1
+const RELEASED = 0
+const PRESSED = 1
+const TEXTEDITINGEVENT_TEXT_SIZE = 32
+const TEXTINPUTEVENT_TEXT_SIZE = 32
+const QUERY = -1
+const IGNORE = 0
+const DISABLE = 0
+const ENABLE = 1
 
-# Skipping MacroDefinition: SDL_GetEventState ( type ) SDL_EventState ( type , SDL_QUERY )
+# Skipping MacroDefinition: GetEventState ( type ) EventState ( type , QUERY )
 
-const SDL_HAPTIC_CONSTANT = UInt32(1) << 0
-const SDL_HAPTIC_SINE = UInt32(1) << 1
-const SDL_HAPTIC_LEFTRIGHT = UInt32(1) << 2
-const SDL_HAPTIC_TRIANGLE = UInt32(1) << 3
-const SDL_HAPTIC_SAWTOOTHUP = UInt32(1) << 4
-const SDL_HAPTIC_SAWTOOTHDOWN = UInt32(1) << 5
-const SDL_HAPTIC_RAMP = UInt32(1) << 6
-const SDL_HAPTIC_SPRING = UInt32(1) << 7
-const SDL_HAPTIC_DAMPER = UInt32(1) << 8
-const SDL_HAPTIC_INERTIA = UInt32(1) << 9
-const SDL_HAPTIC_FRICTION = UInt32(1) << 10
-const SDL_HAPTIC_CUSTOM = UInt32(1) << 11
-const SDL_HAPTIC_GAIN = UInt32(1) << 12
-const SDL_HAPTIC_AUTOCENTER = UInt32(1) << 13
-const SDL_HAPTIC_STATUS = UInt32(1) << 14
-const SDL_HAPTIC_PAUSE = UInt32(1) << 15
-const SDL_HAPTIC_POLAR = 0
-const SDL_HAPTIC_CARTESIAN = 1
-const SDL_HAPTIC_SPHERICAL = 2
-const SDL_HAPTIC_INFINITY = UInt32(4294967295)
-const SDL_HINT_FRAMEBUFFER_ACCELERATION = "SDL_FRAMEBUFFER_ACCELERATION"
-const SDL_HINT_RENDER_DRIVER = "SDL_RENDER_DRIVER"
-const SDL_HINT_RENDER_OPENGL_SHADERS = "SDL_RENDER_OPENGL_SHADERS"
-const SDL_HINT_RENDER_DIRECT3D_THREADSAFE = "SDL_RENDER_DIRECT3D_THREADSAFE"
-const SDL_HINT_RENDER_DIRECT3D11_DEBUG = "SDL_RENDER_DIRECT3D11_DEBUG"
-const SDL_HINT_RENDER_SCALE_QUALITY = "SDL_RENDER_SCALE_QUALITY"
-const SDL_HINT_RENDER_VSYNC = "SDL_RENDER_VSYNC"
-const SDL_HINT_VIDEO_ALLOW_SCREENSAVER = "SDL_VIDEO_ALLOW_SCREENSAVER"
-const SDL_HINT_VIDEO_X11_XVIDMODE = "SDL_VIDEO_X11_XVIDMODE"
-const SDL_HINT_VIDEO_X11_XINERAMA = "SDL_VIDEO_X11_XINERAMA"
-const SDL_HINT_VIDEO_X11_XRANDR = "SDL_VIDEO_X11_XRANDR"
-const SDL_HINT_VIDEO_X11_NET_WM_PING = "SDL_VIDEO_X11_NET_WM_PING"
-const SDL_HINT_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN = "SDL_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN"
-const SDL_HINT_WINDOWS_ENABLE_MESSAGELOOP = "SDL_WINDOWS_ENABLE_MESSAGELOOP"
-const SDL_HINT_GRAB_KEYBOARD = "SDL_GRAB_KEYBOARD"
-const SDL_HINT_MOUSE_RELATIVE_MODE_WARP = "SDL_MOUSE_RELATIVE_MODE_WARP"
-const SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH = "SDL_MOUSE_FOCUS_CLICKTHROUGH"
-const SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS"
-const SDL_HINT_IDLE_TIMER_DISABLED = "SDL_IOS_IDLE_TIMER_DISABLED"
-const SDL_HINT_ORIENTATIONS = "SDL_IOS_ORIENTATIONS"
-const SDL_HINT_APPLE_TV_CONTROLLER_UI_EVENTS = "SDL_APPLE_TV_CONTROLLER_UI_EVENTS"
-const SDL_HINT_APPLE_TV_REMOTE_ALLOW_ROTATION = "SDL_APPLE_TV_REMOTE_ALLOW_ROTATION"
-const SDL_HINT_ACCELEROMETER_AS_JOYSTICK = "SDL_ACCELEROMETER_AS_JOYSTICK"
-const SDL_HINT_XINPUT_ENABLED = "SDL_XINPUT_ENABLED"
-const SDL_HINT_XINPUT_USE_OLD_JOYSTICK_MAPPING = "SDL_XINPUT_USE_OLD_JOYSTICK_MAPPING"
-const SDL_HINT_GAMECONTROLLERCONFIG = "SDL_GAMECONTROLLERCONFIG"
-const SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS = "SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS"
-const SDL_HINT_ALLOW_TOPMOST = "SDL_ALLOW_TOPMOST"
-const SDL_HINT_TIMER_RESOLUTION = "SDL_TIMER_RESOLUTION"
-const SDL_HINT_THREAD_STACK_SIZE = "SDL_THREAD_STACK_SIZE"
-const SDL_HINT_VIDEO_HIGHDPI_DISABLED = "SDL_VIDEO_HIGHDPI_DISABLED"
-const SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK = "SDL_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK"
-const SDL_HINT_VIDEO_WIN_D3DCOMPILER = "SDL_VIDEO_WIN_D3DCOMPILER"
-const SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT = "SDL_VIDEO_WINDOW_SHARE_PIXEL_FORMAT"
-const SDL_HINT_WINRT_PRIVACY_POLICY_URL = "SDL_WINRT_PRIVACY_POLICY_URL"
-const SDL_HINT_WINRT_PRIVACY_POLICY_LABEL = "SDL_WINRT_PRIVACY_POLICY_LABEL"
-const SDL_HINT_WINRT_HANDLE_BACK_BUTTON = "SDL_WINRT_HANDLE_BACK_BUTTON"
-const SDL_HINT_VIDEO_MAC_FULLSCREEN_SPACES = "SDL_VIDEO_MAC_FULLSCREEN_SPACES"
-const SDL_HINT_MAC_BACKGROUND_APP = "SDL_MAC_BACKGROUND_APP"
-const SDL_HINT_ANDROID_APK_EXPANSION_MAIN_FILE_VERSION = "SDL_ANDROID_APK_EXPANSION_MAIN_FILE_VERSION"
-const SDL_HINT_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION = "SDL_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION"
-const SDL_HINT_IME_INTERNAL_EDITING = "SDL_IME_INTERNAL_EDITING"
-const SDL_HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = "SDL_ANDROID_SEPARATE_MOUSE_AND_TOUCH"
-const SDL_HINT_EMSCRIPTEN_KEYBOARD_ELEMENT = "SDL_EMSCRIPTEN_KEYBOARD_ELEMENT"
-const SDL_HINT_NO_SIGNAL_HANDLERS = "SDL_NO_SIGNAL_HANDLERS"
-const SDL_HINT_WINDOWS_NO_CLOSE_ON_ALT_F4 = "SDL_WINDOWS_NO_CLOSE_ON_ALT_F4"
-const SDL_HINT_BMP_SAVE_LEGACY_FORMAT = "SDL_BMP_SAVE_LEGACY_FORMAT"
-const SDL_HINT_WINDOWS_DISABLE_THREAD_NAMING = "SDL_WINDOWS_DISABLE_THREAD_NAMING"
-const SDL_HINT_RPI_VIDEO_LAYER = "SDL_RPI_VIDEO_LAYER"
-const SDL_MAX_LOG_MESSAGE = 4096
+const HAPTIC_CONSTANT = UInt32(1) << 0
+const HAPTIC_SINE = UInt32(1) << 1
+const HAPTIC_LEFTRIGHT = UInt32(1) << 2
+const HAPTIC_TRIANGLE = UInt32(1) << 3
+const HAPTIC_SAWTOOTHUP = UInt32(1) << 4
+const HAPTIC_SAWTOOTHDOWN = UInt32(1) << 5
+const HAPTIC_RAMP = UInt32(1) << 6
+const HAPTIC_SPRING = UInt32(1) << 7
+const HAPTIC_DAMPER = UInt32(1) << 8
+const HAPTIC_INERTIA = UInt32(1) << 9
+const HAPTIC_FRICTION = UInt32(1) << 10
+const HAPTIC_CUSTOM = UInt32(1) << 11
+const HAPTIC_GAIN = UInt32(1) << 12
+const HAPTIC_AUTOCENTER = UInt32(1) << 13
+const HAPTIC_STATUS = UInt32(1) << 14
+const HAPTIC_PAUSE = UInt32(1) << 15
+const HAPTIC_POLAR = 0
+const HAPTIC_CARTESIAN = 1
+const HAPTIC_SPHERICAL = 2
+const HAPTIC_INFINITY = UInt32(4294967295)
+const HINT_FRAMEBUFFER_ACCELERATION = "FRAMEBUFFER_ACCELERATION"
+const HINT_RENDER_DRIVER = "RENDER_DRIVER"
+const HINT_RENDER_OPENGL_SHADERS = "RENDER_OPENGL_SHADERS"
+const HINT_RENDER_DIRECT3D_THREADSAFE = "RENDER_DIRECT3D_THREADSAFE"
+const HINT_RENDER_DIRECT3D11_DEBUG = "RENDER_DIRECT3D11_DEBUG"
+const HINT_RENDER_SCALE_QUALITY = "RENDER_SCALE_QUALITY"
+const HINT_RENDER_VSYNC = "RENDER_VSYNC"
+const HINT_VIDEO_ALLOW_SCREENSAVER = "VIDEO_ALLOW_SCREENSAVER"
+const HINT_VIDEO_X11_XVIDMODE = "VIDEO_X11_XVIDMODE"
+const HINT_VIDEO_X11_XINERAMA = "VIDEO_X11_XINERAMA"
+const HINT_VIDEO_X11_XRANDR = "VIDEO_X11_XRANDR"
+const HINT_VIDEO_X11_NET_WM_PING = "VIDEO_X11_NET_WM_PING"
+const HINT_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN = "WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN"
+const HINT_WINDOWS_ENABLE_MESSAGELOOP = "WINDOWS_ENABLE_MESSAGELOOP"
+const HINT_GRAB_KEYBOARD = "GRAB_KEYBOARD"
+const HINT_MOUSE_RELATIVE_MODE_WARP = "MOUSE_RELATIVE_MODE_WARP"
+const HINT_MOUSE_FOCUS_CLICKTHROUGH = "MOUSE_FOCUS_CLICKTHROUGH"
+const HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "VIDEO_MINIMIZE_ON_FOCUS_LOSS"
+const HINT_IDLE_TIMER_DISABLED = "IOS_IDLE_TIMER_DISABLED"
+const HINT_ORIENTATIONS = "IOS_ORIENTATIONS"
+const HINT_APPLE_TV_CONTROLLER_UI_EVENTS = "APPLE_TV_CONTROLLER_UI_EVENTS"
+const HINT_APPLE_TV_REMOTE_ALLOW_ROTATION = "APPLE_TV_REMOTE_ALLOW_ROTATION"
+const HINT_ACCELEROMETER_AS_JOYSTICK = "ACCELEROMETER_AS_JOYSTICK"
+const HINT_XINPUT_ENABLED = "XINPUT_ENABLED"
+const HINT_XINPUT_USE_OLD_JOYSTICK_MAPPING = "XINPUT_USE_OLD_JOYSTICK_MAPPING"
+const HINT_GAMECONTROLLERCONFIG = "GAMECONTROLLERCONFIG"
+const HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS = "JOYSTICK_ALLOW_BACKGROUND_EVENTS"
+const HINT_ALLOW_TOPMOST = "ALLOW_TOPMOST"
+const HINT_TIMER_RESOLUTION = "TIMER_RESOLUTION"
+const HINT_THREAD_STACK_SIZE = "THREAD_STACK_SIZE"
+const HINT_VIDEO_HIGHDPI_DISABLED = "VIDEO_HIGHDPI_DISABLED"
+const HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK = "MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK"
+const HINT_VIDEO_WIN_D3DCOMPILER = "VIDEO_WIN_D3DCOMPILER"
+const HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT = "VIDEO_WINDOW_SHARE_PIXEL_FORMAT"
+const HINT_WINRT_PRIVACY_POLICY_URL = "WINRT_PRIVACY_POLICY_URL"
+const HINT_WINRT_PRIVACY_POLICY_LABEL = "WINRT_PRIVACY_POLICY_LABEL"
+const HINT_WINRT_HANDLE_BACK_BUTTON = "WINRT_HANDLE_BACK_BUTTON"
+const HINT_VIDEO_MAC_FULLSCREEN_SPACES = "VIDEO_MAC_FULLSCREEN_SPACES"
+const HINT_MAC_BACKGROUND_APP = "MAC_BACKGROUND_APP"
+const HINT_ANDROID_APK_EXPANSION_MAIN_FILE_VERSION = "ANDROID_APK_EXPANSION_MAIN_FILE_VERSION"
+const HINT_ANDROID_APK_EXPANSION_PATCH_FILE_VERSION = "ANDROID_APK_EXPANSION_PATCH_FILE_VERSION"
+const HINT_IME_INTERNAL_EDITING = "IME_INTERNAL_EDITING"
+const HINT_ANDROID_SEPARATE_MOUSE_AND_TOUCH = "ANDROID_SEPARATE_MOUSE_AND_TOUCH"
+const HINT_EMSCRIPTEN_KEYBOARD_ELEMENT = "EMSCRIPTEN_KEYBOARD_ELEMENT"
+const HINT_NO_SIGNAL_HANDLERS = "NO_SIGNAL_HANDLERS"
+const HINT_WINDOWS_NO_CLOSE_ON_ALT_F4 = "WINDOWS_NO_CLOSE_ON_ALT_F4"
+const HINT_BMP_SAVE_LEGACY_FORMAT = "BMP_SAVE_LEGACY_FORMAT"
+const HINT_WINDOWS_DISABLE_THREAD_NAMING = "WINDOWS_DISABLE_THREAD_NAMING"
+const HINT_RPI_VIDEO_LAYER = "RPI_VIDEO_LAYER"
+const MAX_LOG_MESSAGE = 4096
 
-# Skipping MacroDefinition: SDL_TICKS_PASSED ( A , B ) ( ( Sint32 ) ( ( B ) - ( A ) ) <= 0 )
+# Skipping MacroDefinition: TICKS_PASSED ( A , B ) ( ( Sint32 ) ( ( B ) - ( A ) ) <= 0 )
 
-const SDL_MAJOR_VERSION = 2
-const SDL_MINOR_VERSION = 0
-const SDL_PATCHLEVEL = 5
+const MAJOR_VERSION = 2
+const MINOR_VERSION = 0
+const PATCHLEVEL = 5
 
-# Skipping MacroDefinition: SDL_VERSION ( x ) \
-#{ ( x ) -> major = SDL_MAJOR_VERSION ; ( x ) -> minor = SDL_MINOR_VERSION ; ( x ) -> patch = SDL_PATCHLEVEL ; \
+# Skipping MacroDefinition: VERSION ( x ) \
+#{ ( x ) -> major = MAJOR_VERSION ; ( x ) -> minor = MINOR_VERSION ; ( x ) -> patch = PATCHLEVEL ; \
 #}
-# Skipping MacroDefinition: SDL_VERSIONNUM ( X , Y , Z ) ( ( X ) * 1000 + ( Y ) * 100 + ( Z ) )
-# Skipping MacroDefinition: SDL_COMPILEDVERSION SDL_VERSIONNUM ( SDL_MAJOR_VERSION , SDL_MINOR_VERSION , SDL_PATCHLEVEL )
-# Skipping MacroDefinition: SDL_VERSION_ATLEAST ( X , Y , Z ) ( SDL_COMPILEDVERSION >= SDL_VERSIONNUM ( X , Y , Z ) )
+# Skipping MacroDefinition: VERSIONNUM ( X , Y , Z ) ( ( X ) * 1000 + ( Y ) * 100 + ( Z ) )
+# Skipping MacroDefinition: COMPILEDVERSION VERSIONNUM ( MAJOR_VERSION , MINOR_VERSION , PATCHLEVEL )
+# Skipping MacroDefinition: VERSION_ATLEAST ( X , Y , Z ) ( COMPILEDVERSION >= VERSIONNUM ( X , Y , Z ) )
 
-const SDL_INIT_TIMER = UInt32(0x00000001)
-const SDL_INIT_AUDIO = UInt32(0x00000010)
-const SDL_INIT_VIDEO = UInt32(0x00000020)
-const SDL_INIT_JOYSTICK = UInt32(0x00000200)
-const SDL_INIT_HAPTIC = UInt32(0x00001000)
-const SDL_INIT_GAMECONTROLLER = UInt32(0x00002000)
-const SDL_INIT_EVENTS = UInt32(0x00004000)
-const SDL_INIT_NOPARACHUTE = UInt32(0x00100000)
-const SDL_INIT_EVERYTHING = (((((SDL_INIT_TIMER | SDL_INIT_AUDIO) | SDL_INIT_VIDEO) | SDL_INIT_EVENTS) | SDL_INIT_JOYSTICK) | SDL_INIT_HAPTIC) | SDL_INIT_GAMECONTROLLER
+const INIT_TIMER = UInt32(0x00000001)
+const INIT_AUDIO = UInt32(0x00000010)
+const INIT_VIDEO = UInt32(0x00000020)
+const INIT_JOYSTICK = UInt32(0x00000200)
+const INIT_HAPTIC = UInt32(0x00001000)
+const INIT_GAMECONTROLLER = UInt32(0x00002000)
+const INIT_EVENTS = UInt32(0x00004000)
+const INIT_NOPARACHUTE = UInt32(0x00100000)
+const INIT_EVERYTHING = (((((INIT_TIMER | INIT_AUDIO) | INIT_VIDEO) | INIT_EVENTS) | INIT_JOYSTICK) | INIT_HAPTIC) | INIT_GAMECONTROLLER
 
 const ptrdiff_t = Clong
 const size_t = Culong
@@ -497,11 +497,11 @@ const max_align_t = Float64
 
 # begin enum ANONYMOUS_1
 const ANONYMOUS_1 = UInt32
-const SDL_FALSE = (UInt32)(0)
-const SDL_TRUE = (UInt32)(1)
+const FALSE = (UInt32)(0)
+const TRUE = (UInt32)(1)
 # end enum ANONYMOUS_1
 
-const SDL_bool = Bool
+const bool = Bool
 const Sint8 = Cint
 const Sint16 = Cint
 const Uint16 = Cint
@@ -509,81 +509,81 @@ const Sint32 = Cint
 const Uint32 = Cint
 const Sint64 = Cint
 const Uint64 = Cint
-const SDL_dummy_uint8 = Cint
-const SDL_dummy_sint8 = Cint
-const SDL_dummy_uint16 = Cint
-const SDL_dummy_sint16 = Cint
-const SDL_dummy_uint32 = NTuple{1, Cint}
-const SDL_dummy_sint32 = NTuple{1, Cint}
-const SDL_dummy_uint64 = Cint
-const SDL_dummy_sint64 = Cint
+const dummy_uint8 = Cint
+const dummy_sint8 = Cint
+const dummy_uint16 = Cint
+const dummy_sint16 = Cint
+const dummy_uint32 = NTuple{1, Cint}
+const dummy_sint32 = NTuple{1, Cint}
+const dummy_uint64 = Cint
+const dummy_sint64 = Cint
 
 # begin enum ANONYMOUS_2
 const ANONYMOUS_2 = UInt32
 const DUMMY_ENUM_VALUE = (UInt32)(0)
 # end enum ANONYMOUS_2
 
-const SDL_DUMMY_ENUM = Void
-const SDL_dummy_enum = NTuple{1, Cint}
+const DUMMY_ENUM = Void
+const dummy_enum = NTuple{1, Cint}
 
-mutable struct _SDL_iconv_t
+mutable struct _iconv_t
 end
 
-const SDL_iconv_t = Ptr{Void}
+const iconv_t = Ptr{Void}
 
 # begin enum ANONYMOUS_3
 const ANONYMOUS_3 = UInt32
-const SDL_ASSERTION_RETRY = (UInt32)(0)
-const SDL_ASSERTION_BREAK = (UInt32)(1)
-const SDL_ASSERTION_ABORT = (UInt32)(2)
-const SDL_ASSERTION_IGNORE = (UInt32)(3)
-const SDL_ASSERTION_ALWAYS_IGNORE = (UInt32)(4)
+const ASSERTION_RETRY = (UInt32)(0)
+const ASSERTION_BREAK = (UInt32)(1)
+const ASSERTION_ABORT = (UInt32)(2)
+const ASSERTION_IGNORE = (UInt32)(3)
+const ASSERTION_ALWAYS_IGNORE = (UInt32)(4)
 # end enum ANONYMOUS_3
 
-const SDL_AssertionHandler = Ptr{Void}
-const SDL_SpinLock = Cint
-const SDL_atomic_t = Void
+const AssertionHandler = Ptr{Void}
+const SpinLock = Cint
+const atomic_t = Void
 
 # begin enum ANONYMOUS_4
 const ANONYMOUS_4 = UInt32
-const SDL_ENOMEM = (UInt32)(0)
-const SDL_EFREAD = (UInt32)(1)
-const SDL_EFWRITE = (UInt32)(2)
-const SDL_EFSEEK = (UInt32)(3)
-const SDL_UNSUPPORTED = (UInt32)(4)
-const SDL_LASTERROR = (UInt32)(5)
+const ENOMEM = (UInt32)(0)
+const EFREAD = (UInt32)(1)
+const EFWRITE = (UInt32)(2)
+const EFSEEK = (UInt32)(3)
+const UNSUPPORTED = (UInt32)(4)
+const LASTERROR = (UInt32)(5)
 # end enum ANONYMOUS_4
 
-const SDL_errorcode = Void
+const errorcode = Void
 
-mutable struct SDL_mutex
+mutable struct Mutex
 end
 
-mutable struct SDL_semaphore
+mutable struct semaphore
 end
 
-const SDL_sem = Void
+const Sem = Void
 
-mutable struct SDL_cond
+mutable struct Cond
 end
 
-mutable struct SDL_Thread
+mutable struct Thread
 end
 
 const SDL_threadID = Culong
-const SDL_TLSID = UInt32
+const TLSID = UInt32
 
 # begin enum ANONYMOUS_5
 const ANONYMOUS_5 = UInt32
-const SDL_THREAD_PRIORITY_LOW = (UInt32)(0)
-const SDL_THREAD_PRIORITY_NORMAL = (UInt32)(1)
-const SDL_THREAD_PRIORITY_HIGH = (UInt32)(2)
+const THREAD_PRIORITY_LOW = (UInt32)(0)
+const THREAD_PRIORITY_NORMAL = (UInt32)(1)
+const THREAD_PRIORITY_HIGH = (UInt32)(2)
 # end enum ANONYMOUS_5
 
-const SDL_ThreadPriority = Void
-const SDL_ThreadFunction = Ptr{Void}
+const ThreadPriority = Void
+const ThreadFunction = Ptr{Void}
 
-mutable struct SDL_RWops
+mutable struct RWops
     size::Ptr{Void}
     seek::Ptr{Void}
     read::Ptr{Void}
@@ -593,149 +593,149 @@ mutable struct SDL_RWops
     hidden::Void
 end
 
-const SDL_AudioFormat = Uint16
-const SDL_AudioCallback = Ptr{Void}
+const AudioFormat = Uint16
+const AudioCallback = Ptr{Void}
 
-mutable struct SDL_AudioSpec
+mutable struct AudioSpec
     freq::Cint
-    format::SDL_AudioFormat
+    format::AudioFormat
     channels::Uint8
     silence::Uint8
     samples::Uint16
     padding::Uint16
     size::Uint32
-    callback::SDL_AudioCallback
+    callback::AudioCallback
     userdata::Ptr{Void}
 end
 
-const SDL_AudioFilter = Ptr{Void}
-const SDL_AudioDeviceID = Uint32
+const AudioFilter = Ptr{Void}
+const AudioDeviceID = Uint32
 
 # begin enum ANONYMOUS_6
 const ANONYMOUS_6 = UInt32
-const SDL_AUDIO_STOPPED = (UInt32)(0)
-const SDL_AUDIO_PLAYING = (UInt32)(1)
-const SDL_AUDIO_PAUSED = (UInt32)(2)
+const AUDIO_STOPPED = (UInt32)(0)
+const AUDIO_PLAYING = (UInt32)(1)
+const AUDIO_PAUSED = (UInt32)(2)
 # end enum ANONYMOUS_6
 
-const SDL_AudioStatus = Void
+const AudioStatus = Void
 
 # begin enum ANONYMOUS_7
 const ANONYMOUS_7 = UInt32
-const SDL_PIXELTYPE_UNKNOWN = (UInt32)(0)
-const SDL_PIXELTYPE_INDEX1 = (UInt32)(1)
-const SDL_PIXELTYPE_INDEX4 = (UInt32)(2)
-const SDL_PIXELTYPE_INDEX8 = (UInt32)(3)
-const SDL_PIXELTYPE_PACKED8 = (UInt32)(4)
-const SDL_PIXELTYPE_PACKED16 = (UInt32)(5)
-const SDL_PIXELTYPE_PACKED32 = (UInt32)(6)
-const SDL_PIXELTYPE_ARRAYU8 = (UInt32)(7)
-const SDL_PIXELTYPE_ARRAYU16 = (UInt32)(8)
-const SDL_PIXELTYPE_ARRAYU32 = (UInt32)(9)
-const SDL_PIXELTYPE_ARRAYF16 = (UInt32)(10)
-const SDL_PIXELTYPE_ARRAYF32 = (UInt32)(11)
+const PIXELTYPE_UNKNOWN = (UInt32)(0)
+const PIXELTYPE_INDEX1 = (UInt32)(1)
+const PIXELTYPE_INDEX4 = (UInt32)(2)
+const PIXELTYPE_INDEX8 = (UInt32)(3)
+const PIXELTYPE_PACKED8 = (UInt32)(4)
+const PIXELTYPE_PACKED16 = (UInt32)(5)
+const PIXELTYPE_PACKED32 = (UInt32)(6)
+const PIXELTYPE_ARRAYU8 = (UInt32)(7)
+const PIXELTYPE_ARRAYU16 = (UInt32)(8)
+const PIXELTYPE_ARRAYU32 = (UInt32)(9)
+const PIXELTYPE_ARRAYF16 = (UInt32)(10)
+const PIXELTYPE_ARRAYF32 = (UInt32)(11)
 # end enum ANONYMOUS_7
 
 # begin enum ANONYMOUS_8
 const ANONYMOUS_8 = UInt32
-const SDL_BITMAPORDER_NONE = (UInt32)(0)
-const SDL_BITMAPORDER_4321 = (UInt32)(1)
-const SDL_BITMAPORDER_1234 = (UInt32)(2)
+const BITMAPORDER_NONE = (UInt32)(0)
+const BITMAPORDER_4321 = (UInt32)(1)
+const BITMAPORDER_1234 = (UInt32)(2)
 # end enum ANONYMOUS_8
 
 # begin enum ANONYMOUS_9
 const ANONYMOUS_9 = UInt32
-const SDL_PACKEDORDER_NONE = (UInt32)(0)
-const SDL_PACKEDORDER_XRGB = (UInt32)(1)
-const SDL_PACKEDORDER_RGBX = (UInt32)(2)
-const SDL_PACKEDORDER_ARGB = (UInt32)(3)
-const SDL_PACKEDORDER_RGBA = (UInt32)(4)
-const SDL_PACKEDORDER_XBGR = (UInt32)(5)
-const SDL_PACKEDORDER_BGRX = (UInt32)(6)
-const SDL_PACKEDORDER_ABGR = (UInt32)(7)
-const SDL_PACKEDORDER_BGRA = (UInt32)(8)
+const PACKEDORDER_NONE = (UInt32)(0)
+const PACKEDORDER_XRGB = (UInt32)(1)
+const PACKEDORDER_RGBX = (UInt32)(2)
+const PACKEDORDER_ARGB = (UInt32)(3)
+const PACKEDORDER_RGBA = (UInt32)(4)
+const PACKEDORDER_XBGR = (UInt32)(5)
+const PACKEDORDER_BGRX = (UInt32)(6)
+const PACKEDORDER_ABGR = (UInt32)(7)
+const PACKEDORDER_BGRA = (UInt32)(8)
 # end enum ANONYMOUS_9
 
 # begin enum ANONYMOUS_10
 const ANONYMOUS_10 = UInt32
-const SDL_ARRAYORDER_NONE = (UInt32)(0)
-const SDL_ARRAYORDER_RGB = (UInt32)(1)
-const SDL_ARRAYORDER_RGBA = (UInt32)(2)
-const SDL_ARRAYORDER_ARGB = (UInt32)(3)
-const SDL_ARRAYORDER_BGR = (UInt32)(4)
-const SDL_ARRAYORDER_BGRA = (UInt32)(5)
-const SDL_ARRAYORDER_ABGR = (UInt32)(6)
+const ARRAYORDER_NONE = (UInt32)(0)
+const ARRAYORDER_RGB = (UInt32)(1)
+const ARRAYORDER_RGBA = (UInt32)(2)
+const ARRAYORDER_ARGB = (UInt32)(3)
+const ARRAYORDER_BGR = (UInt32)(4)
+const ARRAYORDER_BGRA = (UInt32)(5)
+const ARRAYORDER_ABGR = (UInt32)(6)
 # end enum ANONYMOUS_10
 
 # begin enum ANONYMOUS_11
 const ANONYMOUS_11 = UInt32
-const SDL_PACKEDLAYOUT_NONE = (UInt32)(0)
-const SDL_PACKEDLAYOUT_332 = (UInt32)(1)
-const SDL_PACKEDLAYOUT_4444 = (UInt32)(2)
-const SDL_PACKEDLAYOUT_1555 = (UInt32)(3)
-const SDL_PACKEDLAYOUT_5551 = (UInt32)(4)
-const SDL_PACKEDLAYOUT_565 = (UInt32)(5)
-const SDL_PACKEDLAYOUT_8888 = (UInt32)(6)
-const SDL_PACKEDLAYOUT_2101010 = (UInt32)(7)
-const SDL_PACKEDLAYOUT_1010102 = (UInt32)(8)
+const PACKEDLAYOUT_NONE = (UInt32)(0)
+const PACKEDLAYOUT_332 = (UInt32)(1)
+const PACKEDLAYOUT_4444 = (UInt32)(2)
+const PACKEDLAYOUT_1555 = (UInt32)(3)
+const PACKEDLAYOUT_5551 = (UInt32)(4)
+const PACKEDLAYOUT_565 = (UInt32)(5)
+const PACKEDLAYOUT_8888 = (UInt32)(6)
+const PACKEDLAYOUT_2101010 = (UInt32)(7)
+const PACKEDLAYOUT_1010102 = (UInt32)(8)
 # end enum ANONYMOUS_11
 
 # begin enum ANONYMOUS_12
 const ANONYMOUS_12 = UInt32
-const SDL_PIXELFORMAT_UNKNOWN = (UInt32)(0)
-const SDL_PIXELFORMAT_INDEX1LSB = (UInt32)(286261504)
-const SDL_PIXELFORMAT_INDEX1MSB = (UInt32)(287310080)
-const SDL_PIXELFORMAT_INDEX4LSB = (UInt32)(303039488)
-const SDL_PIXELFORMAT_INDEX4MSB = (UInt32)(304088064)
-const SDL_PIXELFORMAT_INDEX8 = (UInt32)(318769153)
-const SDL_PIXELFORMAT_RGB332 = (UInt32)(336660481)
-const SDL_PIXELFORMAT_RGB444 = (UInt32)(353504258)
-const SDL_PIXELFORMAT_RGB555 = (UInt32)(353570562)
-const SDL_PIXELFORMAT_BGR555 = (UInt32)(357764866)
-const SDL_PIXELFORMAT_ARGB4444 = (UInt32)(355602434)
-const SDL_PIXELFORMAT_RGBA4444 = (UInt32)(356651010)
-const SDL_PIXELFORMAT_ABGR4444 = (UInt32)(359796738)
-const SDL_PIXELFORMAT_BGRA4444 = (UInt32)(360845314)
-const SDL_PIXELFORMAT_ARGB1555 = (UInt32)(355667970)
-const SDL_PIXELFORMAT_RGBA5551 = (UInt32)(356782082)
-const SDL_PIXELFORMAT_ABGR1555 = (UInt32)(359862274)
-const SDL_PIXELFORMAT_BGRA5551 = (UInt32)(360976386)
-const SDL_PIXELFORMAT_RGB565 = (UInt32)(353701890)
-const SDL_PIXELFORMAT_BGR565 = (UInt32)(357896194)
-const SDL_PIXELFORMAT_RGB24 = (UInt32)(386930691)
-const SDL_PIXELFORMAT_BGR24 = (UInt32)(390076419)
-const SDL_PIXELFORMAT_RGB888 = (UInt32)(370546692)
-const SDL_PIXELFORMAT_RGBX8888 = (UInt32)(371595268)
-const SDL_PIXELFORMAT_BGR888 = (UInt32)(374740996)
-const SDL_PIXELFORMAT_BGRX8888 = (UInt32)(375789572)
-const SDL_PIXELFORMAT_ARGB8888 = (UInt32)(372645892)
-const SDL_PIXELFORMAT_RGBA8888 = (UInt32)(373694468)
-const SDL_PIXELFORMAT_ABGR8888 = (UInt32)(376840196)
-const SDL_PIXELFORMAT_BGRA8888 = (UInt32)(377888772)
-const SDL_PIXELFORMAT_ARGB2101010 = (UInt32)(372711428)
-const SDL_PIXELFORMAT_RGBA32 = (UInt32)(376840196)
-const SDL_PIXELFORMAT_ARGB32 = (UInt32)(377888772)
-const SDL_PIXELFORMAT_BGRA32 = (UInt32)(372645892)
-const SDL_PIXELFORMAT_ABGR32 = (UInt32)(373694468)
-const SDL_PIXELFORMAT_YV12 = (UInt32)(842094169)
-const SDL_PIXELFORMAT_IYUV = (UInt32)(1448433993)
-const SDL_PIXELFORMAT_YUY2 = (UInt32)(844715353)
-const SDL_PIXELFORMAT_UYVY = (UInt32)(1498831189)
-const SDL_PIXELFORMAT_YVYU = (UInt32)(1431918169)
-const SDL_PIXELFORMAT_NV12 = (UInt32)(842094158)
-const SDL_PIXELFORMAT_NV21 = (UInt32)(825382478)
+const PIXELFORMAT_UNKNOWN = (UInt32)(0)
+const PIXELFORMAT_INDEX1LSB = (UInt32)(286261504)
+const PIXELFORMAT_INDEX1MSB = (UInt32)(287310080)
+const PIXELFORMAT_INDEX4LSB = (UInt32)(303039488)
+const PIXELFORMAT_INDEX4MSB = (UInt32)(304088064)
+const PIXELFORMAT_INDEX8 = (UInt32)(318769153)
+const PIXELFORMAT_RGB332 = (UInt32)(336660481)
+const PIXELFORMAT_RGB444 = (UInt32)(353504258)
+const PIXELFORMAT_RGB555 = (UInt32)(353570562)
+const PIXELFORMAT_BGR555 = (UInt32)(357764866)
+const PIXELFORMAT_ARGB4444 = (UInt32)(355602434)
+const PIXELFORMAT_RGBA4444 = (UInt32)(356651010)
+const PIXELFORMAT_ABGR4444 = (UInt32)(359796738)
+const PIXELFORMAT_BGRA4444 = (UInt32)(360845314)
+const PIXELFORMAT_ARGB1555 = (UInt32)(355667970)
+const PIXELFORMAT_RGBA5551 = (UInt32)(356782082)
+const PIXELFORMAT_ABGR1555 = (UInt32)(359862274)
+const PIXELFORMAT_BGRA5551 = (UInt32)(360976386)
+const PIXELFORMAT_RGB565 = (UInt32)(353701890)
+const PIXELFORMAT_BGR565 = (UInt32)(357896194)
+const PIXELFORMAT_RGB24 = (UInt32)(386930691)
+const PIXELFORMAT_BGR24 = (UInt32)(390076419)
+const PIXELFORMAT_RGB888 = (UInt32)(370546692)
+const PIXELFORMAT_RGBX8888 = (UInt32)(371595268)
+const PIXELFORMAT_BGR888 = (UInt32)(374740996)
+const PIXELFORMAT_BGRX8888 = (UInt32)(375789572)
+const PIXELFORMAT_ARGB8888 = (UInt32)(372645892)
+const PIXELFORMAT_RGBA8888 = (UInt32)(373694468)
+const PIXELFORMAT_ABGR8888 = (UInt32)(376840196)
+const PIXELFORMAT_BGRA8888 = (UInt32)(377888772)
+const PIXELFORMAT_ARGB2101010 = (UInt32)(372711428)
+const PIXELFORMAT_RGBA32 = (UInt32)(376840196)
+const PIXELFORMAT_ARGB32 = (UInt32)(377888772)
+const PIXELFORMAT_BGRA32 = (UInt32)(372645892)
+const PIXELFORMAT_ABGR32 = (UInt32)(373694468)
+const PIXELFORMAT_YV12 = (UInt32)(842094169)
+const PIXELFORMAT_IYUV = (UInt32)(1448433993)
+const PIXELFORMAT_YUY2 = (UInt32)(844715353)
+const PIXELFORMAT_UYVY = (UInt32)(1498831189)
+const PIXELFORMAT_YVYU = (UInt32)(1431918169)
+const PIXELFORMAT_NV12 = (UInt32)(842094158)
+const PIXELFORMAT_NV21 = (UInt32)(825382478)
 # end enum ANONYMOUS_12
 
-mutable struct SDL_Palette
+mutable struct Palette
     ncolors::Cint
-    colors::Ptr{SDL_Color}
+    colors::Ptr{Color}
     version::Uint32
     refcount::Cint
 end
 
-mutable struct SDL_PixelFormat
+mutable struct PixelFormat
     format::Uint32
-    palette::Ptr{SDL_Palette}
+    palette::Ptr{Palette}
     BitsPerPixel::Uint8
     BytesPerPixel::Uint8
     padding::NTuple{2, Uint8}
@@ -755,12 +755,12 @@ mutable struct SDL_PixelFormat
     next::Ptr{Void}
 end
 
-mutable struct SDL_Point
+mutable struct Point
     x::Cint
     y::Cint
 end
 
-mutable struct SDL_Rect
+mutable struct Rect
     x::Cint
     y::Cint
     w::Cint
@@ -769,17 +769,17 @@ end
 
 # begin enum ANONYMOUS_13
 const ANONYMOUS_13 = UInt32
-const SDL_BLENDMODE_NONE = (UInt32)(0)
-const SDL_BLENDMODE_BLEND = (UInt32)(1)
-const SDL_BLENDMODE_ADD = (UInt32)(2)
-const SDL_BLENDMODE_MOD = (UInt32)(4)
+const BLENDMODE_NONE = (UInt32)(0)
+const BLENDMODE_BLEND = (UInt32)(1)
+const BLENDMODE_ADD = (UInt32)(2)
+const BLENDMODE_MOD = (UInt32)(4)
 # end enum ANONYMOUS_13
 
-const SDL_BlendMode = Void
+const BlendMode = Void
 
-mutable struct SDL_Surface
+mutable struct Surface
     flags::Uint32
-    format::Ptr{SDL_PixelFormat}
+    format::Ptr{PixelFormat}
     w::Cint
     h::Cint
     pitch::Cint
@@ -787,390 +787,390 @@ mutable struct SDL_Surface
     userdata::Ptr{Void}
     locked::Cint
     lock_data::Ptr{Void}
-    clip_rect::SDL_Rect
+    clip_rect::Rect
     map::Ptr{Void}
     refcount::Cint
 end
 
-const SDL_blit = Ptr{Void}
-const SDL_DisplayMode = Void
+const blit = Ptr{Void}
+const DisplayMode = Void
 
-mutable struct SDL_Window
+mutable struct Window
 end
 
 # begin enum ANONYMOUS_14
 const ANONYMOUS_14 = UInt32
-const SDL_WINDOW_FULLSCREEN = (UInt32)(1)
-const SDL_WINDOW_OPENGL = (UInt32)(2)
-const SDL_WINDOW_SHOWN = (UInt32)(4)
-const SDL_WINDOW_HIDDEN = (UInt32)(8)
-const SDL_WINDOW_BORDERLESS = (UInt32)(16)
-const SDL_WINDOW_RESIZABLE = (UInt32)(32)
-const SDL_WINDOW_MINIMIZED = (UInt32)(64)
-const SDL_WINDOW_MAXIMIZED = (UInt32)(128)
-const SDL_WINDOW_INPUT_GRABBED = (UInt32)(256)
-const SDL_WINDOW_INPUT_FOCUS = (UInt32)(512)
-const SDL_WINDOW_MOUSE_FOCUS = (UInt32)(1024)
-const SDL_WINDOW_FULLSCREEN_DESKTOP = (UInt32)(4097)
-const SDL_WINDOW_FOREIGN = (UInt32)(2048)
-const SDL_WINDOW_ALLOW_HIGHDPI = (UInt32)(8192)
-const SDL_WINDOW_MOUSE_CAPTURE = (UInt32)(16384)
-const SDL_WINDOW_ALWAYS_ON_TOP = (UInt32)(32768)
-const SDL_WINDOW_SKIP_TASKBAR = (UInt32)(65536)
-const SDL_WINDOW_UTILITY = (UInt32)(131072)
-const SDL_WINDOW_TOOLTIP = (UInt32)(262144)
-const SDL_WINDOW_POPUP_MENU = (UInt32)(524288)
+const WINDOW_FULLSCREEN = (UInt32)(1)
+const WINDOW_OPENGL = (UInt32)(2)
+const WINDOW_SHOWN = (UInt32)(4)
+const WINDOW_HIDDEN = (UInt32)(8)
+const WINDOW_BORDERLESS = (UInt32)(16)
+const WINDOW_RESIZABLE = (UInt32)(32)
+const WINDOW_MINIMIZED = (UInt32)(64)
+const WINDOW_MAXIMIZED = (UInt32)(128)
+const WINDOW_INPUT_GRABBED = (UInt32)(256)
+const WINDOW_INPUT_FOCUS = (UInt32)(512)
+const WINDOW_MOUSE_FOCUS = (UInt32)(1024)
+const WINDOW_FULLSCREEN_DESKTOP = (UInt32)(4097)
+const WINDOW_FOREIGN = (UInt32)(2048)
+const WINDOW_ALLOW_HIGHDPI = (UInt32)(8192)
+const WINDOW_MOUSE_CAPTURE = (UInt32)(16384)
+const WINDOW_ALWAYS_ON_TOP = (UInt32)(32768)
+const WINDOW_SKIP_TASKBAR = (UInt32)(65536)
+const WINDOW_UTILITY = (UInt32)(131072)
+const WINDOW_TOOLTIP = (UInt32)(262144)
+const WINDOW_POPUP_MENU = (UInt32)(524288)
 # end enum ANONYMOUS_14
 
-const SDL_WindowFlags = Void
+const WindowFlags = Void
 
 # begin enum ANONYMOUS_15
 const ANONYMOUS_15 = UInt32
-const SDL_WINDOWEVENT_NONE = (UInt32)(0)
-const SDL_WINDOWEVENT_SHOWN = (UInt32)(1)
-const SDL_WINDOWEVENT_HIDDEN = (UInt32)(2)
-const SDL_WINDOWEVENT_EXPOSED = (UInt32)(3)
-const SDL_WINDOWEVENT_MOVED = (UInt32)(4)
-const SDL_WINDOWEVENT_RESIZED = (UInt32)(5)
-const SDL_WINDOWEVENT_SIZE_CHANGED = (UInt32)(6)
-const SDL_WINDOWEVENT_MINIMIZED = (UInt32)(7)
-const SDL_WINDOWEVENT_MAXIMIZED = (UInt32)(8)
-const SDL_WINDOWEVENT_RESTORED = (UInt32)(9)
-const SDL_WINDOWEVENT_ENTER = (UInt32)(10)
-const SDL_WINDOWEVENT_LEAVE = (UInt32)(11)
-const SDL_WINDOWEVENT_FOCUS_GAINED = (UInt32)(12)
-const SDL_WINDOWEVENT_FOCUS_LOST = (UInt32)(13)
-const SDL_WINDOWEVENT_CLOSE = (UInt32)(14)
-const SDL_WINDOWEVENT_TAKE_FOCUS = (UInt32)(15)
-const SDL_WINDOWEVENT_HIT_TEST = (UInt32)(16)
+const WINDOWEVENT_NONE = (UInt32)(0)
+const WINDOWEVENT_SHOWN = (UInt32)(1)
+const WINDOWEVENT_HIDDEN = (UInt32)(2)
+const WINDOWEVENT_EXPOSED = (UInt32)(3)
+const WINDOWEVENT_MOVED = (UInt32)(4)
+const WINDOWEVENT_RESIZED = (UInt32)(5)
+const WINDOWEVENT_SIZE_CHANGED = (UInt32)(6)
+const WINDOWEVENT_MINIMIZED = (UInt32)(7)
+const WINDOWEVENT_MAXIMIZED = (UInt32)(8)
+const WINDOWEVENT_RESTORED = (UInt32)(9)
+const WINDOWEVENT_ENTER = (UInt32)(10)
+const WINDOWEVENT_LEAVE = (UInt32)(11)
+const WINDOWEVENT_FOCUS_GAINED = (UInt32)(12)
+const WINDOWEVENT_FOCUS_LOST = (UInt32)(13)
+const WINDOWEVENT_CLOSE = (UInt32)(14)
+const WINDOWEVENT_TAKE_FOCUS = (UInt32)(15)
+const WINDOWEVENT_HIT_TEST = (UInt32)(16)
 # end enum ANONYMOUS_15
 
-const SDL_WindowEventID = Void
-const SDL_GLContext = Ptr{Void}
+const WindowEventID = Void
+const GLContext = Ptr{Void}
 
 # begin enum ANONYMOUS_16
 const ANONYMOUS_16 = UInt32
-const SDL_GL_RED_SIZE = (UInt32)(0)
-const SDL_GL_GREEN_SIZE = (UInt32)(1)
-const SDL_GL_BLUE_SIZE = (UInt32)(2)
-const SDL_GL_ALPHA_SIZE = (UInt32)(3)
-const SDL_GL_BUFFER_SIZE = (UInt32)(4)
-const SDL_GL_DOUBLEBUFFER = (UInt32)(5)
-const SDL_GL_DEPTH_SIZE = (UInt32)(6)
-const SDL_GL_STENCIL_SIZE = (UInt32)(7)
-const SDL_GL_ACCUM_RED_SIZE = (UInt32)(8)
-const SDL_GL_ACCUM_GREEN_SIZE = (UInt32)(9)
-const SDL_GL_ACCUM_BLUE_SIZE = (UInt32)(10)
-const SDL_GL_ACCUM_ALPHA_SIZE = (UInt32)(11)
-const SDL_GL_STEREO = (UInt32)(12)
-const SDL_GL_MULTISAMPLEBUFFERS = (UInt32)(13)
-const SDL_GL_MULTISAMPLESAMPLES = (UInt32)(14)
-const SDL_GL_ACCELERATED_VISUAL = (UInt32)(15)
-const SDL_GL_RETAINED_BACKING = (UInt32)(16)
-const SDL_GL_CONTEXT_MAJOR_VERSION = (UInt32)(17)
-const SDL_GL_CONTEXT_MINOR_VERSION = (UInt32)(18)
-const SDL_GL_CONTEXT_EGL = (UInt32)(19)
-const SDL_GL_CONTEXT_FLAGS = (UInt32)(20)
-const SDL_GL_CONTEXT_PROFILE_MASK = (UInt32)(21)
-const SDL_GL_SHARE_WITH_CURRENT_CONTEXT = (UInt32)(22)
-const SDL_GL_FRAMEBUFFER_SRGB_CAPABLE = (UInt32)(23)
-const SDL_GL_CONTEXT_RELEASE_BEHAVIOR = (UInt32)(24)
+const GL_RED_SIZE = (UInt32)(0)
+const GL_GREEN_SIZE = (UInt32)(1)
+const GL_BLUE_SIZE = (UInt32)(2)
+const GL_ALPHA_SIZE = (UInt32)(3)
+const GL_BUFFER_SIZE = (UInt32)(4)
+const GL_DOUBLEBUFFER = (UInt32)(5)
+const GL_DEPTH_SIZE = (UInt32)(6)
+const GL_STENCIL_SIZE = (UInt32)(7)
+const GL_ACCUM_RED_SIZE = (UInt32)(8)
+const GL_ACCUM_GREEN_SIZE = (UInt32)(9)
+const GL_ACCUM_BLUE_SIZE = (UInt32)(10)
+const GL_ACCUM_ALPHA_SIZE = (UInt32)(11)
+const GL_STEREO = (UInt32)(12)
+const GL_MULTISAMPLEBUFFERS = (UInt32)(13)
+const GL_MULTISAMPLESAMPLES = (UInt32)(14)
+const GL_ACCELERATED_VISUAL = (UInt32)(15)
+const GL_RETAINED_BACKING = (UInt32)(16)
+const GL_CONTEXT_MAJOR_VERSION = (UInt32)(17)
+const GL_CONTEXT_MINOR_VERSION = (UInt32)(18)
+const GL_CONTEXT_EGL = (UInt32)(19)
+const GL_CONTEXT_FLAGS = (UInt32)(20)
+const GL_CONTEXT_PROFILE_MASK = (UInt32)(21)
+const GL_SHARE_WITH_CURRENT_CONTEXT = (UInt32)(22)
+const GL_FRAMEBUFFER_SRGB_CAPABLE = (UInt32)(23)
+const GL_CONTEXT_RELEASE_BEHAVIOR = (UInt32)(24)
 # end enum ANONYMOUS_16
 
-const SDL_GLattr = UInt32
+const GLattr = UInt32
 
 # begin enum ANONYMOUS_17
 const ANONYMOUS_17 = UInt32
-const SDL_GL_CONTEXT_PROFILE_CORE = (UInt32)(1)
-const SDL_GL_CONTEXT_PROFILE_COMPATIBILITY = (UInt32)(2)
-const SDL_GL_CONTEXT_PROFILE_ES = (UInt32)(4)
+const GL_CONTEXT_PROFILE_CORE = (UInt32)(1)
+const GL_CONTEXT_PROFILE_COMPATIBILITY = (UInt32)(2)
+const GL_CONTEXT_PROFILE_ES = (UInt32)(4)
 # end enum ANONYMOUS_17
 
-const SDL_GLprofile = Void
+const GLprofile = Void
 
 # begin enum ANONYMOUS_18
 const ANONYMOUS_18 = UInt32
-const SDL_GL_CONTEXT_DEBUG_FLAG = (UInt32)(1)
-const SDL_GL_CONTEXT_FORWARD_COMPATIBLE_FLAG = (UInt32)(2)
-const SDL_GL_CONTEXT_ROBUST_ACCESS_FLAG = (UInt32)(4)
-const SDL_GL_CONTEXT_RESET_ISOLATION_FLAG = (UInt32)(8)
+const GL_CONTEXT_DEBUG_FLAG = (UInt32)(1)
+const GL_CONTEXT_FORWARD_COMPATIBLE_FLAG = (UInt32)(2)
+const GL_CONTEXT_ROBUST_ACCESS_FLAG = (UInt32)(4)
+const GL_CONTEXT_RESET_ISOLATION_FLAG = (UInt32)(8)
 # end enum ANONYMOUS_18
 
-const SDL_GLcontextFlag = Void
+const GLcontextFlag = Void
 
 # begin enum ANONYMOUS_19
 const ANONYMOUS_19 = UInt32
-const SDL_GL_CONTEXT_RELEASE_BEHAVIOR_NONE = (UInt32)(0)
-const SDL_GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH = (UInt32)(1)
+const GL_CONTEXT_RELEASE_BEHAVIOR_NONE = (UInt32)(0)
+const GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH = (UInt32)(1)
 # end enum ANONYMOUS_19
 
-const SDL_GLcontextReleaseFlag = Void
+const GLcontextReleaseFlag = Void
 
 # begin enum ANONYMOUS_20
 const ANONYMOUS_20 = UInt32
-const SDL_HITTEST_NORMAL = (UInt32)(0)
-const SDL_HITTEST_DRAGGABLE = (UInt32)(1)
-const SDL_HITTEST_RESIZE_TOPLEFT = (UInt32)(2)
-const SDL_HITTEST_RESIZE_TOP = (UInt32)(3)
-const SDL_HITTEST_RESIZE_TOPRIGHT = (UInt32)(4)
-const SDL_HITTEST_RESIZE_RIGHT = (UInt32)(5)
-const SDL_HITTEST_RESIZE_BOTTOMRIGHT = (UInt32)(6)
-const SDL_HITTEST_RESIZE_BOTTOM = (UInt32)(7)
-const SDL_HITTEST_RESIZE_BOTTOMLEFT = (UInt32)(8)
-const SDL_HITTEST_RESIZE_LEFT = (UInt32)(9)
+const HITTEST_NORMAL = (UInt32)(0)
+const HITTEST_DRAGGABLE = (UInt32)(1)
+const HITTEST_RESIZE_TOPLEFT = (UInt32)(2)
+const HITTEST_RESIZE_TOP = (UInt32)(3)
+const HITTEST_RESIZE_TOPRIGHT = (UInt32)(4)
+const HITTEST_RESIZE_RIGHT = (UInt32)(5)
+const HITTEST_RESIZE_BOTTOMRIGHT = (UInt32)(6)
+const HITTEST_RESIZE_BOTTOM = (UInt32)(7)
+const HITTEST_RESIZE_BOTTOMLEFT = (UInt32)(8)
+const HITTEST_RESIZE_LEFT = (UInt32)(9)
 # end enum ANONYMOUS_20
 
-const SDL_HitTestResult = Void
-const SDL_HitTest = Ptr{Void}
+const HitTestResult = Void
+const HitTest = Ptr{Void}
 
 # begin enum ANONYMOUS_21
 const ANONYMOUS_21 = UInt32
-const SDL_SCANCODE_UNKNOWN = (UInt32)(0)
-const SDL_SCANCODE_A = (UInt32)(4)
-const SDL_SCANCODE_B = (UInt32)(5)
-const SDL_SCANCODE_C = (UInt32)(6)
-const SDL_SCANCODE_D = (UInt32)(7)
-const SDL_SCANCODE_E = (UInt32)(8)
-const SDL_SCANCODE_F = (UInt32)(9)
-const SDL_SCANCODE_G = (UInt32)(10)
-const SDL_SCANCODE_H = (UInt32)(11)
-const SDL_SCANCODE_I = (UInt32)(12)
-const SDL_SCANCODE_J = (UInt32)(13)
-const SDL_SCANCODE_K = (UInt32)(14)
-const SDL_SCANCODE_L = (UInt32)(15)
-const SDL_SCANCODE_M = (UInt32)(16)
-const SDL_SCANCODE_N = (UInt32)(17)
-const SDL_SCANCODE_O = (UInt32)(18)
-const SDL_SCANCODE_P = (UInt32)(19)
-const SDL_SCANCODE_Q = (UInt32)(20)
-const SDL_SCANCODE_R = (UInt32)(21)
-const SDL_SCANCODE_S = (UInt32)(22)
-const SDL_SCANCODE_T = (UInt32)(23)
-const SDL_SCANCODE_U = (UInt32)(24)
-const SDL_SCANCODE_V = (UInt32)(25)
-const SDL_SCANCODE_W = (UInt32)(26)
-const SDL_SCANCODE_X = (UInt32)(27)
-const SDL_SCANCODE_Y = (UInt32)(28)
-const SDL_SCANCODE_Z = (UInt32)(29)
-const SDL_SCANCODE_1 = (UInt32)(30)
-const SDL_SCANCODE_2 = (UInt32)(31)
-const SDL_SCANCODE_3 = (UInt32)(32)
-const SDL_SCANCODE_4 = (UInt32)(33)
-const SDL_SCANCODE_5 = (UInt32)(34)
-const SDL_SCANCODE_6 = (UInt32)(35)
-const SDL_SCANCODE_7 = (UInt32)(36)
-const SDL_SCANCODE_8 = (UInt32)(37)
-const SDL_SCANCODE_9 = (UInt32)(38)
-const SDL_SCANCODE_0 = (UInt32)(39)
-const SDL_SCANCODE_RETURN = (UInt32)(40)
-const SDL_SCANCODE_ESCAPE = (UInt32)(41)
-const SDL_SCANCODE_BACKSPACE = (UInt32)(42)
-const SDL_SCANCODE_TAB = (UInt32)(43)
-const SDL_SCANCODE_SPACE = (UInt32)(44)
-const SDL_SCANCODE_MINUS = (UInt32)(45)
-const SDL_SCANCODE_EQUALS = (UInt32)(46)
-const SDL_SCANCODE_LEFTBRACKET = (UInt32)(47)
-const SDL_SCANCODE_RIGHTBRACKET = (UInt32)(48)
-const SDL_SCANCODE_BACKSLASH = (UInt32)(49)
-const SDL_SCANCODE_NONUSHASH = (UInt32)(50)
-const SDL_SCANCODE_SEMICOLON = (UInt32)(51)
-const SDL_SCANCODE_APOSTROPHE = (UInt32)(52)
-const SDL_SCANCODE_GRAVE = (UInt32)(53)
-const SDL_SCANCODE_COMMA = (UInt32)(54)
-const SDL_SCANCODE_PERIOD = (UInt32)(55)
-const SDL_SCANCODE_SLASH = (UInt32)(56)
-const SDL_SCANCODE_CAPSLOCK = (UInt32)(57)
-const SDL_SCANCODE_F1 = (UInt32)(58)
-const SDL_SCANCODE_F2 = (UInt32)(59)
-const SDL_SCANCODE_F3 = (UInt32)(60)
-const SDL_SCANCODE_F4 = (UInt32)(61)
-const SDL_SCANCODE_F5 = (UInt32)(62)
-const SDL_SCANCODE_F6 = (UInt32)(63)
-const SDL_SCANCODE_F7 = (UInt32)(64)
-const SDL_SCANCODE_F8 = (UInt32)(65)
-const SDL_SCANCODE_F9 = (UInt32)(66)
-const SDL_SCANCODE_F10 = (UInt32)(67)
-const SDL_SCANCODE_F11 = (UInt32)(68)
-const SDL_SCANCODE_F12 = (UInt32)(69)
-const SDL_SCANCODE_PRINTSCREEN = (UInt32)(70)
-const SDL_SCANCODE_SCROLLLOCK = (UInt32)(71)
-const SDL_SCANCODE_PAUSE = (UInt32)(72)
-const SDL_SCANCODE_INSERT = (UInt32)(73)
-const SDL_SCANCODE_HOME = (UInt32)(74)
-const SDL_SCANCODE_PAGEUP = (UInt32)(75)
-const SDL_SCANCODE_DELETE = (UInt32)(76)
-const SDL_SCANCODE_END = (UInt32)(77)
-const SDL_SCANCODE_PAGEDOWN = (UInt32)(78)
-const SDL_SCANCODE_RIGHT = (UInt32)(79)
-const SDL_SCANCODE_LEFT = (UInt32)(80)
-const SDL_SCANCODE_DOWN = (UInt32)(81)
-const SDL_SCANCODE_UP = (UInt32)(82)
-const SDL_SCANCODE_NUMLOCKCLEAR = (UInt32)(83)
-const SDL_SCANCODE_KP_DIVIDE = (UInt32)(84)
-const SDL_SCANCODE_KP_MULTIPLY = (UInt32)(85)
-const SDL_SCANCODE_KP_MINUS = (UInt32)(86)
-const SDL_SCANCODE_KP_PLUS = (UInt32)(87)
-const SDL_SCANCODE_KP_ENTER = (UInt32)(88)
-const SDL_SCANCODE_KP_1 = (UInt32)(89)
-const SDL_SCANCODE_KP_2 = (UInt32)(90)
-const SDL_SCANCODE_KP_3 = (UInt32)(91)
-const SDL_SCANCODE_KP_4 = (UInt32)(92)
-const SDL_SCANCODE_KP_5 = (UInt32)(93)
-const SDL_SCANCODE_KP_6 = (UInt32)(94)
-const SDL_SCANCODE_KP_7 = (UInt32)(95)
-const SDL_SCANCODE_KP_8 = (UInt32)(96)
-const SDL_SCANCODE_KP_9 = (UInt32)(97)
-const SDL_SCANCODE_KP_0 = (UInt32)(98)
-const SDL_SCANCODE_KP_PERIOD = (UInt32)(99)
-const SDL_SCANCODE_NONUSBACKSLASH = (UInt32)(100)
-const SDL_SCANCODE_APPLICATION = (UInt32)(101)
-const SDL_SCANCODE_POWER = (UInt32)(102)
-const SDL_SCANCODE_KP_EQUALS = (UInt32)(103)
-const SDL_SCANCODE_F13 = (UInt32)(104)
-const SDL_SCANCODE_F14 = (UInt32)(105)
-const SDL_SCANCODE_F15 = (UInt32)(106)
-const SDL_SCANCODE_F16 = (UInt32)(107)
-const SDL_SCANCODE_F17 = (UInt32)(108)
-const SDL_SCANCODE_F18 = (UInt32)(109)
-const SDL_SCANCODE_F19 = (UInt32)(110)
-const SDL_SCANCODE_F20 = (UInt32)(111)
-const SDL_SCANCODE_F21 = (UInt32)(112)
-const SDL_SCANCODE_F22 = (UInt32)(113)
-const SDL_SCANCODE_F23 = (UInt32)(114)
-const SDL_SCANCODE_F24 = (UInt32)(115)
-const SDL_SCANCODE_EXECUTE = (UInt32)(116)
-const SDL_SCANCODE_HELP = (UInt32)(117)
-const SDL_SCANCODE_MENU = (UInt32)(118)
-const SDL_SCANCODE_SELECT = (UInt32)(119)
-const SDL_SCANCODE_STOP = (UInt32)(120)
-const SDL_SCANCODE_AGAIN = (UInt32)(121)
-const SDL_SCANCODE_UNDO = (UInt32)(122)
-const SDL_SCANCODE_CUT = (UInt32)(123)
-const SDL_SCANCODE_COPY = (UInt32)(124)
-const SDL_SCANCODE_PASTE = (UInt32)(125)
-const SDL_SCANCODE_FIND = (UInt32)(126)
-const SDL_SCANCODE_MUTE = (UInt32)(127)
-const SDL_SCANCODE_VOLUMEUP = (UInt32)(128)
-const SDL_SCANCODE_VOLUMEDOWN = (UInt32)(129)
-const SDL_SCANCODE_KP_COMMA = (UInt32)(133)
-const SDL_SCANCODE_KP_EQUALSAS400 = (UInt32)(134)
-const SDL_SCANCODE_INTERNATIONAL1 = (UInt32)(135)
-const SDL_SCANCODE_INTERNATIONAL2 = (UInt32)(136)
-const SDL_SCANCODE_INTERNATIONAL3 = (UInt32)(137)
-const SDL_SCANCODE_INTERNATIONAL4 = (UInt32)(138)
-const SDL_SCANCODE_INTERNATIONAL5 = (UInt32)(139)
-const SDL_SCANCODE_INTERNATIONAL6 = (UInt32)(140)
-const SDL_SCANCODE_INTERNATIONAL7 = (UInt32)(141)
-const SDL_SCANCODE_INTERNATIONAL8 = (UInt32)(142)
-const SDL_SCANCODE_INTERNATIONAL9 = (UInt32)(143)
-const SDL_SCANCODE_LANG1 = (UInt32)(144)
-const SDL_SCANCODE_LANG2 = (UInt32)(145)
-const SDL_SCANCODE_LANG3 = (UInt32)(146)
-const SDL_SCANCODE_LANG4 = (UInt32)(147)
-const SDL_SCANCODE_LANG5 = (UInt32)(148)
-const SDL_SCANCODE_LANG6 = (UInt32)(149)
-const SDL_SCANCODE_LANG7 = (UInt32)(150)
-const SDL_SCANCODE_LANG8 = (UInt32)(151)
-const SDL_SCANCODE_LANG9 = (UInt32)(152)
-const SDL_SCANCODE_ALTERASE = (UInt32)(153)
-const SDL_SCANCODE_SYSREQ = (UInt32)(154)
-const SDL_SCANCODE_CANCEL = (UInt32)(155)
-const SDL_SCANCODE_CLEAR = (UInt32)(156)
-const SDL_SCANCODE_PRIOR = (UInt32)(157)
-const SDL_SCANCODE_RETURN2 = (UInt32)(158)
-const SDL_SCANCODE_SEPARATOR = (UInt32)(159)
-const SDL_SCANCODE_OUT = (UInt32)(160)
-const SDL_SCANCODE_OPER = (UInt32)(161)
-const SDL_SCANCODE_CLEARAGAIN = (UInt32)(162)
-const SDL_SCANCODE_CRSEL = (UInt32)(163)
-const SDL_SCANCODE_EXSEL = (UInt32)(164)
-const SDL_SCANCODE_KP_00 = (UInt32)(176)
-const SDL_SCANCODE_KP_000 = (UInt32)(177)
-const SDL_SCANCODE_THOUSANDSSEPARATOR = (UInt32)(178)
-const SDL_SCANCODE_DECIMALSEPARATOR = (UInt32)(179)
-const SDL_SCANCODE_CURRENCYUNIT = (UInt32)(180)
-const SDL_SCANCODE_CURRENCYSUBUNIT = (UInt32)(181)
-const SDL_SCANCODE_KP_LEFTPAREN = (UInt32)(182)
-const SDL_SCANCODE_KP_RIGHTPAREN = (UInt32)(183)
-const SDL_SCANCODE_KP_LEFTBRACE = (UInt32)(184)
-const SDL_SCANCODE_KP_RIGHTBRACE = (UInt32)(185)
-const SDL_SCANCODE_KP_TAB = (UInt32)(186)
-const SDL_SCANCODE_KP_BACKSPACE = (UInt32)(187)
-const SDL_SCANCODE_KP_A = (UInt32)(188)
-const SDL_SCANCODE_KP_B = (UInt32)(189)
-const SDL_SCANCODE_KP_C = (UInt32)(190)
-const SDL_SCANCODE_KP_D = (UInt32)(191)
-const SDL_SCANCODE_KP_E = (UInt32)(192)
-const SDL_SCANCODE_KP_F = (UInt32)(193)
-const SDL_SCANCODE_KP_XOR = (UInt32)(194)
-const SDL_SCANCODE_KP_POWER = (UInt32)(195)
-const SDL_SCANCODE_KP_PERCENT = (UInt32)(196)
-const SDL_SCANCODE_KP_LESS = (UInt32)(197)
-const SDL_SCANCODE_KP_GREATER = (UInt32)(198)
-const SDL_SCANCODE_KP_AMPERSAND = (UInt32)(199)
-const SDL_SCANCODE_KP_DBLAMPERSAND = (UInt32)(200)
-const SDL_SCANCODE_KP_VERTICALBAR = (UInt32)(201)
-const SDL_SCANCODE_KP_DBLVERTICALBAR = (UInt32)(202)
-const SDL_SCANCODE_KP_COLON = (UInt32)(203)
-const SDL_SCANCODE_KP_HASH = (UInt32)(204)
-const SDL_SCANCODE_KP_SPACE = (UInt32)(205)
-const SDL_SCANCODE_KP_AT = (UInt32)(206)
-const SDL_SCANCODE_KP_EXCLAM = (UInt32)(207)
-const SDL_SCANCODE_KP_MEMSTORE = (UInt32)(208)
-const SDL_SCANCODE_KP_MEMRECALL = (UInt32)(209)
-const SDL_SCANCODE_KP_MEMCLEAR = (UInt32)(210)
-const SDL_SCANCODE_KP_MEMADD = (UInt32)(211)
-const SDL_SCANCODE_KP_MEMSUBTRACT = (UInt32)(212)
-const SDL_SCANCODE_KP_MEMMULTIPLY = (UInt32)(213)
-const SDL_SCANCODE_KP_MEMDIVIDE = (UInt32)(214)
-const SDL_SCANCODE_KP_PLUSMINUS = (UInt32)(215)
-const SDL_SCANCODE_KP_CLEAR = (UInt32)(216)
-const SDL_SCANCODE_KP_CLEARENTRY = (UInt32)(217)
-const SDL_SCANCODE_KP_BINARY = (UInt32)(218)
-const SDL_SCANCODE_KP_OCTAL = (UInt32)(219)
-const SDL_SCANCODE_KP_DECIMAL = (UInt32)(220)
-const SDL_SCANCODE_KP_HEXADECIMAL = (UInt32)(221)
-const SDL_SCANCODE_LCTRL = (UInt32)(224)
-const SDL_SCANCODE_LSHIFT = (UInt32)(225)
-const SDL_SCANCODE_LALT = (UInt32)(226)
-const SDL_SCANCODE_LGUI = (UInt32)(227)
-const SDL_SCANCODE_RCTRL = (UInt32)(228)
-const SDL_SCANCODE_RSHIFT = (UInt32)(229)
-const SDL_SCANCODE_RALT = (UInt32)(230)
-const SDL_SCANCODE_RGUI = (UInt32)(231)
-const SDL_SCANCODE_MODE = (UInt32)(257)
-const SDL_SCANCODE_AUDIONEXT = (UInt32)(258)
-const SDL_SCANCODE_AUDIOPREV = (UInt32)(259)
-const SDL_SCANCODE_AUDIOSTOP = (UInt32)(260)
-const SDL_SCANCODE_AUDIOPLAY = (UInt32)(261)
-const SDL_SCANCODE_AUDIOMUTE = (UInt32)(262)
-const SDL_SCANCODE_MEDIASELECT = (UInt32)(263)
-const SDL_SCANCODE_WWW = (UInt32)(264)
-const SDL_SCANCODE_MAIL = (UInt32)(265)
-const SDL_SCANCODE_CALCULATOR = (UInt32)(266)
-const SDL_SCANCODE_COMPUTER = (UInt32)(267)
-const SDL_SCANCODE_AC_SEARCH = (UInt32)(268)
-const SDL_SCANCODE_AC_HOME = (UInt32)(269)
-const SDL_SCANCODE_AC_BACK = (UInt32)(270)
-const SDL_SCANCODE_AC_FORWARD = (UInt32)(271)
-const SDL_SCANCODE_AC_STOP = (UInt32)(272)
-const SDL_SCANCODE_AC_REFRESH = (UInt32)(273)
-const SDL_SCANCODE_AC_BOOKMARKS = (UInt32)(274)
-const SDL_SCANCODE_BRIGHTNESSDOWN = (UInt32)(275)
-const SDL_SCANCODE_BRIGHTNESSUP = (UInt32)(276)
-const SDL_SCANCODE_DISPLAYSWITCH = (UInt32)(277)
-const SDL_SCANCODE_KBDILLUMTOGGLE = (UInt32)(278)
-const SDL_SCANCODE_KBDILLUMDOWN = (UInt32)(279)
-const SDL_SCANCODE_KBDILLUMUP = (UInt32)(280)
-const SDL_SCANCODE_EJECT = (UInt32)(281)
-const SDL_SCANCODE_SLEEP = (UInt32)(282)
-const SDL_SCANCODE_APP1 = (UInt32)(283)
-const SDL_SCANCODE_APP2 = (UInt32)(284)
-const SDL_NUM_SCANCODES = (UInt32)(512)
+const SCANCODE_UNKNOWN = (UInt32)(0)
+const SCANCODE_A = (UInt32)(4)
+const SCANCODE_B = (UInt32)(5)
+const SCANCODE_C = (UInt32)(6)
+const SCANCODE_D = (UInt32)(7)
+const SCANCODE_E = (UInt32)(8)
+const SCANCODE_F = (UInt32)(9)
+const SCANCODE_G = (UInt32)(10)
+const SCANCODE_H = (UInt32)(11)
+const SCANCODE_I = (UInt32)(12)
+const SCANCODE_J = (UInt32)(13)
+const SCANCODE_K = (UInt32)(14)
+const SCANCODE_L = (UInt32)(15)
+const SCANCODE_M = (UInt32)(16)
+const SCANCODE_N = (UInt32)(17)
+const SCANCODE_O = (UInt32)(18)
+const SCANCODE_P = (UInt32)(19)
+const SCANCODE_Q = (UInt32)(20)
+const SCANCODE_R = (UInt32)(21)
+const SCANCODE_S = (UInt32)(22)
+const SCANCODE_T = (UInt32)(23)
+const SCANCODE_U = (UInt32)(24)
+const SCANCODE_V = (UInt32)(25)
+const SCANCODE_W = (UInt32)(26)
+const SCANCODE_X = (UInt32)(27)
+const SCANCODE_Y = (UInt32)(28)
+const SCANCODE_Z = (UInt32)(29)
+const SCANCODE_1 = (UInt32)(30)
+const SCANCODE_2 = (UInt32)(31)
+const SCANCODE_3 = (UInt32)(32)
+const SCANCODE_4 = (UInt32)(33)
+const SCANCODE_5 = (UInt32)(34)
+const SCANCODE_6 = (UInt32)(35)
+const SCANCODE_7 = (UInt32)(36)
+const SCANCODE_8 = (UInt32)(37)
+const SCANCODE_9 = (UInt32)(38)
+const SCANCODE_0 = (UInt32)(39)
+const SCANCODE_RETURN = (UInt32)(40)
+const SCANCODE_ESCAPE = (UInt32)(41)
+const SCANCODE_BACKSPACE = (UInt32)(42)
+const SCANCODE_TAB = (UInt32)(43)
+const SCANCODE_SPACE = (UInt32)(44)
+const SCANCODE_MINUS = (UInt32)(45)
+const SCANCODE_EQUALS = (UInt32)(46)
+const SCANCODE_LEFTBRACKET = (UInt32)(47)
+const SCANCODE_RIGHTBRACKET = (UInt32)(48)
+const SCANCODE_BACKSLASH = (UInt32)(49)
+const SCANCODE_NONUSHASH = (UInt32)(50)
+const SCANCODE_SEMICOLON = (UInt32)(51)
+const SCANCODE_APOSTROPHE = (UInt32)(52)
+const SCANCODE_GRAVE = (UInt32)(53)
+const SCANCODE_COMMA = (UInt32)(54)
+const SCANCODE_PERIOD = (UInt32)(55)
+const SCANCODE_SLASH = (UInt32)(56)
+const SCANCODE_CAPSLOCK = (UInt32)(57)
+const SCANCODE_F1 = (UInt32)(58)
+const SCANCODE_F2 = (UInt32)(59)
+const SCANCODE_F3 = (UInt32)(60)
+const SCANCODE_F4 = (UInt32)(61)
+const SCANCODE_F5 = (UInt32)(62)
+const SCANCODE_F6 = (UInt32)(63)
+const SCANCODE_F7 = (UInt32)(64)
+const SCANCODE_F8 = (UInt32)(65)
+const SCANCODE_F9 = (UInt32)(66)
+const SCANCODE_F10 = (UInt32)(67)
+const SCANCODE_F11 = (UInt32)(68)
+const SCANCODE_F12 = (UInt32)(69)
+const SCANCODE_PRINTSCREEN = (UInt32)(70)
+const SCANCODE_SCROLLLOCK = (UInt32)(71)
+const SCANCODE_PAUSE = (UInt32)(72)
+const SCANCODE_INSERT = (UInt32)(73)
+const SCANCODE_HOME = (UInt32)(74)
+const SCANCODE_PAGEUP = (UInt32)(75)
+const SCANCODE_DELETE = (UInt32)(76)
+const SCANCODE_END = (UInt32)(77)
+const SCANCODE_PAGEDOWN = (UInt32)(78)
+const SCANCODE_RIGHT = (UInt32)(79)
+const SCANCODE_LEFT = (UInt32)(80)
+const SCANCODE_DOWN = (UInt32)(81)
+const SCANCODE_UP = (UInt32)(82)
+const SCANCODE_NUMLOCKCLEAR = (UInt32)(83)
+const SCANCODE_KP_DIVIDE = (UInt32)(84)
+const SCANCODE_KP_MULTIPLY = (UInt32)(85)
+const SCANCODE_KP_MINUS = (UInt32)(86)
+const SCANCODE_KP_PLUS = (UInt32)(87)
+const SCANCODE_KP_ENTER = (UInt32)(88)
+const SCANCODE_KP_1 = (UInt32)(89)
+const SCANCODE_KP_2 = (UInt32)(90)
+const SCANCODE_KP_3 = (UInt32)(91)
+const SCANCODE_KP_4 = (UInt32)(92)
+const SCANCODE_KP_5 = (UInt32)(93)
+const SCANCODE_KP_6 = (UInt32)(94)
+const SCANCODE_KP_7 = (UInt32)(95)
+const SCANCODE_KP_8 = (UInt32)(96)
+const SCANCODE_KP_9 = (UInt32)(97)
+const SCANCODE_KP_0 = (UInt32)(98)
+const SCANCODE_KP_PERIOD = (UInt32)(99)
+const SCANCODE_NONUSBACKSLASH = (UInt32)(100)
+const SCANCODE_APPLICATION = (UInt32)(101)
+const SCANCODE_POWER = (UInt32)(102)
+const SCANCODE_KP_EQUALS = (UInt32)(103)
+const SCANCODE_F13 = (UInt32)(104)
+const SCANCODE_F14 = (UInt32)(105)
+const SCANCODE_F15 = (UInt32)(106)
+const SCANCODE_F16 = (UInt32)(107)
+const SCANCODE_F17 = (UInt32)(108)
+const SCANCODE_F18 = (UInt32)(109)
+const SCANCODE_F19 = (UInt32)(110)
+const SCANCODE_F20 = (UInt32)(111)
+const SCANCODE_F21 = (UInt32)(112)
+const SCANCODE_F22 = (UInt32)(113)
+const SCANCODE_F23 = (UInt32)(114)
+const SCANCODE_F24 = (UInt32)(115)
+const SCANCODE_EXECUTE = (UInt32)(116)
+const SCANCODE_HELP = (UInt32)(117)
+const SCANCODE_MENU = (UInt32)(118)
+const SCANCODE_SELECT = (UInt32)(119)
+const SCANCODE_STOP = (UInt32)(120)
+const SCANCODE_AGAIN = (UInt32)(121)
+const SCANCODE_UNDO = (UInt32)(122)
+const SCANCODE_CUT = (UInt32)(123)
+const SCANCODE_COPY = (UInt32)(124)
+const SCANCODE_PASTE = (UInt32)(125)
+const SCANCODE_FIND = (UInt32)(126)
+const SCANCODE_MUTE = (UInt32)(127)
+const SCANCODE_VOLUMEUP = (UInt32)(128)
+const SCANCODE_VOLUMEDOWN = (UInt32)(129)
+const SCANCODE_KP_COMMA = (UInt32)(133)
+const SCANCODE_KP_EQUALSAS400 = (UInt32)(134)
+const SCANCODE_INTERNATIONAL1 = (UInt32)(135)
+const SCANCODE_INTERNATIONAL2 = (UInt32)(136)
+const SCANCODE_INTERNATIONAL3 = (UInt32)(137)
+const SCANCODE_INTERNATIONAL4 = (UInt32)(138)
+const SCANCODE_INTERNATIONAL5 = (UInt32)(139)
+const SCANCODE_INTERNATIONAL6 = (UInt32)(140)
+const SCANCODE_INTERNATIONAL7 = (UInt32)(141)
+const SCANCODE_INTERNATIONAL8 = (UInt32)(142)
+const SCANCODE_INTERNATIONAL9 = (UInt32)(143)
+const SCANCODE_LANG1 = (UInt32)(144)
+const SCANCODE_LANG2 = (UInt32)(145)
+const SCANCODE_LANG3 = (UInt32)(146)
+const SCANCODE_LANG4 = (UInt32)(147)
+const SCANCODE_LANG5 = (UInt32)(148)
+const SCANCODE_LANG6 = (UInt32)(149)
+const SCANCODE_LANG7 = (UInt32)(150)
+const SCANCODE_LANG8 = (UInt32)(151)
+const SCANCODE_LANG9 = (UInt32)(152)
+const SCANCODE_ALTERASE = (UInt32)(153)
+const SCANCODE_SYSREQ = (UInt32)(154)
+const SCANCODE_CANCEL = (UInt32)(155)
+const SCANCODE_CLEAR = (UInt32)(156)
+const SCANCODE_PRIOR = (UInt32)(157)
+const SCANCODE_RETURN2 = (UInt32)(158)
+const SCANCODE_SEPARATOR = (UInt32)(159)
+const SCANCODE_OUT = (UInt32)(160)
+const SCANCODE_OPER = (UInt32)(161)
+const SCANCODE_CLEARAGAIN = (UInt32)(162)
+const SCANCODE_CRSEL = (UInt32)(163)
+const SCANCODE_EXSEL = (UInt32)(164)
+const SCANCODE_KP_00 = (UInt32)(176)
+const SCANCODE_KP_000 = (UInt32)(177)
+const SCANCODE_THOUSANDSSEPARATOR = (UInt32)(178)
+const SCANCODE_DECIMALSEPARATOR = (UInt32)(179)
+const SCANCODE_CURRENCYUNIT = (UInt32)(180)
+const SCANCODE_CURRENCYSUBUNIT = (UInt32)(181)
+const SCANCODE_KP_LEFTPAREN = (UInt32)(182)
+const SCANCODE_KP_RIGHTPAREN = (UInt32)(183)
+const SCANCODE_KP_LEFTBRACE = (UInt32)(184)
+const SCANCODE_KP_RIGHTBRACE = (UInt32)(185)
+const SCANCODE_KP_TAB = (UInt32)(186)
+const SCANCODE_KP_BACKSPACE = (UInt32)(187)
+const SCANCODE_KP_A = (UInt32)(188)
+const SCANCODE_KP_B = (UInt32)(189)
+const SCANCODE_KP_C = (UInt32)(190)
+const SCANCODE_KP_D = (UInt32)(191)
+const SCANCODE_KP_E = (UInt32)(192)
+const SCANCODE_KP_F = (UInt32)(193)
+const SCANCODE_KP_XOR = (UInt32)(194)
+const SCANCODE_KP_POWER = (UInt32)(195)
+const SCANCODE_KP_PERCENT = (UInt32)(196)
+const SCANCODE_KP_LESS = (UInt32)(197)
+const SCANCODE_KP_GREATER = (UInt32)(198)
+const SCANCODE_KP_AMPERSAND = (UInt32)(199)
+const SCANCODE_KP_DBLAMPERSAND = (UInt32)(200)
+const SCANCODE_KP_VERTICALBAR = (UInt32)(201)
+const SCANCODE_KP_DBLVERTICALBAR = (UInt32)(202)
+const SCANCODE_KP_COLON = (UInt32)(203)
+const SCANCODE_KP_HASH = (UInt32)(204)
+const SCANCODE_KP_SPACE = (UInt32)(205)
+const SCANCODE_KP_AT = (UInt32)(206)
+const SCANCODE_KP_EXCLAM = (UInt32)(207)
+const SCANCODE_KP_MEMSTORE = (UInt32)(208)
+const SCANCODE_KP_MEMRECALL = (UInt32)(209)
+const SCANCODE_KP_MEMCLEAR = (UInt32)(210)
+const SCANCODE_KP_MEMADD = (UInt32)(211)
+const SCANCODE_KP_MEMSUBTRACT = (UInt32)(212)
+const SCANCODE_KP_MEMMULTIPLY = (UInt32)(213)
+const SCANCODE_KP_MEMDIVIDE = (UInt32)(214)
+const SCANCODE_KP_PLUSMINUS = (UInt32)(215)
+const SCANCODE_KP_CLEAR = (UInt32)(216)
+const SCANCODE_KP_CLEARENTRY = (UInt32)(217)
+const SCANCODE_KP_BINARY = (UInt32)(218)
+const SCANCODE_KP_OCTAL = (UInt32)(219)
+const SCANCODE_KP_DECIMAL = (UInt32)(220)
+const SCANCODE_KP_HEXADECIMAL = (UInt32)(221)
+const SCANCODE_LCTRL = (UInt32)(224)
+const SCANCODE_LSHIFT = (UInt32)(225)
+const SCANCODE_LALT = (UInt32)(226)
+const SCANCODE_LGUI = (UInt32)(227)
+const SCANCODE_RCTRL = (UInt32)(228)
+const SCANCODE_RSHIFT = (UInt32)(229)
+const SCANCODE_RALT = (UInt32)(230)
+const SCANCODE_RGUI = (UInt32)(231)
+const SCANCODE_MODE = (UInt32)(257)
+const SCANCODE_AUDIONEXT = (UInt32)(258)
+const SCANCODE_AUDIOPREV = (UInt32)(259)
+const SCANCODE_AUDIOSTOP = (UInt32)(260)
+const SCANCODE_AUDIOPLAY = (UInt32)(261)
+const SCANCODE_AUDIOMUTE = (UInt32)(262)
+const SCANCODE_MEDIASELECT = (UInt32)(263)
+const SCANCODE_WWW = (UInt32)(264)
+const SCANCODE_MAIL = (UInt32)(265)
+const SCANCODE_CALCULATOR = (UInt32)(266)
+const SCANCODE_COMPUTER = (UInt32)(267)
+const SCANCODE_AC_SEARCH = (UInt32)(268)
+const SCANCODE_AC_HOME = (UInt32)(269)
+const SCANCODE_AC_BACK = (UInt32)(270)
+const SCANCODE_AC_FORWARD = (UInt32)(271)
+const SCANCODE_AC_STOP = (UInt32)(272)
+const SCANCODE_AC_REFRESH = (UInt32)(273)
+const SCANCODE_AC_BOOKMARKS = (UInt32)(274)
+const SCANCODE_BRIGHTNESSDOWN = (UInt32)(275)
+const SCANCODE_BRIGHTNESSUP = (UInt32)(276)
+const SCANCODE_DISPLAYSWITCH = (UInt32)(277)
+const SCANCODE_KBDILLUMTOGGLE = (UInt32)(278)
+const SCANCODE_KBDILLUMDOWN = (UInt32)(279)
+const SCANCODE_KBDILLUMUP = (UInt32)(280)
+const SCANCODE_EJECT = (UInt32)(281)
+const SCANCODE_SLEEP = (UInt32)(282)
+const SCANCODE_APP1 = (UInt32)(283)
+const SCANCODE_APP2 = (UInt32)(284)
+const NUM_SCANCODES = (UInt32)(512)
 # end enum ANONYMOUS_21
 
-const SDL_Scancode = Void
-const SDL_Keycode = Sint32
+const Scancode = Void
+const Keycode = Sint32
 
 # begin enum ANONYMOUS_22
 const ANONYMOUS_22 = UInt32
@@ -1412,194 +1412,194 @@ const SDLK_EJECT = (UInt32)(1073742105)
 const SDLK_SLEEP = (UInt32)(1073742106)
 # end enum ANONYMOUS_22
 
-const SDL_Keymod = Void
+const Keymod = Void
 
-mutable struct SDL_Keysym
-    scancode::SDL_Scancode
-    sym::SDL_Keycode
+mutable struct Keysym
+    scancode::Scancode
+    sym::Keycode
     mod::Uint16
     unused::Uint32
 end
 
-mutable struct SDL_Cursor
+mutable struct Cursor
 end
 
 # begin enum ANONYMOUS_24
 const ANONYMOUS_24 = UInt32
-const SDL_SYSTEM_CURSOR_ARROW = (UInt32)(0)
-const SDL_SYSTEM_CURSOR_IBEAM = (UInt32)(1)
-const SDL_SYSTEM_CURSOR_WAIT = (UInt32)(2)
-const SDL_SYSTEM_CURSOR_CROSSHAIR = (UInt32)(3)
-const SDL_SYSTEM_CURSOR_WAITARROW = (UInt32)(4)
-const SDL_SYSTEM_CURSOR_SIZENWSE = (UInt32)(5)
-const SDL_SYSTEM_CURSOR_SIZENESW = (UInt32)(6)
-const SDL_SYSTEM_CURSOR_SIZEWE = (UInt32)(7)
-const SDL_SYSTEM_CURSOR_SIZENS = (UInt32)(8)
-const SDL_SYSTEM_CURSOR_SIZEALL = (UInt32)(9)
-const SDL_SYSTEM_CURSOR_NO = (UInt32)(10)
-const SDL_SYSTEM_CURSOR_HAND = (UInt32)(11)
-const SDL_NUM_SYSTEM_CURSORS = (UInt32)(12)
+const SYSTEM_CURSOR_ARROW = (UInt32)(0)
+const SYSTEM_CURSOR_IBEAM = (UInt32)(1)
+const SYSTEM_CURSOR_WAIT = (UInt32)(2)
+const SYSTEM_CURSOR_CROSSHAIR = (UInt32)(3)
+const SYSTEM_CURSOR_WAITARROW = (UInt32)(4)
+const SYSTEM_CURSOR_SIZENWSE = (UInt32)(5)
+const SYSTEM_CURSOR_SIZENESW = (UInt32)(6)
+const SYSTEM_CURSOR_SIZEWE = (UInt32)(7)
+const SYSTEM_CURSOR_SIZENS = (UInt32)(8)
+const SYSTEM_CURSOR_SIZEALL = (UInt32)(9)
+const SYSTEM_CURSOR_NO = (UInt32)(10)
+const SYSTEM_CURSOR_HAND = (UInt32)(11)
+const NUM_SYSTEM_CURSORS = (UInt32)(12)
 # end enum ANONYMOUS_24
 
-const SDL_SystemCursor = Void
+const SystemCursor = Void
 
 # begin enum ANONYMOUS_25
 const ANONYMOUS_25 = UInt32
-const SDL_MOUSEWHEEL_NORMAL = (UInt32)(0)
-const SDL_MOUSEWHEEL_FLIPPED = (UInt32)(1)
+const MOUSEWHEEL_NORMAL = (UInt32)(0)
+const MOUSEWHEEL_FLIPPED = (UInt32)(1)
 # end enum ANONYMOUS_25
 
-const SDL_MouseWheelDirection = Void
+const MouseWheelDirection = Void
 
-mutable struct _SDL_Joystick
+mutable struct _Joystick
 end
 
-const SDL_Joystick = Void
-const SDL_JoystickGUID = Void
-const SDL_JoystickID = Sint32
+const Joystick = Void
+const JoystickGUID = Void
+const JoystickID = Sint32
 
 # begin enum ANONYMOUS_26
 const ANONYMOUS_26 = Cint
-const SDL_JOYSTICK_POWER_UNKNOWN = (Int32)(-1)
-const SDL_JOYSTICK_POWER_EMPTY = (Int32)(0)
-const SDL_JOYSTICK_POWER_LOW = (Int32)(1)
-const SDL_JOYSTICK_POWER_MEDIUM = (Int32)(2)
-const SDL_JOYSTICK_POWER_FULL = (Int32)(3)
-const SDL_JOYSTICK_POWER_WIRED = (Int32)(4)
-const SDL_JOYSTICK_POWER_MAX = (Int32)(5)
+const JOYSTICK_POWER_UNKNOWN = (Int32)(-1)
+const JOYSTICK_POWER_EMPTY = (Int32)(0)
+const JOYSTICK_POWER_LOW = (Int32)(1)
+const JOYSTICK_POWER_MEDIUM = (Int32)(2)
+const JOYSTICK_POWER_FULL = (Int32)(3)
+const JOYSTICK_POWER_WIRED = (Int32)(4)
+const JOYSTICK_POWER_MAX = (Int32)(5)
 # end enum ANONYMOUS_26
 
-const SDL_JoystickPowerLevel = Void
+const JoystickPowerLevel = Void
 
-mutable struct _SDL_GameController
+mutable struct _GameController
 end
 
-const SDL_GameController = Void
+const GameController = Void
 
 # begin enum ANONYMOUS_27
 const ANONYMOUS_27 = UInt32
-const SDL_CONTROLLER_BINDTYPE_NONE = (UInt32)(0)
-const SDL_CONTROLLER_BINDTYPE_BUTTON = (UInt32)(1)
-const SDL_CONTROLLER_BINDTYPE_AXIS = (UInt32)(2)
-const SDL_CONTROLLER_BINDTYPE_HAT = (UInt32)(3)
+const CONTROLLER_BINDTYPE_NONE = (UInt32)(0)
+const CONTROLLER_BINDTYPE_BUTTON = (UInt32)(1)
+const CONTROLLER_BINDTYPE_AXIS = (UInt32)(2)
+const CONTROLLER_BINDTYPE_HAT = (UInt32)(3)
 # end enum ANONYMOUS_27
 
-const SDL_GameControllerBindType = Void
+const GameControllerBindType = Void
 
-mutable struct SDL_GameControllerButtonBind
-    bindType::SDL_GameControllerBindType
+mutable struct GameControllerButtonBind
+    bindType::GameControllerBindType
     value::Void
 end
 
 # begin enum ANONYMOUS_28
 const ANONYMOUS_28 = Cint
-const SDL_CONTROLLER_AXIS_INVALID = (Int32)(-1)
-const SDL_CONTROLLER_AXIS_LEFTX = (Int32)(0)
-const SDL_CONTROLLER_AXIS_LEFTY = (Int32)(1)
-const SDL_CONTROLLER_AXIS_RIGHTX = (Int32)(2)
-const SDL_CONTROLLER_AXIS_RIGHTY = (Int32)(3)
-const SDL_CONTROLLER_AXIS_TRIGGERLEFT = (Int32)(4)
-const SDL_CONTROLLER_AXIS_TRIGGERRIGHT = (Int32)(5)
-const SDL_CONTROLLER_AXIS_MAX = (Int32)(6)
+const CONTROLLER_AXIS_INVALID = (Int32)(-1)
+const CONTROLLER_AXIS_LEFTX = (Int32)(0)
+const CONTROLLER_AXIS_LEFTY = (Int32)(1)
+const CONTROLLER_AXIS_RIGHTX = (Int32)(2)
+const CONTROLLER_AXIS_RIGHTY = (Int32)(3)
+const CONTROLLER_AXIS_TRIGGERLEFT = (Int32)(4)
+const CONTROLLER_AXIS_TRIGGERRIGHT = (Int32)(5)
+const CONTROLLER_AXIS_MAX = (Int32)(6)
 # end enum ANONYMOUS_28
 
-const SDL_GameControllerAxis = Void
+const GameControllerAxis = Void
 
 # begin enum ANONYMOUS_29
 const ANONYMOUS_29 = Cint
-const SDL_CONTROLLER_BUTTON_INVALID = (Int32)(-1)
-const SDL_CONTROLLER_BUTTON_A = (Int32)(0)
-const SDL_CONTROLLER_BUTTON_B = (Int32)(1)
-const SDL_CONTROLLER_BUTTON_X = (Int32)(2)
-const SDL_CONTROLLER_BUTTON_Y = (Int32)(3)
-const SDL_CONTROLLER_BUTTON_BACK = (Int32)(4)
-const SDL_CONTROLLER_BUTTON_GUIDE = (Int32)(5)
-const SDL_CONTROLLER_BUTTON_START = (Int32)(6)
-const SDL_CONTROLLER_BUTTON_LEFTSTICK = (Int32)(7)
-const SDL_CONTROLLER_BUTTON_RIGHTSTICK = (Int32)(8)
-const SDL_CONTROLLER_BUTTON_LEFTSHOULDER = (Int32)(9)
-const SDL_CONTROLLER_BUTTON_RIGHTSHOULDER = (Int32)(10)
-const SDL_CONTROLLER_BUTTON_DPAD_UP = (Int32)(11)
-const SDL_CONTROLLER_BUTTON_DPAD_DOWN = (Int32)(12)
-const SDL_CONTROLLER_BUTTON_DPAD_LEFT = (Int32)(13)
-const SDL_CONTROLLER_BUTTON_DPAD_RIGHT = (Int32)(14)
-const SDL_CONTROLLER_BUTTON_MAX = (Int32)(15)
+const CONTROLLER_BUTTON_INVALID = (Int32)(-1)
+const CONTROLLER_BUTTON_A = (Int32)(0)
+const CONTROLLER_BUTTON_B = (Int32)(1)
+const CONTROLLER_BUTTON_X = (Int32)(2)
+const CONTROLLER_BUTTON_Y = (Int32)(3)
+const CONTROLLER_BUTTON_BACK = (Int32)(4)
+const CONTROLLER_BUTTON_GUIDE = (Int32)(5)
+const CONTROLLER_BUTTON_START = (Int32)(6)
+const CONTROLLER_BUTTON_LEFTSTICK = (Int32)(7)
+const CONTROLLER_BUTTON_RIGHTSTICK = (Int32)(8)
+const CONTROLLER_BUTTON_LEFTSHOULDER = (Int32)(9)
+const CONTROLLER_BUTTON_RIGHTSHOULDER = (Int32)(10)
+const CONTROLLER_BUTTON_DPAD_UP = (Int32)(11)
+const CONTROLLER_BUTTON_DPAD_DOWN = (Int32)(12)
+const CONTROLLER_BUTTON_DPAD_LEFT = (Int32)(13)
+const CONTROLLER_BUTTON_DPAD_RIGHT = (Int32)(14)
+const CONTROLLER_BUTTON_MAX = (Int32)(15)
 # end enum ANONYMOUS_29
 
-const SDL_GameControllerButton = Void
-const SDL_TouchID = Sint64
-const SDL_FingerID = Sint64
+const GameControllerButton = Void
+const TouchID = Sint64
+const FingerID = Sint64
 
-mutable struct SDL_Finger
-    id::SDL_FingerID
+mutable struct Finger
+    id::FingerID
     x::Cfloat
     y::Cfloat
     pressure::Cfloat
 end
 
-const SDL_GestureID = Sint64
+const GestureID = Sint64
 
 # begin enum ANONYMOUS_30
 const ANONYMOUS_30 = UInt32
-const SDL_FIRSTEVENT = (UInt32)(0)
-const SDL_QUIT = (UInt32)(256)
-const SDL_APP_TERMINATING = (UInt32)(257)
-const SDL_APP_LOWMEMORY = (UInt32)(258)
-const SDL_APP_WILLENTERBACKGROUND = (UInt32)(259)
-const SDL_APP_DIDENTERBACKGROUND = (UInt32)(260)
-const SDL_APP_WILLENTERFOREGROUND = (UInt32)(261)
-const SDL_APP_DIDENTERFOREGROUND = (UInt32)(262)
-const SDL_WINDOWEVENT = (UInt32)(512)
-const SDL_SYSWMEVENT = (UInt32)(513)
-const SDL_KEYDOWN = (UInt32)(768)
-const SDL_KEYUP = (UInt32)(769)
-const SDL_TEXTEDITING = (UInt32)(770)
-const SDL_TEXTINPUT = (UInt32)(771)
-const SDL_KEYMAPCHANGED = (UInt32)(772)
-const SDL_MOUSEMOTION = (UInt32)(1024)
-const SDL_MOUSEBUTTONDOWN = (UInt32)(1025)
-const SDL_MOUSEBUTTONUP = (UInt32)(1026)
-const SDL_MOUSEWHEEL = (UInt32)(1027)
-const SDL_JOYAXISMOTION = (UInt32)(1536)
-const SDL_JOYBALLMOTION = (UInt32)(1537)
-const SDL_JOYHATMOTION = (UInt32)(1538)
-const SDL_JOYBUTTONDOWN = (UInt32)(1539)
-const SDL_JOYBUTTONUP = (UInt32)(1540)
-const SDL_JOYDEVICEADDED = (UInt32)(1541)
-const SDL_JOYDEVICEREMOVED = (UInt32)(1542)
-const SDL_CONTROLLERAXISMOTION = (UInt32)(1616)
-const SDL_CONTROLLERBUTTONDOWN = (UInt32)(1617)
-const SDL_CONTROLLERBUTTONUP = (UInt32)(1618)
-const SDL_CONTROLLERDEVICEADDED = (UInt32)(1619)
-const SDL_CONTROLLERDEVICEREMOVED = (UInt32)(1620)
-const SDL_CONTROLLERDEVICEREMAPPED = (UInt32)(1621)
-const SDL_FINGERDOWN = (UInt32)(1792)
-const SDL_FINGERUP = (UInt32)(1793)
-const SDL_FINGERMOTION = (UInt32)(1794)
-const SDL_DOLLARGESTURE = (UInt32)(2048)
-const SDL_DOLLARRECORD = (UInt32)(2049)
-const SDL_MULTIGESTURE = (UInt32)(2050)
-const SDL_CLIPBOARDUPDATE = (UInt32)(2304)
-const SDL_DROPFILE = (UInt32)(4096)
-const SDL_DROPTEXT = (UInt32)(4097)
-const SDL_DROPBEGIN = (UInt32)(4098)
-const SDL_DROPCOMPLETE = (UInt32)(4099)
-const SDL_AUDIODEVICEADDED = (UInt32)(4352)
-const SDL_AUDIODEVICEREMOVED = (UInt32)(4353)
-const SDL_RENDER_TARGETS_RESET = (UInt32)(8192)
-const SDL_RENDER_DEVICE_RESET = (UInt32)(8193)
-const SDL_USEREVENT = (UInt32)(32768)
-const SDL_LASTEVENT = (UInt32)(65535)
+const FIRSTEVENT = (UInt32)(0)
+const QUIT = (UInt32)(256)
+const APP_TERMINATING = (UInt32)(257)
+const APP_LOWMEMORY = (UInt32)(258)
+const APP_WILLENTERBACKGROUND = (UInt32)(259)
+const APP_DIDENTERBACKGROUND = (UInt32)(260)
+const APP_WILLENTERFOREGROUND = (UInt32)(261)
+const APP_DIDENTERFOREGROUND = (UInt32)(262)
+const WINDOWEVENT = (UInt32)(512)
+const SYSWMEVENT = (UInt32)(513)
+const KEYDOWN = (UInt32)(768)
+const KEYUP = (UInt32)(769)
+const TEXTEDITING = (UInt32)(770)
+const TEXTINPUT = (UInt32)(771)
+const KEYMAPCHANGED = (UInt32)(772)
+const MOUSEMOTION = (UInt32)(1024)
+const MOUSEBUTTONDOWN = (UInt32)(1025)
+const MOUSEBUTTONUP = (UInt32)(1026)
+const MOUSEWHEEL = (UInt32)(1027)
+const JOYAXISMOTION = (UInt32)(1536)
+const JOYBALLMOTION = (UInt32)(1537)
+const JOYHATMOTION = (UInt32)(1538)
+const JOYBUTTONDOWN = (UInt32)(1539)
+const JOYBUTTONUP = (UInt32)(1540)
+const JOYDEVICEADDED = (UInt32)(1541)
+const JOYDEVICEREMOVED = (UInt32)(1542)
+const CONTROLLERAXISMOTION = (UInt32)(1616)
+const CONTROLLERBUTTONDOWN = (UInt32)(1617)
+const CONTROLLERBUTTONUP = (UInt32)(1618)
+const CONTROLLERDEVICEADDED = (UInt32)(1619)
+const CONTROLLERDEVICEREMOVED = (UInt32)(1620)
+const CONTROLLERDEVICEREMAPPED = (UInt32)(1621)
+const FINGERDOWN = (UInt32)(1792)
+const FINGERUP = (UInt32)(1793)
+const FINGERMOTION = (UInt32)(1794)
+const DOLLARGESTURE = (UInt32)(2048)
+const DOLLARRECORD = (UInt32)(2049)
+const MULTIGESTURE = (UInt32)(2050)
+const CLIPBOARDUPDATE = (UInt32)(2304)
+const DROPFILE = (UInt32)(4096)
+const DROPTEXT = (UInt32)(4097)
+const DROPBEGIN = (UInt32)(4098)
+const DROPCOMPLETE = (UInt32)(4099)
+const AUDIODEVICEADDED = (UInt32)(4352)
+const AUDIODEVICEREMOVED = (UInt32)(4353)
+const RENDER_TARGETS_RESET = (UInt32)(8192)
+const RENDER_DEVICE_RESET = (UInt32)(8193)
+const USEREVENT = (UInt32)(32768)
+const LASTEVENT = (UInt32)(65535)
 # end enum ANONYMOUS_30
 
-const SDL_EventType = Void
+const EventType = Void
 
-mutable struct SDL_CommonEvent
+mutable struct CommonEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct SDL_WindowEvent
+mutable struct WindowEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1611,7 +1611,7 @@ mutable struct SDL_WindowEvent
     data2::Sint32
 end
 
-mutable struct SDL_KeyboardEvent
+mutable struct KeyboardEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1619,10 +1619,10 @@ mutable struct SDL_KeyboardEvent
     repeat::Uint8
     padding2::Uint8
     padding3::Uint8
-    keysym::SDL_Keysym
+    keysym::Keysym
 end
 
-mutable struct SDL_TextEditingEvent
+mutable struct TextEditingEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1631,14 +1631,14 @@ mutable struct SDL_TextEditingEvent
     length::Sint32
 end
 
-mutable struct SDL_TextInputEvent
+mutable struct TextInputEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
     text::NTuple{32, UInt8}
 end
 
-mutable struct SDL_MouseMotionEvent
+mutable struct MouseMotionEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1650,7 +1650,7 @@ mutable struct SDL_MouseMotionEvent
     yrel::Sint32
 end
 
-mutable struct SDL_MouseButtonEvent
+mutable struct MouseButtonEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1663,7 +1663,7 @@ mutable struct SDL_MouseButtonEvent
     y::Sint32
 end
 
-mutable struct SDL_MouseWheelEvent
+mutable struct MouseWheelEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1673,10 +1673,10 @@ mutable struct SDL_MouseWheelEvent
     direction::Uint32
 end
 
-mutable struct SDL_JoyAxisEvent
+mutable struct JoyAxisEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     axis::Uint8
     padding1::Uint8
     padding2::Uint8
@@ -1685,10 +1685,10 @@ mutable struct SDL_JoyAxisEvent
     padding4::Uint16
 end
 
-mutable struct SDL_JoyBallEvent
+mutable struct JoyBallEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     ball::Uint8
     padding1::Uint8
     padding2::Uint8
@@ -1697,36 +1697,36 @@ mutable struct SDL_JoyBallEvent
     yrel::Sint16
 end
 
-mutable struct SDL_JoyHatEvent
+mutable struct JoyHatEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     hat::Uint8
     value::Uint8
     padding1::Uint8
     padding2::Uint8
 end
 
-mutable struct SDL_JoyButtonEvent
+mutable struct JoyButtonEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     button::Uint8
     state::Uint8
     padding1::Uint8
     padding2::Uint8
 end
 
-mutable struct SDL_JoyDeviceEvent
+mutable struct JoyDeviceEvent
     _type::Uint32
     timestamp::Uint32
     which::Sint32
 end
 
-mutable struct SDL_ControllerAxisEvent
+mutable struct ControllerAxisEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     axis::Uint8
     padding1::Uint8
     padding2::Uint8
@@ -1735,23 +1735,23 @@ mutable struct SDL_ControllerAxisEvent
     padding4::Uint16
 end
 
-mutable struct SDL_ControllerButtonEvent
+mutable struct ControllerButtonEvent
     _type::Uint32
     timestamp::Uint32
-    which::SDL_JoystickID
+    which::JoystickID
     button::Uint8
     state::Uint8
     padding1::Uint8
     padding2::Uint8
 end
 
-mutable struct SDL_ControllerDeviceEvent
+mutable struct ControllerDeviceEvent
     _type::Uint32
     timestamp::Uint32
     which::Sint32
 end
 
-mutable struct SDL_AudioDeviceEvent
+mutable struct AudioDeviceEvent
     _type::Uint32
     timestamp::Uint32
     which::Uint32
@@ -1761,11 +1761,11 @@ mutable struct SDL_AudioDeviceEvent
     padding3::Uint8
 end
 
-mutable struct SDL_TouchFingerEvent
+mutable struct TouchFingerEvent
     _type::Uint32
     timestamp::Uint32
-    touchId::SDL_TouchID
-    fingerId::SDL_FingerID
+    touchId::TouchID
+    fingerId::FingerID
     x::Cfloat
     y::Cfloat
     dx::Cfloat
@@ -1773,10 +1773,10 @@ mutable struct SDL_TouchFingerEvent
     pressure::Cfloat
 end
 
-mutable struct SDL_MultiGestureEvent
+mutable struct MultiGestureEvent
     _type::Uint32
     timestamp::Uint32
-    touchId::SDL_TouchID
+    touchId::TouchID
     dTheta::Cfloat
     dDist::Cfloat
     x::Cfloat
@@ -1785,35 +1785,35 @@ mutable struct SDL_MultiGestureEvent
     padding::Uint16
 end
 
-mutable struct SDL_DollarGestureEvent
+mutable struct DollarGestureEvent
     _type::Uint32
     timestamp::Uint32
-    touchId::SDL_TouchID
-    gestureId::SDL_GestureID
+    touchId::TouchID
+    gestureId::GestureID
     numFingers::Uint32
     error::Cfloat
     x::Cfloat
     y::Cfloat
 end
 
-mutable struct SDL_DropEvent
+mutable struct DropEvent
     _type::Uint32
     timestamp::Uint32
     file::Cstring
     windowID::Uint32
 end
 
-mutable struct SDL_QuitEvent
+mutable struct QuitEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct SDL_OSEvent
+mutable struct OSEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct SDL_UserEvent
+mutable struct UserEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1822,44 +1822,44 @@ mutable struct SDL_UserEvent
     data2::Ptr{Void}
 end
 
-mutable struct SDL_SysWMmsg
+mutable struct SysWMmsg
 end
 
-mutable struct SDL_SysWMEvent
+mutable struct SysWMEvent
     _type::Uint32
     timestamp::Uint32
-    msg::Ptr{SDL_SysWMmsg}
+    msg::Ptr{SysWMmsg}
 end
 
-mutable struct SDL_Event
-    _SDL_Event::NTuple{56, Uint8}
+mutable struct Event
+    _Event::NTuple{56, Uint8}
 end
 
-#const SDL_Event = Void
+#const Event = Void
 
 # begin enum ANONYMOUS_31
 const ANONYMOUS_31 = UInt32
-const SDL_ADDEVENT = (UInt32)(0)
-const SDL_PEEKEVENT = (UInt32)(1)
-const SDL_GETEVENT = (UInt32)(2)
+const ADDEVENT = (UInt32)(0)
+const PEEKEVENT = (UInt32)(1)
+const GETEVENT = (UInt32)(2)
 # end enum ANONYMOUS_31
 
-const SDL_eventaction = Void
-const SDL_EventFilter = Ptr{Void}
+const Eventaction = Void
+const EventFilter = Ptr{Void}
 
-mutable struct _SDL_Haptic
+mutable struct _Haptic
 end
 
-const SDL_Haptic = Void
+const Haptic = Void
 
-mutable struct SDL_HapticDirection
+mutable struct HapticDirection
     _type::Uint8
     dir::NTuple{3, Sint32}
 end
 
-mutable struct SDL_HapticConstant
+mutable struct HapticConstant
     _type::Uint16
-    direction::SDL_HapticDirection
+    direction::HapticDirection
     length::Uint32
     delay::Uint16
     button::Uint16
@@ -1871,9 +1871,9 @@ mutable struct SDL_HapticConstant
     fade_level::Uint16
 end
 
-mutable struct SDL_HapticPeriodic
+mutable struct HapticPeriodic
     _type::Uint16
-    direction::SDL_HapticDirection
+    direction::HapticDirection
     length::Uint32
     delay::Uint16
     button::Uint16
@@ -1888,9 +1888,9 @@ mutable struct SDL_HapticPeriodic
     fade_level::Uint16
 end
 
-mutable struct SDL_HapticCondition
+mutable struct HapticCondition
     _type::Uint16
-    direction::SDL_HapticDirection
+    direction::HapticDirection
     length::Uint32
     delay::Uint16
     button::Uint16
@@ -1903,9 +1903,9 @@ mutable struct SDL_HapticCondition
     center::NTuple{3, Sint16}
 end
 
-mutable struct SDL_HapticRamp
+mutable struct HapticRamp
     _type::Uint16
-    direction::SDL_HapticDirection
+    direction::HapticDirection
     length::Uint32
     delay::Uint16
     button::Uint16
@@ -1918,16 +1918,16 @@ mutable struct SDL_HapticRamp
     fade_level::Uint16
 end
 
-mutable struct SDL_HapticLeftRight
+mutable struct HapticLeftRight
     _type::Uint16
     length::Uint32
     large_magnitude::Uint16
     small_magnitude::Uint16
 end
 
-mutable struct SDL_HapticCustom
+mutable struct HapticCustom
     _type::Uint16
-    direction::SDL_HapticDirection
+    direction::HapticDirection
     length::Uint32
     delay::Uint16
     button::Uint16
@@ -1942,115 +1942,115 @@ mutable struct SDL_HapticCustom
     fade_level::Uint16
 end
 
-mutable struct SDL_HapticEffect
-    _SDL_HapticEffect::Uint16
+mutable struct HapticEffect
+    _HapticEffect::Uint16
 end
 
-#const SDL_HapticEffect = Void
+#const HapticEffect = Void
 
 # begin enum ANONYMOUS_32
 const ANONYMOUS_32 = UInt32
-const SDL_HINT_DEFAULT = (UInt32)(0)
-const SDL_HINT_NORMAL = (UInt32)(1)
-const SDL_HINT_OVERRIDE = (UInt32)(2)
+const HINT_DEFAULT = (UInt32)(0)
+const HINT_NORMAL = (UInt32)(1)
+const HINT_OVERRIDE = (UInt32)(2)
 # end enum ANONYMOUS_32
 
-const SDL_HintPriority = Void
-const SDL_HintCallback = Ptr{Void}
+const HintPriority = Void
+const HintCallback = Ptr{Void}
 
 # begin enum ANONYMOUS_33
 const ANONYMOUS_33 = UInt32
-const SDL_LOG_CATEGORY_APPLICATION = (UInt32)(0)
-const SDL_LOG_CATEGORY_ERROR = (UInt32)(1)
-const SDL_LOG_CATEGORY_ASSERT = (UInt32)(2)
-const SDL_LOG_CATEGORY_SYSTEM = (UInt32)(3)
-const SDL_LOG_CATEGORY_AUDIO = (UInt32)(4)
-const SDL_LOG_CATEGORY_VIDEO = (UInt32)(5)
-const SDL_LOG_CATEGORY_RENDER = (UInt32)(6)
-const SDL_LOG_CATEGORY_INPUT = (UInt32)(7)
-const SDL_LOG_CATEGORY_TEST = (UInt32)(8)
-const SDL_LOG_CATEGORY_RESERVED1 = (UInt32)(9)
-const SDL_LOG_CATEGORY_RESERVED2 = (UInt32)(10)
-const SDL_LOG_CATEGORY_RESERVED3 = (UInt32)(11)
-const SDL_LOG_CATEGORY_RESERVED4 = (UInt32)(12)
-const SDL_LOG_CATEGORY_RESERVED5 = (UInt32)(13)
-const SDL_LOG_CATEGORY_RESERVED6 = (UInt32)(14)
-const SDL_LOG_CATEGORY_RESERVED7 = (UInt32)(15)
-const SDL_LOG_CATEGORY_RESERVED8 = (UInt32)(16)
-const SDL_LOG_CATEGORY_RESERVED9 = (UInt32)(17)
-const SDL_LOG_CATEGORY_RESERVED10 = (UInt32)(18)
-const SDL_LOG_CATEGORY_CUSTOM = (UInt32)(19)
+const LOG_CATEGORY_APPLICATION = (UInt32)(0)
+const LOG_CATEGORY_ERROR = (UInt32)(1)
+const LOG_CATEGORY_ASSERT = (UInt32)(2)
+const LOG_CATEGORY_SYSTEM = (UInt32)(3)
+const LOG_CATEGORY_AUDIO = (UInt32)(4)
+const LOG_CATEGORY_VIDEO = (UInt32)(5)
+const LOG_CATEGORY_RENDER = (UInt32)(6)
+const LOG_CATEGORY_INPUT = (UInt32)(7)
+const LOG_CATEGORY_TEST = (UInt32)(8)
+const LOG_CATEGORY_RESERVED1 = (UInt32)(9)
+const LOG_CATEGORY_RESERVED2 = (UInt32)(10)
+const LOG_CATEGORY_RESERVED3 = (UInt32)(11)
+const LOG_CATEGORY_RESERVED4 = (UInt32)(12)
+const LOG_CATEGORY_RESERVED5 = (UInt32)(13)
+const LOG_CATEGORY_RESERVED6 = (UInt32)(14)
+const LOG_CATEGORY_RESERVED7 = (UInt32)(15)
+const LOG_CATEGORY_RESERVED8 = (UInt32)(16)
+const LOG_CATEGORY_RESERVED9 = (UInt32)(17)
+const LOG_CATEGORY_RESERVED10 = (UInt32)(18)
+const LOG_CATEGORY_CUSTOM = (UInt32)(19)
 # end enum ANONYMOUS_33
 
 # begin enum ANONYMOUS_34
 const ANONYMOUS_34 = UInt32
-const SDL_LOG_PRIORITY_VERBOSE = (UInt32)(1)
-const SDL_LOG_PRIORITY_DEBUG = (UInt32)(2)
-const SDL_LOG_PRIORITY_INFO = (UInt32)(3)
-const SDL_LOG_PRIORITY_WARN = (UInt32)(4)
-const SDL_LOG_PRIORITY_ERROR = (UInt32)(5)
-const SDL_LOG_PRIORITY_CRITICAL = (UInt32)(6)
-const SDL_NUM_LOG_PRIORITIES = (UInt32)(7)
+const LOG_PRIORITY_VERBOSE = (UInt32)(1)
+const LOG_PRIORITY_DEBUG = (UInt32)(2)
+const LOG_PRIORITY_INFO = (UInt32)(3)
+const LOG_PRIORITY_WARN = (UInt32)(4)
+const LOG_PRIORITY_ERROR = (UInt32)(5)
+const LOG_PRIORITY_CRITICAL = (UInt32)(6)
+const NUM_LOG_PRIORITIES = (UInt32)(7)
 # end enum ANONYMOUS_34
 
-const SDL_LogPriority = Void
-const SDL_LogOutputFunction = Ptr{Void}
+const LogPriority = Void
+const LogOutputFunction = Ptr{Void}
 
 # begin enum ANONYMOUS_35
 const ANONYMOUS_35 = UInt32
-const SDL_MESSAGEBOX_ERROR = (UInt32)(16)
-const SDL_MESSAGEBOX_WARNING = (UInt32)(32)
-const SDL_MESSAGEBOX_INFORMATION = (UInt32)(64)
+const MESSAGEBOX_ERROR = (UInt32)(16)
+const MESSAGEBOX_WARNING = (UInt32)(32)
+const MESSAGEBOX_INFORMATION = (UInt32)(64)
 # end enum ANONYMOUS_35
 
-const SDL_MessageBoxFlags = Void
+const MessageBoxFlags = Void
 
 # begin enum ANONYMOUS_36
 const ANONYMOUS_36 = UInt32
-const SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = (UInt32)(1)
-const SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = (UInt32)(2)
+const MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = (UInt32)(1)
+const MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = (UInt32)(2)
 # end enum ANONYMOUS_36
 
-const SDL_MessageBoxButtonFlags = Void
-const SDL_MessageBoxButtonData = Void
-const SDL_MessageBoxColor = Void
+const MessageBoxButtonFlags = Void
+const MessageBoxButtonData = Void
+const MessageBoxColor = Void
 
 # begin enum ANONYMOUS_37
 const ANONYMOUS_37 = UInt32
-const SDL_MESSAGEBOX_COLOR_BACKGROUND = (UInt32)(0)
-const SDL_MESSAGEBOX_COLOR_TEXT = (UInt32)(1)
-const SDL_MESSAGEBOX_COLOR_BUTTON_BORDER = (UInt32)(2)
-const SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND = (UInt32)(3)
-const SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED = (UInt32)(4)
-const SDL_MESSAGEBOX_COLOR_MAX = (UInt32)(5)
+const MESSAGEBOX_COLOR_BACKGROUND = (UInt32)(0)
+const MESSAGEBOX_COLOR_TEXT = (UInt32)(1)
+const MESSAGEBOX_COLOR_BUTTON_BORDER = (UInt32)(2)
+const MESSAGEBOX_COLOR_BUTTON_BACKGROUND = (UInt32)(3)
+const MESSAGEBOX_COLOR_BUTTON_SELECTED = (UInt32)(4)
+const MESSAGEBOX_COLOR_MAX = (UInt32)(5)
 # end enum ANONYMOUS_37
 
-const SDL_MessageBoxColorType = Void
-const SDL_MessageBoxColorScheme = Void
-const SDL_MessageBoxData = Void
+const MessageBoxColorType = Void
+const MessageBoxColorScheme = Void
+const MessageBoxData = Void
 
 # begin enum ANONYMOUS_38
 const ANONYMOUS_38 = UInt32
-const SDL_POWERSTATE_UNKNOWN = (UInt32)(0)
-const SDL_POWERSTATE_ON_BATTERY = (UInt32)(1)
-const SDL_POWERSTATE_NO_BATTERY = (UInt32)(2)
-const SDL_POWERSTATE_CHARGING = (UInt32)(3)
-const SDL_POWERSTATE_CHARGED = (UInt32)(4)
+const POWERSTATE_UNKNOWN = (UInt32)(0)
+const POWERSTATE_ON_BATTERY = (UInt32)(1)
+const POWERSTATE_NO_BATTERY = (UInt32)(2)
+const POWERSTATE_CHARGING = (UInt32)(3)
+const POWERSTATE_CHARGED = (UInt32)(4)
 # end enum ANONYMOUS_38
 
-const SDL_PowerState = Void
+const PowerState = Void
 
 # begin enum ANONYMOUS_39
 const ANONYMOUS_39 = UInt32
-const SDL_RENDERER_SOFTWARE = (UInt32)(1)
-const SDL_RENDERER_ACCELERATED = (UInt32)(2)
-const SDL_RENDERER_PRESENTVSYNC = (UInt32)(4)
-const SDL_RENDERER_TARGETTEXTURE = (UInt32)(8)
+const RENDERER_SOFTWARE = (UInt32)(1)
+const RENDERER_ACCELERATED = (UInt32)(2)
+const RENDERER_PRESENTVSYNC = (UInt32)(4)
+const RENDERER_TARGETTEXTURE = (UInt32)(8)
 # end enum ANONYMOUS_39
 
-const SDL_RendererFlags = Void
+const RendererFlags = Void
 
-mutable struct SDL_RendererInfo
+mutable struct RendererInfo
     name::Cstring
     flags::Uint32
     num_texture_formats::Uint32
@@ -2061,39 +2061,39 @@ end
 
 # begin enum ANONYMOUS_40
 const ANONYMOUS_40 = UInt32
-const SDL_TEXTUREACCESS_STATIC = (UInt32)(0)
-const SDL_TEXTUREACCESS_STREAMING = (UInt32)(1)
-const SDL_TEXTUREACCESS_TARGET = (UInt32)(2)
+const TEXTUREACCESS_STATIC = (UInt32)(0)
+const TEXTUREACCESS_STREAMING = (UInt32)(1)
+const TEXTUREACCESS_TARGET = (UInt32)(2)
 # end enum ANONYMOUS_40
 
-const SDL_TextureAccess = Void
+const TextureAccess = Void
 
 # begin enum ANONYMOUS_41
 const ANONYMOUS_41 = UInt32
-const SDL_TEXTUREMODULATE_NONE = (UInt32)(0)
-const SDL_TEXTUREMODULATE_COLOR = (UInt32)(1)
-const SDL_TEXTUREMODULATE_ALPHA = (UInt32)(2)
+const TEXTUREMODULATE_NONE = (UInt32)(0)
+const TEXTUREMODULATE_COLOR = (UInt32)(1)
+const TEXTUREMODULATE_ALPHA = (UInt32)(2)
 # end enum ANONYMOUS_41
 
-const SDL_TextureModulate = Void
+const TextureModulate = Void
 
 # begin enum ANONYMOUS_42
 const ANONYMOUS_42 = UInt32
-const SDL_FLIP_NONE = (UInt32)(0)
-const SDL_FLIP_HORIZONTAL = (UInt32)(1)
-const SDL_FLIP_VERTICAL = (UInt32)(2)
+const FLIP_NONE = (UInt32)(0)
+const FLIP_HORIZONTAL = (UInt32)(1)
+const FLIP_VERTICAL = (UInt32)(2)
 # end enum ANONYMOUS_42
 
-const SDL_RendererFlip = Void
+const RendererFlip = Void
 
-mutable struct SDL_Renderer
+mutable struct Renderer
 end
 
-mutable struct SDL_Texture
+mutable struct Texture
 end
 
-const SDL_TimerCallback = Ptr{Void}
-const SDL_TimerID = Cint
+const TimerCallback = Ptr{Void}
+const TimerID = Cint
 
 mutable struct SDL_version
     major::Uint8
