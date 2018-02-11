@@ -2531,16 +2531,16 @@ function IntersectRectAndLine(rect, X1, Y1, X2, Y2)
     ccall((:SDL_IntersectRectAndLine, libSDL2), bool, (Ptr{Rect}, Ptr{Cint}, Ptr{Cint}, Ptr{Cint}, Ptr{Cint}), rect, X1, Y1, X2, Y2)
 end
 
-function CreateRGBSurface(flags::Uint32, width::Cint, height::Cint, depth::Cint, Rmask::Uint32, Gmask::Uint32, Bmask::Uint32, Amask::Uint32)
-    ccall((:SDL_CreateRGBSurface, libSDL2), Ptr{Surface}, (Uint32, Cint, Cint, Cint, Uint32, Uint32, Uint32, Uint32), flags, width, height, depth, Rmask, Gmask, Bmask, Amask)
+function CreateRGBSurface(flags::Uint32, width::Cint, height::Cint, depth::Cint, Rmask::UInt32, Gmask::UInt32, Bmask::UInt32, Amask::UInt32)
+    ccall((:SDL_CreateRGBSurface, libSDL2), Ptr{Surface}, (Uint32, Cint, Cint, Cint, UInt32, UInt32, UInt32, UInt32), flags, width, height, depth, Rmask, Gmask, Bmask, Amask)
 end
 
 function CreateRGBSurfaceWithFormat(flags, width, height, depth, format)
     ccall((:SDL_CreateRGBSurfaceWithFormat, libSDL2), Ptr{Surface}, (Uint32, Cint, Cint, Cint, Uint32), flags, width, height, depth, format)
 end
 
-function CreateRGBSurfaceFrom(pixels, width::Cint, height::Cint, depth::Cint, pitch::Cint, Rmask::Uint32, Gmask::Uint32, Bmask::Uint32, Amask::Uint32)
-    ccall((:SDL_CreateRGBSurfaceFrom, libSDL2), Ptr{Surface}, (Ptr{Void}, Cint, Cint, Cint, Cint, Uint32, Uint32, Uint32, Uint32), pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
+function CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
+    ccall((:SDL_CreateRGBSurfaceFrom, libSDL2), Ptr{Surface}, (Ptr{Void}, Cint, Cint, Cint, Cint, UInt32, UInt32, UInt32, UInt32), pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
 end
 
 function CreateRGBSurfaceWithFormatFrom(pixels, width::Cint, height::Cint, depth::Cint, pitch::Cint, format::Uint32)
