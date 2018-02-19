@@ -21,10 +21,10 @@ module SDL2
         renderer::Ptr{Renderer}
 
         function SDLWindow(w,h,title="SDL Window")
-            win = CreateWindow(title, Int32(100), Int32(100), Int32(w), Int32(h), Int32(WINDOW_SHOWN))
+            win = CreateWindow(title, Int32(100), Int32(100), Int32(w), Int32(h), Int32(WINDOW_SHOWN | WINDOW_INPUT_FOCUS))
             SetWindowResizable(win,true)
 
-            renderer = CreateRenderer(win, Int32(-1), Int32(RENDERER_ACCELERATED ))#| RENDERER_PRESENTVSYNC))
+            renderer = CreateRenderer(win, Int32(-1), Int32(RENDERER_ACCELERATED | RENDERER_PRESENTVSYNC) ) 
 
             new(win, renderer)
         end
@@ -55,8 +55,8 @@ module SDL2
     end
 
     function init()
-        GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 16)
-        GL_SetAttribute(GL_MULTISAMPLESAMPLES, 16)
+        GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
+        GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
         Init(Int32(INIT_VIDEO))
         TTF_Init()
     end
@@ -67,6 +67,17 @@ module SDL2
         x[1],y[1]
     end
 
+    function event()
+        ev = Event(ntuple(i->-1,56))
+        PollEvent(pointer_from_objref(ev)) == 0 && return nothing
+        
+        evtype = Event(ev._Event[1])
+        evtype == nothing && return nothing
+
+        evtype == KeyboardEvent && info(ev)
+
+        unsafe_load( Ptr{evtype}(pointer_from_objref(ev)) )
+    end
 
 
 end # module

@@ -1169,7 +1169,7 @@ const SCANCODE_APP2 = (UInt32)(284)
 const NUM_SCANCODES = (UInt32)(512)
 # end enum ANONYMOUS_21
 
-const Scancode = Void
+const Scancode = Sint32
 const Keycode = Sint32
 
 # begin enum ANONYMOUS_22
@@ -1414,7 +1414,7 @@ const SDLK_SLEEP = (UInt32)(1073742106)
 
 const Keymod = Void
 
-mutable struct Keysym
+struct Keysym
     scancode::Scancode
     sym::Keycode
     mod::Uint16
@@ -1592,14 +1592,17 @@ const USEREVENT = (UInt32)(32768)
 const LASTEVENT = (UInt32)(65535)
 # end enum ANONYMOUS_30
 
+
 const EventType = Void
 
-mutable struct CommonEvent
+abstract type AbstractEvent end
+
+mutable struct CommonEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct WindowEvent
+mutable struct WindowEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1611,18 +1614,18 @@ mutable struct WindowEvent
     data2::Sint32
 end
 
-mutable struct KeyboardEvent
+struct KeyboardEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
-    state::Uint8
-    repeat::Uint8
-    padding2::Uint8
-    padding3::Uint8
+    state::UInt8
+    repeat::UInt8
+    padding2::UInt8
+    padding3::UInt8
     keysym::Keysym
 end
 
-mutable struct TextEditingEvent
+mutable struct TextEditingEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1631,14 +1634,14 @@ mutable struct TextEditingEvent
     length::Sint32
 end
 
-mutable struct TextInputEvent
+mutable struct TextInputEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
     text::NTuple{32, UInt8}
 end
 
-mutable struct MouseMotionEvent
+mutable struct MouseMotionEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1650,7 +1653,7 @@ mutable struct MouseMotionEvent
     yrel::Sint32
 end
 
-mutable struct MouseButtonEvent
+mutable struct MouseButtonEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1663,7 +1666,7 @@ mutable struct MouseButtonEvent
     y::Sint32
 end
 
-mutable struct MouseWheelEvent
+mutable struct MouseWheelEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1673,7 +1676,7 @@ mutable struct MouseWheelEvent
     direction::Uint32
 end
 
-mutable struct JoyAxisEvent
+mutable struct JoyAxisEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1685,7 +1688,7 @@ mutable struct JoyAxisEvent
     padding4::Uint16
 end
 
-mutable struct JoyBallEvent
+mutable struct JoyBallEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1697,7 +1700,7 @@ mutable struct JoyBallEvent
     yrel::Sint16
 end
 
-mutable struct JoyHatEvent
+mutable struct JoyHatEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1707,7 +1710,7 @@ mutable struct JoyHatEvent
     padding2::Uint8
 end
 
-mutable struct JoyButtonEvent
+mutable struct JoyButtonEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1717,13 +1720,13 @@ mutable struct JoyButtonEvent
     padding2::Uint8
 end
 
-mutable struct JoyDeviceEvent
+mutable struct JoyDeviceEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::Sint32
 end
 
-mutable struct ControllerAxisEvent
+mutable struct ControllerAxisEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1735,7 +1738,7 @@ mutable struct ControllerAxisEvent
     padding4::Uint16
 end
 
-mutable struct ControllerButtonEvent
+mutable struct ControllerButtonEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::JoystickID
@@ -1745,13 +1748,13 @@ mutable struct ControllerButtonEvent
     padding2::Uint8
 end
 
-mutable struct ControllerDeviceEvent
+mutable struct ControllerDeviceEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::Sint32
 end
 
-mutable struct AudioDeviceEvent
+mutable struct AudioDeviceEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     which::Uint32
@@ -1761,7 +1764,7 @@ mutable struct AudioDeviceEvent
     padding3::Uint8
 end
 
-mutable struct TouchFingerEvent
+mutable struct TouchFingerEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     touchId::TouchID
@@ -1773,7 +1776,7 @@ mutable struct TouchFingerEvent
     pressure::Cfloat
 end
 
-mutable struct MultiGestureEvent
+mutable struct MultiGestureEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     touchId::TouchID
@@ -1785,7 +1788,7 @@ mutable struct MultiGestureEvent
     padding::Uint16
 end
 
-mutable struct DollarGestureEvent
+mutable struct DollarGestureEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     touchId::TouchID
@@ -1796,24 +1799,24 @@ mutable struct DollarGestureEvent
     y::Cfloat
 end
 
-mutable struct DropEvent
+mutable struct DropEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     file::Cstring
     windowID::Uint32
 end
 
-mutable struct QuitEvent
+mutable struct QuitEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct OSEvent
+mutable struct OSEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
 end
 
-mutable struct UserEvent
+mutable struct UserEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     windowID::Uint32
@@ -1825,14 +1828,38 @@ end
 mutable struct SysWMmsg
 end
 
-mutable struct SysWMEvent
+mutable struct SysWMEvent <: AbstractEvent
     _type::Uint32
     timestamp::Uint32
     msg::Ptr{SysWMmsg}
 end
 
-mutable struct Event
+mutable struct Event <: AbstractEvent
     _Event::NTuple{56, Uint8}
+end
+
+const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
+    WINDOWEVENT => WindowEvent, 
+    KEYDOWN => KeyboardEvent, 
+    KEYUP => KeyboardEvent, 
+    TEXTEDITING => TextEditingEvent, 
+    TEXTINPUT => TextInputEvent, 
+    MOUSEMOTION => MouseMotionEvent, 
+    MOUSEBUTTONDOWN => MouseButtonEvent, 
+    MOUSEBUTTONUP => MouseButtonEvent, 
+    MOUSEWHEEL => MouseWheelEvent, 
+    DROPFILE => DropEvent, 
+    DROPTEXT => DropEvent, 
+    DROPBEGIN => DropEvent, 
+    DROPCOMPLETE => DropEvent, 
+    QUIT => QuitEvent, 
+    USEREVENT => UserEvent
+)
+
+function Event(t::Uint8) 
+    haskey(event_type_to_event,t) && return event_type_to_event[t]
+    warn(t)
+    nothing
 end
 
 #const Event = Void
