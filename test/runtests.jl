@@ -1,4 +1,4 @@
-using SDL
+using SDL2
 using Base.Test
 
 # write your own tests here
