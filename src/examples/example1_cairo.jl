@@ -28,9 +28,9 @@ function example1()
         frame_time = @elapsed begin
 
             x,y = Int[1], Int[1]
-             Set render color to red ( background will be rendered in this color )
-             SetRenderDrawColor(renderer, 200, 200, 200, 255)
-             RenderClear(renderer)
+             #Set render color to red ( background will be rendered in this color )
+            SDL2.SetRenderDrawColor(win.renderer, 200, 200, 200, 255)
+            SDL2.RenderClear(win.renderer)
             #
             # SetRenderDrawColor(renderer, 20, 50, 105, 255)
             # RenderDrawLine(renderer,0,0,800,600)
@@ -42,7 +42,7 @@ function example1()
             # RenderFillRect(renderer, pointer_from_objref(rect))
 
             #cairo draws
-            for offset in 10:2:h
+            for offset in 1:4:h
                 draw(surfaces.SDL_surface,surfaces.cairo_context,w,h,offset-x[1],round(Int,w/5*mod(offset,5)))
             end
             tex = SDL2.CreateTextureFromSurface(win.renderer,surfaces.SDL_surface)
@@ -51,16 +51,17 @@ function example1()
 
         end
 
-        warn(1/frame_time)
+        println(1/frame_time)
     end
 
     SDL2.init()
     win = SDL2.SDLWindow(w,h,"Example 0")
     surfaces = SDL2.CairoSDLSurface(w,h)
 
-    for i = 1:300
+    for i = 1:100
         draw_frame(surfaces,w,h,win)
     end
     SDL2.Quit()
 
+    true
 end

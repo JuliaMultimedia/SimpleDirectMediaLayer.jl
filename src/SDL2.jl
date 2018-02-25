@@ -1,3 +1,4 @@
+__precompile__()
 module SDL2
 
     using Cairo, ColorTypes
@@ -10,11 +11,11 @@ module SDL2
     end
 
     include("lib/SDL.jl")
-    include("lib/SDL_ttf.jl")
+    #include("lib/SDL_ttf.jl")
 
     import Base.unsafe_convert
 
-    export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
+    #export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
 
     type SDLWindow
         win::Ptr{Window}
@@ -24,7 +25,7 @@ module SDL2
             win = CreateWindow(title, Int32(100), Int32(100), Int32(w), Int32(h), Int32(WINDOW_SHOWN | WINDOW_INPUT_FOCUS))
             SetWindowResizable(win,true)
 
-            renderer = CreateRenderer(win, Int32(-1), Int32(RENDERER_ACCELERATED | RENDERER_PRESENTVSYNC) ) 
+            renderer = CreateRenderer(win, Int32(-1), Int32(RENDERER_ACCELERATED | RENDERER_PRESENTVSYNC) )
 
             new(win, renderer)
         end
@@ -58,7 +59,7 @@ module SDL2
         GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
         GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
         Init(Int32(INIT_VIDEO))
-        TTF_Init()
+        #TTF_Init()
     end
 
     function mouse_position()
@@ -70,7 +71,7 @@ module SDL2
     function event()
         ev = Event(ntuple(i->-1,56))
         PollEvent(pointer_from_objref(ev)) == 0 && return nothing
-        
+
         evtype = Event(ev._Event[1])
         evtype == nothing && return nothing
 
@@ -81,5 +82,3 @@ module SDL2
 
 
 end # module
-
-
