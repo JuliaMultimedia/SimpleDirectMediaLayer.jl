@@ -775,7 +775,7 @@ const BLENDMODE_ADD = (UInt32)(2)
 const BLENDMODE_MOD = (UInt32)(4)
 # end enum ANONYMOUS_13
 
-const BlendMode = Void
+const BlendMode = UInt32
 
 mutable struct Surface
     flags::Uint32
