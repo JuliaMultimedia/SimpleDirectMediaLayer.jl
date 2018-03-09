@@ -1,53 +1,57 @@
-cd(joinpath(Pkg.dir(),"SDL/src/"))
+cd(joinpath(Pkg.dir(),"SDL2/src/"))
+using SDL2
 
-SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
-SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 16)
-SDL_Init(Int32(SDL_INIT_VIDEO))
+SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLEBUFFERS, 16)
+SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLESAMPLES, 16)
 
-TTF_Init()
+SDL2.init()
 
-win = SDL_CreateWindow("Hello World!", Int32(100), Int32(100), Int32(800), Int32(600), Int32(SDL_WINDOW_SHOWN))
-SDL_SetWindowResizable(win,true)
+win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(800), Int32(600),
+         Int32(SDL2.WINDOW_SHOWN))
+SDL2.SetWindowResizable(win,true)
 
-renderer = SDL_CreateRenderer(win, Int32(-1), Int32(SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC))
+renderer = SDL2.CreateRenderer(win, Int32(-1),
+             Int32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
 
 import Base.unsafe_convert
-unsafe_convert(::Type{Ptr{SDL_RWops}}, s::String) = SDL_RWFromFile(s, "rb")
-SDL_LoadBMP(src::String) = SDL_LoadBMP_RW(src,Int32(1))
+unsafe_convert(::Type{Ptr{SDL2.RWops}}, s::String) = SDL2.RWFromFile(s, "rb")
+import SDL2.LoadBMP
+LoadBMP(src::String) = SDL2.LoadBMP_RW(src,Int32(1))
 
-bkg = SDL_Color(200, 200, 200, 255)
+bkg = SDL2.Color(200, 200, 200, 255)
 
 # Create text
 font = TTF_OpenFont("../assets/fonts/FiraCode/ttf/FiraCode-Regular.ttf", 14)
-txt = "@BinDeps.install Dict([ (:glib, :libglib) ])"
-text = TTF_RenderText_Blended(font, txt, SDL_Color(20,20,20,255))
-tex = SDL_CreateTextureFromSurface(renderer,text)
+#txt = "@BinDeps.install Dict([ (:glib, :libglib) ])"
+txt = "hi"
+text = TTF_RenderText_Blended(font, txt, SDL2.Color(20,20,20,255))
+tex = SDL2.CreateTextureFromSurface(renderer,text)
 
 fx,fy = Int[1], Int[1]
 TTF_SizeText(font, txt, pointer(fx), pointer(fy))
 fx,fy = fx[1],fy[1]
 
-#img = SDL_LoadBMP("LB2951.jpg")
-#tex = SDL_CreateTextureFromSurface(ren, img)
-#SDL_FreeSurface(img)
+#img = SDL2.LoadBMP("LB2951.jpg")
+#tex = SDL2.CreateTextureFromSurface(ren, img)
+#SDL2.FreeSurface(img)
 
 for i = 1:1000
     x,y = Int[1], Int[1]
-    SDL_PumpEvents()
-    SDL_GetMouseState(pointer(x), pointer(y))
+    SDL2.PumpEvents()
+    SDL2.GetMouseState(pointer(x), pointer(y))
 
     # Set render color to red ( background will be rendered in this color )
-    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255)
-    SDL_RenderClear(renderer)
+    SDL2.SetRenderDrawColor(renderer, 200, 200, 200, 255)
+    SDL2.RenderClear(renderer)
 
-    SDL_SetRenderDrawColor(renderer, 20, 50, 105, 255)
-    SDL_RenderDrawLine(renderer,0,0,800,600)
+    SDL2.SetRenderDrawColor(renderer, 20, 50, 105, 255)
+    SDL2.RenderDrawLine(renderer,0,0,800,600)
 
-    rect = SDL_Rect(1,1,200,200)
-    SDL_RenderFillRect(renderer, pointer_from_objref(rect) )
-    SDL_RenderCopy(renderer, tex, C_NULL, pointer_from_objref(SDL_Rect(x[1],y[1],fx,fy)))
+    rect = SDL2.Rect(1,1,200,200)
+    SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
+    SDL2.RenderCopy(renderer, tex, C_NULL, pointer_from_objref(SDL2.Rect(x[1],y[1],fx,fy)))
 
-    SDL_RenderPresent(renderer)
+    SDL2.RenderPresent(renderer)
     sleep(0.001)
 end
-SDL_Quit()
+SDL2.Quit()
