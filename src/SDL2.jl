@@ -11,11 +11,11 @@ module SDL2
     end
 
     include("lib/SDL.jl")
-    #include("lib/SDL_ttf.jl")
+    include("lib/SDL_ttf.jl")
 
     import Base.unsafe_convert
 
-    #export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
+    export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
 
     type SDLWindow
         win::Ptr{Window}
@@ -59,7 +59,7 @@ module SDL2
         GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
         GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
         Init(Int32(INIT_VIDEO))
-        #TTF_Init()
+        TTF_Init()
     end
 
     function mouse_position()
