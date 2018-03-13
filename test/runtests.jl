@@ -1,6 +1,11 @@
 using SDL2
 using Base.Test
 
-# write your own tests here
+include("lib/SDL.jl")
+
+# Integration tests
+@testset "example1" begin
 include(joinpath("..","src","examples","example1_cairo.jl"))
 @test example1() == 1
+SDL2.Quit()
+end
