@@ -1839,24 +1839,24 @@ mutable struct Event <: AbstractEvent
 end
 
 const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
-    WINDOWEVENT => WindowEvent, 
-    KEYDOWN => KeyboardEvent, 
-    KEYUP => KeyboardEvent, 
-    TEXTEDITING => TextEditingEvent, 
-    TEXTINPUT => TextInputEvent, 
-    MOUSEMOTION => MouseMotionEvent, 
-    MOUSEBUTTONDOWN => MouseButtonEvent, 
-    MOUSEBUTTONUP => MouseButtonEvent, 
-    MOUSEWHEEL => MouseWheelEvent, 
-    DROPFILE => DropEvent, 
-    DROPTEXT => DropEvent, 
-    DROPBEGIN => DropEvent, 
-    DROPCOMPLETE => DropEvent, 
-    QUIT => QuitEvent, 
+    WINDOWEVENT => WindowEvent,
+    KEYDOWN => KeyboardEvent,
+    KEYUP => KeyboardEvent,
+    TEXTEDITING => TextEditingEvent,
+    TEXTINPUT => TextInputEvent,
+    MOUSEMOTION => MouseMotionEvent,
+    MOUSEBUTTONDOWN => MouseButtonEvent,
+    MOUSEBUTTONUP => MouseButtonEvent,
+    MOUSEWHEEL => MouseWheelEvent,
+    DROPFILE => DropEvent,
+    DROPTEXT => DropEvent,
+    DROPBEGIN => DropEvent,
+    DROPCOMPLETE => DropEvent,
+    QUIT => QuitEvent,
     USEREVENT => UserEvent
 )
 
-function Event(t::Uint8) 
+function Event(t::Uint8)
     haskey(event_type_to_event,t) && return event_type_to_event[t]
     warn(t)
     nothing

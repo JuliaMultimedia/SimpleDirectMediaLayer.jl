@@ -5,11 +5,13 @@ using Compat
 
 libSDL2 = library_dependency("libSDL2", aliases = ["sdl2", "libsdl2-2.0", "libSDL","SDL2"])
 libSDL2_ttf = library_dependency("libSDL2_ttf", aliases = ["SDL_ttf","SDL2_ttf"])
+libSDL2_mixer = library_dependency("libSDL2_mixer", aliases = ["SDL_mixer","SDL2_mixer"])
 
 if is_apple()
     using Homebrew
     provides(Homebrew.HB, "sdl2", libSDL2, os = :Darwin)
     provides(Homebrew.HB, "SDL2_ttf", libSDL2_ttf, os = :Darwin)
+    provides(Homebrew.HB, "SDL2_mixer", libSDL2_mixer, os = :Darwin)
 end
 
 
@@ -25,4 +27,5 @@ provides(Pacman, "sdl2", libSDL2)
 @BinDeps.install Dict(
     "libSDL2" => "libSDL2",
     "libSDL2_ttf" => "libSDL2_ttf",
+    "libSDL2_mixer" => "libSDL2_mixer",
 )

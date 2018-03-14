@@ -12,6 +12,7 @@ module SDL2
 
     include("lib/SDL.jl")
     include("lib/SDL_ttf.jl")
+    include("lib/SDL_mixer.jl")
 
     import Base.unsafe_convert
 
@@ -60,6 +61,7 @@ module SDL2
         GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
         Init(Int32(INIT_VIDEO))
         TTF_Init()
+        Mix_OpenAudio(Int32(22050), Int32(MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
     end
 
     function mouse_position()
