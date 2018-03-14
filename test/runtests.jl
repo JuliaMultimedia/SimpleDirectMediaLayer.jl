@@ -3,9 +3,11 @@ using Base.Test
 
 include("lib/SDL.jl")
 
+if is_apple()
 include("lib/SDL_ttf.jl")
-
 include("lib/SDL_mixer.jl")
+end
+
 
 # Integration tests
 @testset "example1" begin
