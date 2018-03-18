@@ -554,7 +554,7 @@ const UNSUPPORTED = (UInt32)(4)
 const LASTERROR = (UInt32)(5)
 # end enum ANONYMOUS_4
 
-const errorcode = Void
+const errorcode = UInt32
 
 mutable struct Mutex
 end
@@ -775,7 +775,7 @@ const BLENDMODE_ADD = (UInt32)(2)
 const BLENDMODE_MOD = (UInt32)(4)
 # end enum ANONYMOUS_13
 
-const BlendMode = Void
+const BlendMode = UInt32
 
 mutable struct Surface
     flags::Uint32
@@ -822,7 +822,7 @@ const WINDOW_TOOLTIP = (UInt32)(262144)
 const WINDOW_POPUP_MENU = (UInt32)(524288)
 # end enum ANONYMOUS_14
 
-const WindowFlags = Void
+const WindowFlags = UInt32
 
 # begin enum ANONYMOUS_15
 const ANONYMOUS_15 = UInt32
