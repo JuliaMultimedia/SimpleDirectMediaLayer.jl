@@ -1835,7 +1835,7 @@ mutable struct SysWMEvent <: AbstractEvent
 end
 
 mutable struct Event <: AbstractEvent
-    _Event::NTuple{56, Uint8}
+    _Event::NTuple{56, Uint8}  # SDL_Event is a 56 byte union in C.
 end
 
 const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
@@ -1856,7 +1856,7 @@ const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
     USEREVENT => UserEvent
 )
 
-function Event(t::Uint8)
+function Event(t::Uint32)
     haskey(event_type_to_event,t) && return event_type_to_event[t]
     nothing
 end
