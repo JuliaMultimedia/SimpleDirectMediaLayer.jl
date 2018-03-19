@@ -1858,7 +1858,6 @@ const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
 
 function Event(t::Uint8)
     haskey(event_type_to_event,t) && return event_type_to_event[t]
-    warn(t)
     nothing
 end
 
