@@ -14,20 +14,20 @@ SDL2.Quit()
 
 @testset "Init+Quit" begin
 # Test that you can init and quit SDL_mixer multiple times correctly.
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
-@test 0 == SDL2.Mix_OpenAudio(Int32(22050), Int32(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Mix_OpenAudio(Int32(22050), UInt16(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
 SDL2.Mix_CloseAudio()
 SDL2.Quit()
 
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
-@test 0 == SDL2.Mix_OpenAudio(Int32(22050), Int32(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Mix_OpenAudio(Int32(22050), UInt16(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
 SDL2.Mix_CloseAudio()
 SDL2.Quit()
 end
 
 @testset "Sounds" begin
-SDL2.Init(Int32(0))
-SDL2.Mix_OpenAudio(Int32(22050), Int32(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
+SDL2.Init(UInt32(0))
+SDL2.Mix_OpenAudio(Int32(22050), UInt16(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
 
 med = SDL2.Mix_LoadWAV( joinpath(audio_example_assets_dir,"medium.wav")  )
 @test med != C_NULL
@@ -50,8 +50,8 @@ SDL2.Quit()
 end
 
 @testset "Music" begin
-SDL2.Init(Int32(0))
-SDL2.Mix_OpenAudio(Int32(22050), Int32(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
+SDL2.Init(UInt32(0))
+SDL2.Mix_OpenAudio(Int32(22050), UInt16(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
 
 # Load the music
 music = SDL2.Mix_LoadMUS( joinpath(audio_example_assets_dir,"beat.wav") );

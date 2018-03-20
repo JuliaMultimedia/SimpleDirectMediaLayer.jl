@@ -297,7 +297,7 @@ const ALPHA_TRANSPARENT = 0
 # Skipping MacroDefinition: ISPIXELFORMAT_FOURCC ( format ) ( ( format ) && ( PIXELFLAG ( format ) != 1 ) )
 
 #const Uint8 = Cint
-const Uint8 = Cint
+const Uint8 = Cuchar
 
 mutable struct Color
     r::Uint8
@@ -502,21 +502,21 @@ const TRUE = (UInt32)(1)
 # end enum ANONYMOUS_1
 
 const bool = Bool
-const Sint8 = Cint
-const Sint16 = Cint
-const Uint16 = Cint
+const Sint8 = Cchar
+const Sint16 = Cshort
+const Uint16 = Cushort
 const Sint32 = Cint
-const Uint32 = Cint
-const Sint64 = Cint
-const Uint64 = Cint
-const dummy_uint8 = Cint
-const dummy_sint8 = Cint
-const dummy_uint16 = Cint
-const dummy_sint16 = Cint
-const dummy_uint32 = NTuple{1, Cint}
-const dummy_sint32 = NTuple{1, Cint}
-const dummy_uint64 = Cint
-const dummy_sint64 = Cint
+const Uint32 = Cuint
+const Sint64 = Clonglong
+const Uint64 = Culonglong
+const SDL_dummy_uint8 = Cchar
+const SDL_dummy_sint8 = Cuchar
+const SDL_dummy_uint16 = Cshort
+const SDL_dummy_sint16 = Cushort
+const SDL_dummy_uint32 = NTuple{1, Cuint}
+const SDL_dummy_sint32 = NTuple{1, Cint}
+const SDL_dummy_uint64 = Clonglong
+const SDL_dummy_sint64 = Culonglong
 
 # begin enum ANONYMOUS_2
 const ANONYMOUS_2 = UInt32
@@ -1835,7 +1835,7 @@ mutable struct SysWMEvent <: AbstractEvent
 end
 
 mutable struct Event <: AbstractEvent
-    _Event::NTuple{56, Uint8}
+    _Event::NTuple{56, Uint8}  # SDL_Event is a 56 byte union in C.
 end
 
 const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
@@ -1856,7 +1856,7 @@ const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
     USEREVENT => UserEvent
 )
 
-function Event(t::Uint8)
+function Event(t::Uint32)
     haskey(event_type_to_event,t) && return event_type_to_event[t]
     nothing
 end

@@ -5,19 +5,19 @@ SDL2_pkg_dir = joinpath(Pkg.dir(), "SDL2")
 
 @testset "Init+Quit" begin
 # Test that you can init and quit SDL_ttf multiple times correctly.
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
 @test 0 == SDL2.TTF_Init()
 SDL2.TTF_Quit()
 SDL2.Quit()
 
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
 @test 0 == SDL2.TTF_Init()
 SDL2.TTF_Quit()
 SDL2.Quit()
 end
 
 @testset "Text" begin
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
 @test 0 == SDL2.TTF_Init()
 
 @testset "Simple text" begin
@@ -39,12 +39,12 @@ SDL2.Quit()
 end
 
 @testset "Rendering" begin
-@test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
+@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
 @test 0 == SDL2.TTF_Init()
 win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int32(400),
-         Int32(SDL2.WINDOW_SHOWN))
+         UInt32(SDL2.WINDOW_SHOWN))
 renderer = SDL2.CreateRenderer(win, Int32(-1),
-             Int32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
+             UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
 
 
 # try rendering with complicated text
