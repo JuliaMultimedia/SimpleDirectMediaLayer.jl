@@ -50,7 +50,6 @@ Mix_FadeInChannel(channel , chunk , loops , ms) = Mix_FadeInChannelTimed( channe
 # const Mix_GetError = SDL_GetError
 # const Mix_ClearError = SDL_ClearError
 
-MIX_InitFlags = Void
 
 mutable struct Mix_Chunk
     allocated::Cint
@@ -66,7 +65,7 @@ const MIX_FADING_OUT = (UInt32)(1)
 const MIX_FADING_IN = (UInt32)(2)
 # end enum ANONYMOUS_9
 
-Mix_Fading = Void
+Mix_Fading = UInt32
 
 # begin enum ANONYMOUS_10
 const ANONYMOUS_10 = UInt32
@@ -82,7 +81,7 @@ const MUS_FLAC = (UInt32)(8)
 const MUS_MODPLUG_UNUSED = (UInt32)(9)
 # end enum ANONYMOUS_10
 
-Mix_MusicType = Void
+Mix_MusicType = UInt32
 
 mutable struct _Mix_Music
 end
@@ -99,3 +98,5 @@ const MIX_INIT_MP3 = (UInt32)(8)
 const MIX_INIT_OGG = (UInt32)(16)
 const MIX_INIT_MID = (UInt32)(32)
 # end enum ANONYMOUS_8
+
+MIX_InitFlags = UInt32
