@@ -4,6 +4,14 @@ using Base.Test
 SDL2_pkg_dir = joinpath(Pkg.dir(), "SDL2")
 audio_example_assets_dir = joinpath(SDL2_pkg_dir, "src/examples/audio_example")
 
+# check that an audio device if available
+SDL2.Init(Int32(SDL2.INIT_VIDEO))
+device = SDL2.Mix_OpenAudio(Int32(22050), Int32(SDL2.MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
+
+if device == 0
+SDL2.Mix_CloseAudio()
+SDL2.Quit()
+
 @testset "Init+Quit" begin
 # Test that you can init and quit SDL_mixer multiple times correctly.
 @test 0 == SDL2.Init(Int32(SDL2.INIT_VIDEO))
@@ -68,3 +76,6 @@ SDL2.Mix_ResumeMusic()
 SDL2.Mix_CloseAudio()
 SDL2.Quit()
 end
+
+end
+SDL2.Quit()
