@@ -312,10 +312,6 @@ const PREALLOC = 0x00000001
 const RLEACCEL = 0x00000002
 const DONTFREE = 0x00000004
 
-# Skipping MacroDefinition: MUSTLOCK ( S ) ( ( ( S ) -> flags & RLEACCEL ) != 0 )
-# Skipping MacroDefinition: LoadBMP ( file ) LoadBMP_RW ( RWFromFile ( file , "rb" ) , 1 )
-# Skipping MacroDefinition: SaveBMP ( surface , file ) SaveBMP_RW ( surface , RWFromFile ( file , "wb" ) , 1 )
-
 #const BlitSurface = UpperBlit
 #const BlitScaled = UpperBlitScaled
 const WINDOWPOS_UNDEFINED_MASK = UInt32(0x1fff0000)
@@ -792,6 +788,10 @@ mutable struct Surface
     map::Ptr{Void}
     refcount::Cint
 end
+
+MUSTLOCK(S::Ptr{Surface}) = ((unsafe_load(S).flags & RLEACCEL) != 0)
+LoadBMP(file) = LoadBMP_RW(RWFromFile(file, "rb"), Int32(1))
+SaveBMP(surface::Ptr{Surface}, file) = SaveBMP_RW(surface, RWFromFile(file, "wb" ), Int32(1))
 
 const blit = Ptr{Void}
 const DisplayMode = Void
