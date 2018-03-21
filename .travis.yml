@@ -23,6 +23,11 @@ matrix:
        - language: julia
          julia: nightly
          os: osx
+
+    allow_failures:
+       - julia: nightly
+       - os: linux
+
 notifications:
     email: false
 after_success:
