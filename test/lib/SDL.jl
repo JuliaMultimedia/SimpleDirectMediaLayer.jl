@@ -1,6 +1,8 @@
 using SDL2
 using Base.Test
 
+SDL2_pkg_dir = joinpath(Pkg.dir(), "SDL2")
+
 @testset "Init+Quit" begin
 # Test that you can init and quit SDL multiple times correctly.
 @test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
@@ -57,6 +59,57 @@ renderer = SDL2.CreateRenderer(win, Int32(-1),
 
 rect = SDL2.Rect(1,1,50,50)
 @test 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
+
+
+@testset "Load/Save BMP" begin
+
+img = SDL2.LoadBMP(joinpath(SDL2_pkg_dir, "assets/cat.bmp"))
+@test img != C_NULL
+
+img_tex = SDL2.CreateTextureFromSurface(renderer, img);
+@test img_tex != C_NULL
+
+src = SDL2.Rect(0,0,0,0)
+@test 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
+SDL2.RenderPresent(renderer)
+
+# Save bmp
+tmpFile = tempname()*".bmp"
+@test 0 == SDL2.SaveBMP(img, tmpFile)
+
+img2 = SDL2.LoadBMP(tmpFile)
+@test img2 != C_NULL
+
+# Compare the two images
+if SDL2.MUSTLOCK(img)
+    # Some surfaces must be locked before accessing pixels.
+    @test 0 == SDL2.LockSurface(img)
+    @test 0 == SDL2.LockSurface(img2)
+end
+
+img_surface1 = unsafe_load(img)
+img_surface2 = unsafe_load(img2)
+
+@test (img_surface1.w, img_surface1.h) == (img_surface2.w, img_surface2.h)
+
+@test img_surface1.format != C_NULL
+@test img_surface2.format != C_NULL
+
+# Test pixels are equal
+pxl_format1 = unsafe_load(img_surface1.format)
+numPixelBytes = img_surface1.w * img_surface1.h * pxl_format1.BytesPerPixel
+pixels1 = [unsafe_load(Ptr{UInt8}(img_surface1.pixels), i) for i in 1:numPixelBytes]
+pixels2 = [unsafe_load(Ptr{UInt8}(img_surface2.pixels), i) for i in 1:numPixelBytes]
+
+@test pixels1 == pixels2
+
+if SDL2.MUSTLOCK(img)
+    # Some surfaces must be locked/unlocked while accessing pixels.
+    SDL2.UnlockSurface(img)
+    SDL2.UnlockSurface(img2)
+end
+
+end  # @testset "BMP"
 
 # Close window
 SDL2.DestroyWindow(win)

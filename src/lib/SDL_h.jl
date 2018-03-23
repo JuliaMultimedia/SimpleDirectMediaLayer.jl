@@ -312,10 +312,6 @@ const PREALLOC = 0x00000001
 const RLEACCEL = 0x00000002
 const DONTFREE = 0x00000004
 
-# Skipping MacroDefinition: MUSTLOCK ( S ) ( ( ( S ) -> flags & RLEACCEL ) != 0 )
-# Skipping MacroDefinition: LoadBMP ( file ) LoadBMP_RW ( RWFromFile ( file , "rb" ) , 1 )
-# Skipping MacroDefinition: SaveBMP ( surface , file ) SaveBMP_RW ( surface , RWFromFile ( file , "wb" ) , 1 )
-
 #const BlitSurface = UpperBlit
 #const BlitScaled = UpperBlitScaled
 const WINDOWPOS_UNDEFINED_MASK = UInt32(0x1fff0000)
@@ -326,35 +322,38 @@ const WINDOWPOS_UNDEFINED_MASK = UInt32(0x1fff0000)
 
 const WINDOWPOS_CENTERED_MASK = UInt32(0x2fff0000)
 
-# Skipping MacroDefinition: WINDOWPOS_CENTERED_DISPLAY ( X ) ( WINDOWPOS_CENTERED_MASK | ( X ) )
-# Skipping MacroDefinition: WINDOWPOS_CENTERED WINDOWPOS_CENTERED_DISPLAY ( 0 )
-# Skipping MacroDefinition: WINDOWPOS_ISCENTERED ( X ) ( ( ( X ) & 0xFFFF0000 ) == WINDOWPOS_CENTERED_MASK )
+# Macro definitions
+WINDOWPOS_CENTERED_DISPLAY(X) = ( WINDOWPOS_CENTERED_MASK | (X) )
+WINDOWPOS_CENTERED() = WINDOWPOS_CENTERED_DISPLAY(0)
+WINDOWPOS_ISCENTERED(X) = ( ( (X) & 0xFFFF0000 ) == WINDOWPOS_CENTERED_MASK )
 
 const SDLK_SCANCODE_MASK = 1 << 30
 
-# Skipping MacroDefinition: SCANCODE_TO_KEYCODE ( X ) ( X | SDLK_SCANCODE_MASK )
+SCANCODE_TO_KEYCODE(X) = (X | SDLK_SCANCODE_MASK)
 
 # begin enum ANONYMOUS_23
 const ANONYMOUS_23 = UInt32
-const KMOD_NONE = (UInt32)(0)
-const KMOD_LSHIFT = (UInt32)(1)
-const KMOD_RSHIFT = (UInt32)(2)
-const KMOD_LCTRL = (UInt32)(64)
-const KMOD_RCTRL = (UInt32)(128)
-const KMOD_LALT = (UInt32)(256)
-const KMOD_RALT = (UInt32)(512)
-const KMOD_LGUI = (UInt32)(1024)
-const KMOD_RGUI = (UInt32)(2048)
-const KMOD_NUM = (UInt32)(4096)
-const KMOD_CAPS = (UInt32)(8192)
-const KMOD_MODE = (UInt32)(16384)
-const KMOD_RESERVED = (UInt32)(32768)
+const KMOD_NONE = (UInt32)(0x0000)
+const KMOD_LSHIFT = (UInt32)(0x0001)
+const KMOD_RSHIFT = (UInt32)(0x0002)
+const KMOD_LCTRL = (UInt32)(0x0040)
+const KMOD_RCTRL = (UInt32)(0x0080)
+const KMOD_LALT = (UInt32)(0x0100)
+const KMOD_RALT = (UInt32)(0x0200)
+const KMOD_LGUI = (UInt32)(0x0400)
+const KMOD_RGUI = (UInt32)(0x0800)
+const KMOD_NUM = (UInt32)(0x1000)
+const KMOD_CAPS = (UInt32)(0x2000)
+const KMOD_MODE = (UInt32)(0x4000)
+const KMOD_RESERVED = (UInt32)(0x8000)
 # end enum ANONYMOUS_23
 
 const KMOD_CTRL = KMOD_LCTRL | KMOD_RCTRL
 const KMOD_SHIFT = KMOD_LSHIFT | KMOD_RSHIFT
 const KMOD_ALT = KMOD_LALT | KMOD_RALT
 const KMOD_GUI = KMOD_LGUI | KMOD_RGUI
+
+const Keymod = UInt32
 
 # Skipping MacroDefinition: BUTTON ( X ) ( 1 << ( ( X ) - 1 ) )
 
@@ -523,7 +522,7 @@ const ANONYMOUS_2 = UInt32
 const DUMMY_ENUM_VALUE = (UInt32)(0)
 # end enum ANONYMOUS_2
 
-const DUMMY_ENUM = Void
+const DUMMY_ENUM = UInt32
 const dummy_enum = NTuple{1, Cint}
 
 mutable struct _iconv_t
@@ -562,7 +561,7 @@ end
 mutable struct semaphore
 end
 
-const Sem = Void
+const Sem = semaphore
 
 mutable struct Cond
 end
@@ -580,7 +579,7 @@ const THREAD_PRIORITY_NORMAL = (UInt32)(1)
 const THREAD_PRIORITY_HIGH = (UInt32)(2)
 # end enum ANONYMOUS_5
 
-const ThreadPriority = Void
+const ThreadPriority = UInt32
 const ThreadFunction = Ptr{Void}
 
 mutable struct RWops
@@ -618,7 +617,7 @@ const AUDIO_PLAYING = (UInt32)(1)
 const AUDIO_PAUSED = (UInt32)(2)
 # end enum ANONYMOUS_6
 
-const AudioStatus = Void
+const AudioStatus = UInt32
 
 # begin enum ANONYMOUS_7
 const ANONYMOUS_7 = UInt32
@@ -792,8 +791,18 @@ mutable struct Surface
     refcount::Cint
 end
 
+MUSTLOCK(S::Ptr{Surface}) = ((unsafe_load(S).flags & RLEACCEL) != 0)
+LoadBMP(file) = LoadBMP_RW(RWFromFile(file, "rb"), Int32(1))
+SaveBMP(surface::Ptr{Surface}, file) = SaveBMP_RW(surface, RWFromFile(file, "wb" ), Int32(1))
+
 const blit = Ptr{Void}
-const DisplayMode = Void
+mutable struct DisplayMode
+    format::Uint32        # pixel format
+    w::Cint               # width, in screen coordinates
+    h::Cint               # height, in screen coordinates
+    refresh_rate::Cint    # refresh rate (or zero for unspecified)
+    driverdata::Ptr{Void} # driver-specific data, initialize to 0
+end
 
 mutable struct Window
 end
@@ -845,7 +854,7 @@ const WINDOWEVENT_TAKE_FOCUS = (UInt32)(15)
 const WINDOWEVENT_HIT_TEST = (UInt32)(16)
 # end enum ANONYMOUS_15
 
-const WindowEventID = Void
+const WindowEventID = UInt32
 const GLContext = Ptr{Void}
 
 # begin enum ANONYMOUS_16
@@ -886,7 +895,7 @@ const GL_CONTEXT_PROFILE_COMPATIBILITY = (UInt32)(2)
 const GL_CONTEXT_PROFILE_ES = (UInt32)(4)
 # end enum ANONYMOUS_17
 
-const GLprofile = Void
+const GLprofile = UInt32
 
 # begin enum ANONYMOUS_18
 const ANONYMOUS_18 = UInt32
@@ -896,7 +905,7 @@ const GL_CONTEXT_ROBUST_ACCESS_FLAG = (UInt32)(4)
 const GL_CONTEXT_RESET_ISOLATION_FLAG = (UInt32)(8)
 # end enum ANONYMOUS_18
 
-const GLcontextFlag = Void
+const GLcontextFlag = UInt32
 
 # begin enum ANONYMOUS_19
 const ANONYMOUS_19 = UInt32
@@ -904,7 +913,7 @@ const GL_CONTEXT_RELEASE_BEHAVIOR_NONE = (UInt32)(0)
 const GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH = (UInt32)(1)
 # end enum ANONYMOUS_19
 
-const GLcontextReleaseFlag = Void
+const GLcontextReleaseFlag = UInt32
 
 # begin enum ANONYMOUS_20
 const ANONYMOUS_20 = UInt32
@@ -920,8 +929,8 @@ const HITTEST_RESIZE_BOTTOMLEFT = (UInt32)(8)
 const HITTEST_RESIZE_LEFT = (UInt32)(9)
 # end enum ANONYMOUS_20
 
-const HitTestResult = Void
-const HitTest = Ptr{Void}
+const HitTestResult = UInt32
+const HitTest = Ptr{Void}  # This should be a function pointer.
 
 # begin enum ANONYMOUS_21
 const ANONYMOUS_21 = UInt32
@@ -1412,8 +1421,6 @@ const SDLK_EJECT = (UInt32)(1073742105)
 const SDLK_SLEEP = (UInt32)(1073742106)
 # end enum ANONYMOUS_22
 
-const Keymod = Void
-
 struct Keysym
     scancode::Scancode
     sym::Keycode
@@ -1441,7 +1448,7 @@ const SYSTEM_CURSOR_HAND = (UInt32)(11)
 const NUM_SYSTEM_CURSORS = (UInt32)(12)
 # end enum ANONYMOUS_24
 
-const SystemCursor = Void
+const SystemCursor = UInt32
 
 # begin enum ANONYMOUS_25
 const ANONYMOUS_25 = UInt32
@@ -1449,13 +1456,17 @@ const MOUSEWHEEL_NORMAL = (UInt32)(0)
 const MOUSEWHEEL_FLIPPED = (UInt32)(1)
 # end enum ANONYMOUS_25
 
-const MouseWheelDirection = Void
+const MouseWheelDirection = UInt32
 
 mutable struct _Joystick
 end
+const Joystick = _Joystick
 
-const Joystick = Void
-const JoystickGUID = Void
+# A structure that encodes the stable unique id for a joystick device
+mutable struct JoystickGUID
+    data::NTuple{16, Uint8}
+end
+
 const JoystickID = Sint32
 
 # begin enum ANONYMOUS_26
@@ -1469,12 +1480,12 @@ const JOYSTICK_POWER_WIRED = (Int32)(4)
 const JOYSTICK_POWER_MAX = (Int32)(5)
 # end enum ANONYMOUS_26
 
-const JoystickPowerLevel = Void
+const JoystickPowerLevel = Int32
 
 mutable struct _GameController
 end
 
-const GameController = Void
+const GameController = _GameController
 
 # begin enum ANONYMOUS_27
 const ANONYMOUS_27 = UInt32
@@ -1484,7 +1495,7 @@ const CONTROLLER_BINDTYPE_AXIS = (UInt32)(2)
 const CONTROLLER_BINDTYPE_HAT = (UInt32)(3)
 # end enum ANONYMOUS_27
 
-const GameControllerBindType = Void
+const GameControllerBindType = UInt32
 
 mutable struct GameControllerButtonBind
     bindType::GameControllerBindType
@@ -1503,7 +1514,7 @@ const CONTROLLER_AXIS_TRIGGERRIGHT = (Int32)(5)
 const CONTROLLER_AXIS_MAX = (Int32)(6)
 # end enum ANONYMOUS_28
 
-const GameControllerAxis = Void
+const GameControllerAxis = Int32
 
 # begin enum ANONYMOUS_29
 const ANONYMOUS_29 = Cint
@@ -1526,7 +1537,7 @@ const CONTROLLER_BUTTON_DPAD_RIGHT = (Int32)(14)
 const CONTROLLER_BUTTON_MAX = (Int32)(15)
 # end enum ANONYMOUS_29
 
-const GameControllerButton = Void
+const GameControllerButton = Int32
 const TouchID = Sint64
 const FingerID = Sint64
 
@@ -1593,7 +1604,7 @@ const LASTEVENT = (UInt32)(65535)
 # end enum ANONYMOUS_30
 
 
-const EventType = Void
+const EventType = UInt32
 
 abstract type AbstractEvent end
 
@@ -1838,7 +1849,7 @@ mutable struct Event <: AbstractEvent
     _Event::NTuple{56, Uint8}  # SDL_Event is a 56 byte union in C.
 end
 
-const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
+const event_type_to_event = Dict{EventType,Any}( #FIXME AbstractEvent?
     WINDOWEVENT => WindowEvent,
     KEYDOWN => KeyboardEvent,
     KEYUP => KeyboardEvent,
@@ -1856,7 +1867,7 @@ const event_type_to_event = Dict{UInt32,Any}( #FIXME AbstractEvent?
     USEREVENT => UserEvent
 )
 
-function Event(t::Uint32)
+function Event(t::EventType)
     haskey(event_type_to_event,t) && return event_type_to_event[t]
     nothing
 end
@@ -1870,13 +1881,13 @@ const PEEKEVENT = (UInt32)(1)
 const GETEVENT = (UInt32)(2)
 # end enum ANONYMOUS_31
 
-const Eventaction = Void
+const Eventaction = UInt32
 const EventFilter = Ptr{Void}
 
 mutable struct _Haptic
 end
 
-const Haptic = Void
+const Haptic = _Haptic
 
 mutable struct HapticDirection
     _type::Uint8
@@ -1981,7 +1992,7 @@ const HINT_NORMAL = (UInt32)(1)
 const HINT_OVERRIDE = (UInt32)(2)
 # end enum ANONYMOUS_32
 
-const HintPriority = Void
+const HintPriority = UInt32
 const HintCallback = Ptr{Void}
 
 # begin enum ANONYMOUS_33
@@ -2019,7 +2030,7 @@ const LOG_PRIORITY_CRITICAL = (UInt32)(6)
 const NUM_LOG_PRIORITIES = (UInt32)(7)
 # end enum ANONYMOUS_34
 
-const LogPriority = Void
+const LogPriority = UInt32
 const LogOutputFunction = Ptr{Void}
 
 # begin enum ANONYMOUS_35
@@ -2029,7 +2040,7 @@ const MESSAGEBOX_WARNING = (UInt32)(32)
 const MESSAGEBOX_INFORMATION = (UInt32)(64)
 # end enum ANONYMOUS_35
 
-const MessageBoxFlags = Void
+const MessageBoxFlags = UInt32
 
 # begin enum ANONYMOUS_36
 const ANONYMOUS_36 = UInt32
@@ -2064,7 +2075,7 @@ const POWERSTATE_CHARGING = (UInt32)(3)
 const POWERSTATE_CHARGED = (UInt32)(4)
 # end enum ANONYMOUS_38
 
-const PowerState = Void
+const PowerState = UInt32
 
 # begin enum ANONYMOUS_39
 const ANONYMOUS_39 = UInt32
@@ -2074,7 +2085,7 @@ const RENDERER_PRESENTVSYNC = (UInt32)(4)
 const RENDERER_TARGETTEXTURE = (UInt32)(8)
 # end enum ANONYMOUS_39
 
-const RendererFlags = Void
+const RendererFlags = UInt32
 
 mutable struct RendererInfo
     name::Cstring
@@ -2092,7 +2103,7 @@ const TEXTUREACCESS_STREAMING = (UInt32)(1)
 const TEXTUREACCESS_TARGET = (UInt32)(2)
 # end enum ANONYMOUS_40
 
-const TextureAccess = Void
+const TextureAccess = UInt32
 
 # begin enum ANONYMOUS_41
 const ANONYMOUS_41 = UInt32
@@ -2101,7 +2112,7 @@ const TEXTUREMODULATE_COLOR = (UInt32)(1)
 const TEXTUREMODULATE_ALPHA = (UInt32)(2)
 # end enum ANONYMOUS_41
 
-const TextureModulate = Void
+const TextureModulate = UInt32
 
 # begin enum ANONYMOUS_42
 const ANONYMOUS_42 = UInt32
@@ -2110,7 +2121,7 @@ const FLIP_HORIZONTAL = (UInt32)(1)
 const FLIP_VERTICAL = (UInt32)(2)
 # end enum ANONYMOUS_42
 
-const RendererFlip = Void
+const RendererFlip = UInt32
 
 mutable struct Renderer
 end
