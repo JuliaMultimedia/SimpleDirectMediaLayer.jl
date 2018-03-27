@@ -78,15 +78,10 @@ module SDL2
         ev = Event(ntuple(i->UInt8(0),56))
         PollEvent(pointer_from_objref(ev)) == 0 && return nothing
 
-        t = UInt32(0)
-        for x in ev._Event[4:-1:1]
-            t = t << sizeof(x)*8
-            t |= x
-        end
+        ee = ev._Event
+        t = UInt32(ee[4]) << 24 | UInt32(ee[3]) << 16 | UInt32(ee[2]) << 8 | ee[1]
         evtype = Event(t)
         evtype == nothing && return nothing
-
-        evtype == KeyboardEvent && info(ev)
 
         unsafe_load( Ptr{evtype}(pointer_from_objref(ev)) )
     end
