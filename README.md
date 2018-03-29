@@ -9,3 +9,7 @@
 Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/ihnorton/Clang.jl). The `SDL_` prefix was trimmed from names so functions and types can be accessed as `SDL2.foo` instead of `SDL_foo`. Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
 
 A few examples are available [here](https://github.com/jonathanBieler/SDL2.jl/blob/master/src/examples/).
+
+# License
+This project is licensed under the terms of the MIT license.
+
