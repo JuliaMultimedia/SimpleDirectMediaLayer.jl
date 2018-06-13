@@ -1,5 +1,5 @@
 julia 0.6
+BinDeps
 Cairo
 ColorTypes
-BinDeps
 Compat
