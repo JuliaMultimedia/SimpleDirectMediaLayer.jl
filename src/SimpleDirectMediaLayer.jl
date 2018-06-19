@@ -1,5 +1,5 @@
 __precompile__()
-module SDL2
+module SimpleDirectMediaLayer
 
     using Cairo, ColorTypes
 
@@ -7,7 +7,7 @@ module SDL2
     if isfile(depsfile)
         include(depsfile)
     else
-        error("SDL2 not properly installed. Please run Pkg.build(\"SDL2\") then restart Julia.")
+        error("SimpleDirectMediaLayer not properly installed. Please run Pkg.build(\"SimpleDirectMediaLayer\") then restart Julia.")
     end
 
     include("lib/SDL.jl")

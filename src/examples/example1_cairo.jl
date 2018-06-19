@@ -1,4 +1,5 @@
-using SDL2, Cairo
+using SimpleDirectMediaLayer, Cairo
+const SDL2 = SimpleDirectMediaLayer
 
 function example1()
 
@@ -7,7 +8,6 @@ function example1()
     function draw(surface,cr,w,h,y,x)
 
         #LockSurface(surface);
-
         save(cr);
         set_source_rgb(cr,0.9,0.9,0.9); # light gray
         rectangle(cr,x,y-2,400,20); # background
@@ -51,7 +51,7 @@ function example1()
 
         end
 
-        println(1/frame_time)
+        #println(1/frame_time)
     end
 
     SDL2.init()

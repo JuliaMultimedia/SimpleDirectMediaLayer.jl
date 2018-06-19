@@ -31,4 +31,4 @@ matrix:
 notifications:
     email: false
 after_success:
-    - julia -e 'cd(Pkg.dir("SDL2")); Pkg.add("SDL2"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+    - julia -e 'cd(Pkg.dir("SimpleDirectMediaLayer")); Pkg.add("SimpleDirectMediaLayer"); using Coverage; Coveralls.submit(Coveralls.process_folder())'

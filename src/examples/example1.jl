@@ -1,17 +1,18 @@
 cd(joinpath(Pkg.dir(),"SDL2/src/"))
-using SDL2
+using SimpleDirectMediaLayer
+const SDL2 = SimpleDirectMediaLayer 
 
 SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLEBUFFERS, 16)
 SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLESAMPLES, 16)
 
 SDL2.init()
 
-win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(800), Int32(600),
-         UInt32(SDL2.WINDOW_SHOWN))
+win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(800), Int32(600), 
+    UInt32(SDL2.WINDOW_SHOWN))
 SDL2.SetWindowResizable(win,true)
 
 renderer = SDL2.CreateRenderer(win, Int32(-1),
-             UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
+    UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
 
 import Base.unsafe_convert
 unsafe_convert(::Type{Ptr{SDL2.RWops}}, s::String) = SDL2.RWFromFile(s, "rb")
