@@ -3,4 +3,4 @@ BinDeps
 Cairo
 ColorTypes
 Compat
-Homebrew
+@osx Homebrew
