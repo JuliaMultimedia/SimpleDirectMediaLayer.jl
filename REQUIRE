@@ -3,4 +3,5 @@ BinDeps
 Cairo
 ColorTypes
 Compat
+DataStructures
 @osx Homebrew
