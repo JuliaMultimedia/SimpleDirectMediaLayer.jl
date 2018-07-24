@@ -32,34 +32,6 @@ module SimpleDirectMediaLayer
         end
     end
 
-    # Also define Cairo extension/wrapper if Cairo is installed.
-    if Pkg.installed("Cairo")
-        using Cairo
-        type CairoSDLSurface
-            SDL_surface::Ptr{Surface}
-            cairo_surface::Cairo.CairoSurface
-            cairo_context::Cairo.CairoContext
-
-            function CairoSDLSurface(w::Int,h::Int)
-
-                pixels = Array{ColorTypes.ARGB32,2}(w,h)
-
-                format = Cairo.FORMAT_ARGB32
-                stride = Cairo.format_stride_for_width(format, w)
-                amask = 0xff000000
-                rmask = 0x00ff0000
-                gmask = 0x0000ff00
-                bmask = 0x000000ff
-
-                surface = CreateRGBSurfaceFrom(convert(Ptr{Void},pointer(pixels)), w, h, 32, stride, rmask, gmask, bmask, amask)
-                cs = CairoImageSurface(pixels)
-                cr = CairoContext(cs)
-                new(surface, cs, cr)
-            end
-
-        end
-    end
-
     function init()
         GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
         GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
