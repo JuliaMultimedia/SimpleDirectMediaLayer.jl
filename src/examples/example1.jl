@@ -1,4 +1,3 @@
-cd(joinpath(Pkg.dir(),"SDL2/src/"))
 using SimpleDirectMediaLayer
 const SDL2 = SimpleDirectMediaLayer 
 
@@ -22,7 +21,7 @@ LoadBMP(src::String) = SDL2.LoadBMP_RW(src,Int32(1))
 bkg = SDL2.Color(200, 200, 200, 255)
 
 # Create text
-font = TTF_OpenFont("../assets/fonts/FiraCode/ttf/FiraCode-Regular.ttf", 14)
+font = TTF_OpenFont(joinpath(@__DIR__,"../../assets/fonts/FiraCode/ttf/FiraCode-Regular.ttf"), 14)
 #txt = "@BinDeps.install Dict([ (:glib, :libglib) ])"
 txt = "hi"
 text = TTF_RenderText_Blended(font, txt, SDL2.Color(20,20,20,255))
@@ -36,7 +35,7 @@ fx,fy = fx[1],fy[1]
 #tex = SDL2.CreateTextureFromSurface(ren, img)
 #SDL2.FreeSurface(img)
 
-for i = 1:1000
+for i = 1:200
     x,y = Int[1], Int[1]
     SDL2.PumpEvents()
     SDL2.GetMouseState(pointer(x), pointer(y))

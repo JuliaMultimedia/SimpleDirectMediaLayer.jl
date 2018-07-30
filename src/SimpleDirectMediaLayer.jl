@@ -1,7 +1,7 @@
 __precompile__()
 module SimpleDirectMediaLayer
 
-    using Cairo, ColorTypes
+    using ColorTypes
 
     const depsfile = joinpath(dirname(@__FILE__), "..", "deps", "deps.jl")
     if isfile(depsfile)
@@ -11,12 +11,10 @@ module SimpleDirectMediaLayer
     end
 
     include("lib/SDL.jl")
-    if is_apple()
-        include("lib/SDL_ttf.jl")
-        include("lib/SDL_mixer.jl")
+    include("lib/SDL_ttf.jl")
+    include("lib/SDL_mixer.jl")
 
-        export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
-    end
+    export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
 
     import Base.unsafe_convert
 
@@ -34,38 +32,12 @@ module SimpleDirectMediaLayer
         end
     end
 
-    type CairoSDLSurface
-        SDL_surface::Ptr{Surface}
-        cairo_surface::Cairo.CairoSurface
-        cairo_context::Cairo.CairoContext
-
-        function CairoSDLSurface(w::Int,h::Int)
-
-            pixels = Array{ColorTypes.ARGB32,2}(w,h)
-
-            format = Cairo.FORMAT_ARGB32
-            stride = Cairo.format_stride_for_width(format, w)
-            amask = 0xff000000
-            rmask = 0x00ff0000
-            gmask = 0x0000ff00
-            bmask = 0x000000ff
-
-            surface = CreateRGBSurfaceFrom(convert(Ptr{Void},pointer(pixels)), w, h, 32, stride, rmask, gmask, bmask, amask)
-            cs = CairoImageSurface(pixels)
-            cr = CairoContext(cs)
-            new(surface, cs, cr)
-        end
-
-    end
-
     function init()
         GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
         GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
         Init(UInt32(INIT_VIDEO))
-        if is_apple()
-            TTF_Init()
-            Mix_OpenAudio(Int32(22050), UInt16(MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
-        end
+        TTF_Init()
+        Mix_OpenAudio(Int32(22050), UInt16(MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
     end
 
     function mouse_position()
