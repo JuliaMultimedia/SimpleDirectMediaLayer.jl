@@ -9,7 +9,5 @@ include("lib/SDL_mixer.jl")
 
 # Integration tests
 @testset "example1" begin
-    include(joinpath("..","src","examples","example1_cairo.jl"))
-    @test example1() == 1
-    SDL2.Quit()
+    include(joinpath(@__DIR__,"..","src","examples","example1.jl"))
 end
