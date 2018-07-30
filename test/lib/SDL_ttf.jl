@@ -2,7 +2,7 @@ using SimpleDirectMediaLayer
 const SDL2 = SimpleDirectMediaLayer
 using Base.Test
 
-SDL2_pkg_dir = joinpath(Pkg.dir(), "SimpleDirectMediaLayer")
+SDL2_pkg_dir = joinpath(@__DIR__, "..","..")
 
 @testset "Init+Quit" begin
 # Test that you can init and quit SDL_ttf multiple times correctly.

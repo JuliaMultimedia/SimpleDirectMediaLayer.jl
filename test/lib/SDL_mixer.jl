@@ -2,7 +2,7 @@ using SimpleDirectMediaLayer
 const SDL2 = SimpleDirectMediaLayer
 using Base.Test
 
-SDL2_pkg_dir = joinpath(Pkg.dir(), "SimpleDirectMediaLayer")
+SDL2_pkg_dir = joinpath(@__DIR__, "..","..")
 audio_example_assets_dir = joinpath(SDL2_pkg_dir, "src/examples/audio_example")
 
 # check that an audio device if available
