@@ -2,7 +2,10 @@ __precompile__()
 module SimpleDirectMediaLayer
 
     using ColorTypes
-
+    
+    import Base.unsafe_convert
+    export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
+    
     const depsfile = joinpath(dirname(@__FILE__), "..", "deps", "deps.jl")
     if isfile(depsfile)
         include(depsfile)
@@ -14,11 +17,7 @@ module SimpleDirectMediaLayer
     include("lib/SDL_ttf.jl")
     include("lib/SDL_mixer.jl")
 
-    export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
-
-    import Base.unsafe_convert
-
-    type SDLWindow
+    mutable struct SDLWindow
         win::Ptr{Window}
         renderer::Ptr{Renderer}
 

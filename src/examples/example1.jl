@@ -1,6 +1,8 @@
 using SimpleDirectMediaLayer
 const SDL2 = SimpleDirectMediaLayer 
 
+import SimpleDirectMediaLayer.LoadBMP
+
 SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLEBUFFERS, 16)
 SDL2.GL_SetAttribute(SDL2.GL_MULTISAMPLESAMPLES, 16)
 
@@ -15,7 +17,7 @@ renderer = SDL2.CreateRenderer(win, Int32(-1),
 
 import Base.unsafe_convert
 unsafe_convert(::Type{Ptr{SDL2.RWops}}, s::String) = SDL2.RWFromFile(s, "rb")
-import SDL2.LoadBMP
+
 LoadBMP(src::String) = SDL2.LoadBMP_RW(src,Int32(1))
 
 bkg = SDL2.Color(200, 200, 200, 255)
