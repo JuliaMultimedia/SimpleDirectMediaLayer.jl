@@ -3,11 +3,11 @@ using Compat
 
 @BinDeps.setup
 
-libSDL2 = library_dependency("libSDL2", aliases = ["sdl2", "libsdl2-2.0", "libsdl2-2.0-0", "libsdl2-2.0-0:amd64", "libSDL","SDL2"])
+libSDL2 = library_dependency("libSDL2", aliases = ["sdl2", "libsdl2-2.0", "libsdl2-2.0-0", "libSDL","SDL2"])
 if !is_windows()
     # HACK: These definitions must come later for windows.
-    libSDL2_ttf = library_dependency("libSDL2_ttf", aliases = ["SDL_ttf","SDL2_ttf", "libsdl2-ttf-2.0-0", "libsdl2-ttf-2.0-0:amd64"])
-    libSDL2_mixer = library_dependency("libSDL2_mixer", aliases = ["SDL_mixer","SDL2_mixer", "libsdl2-mixer-2.0-0", "libsdl2-mixer-2.0-0:amd64"])
+    libSDL2_ttf = library_dependency("libSDL2_ttf", aliases = ["SDL_ttf","SDL2_ttf", "libsdl2-ttf-2.0-0"])
+    libSDL2_mixer = library_dependency("libSDL2_mixer", aliases = ["SDL_mixer","SDL2_mixer", "libsdl2-mixer-2.0-0"])
 end
 
 if is_apple()
