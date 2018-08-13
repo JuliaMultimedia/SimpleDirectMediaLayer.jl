@@ -4,13 +4,13 @@ using Compat
 @BinDeps.setup
 
 libSDL2 = library_dependency("libSDL2", aliases = ["sdl2", "libsdl2-2.0", "libsdl2-2.0-0", "libSDL","SDL2","libSDL2-2.0.so.0","libSDL2-2.0.so.0.4.0"])
-if !is_windows()
+if !Sys.iswindows()
     # HACK: These definitions must come later for windows.
     libSDL2_ttf = library_dependency("libSDL2_ttf", aliases = ["SDL_ttf","SDL2_ttf", "libsdl2-ttf-2.0-0","libSDL2_ttf-2.0.so.0"])
     libSDL2_mixer = library_dependency("libSDL2_mixer", aliases = ["SDL_mixer","SDL2_mixer", "libsdl2-mixer-2.0-0","libSDL2_mixer-2.0.so.0"])
 end
 
-if is_apple()
+if Sys.isapple()
     using Homebrew
     provides(Homebrew.HB, "sdl2", libSDL2, os = :Darwin)
     provides(Homebrew.HB, "SDL2_ttf", libSDL2_ttf, os = :Darwin)
@@ -24,7 +24,7 @@ provides(AptGet, "libsdl2-mixer-2.0-0",libSDL2_mixer)
 provides(Yum, "SDL2", libSDL2)
 provides(Pacman, "sdl2", libSDL2)
 
-if is_windows()
+if Sys.iswindows()
     # HACK: First, install just libSDL2, so that the other libs have access to it.
     provides(Binaries, URI("https://www.libsdl.org/release/SDL2-2.0.7-win32-x64.zip"), libSDL2, unpacked_dir=".", os = :Windows)
     @BinDeps.install Dict(

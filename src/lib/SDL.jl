@@ -2,26 +2,26 @@
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 include("SDL_h.jl")
 
-const va_list = Ptr{Void}#FIXME
+const va_list = Ptr{Cvoid}#FIXME
 
 function GetPlatform()
     ccall((:SDL_GetPlatform, libSDL2), Cstring, ())
 end
 
 function malloc(size::Csize_t)
-    ccall((:SDL_malloc, libSDL2), Ptr{Void}, (Csize_t,), size)
+    ccall((:SDL_malloc, libSDL2), Ptr{Cvoid}, (Csize_t,), size)
 end
 
 function calloc(nmemb::Csize_t, size::Csize_t)
-    ccall((:SDL_calloc, libSDL2), Ptr{Void}, (Csize_t, Csize_t), nmemb, size)
+    ccall((:SDL_calloc, libSDL2), Ptr{Cvoid}, (Csize_t, Csize_t), nmemb, size)
 end
 
 function realloc(mem, size::Csize_t)
-    ccall((:SDL_realloc, libSDL2), Ptr{Void}, (Ptr{Void}, Csize_t), mem, size)
+    ccall((:SDL_realloc, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Csize_t), mem, size)
 end
 
 function free(mem)
-    ccall((:SDL_free, libSDL2), Void, (Ptr{Void},), mem)
+    ccall((:SDL_free, libSDL2), Cvoid, (Ptr{Cvoid},), mem)
 end
 
 function getenv(name)
@@ -33,7 +33,7 @@ function setenv(name, value, overwrite::Cint)
 end
 
 function qsort(base, nmemb::Csize_t, size::Csize_t, compare)
-    ccall((:SDL_qsort, libSDL2), Void, (Ptr{Void}, Csize_t, Csize_t, Ptr{Void}), base, nmemb, size, compare)
+    ccall((:SDL_qsort, libSDL2), Cvoid, (Ptr{Cvoid}, Csize_t, Csize_t, Ptr{Cvoid}), base, nmemb, size, compare)
 end
 
 function abs(x::Cint)
@@ -57,23 +57,23 @@ function tolower(x::Cint)
 end
 
 function memset(dst, c::Cint, len::Csize_t)
-    ccall((:SDL_memset, libSDL2), Ptr{Void}, (Ptr{Void}, Cint, Csize_t), dst, c, len)
+    ccall((:SDL_memset, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Cint, Csize_t), dst, c, len)
 end
 
 function memset4(dst, val::Uint32, dwords::Csize_t)
-    ccall((:SDL_memset4, libSDL2), Void, (Ptr{Void}, Uint32, Csize_t), dst, val, dwords)
+    ccall((:SDL_memset4, libSDL2), Cvoid, (Ptr{Cvoid}, Uint32, Csize_t), dst, val, dwords)
 end
 
 function memcpy(dst, src, len::Csize_t)
-    ccall((:SDL_memcpy, libSDL2), Ptr{Void}, (Ptr{Void}, Ptr{Void}, Csize_t), dst, src, len)
+    ccall((:SDL_memcpy, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), dst, src, len)
 end
 
 function memmove(dst, src, len::Csize_t)
-    ccall((:SDL_memmove, libSDL2), Ptr{Void}, (Ptr{Void}, Ptr{Void}, Csize_t), dst, src, len)
+    ccall((:SDL_memmove, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), dst, src, len)
 end
 
 function memcmp(s1, s2, len::Csize_t)
-    ccall((:SDL_memcmp, libSDL2), Cint, (Ptr{Void}, Ptr{Void}, Csize_t), s1, s2, len)
+    ccall((:SDL_memcmp, libSDL2), Cint, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), s1, s2, len)
 end
 
 function wcslen(wstr)
@@ -301,7 +301,7 @@ function iconv_string(tocode, fromcode, inbuf, inbytesleft::Csize_t)
 end
 
 function memcpy4(dst, src, dwords::Csize_t)
-    ccall((:SDL_memcpy4, libSDL2), Ptr{Void}, (Ptr{Void}, Ptr{Void}, Csize_t), dst, src, dwords)
+    ccall((:SDL_memcpy4, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), dst, src, dwords)
 end
 
 function main(argc::Cint, argv)
@@ -309,7 +309,7 @@ function main(argc::Cint, argv)
 end
 
 function SetMainReady()
-    ccall((:SDL_SetMainReady, libSDL2), Void, ())
+    ccall((:SDL_SetMainReady, libSDL2), Cvoid, ())
 end
 
 #function ReportAssertion(arg1, arg2, arg3, arg4::Cint)
@@ -317,7 +317,7 @@ end
 #end
 
 function SetAssertionHandler(handler::AssertionHandler, userdata)
-    ccall((:SDL_SetAssertionHandler, libSDL2), Void, (AssertionHandler, Ptr{Void}), handler, userdata)
+    ccall((:SDL_SetAssertionHandler, libSDL2), Cvoid, (AssertionHandler, Ptr{Cvoid}), handler, userdata)
 end
 
 function GetDefaultAssertionHandler()
@@ -325,7 +325,7 @@ function GetDefaultAssertionHandler()
 end
 
 function GetAssertionHandler(puserdata)
-    ccall((:SDL_GetAssertionHandler, libSDL2), AssertionHandler, (Ptr{Ptr{Void}},), puserdata)
+    ccall((:SDL_GetAssertionHandler, libSDL2), AssertionHandler, (Ptr{Ptr{Cvoid}},), puserdata)
 end
 
 function GetAssertionReport()
@@ -333,7 +333,7 @@ function GetAssertionReport()
 end
 
 function ResetAssertionReport()
-    ccall((:SDL_ResetAssertionReport, libSDL2), Void, ())
+    ccall((:SDL_ResetAssertionReport, libSDL2), Cvoid, ())
 end
 
 function AtomicTryLock(lock)
@@ -341,11 +341,11 @@ function AtomicTryLock(lock)
 end
 
 function AtomicLock(lock)
-    ccall((:SDL_AtomicLock, libSDL2), Void, (Ptr{SpinLock},), lock)
+    ccall((:SDL_AtomicLock, libSDL2), Cvoid, (Ptr{SpinLock},), lock)
 end
 
 function AtomicUnlock(lock)
-    ccall((:SDL_AtomicUnlock, libSDL2), Void, (Ptr{SpinLock},), lock)
+    ccall((:SDL_AtomicUnlock, libSDL2), Cvoid, (Ptr{SpinLock},), lock)
 end
 
 function AtomicCAS(a, oldval::Cint, newval::Cint)
@@ -365,15 +365,15 @@ function AtomicAdd(a, v::Cint)
 end
 
 function AtomicCASPtr(a, oldval, newval)
-    ccall((:SDL_AtomicCASPtr, libSDL2), bool, (Ptr{Ptr{Void}}, Ptr{Void}, Ptr{Void}), a, oldval, newval)
+    ccall((:SDL_AtomicCASPtr, libSDL2), bool, (Ptr{Ptr{Cvoid}}, Ptr{Cvoid}, Ptr{Cvoid}), a, oldval, newval)
 end
 
 function AtomicSetPtr(a, v)
-    ccall((:SDL_AtomicSetPtr, libSDL2), Ptr{Void}, (Ptr{Ptr{Void}}, Ptr{Void}), a, v)
+    ccall((:SDL_AtomicSetPtr, libSDL2), Ptr{Cvoid}, (Ptr{Ptr{Cvoid}}, Ptr{Cvoid}), a, v)
 end
 
 function AtomicGetPtr(a)
-    ccall((:SDL_AtomicGetPtr, libSDL2), Ptr{Void}, (Ptr{Ptr{Void}},), a)
+    ccall((:SDL_AtomicGetPtr, libSDL2), Ptr{Cvoid}, (Ptr{Ptr{Cvoid}},), a)
 end
 
 function GetError()
@@ -381,7 +381,7 @@ function GetError()
 end
 
 function ClearError()
-    ccall((:SDL_ClearError, libSDL2), Void, ())
+    ccall((:SDL_ClearError, libSDL2), Cvoid, ())
 end
 
 function Error(code::errorcode)
@@ -421,7 +421,7 @@ function UnlockMutex(mutex)
 end
 
 function DestroyMutex(mutex)
-    ccall((:SDL_DestroyMutex, libSDL2), Void, (Ptr{Mutex},), mutex)
+    ccall((:SDL_DestroyMutex, libSDL2), Cvoid, (Ptr{Mutex},), mutex)
 end
 
 function CreateSemaphore(initial_value::Uint32)
@@ -429,7 +429,7 @@ function CreateSemaphore(initial_value::Uint32)
 end
 
 function DestroySemaphore(sem)
-    ccall((:SDL_DestroySemaphore, libSDL2), Void, (Ptr{Sem},), sem)
+    ccall((:SDL_DestroySemaphore, libSDL2), Cvoid, (Ptr{Sem},), sem)
 end
 
 function SemWait(sem)
@@ -457,7 +457,7 @@ function CreateCond()
 end
 
 function DestroyCond(cond)
-    ccall((:SDL_DestroyCond, libSDL2), Void, (Ptr{Cond},), cond)
+    ccall((:SDL_DestroyCond, libSDL2), Cvoid, (Ptr{Cond},), cond)
 end
 
 function CondSignal(cond)
@@ -477,7 +477,7 @@ function CondWaitTimeout(cond, mutex, ms::Uint32)
 end
 
 function CreateThread(fn::ThreadFunction, name, data)
-    ccall((:SDL_CreateThread, libSDL2), Ptr{Thread}, (ThreadFunction, Cstring, Ptr{Void}), fn, name, data)
+    ccall((:SDL_CreateThread, libSDL2), Ptr{Thread}, (ThreadFunction, Cstring, Ptr{Cvoid}), fn, name, data)
 end
 
 function GetThreadName(thread)
@@ -497,11 +497,11 @@ function SetThreadPriority(priority::ThreadPriority)
 end
 
 function WaitThread(thread, status)
-    ccall((:SDL_WaitThread, libSDL2), Void, (Ptr{Thread}, Ptr{Cint}), thread, status)
+    ccall((:SDL_WaitThread, libSDL2), Cvoid, (Ptr{Thread}, Ptr{Cint}), thread, status)
 end
 
 function DetachThread(thread)
-    ccall((:SDL_DetachThread, libSDL2), Void, (Ptr{Thread},), thread)
+    ccall((:SDL_DetachThread, libSDL2), Cvoid, (Ptr{Thread},), thread)
 end
 
 function TLSCreate()
@@ -509,11 +509,11 @@ function TLSCreate()
 end
 
 function TLSGet(id::TLSID)
-    ccall((:SDL_TLSGet, libSDL2), Ptr{Void}, (TLSID,), id)
+    ccall((:SDL_TLSGet, libSDL2), Ptr{Cvoid}, (TLSID,), id)
 end
 
 function TLSSet(id::TLSID, value, destructor)
-    ccall((:SDL_TLSSet, libSDL2), Cint, (TLSID, Ptr{Void}, Ptr{Void}), id, value, destructor)
+    ccall((:SDL_TLSSet, libSDL2), Cint, (TLSID, Ptr{Cvoid}, Ptr{Cvoid}), id, value, destructor)
 end
 
 function RWFromFile(file, mode)
@@ -525,11 +525,11 @@ function RWFromFP(fp, autoclose::bool)
 end
 
 function RWFromMem(mem, size::Cint)
-    ccall((:SDL_RWFromMem, libSDL2), Ptr{RWops}, (Ptr{Void}, Cint), mem, size)
+    ccall((:SDL_RWFromMem, libSDL2), Ptr{RWops}, (Ptr{Cvoid}, Cint), mem, size)
 end
 
 function RWFromConstMem(mem, size::Cint)
-    ccall((:SDL_RWFromConstMem, libSDL2), Ptr{RWops}, (Ptr{Void}, Cint), mem, size)
+    ccall((:SDL_RWFromConstMem, libSDL2), Ptr{RWops}, (Ptr{Cvoid}, Cint), mem, size)
 end
 
 function AllocRW()
@@ -537,7 +537,7 @@ function AllocRW()
 end
 
 function FreeRW(area)
-    ccall((:SDL_FreeRW, libSDL2), Void, (Ptr{RWops},), area)
+    ccall((:SDL_FreeRW, libSDL2), Cvoid, (Ptr{RWops},), area)
 end
 
 function ReadU8(src)
@@ -609,7 +609,7 @@ function AudioInit(driver_name)
 end
 
 function AudioQuit()
-    ccall((:SDL_AudioQuit, libSDL2), Void, ())
+    ccall((:SDL_AudioQuit, libSDL2), Cvoid, ())
 end
 
 function GetCurrentAudioDriver()
@@ -641,11 +641,11 @@ function GetAudioDeviceStatus(dev::AudioDeviceID)
 end
 
 function PauseAudio(pause_on::Cint)
-    ccall((:SDL_PauseAudio, libSDL2), Void, (Cint,), pause_on)
+    ccall((:SDL_PauseAudio, libSDL2), Cvoid, (Cint,), pause_on)
 end
 
 function PauseAudioDevice(dev::AudioDeviceID, pause_on::Cint)
-    ccall((:SDL_PauseAudioDevice, libSDL2), Void, (AudioDeviceID, Cint), dev, pause_on)
+    ccall((:SDL_PauseAudioDevice, libSDL2), Cvoid, (AudioDeviceID, Cint), dev, pause_on)
 end
 
 function LoadWAV_RW(src, freesrc::Cint, spec, audio_buf, audio_len)
@@ -653,7 +653,7 @@ function LoadWAV_RW(src, freesrc::Cint, spec, audio_buf, audio_len)
 end
 
 function FreeWAV(audio_buf)
-    ccall((:SDL_FreeWAV, libSDL2), Void, (Ptr{Uint8},), audio_buf)
+    ccall((:SDL_FreeWAV, libSDL2), Cvoid, (Ptr{Uint8},), audio_buf)
 end
 
 #function BuildAudioCVT(cvt, src_format::AudioFormat, src_channels::Uint8, src_rate::Cint, dst_format::AudioFormat, dst_channels::Uint8, dst_rate::Cint)
@@ -665,19 +665,19 @@ end
 #end
 
 function MixAudio(dst, src, len::Uint32, volume::Cint)
-    ccall((:SDL_MixAudio, libSDL2), Void, (Ptr{Uint8}, Ptr{Uint8}, Uint32, Cint), dst, src, len, volume)
+    ccall((:SDL_MixAudio, libSDL2), Cvoid, (Ptr{Uint8}, Ptr{Uint8}, Uint32, Cint), dst, src, len, volume)
 end
 
 function MixAudioFormat(dst, src, format::AudioFormat, len::Uint32, volume::Cint)
-    ccall((:SDL_MixAudioFormat, libSDL2), Void, (Ptr{Uint8}, Ptr{Uint8}, AudioFormat, Uint32, Cint), dst, src, format, len, volume)
+    ccall((:SDL_MixAudioFormat, libSDL2), Cvoid, (Ptr{Uint8}, Ptr{Uint8}, AudioFormat, Uint32, Cint), dst, src, format, len, volume)
 end
 
 function QueueAudio(dev::AudioDeviceID, data, len::Uint32)
-    ccall((:SDL_QueueAudio, libSDL2), Cint, (AudioDeviceID, Ptr{Void}, Uint32), dev, data, len)
+    ccall((:SDL_QueueAudio, libSDL2), Cint, (AudioDeviceID, Ptr{Cvoid}, Uint32), dev, data, len)
 end
 
 function DequeueAudio(dev::AudioDeviceID, data, len::Uint32)
-    ccall((:SDL_DequeueAudio, libSDL2), Uint32, (AudioDeviceID, Ptr{Void}, Uint32), dev, data, len)
+    ccall((:SDL_DequeueAudio, libSDL2), Uint32, (AudioDeviceID, Ptr{Cvoid}, Uint32), dev, data, len)
 end
 
 function GetQueuedAudioSize(dev::AudioDeviceID)
@@ -685,31 +685,31 @@ function GetQueuedAudioSize(dev::AudioDeviceID)
 end
 
 function ClearQueuedAudio(dev::AudioDeviceID)
-    ccall((:SDL_ClearQueuedAudio, libSDL2), Void, (AudioDeviceID,), dev)
+    ccall((:SDL_ClearQueuedAudio, libSDL2), Cvoid, (AudioDeviceID,), dev)
 end
 
 function LockAudio()
-    ccall((:SDL_LockAudio, libSDL2), Void, ())
+    ccall((:SDL_LockAudio, libSDL2), Cvoid, ())
 end
 
 function LockAudioDevice(dev::AudioDeviceID)
-    ccall((:SDL_LockAudioDevice, libSDL2), Void, (AudioDeviceID,), dev)
+    ccall((:SDL_LockAudioDevice, libSDL2), Cvoid, (AudioDeviceID,), dev)
 end
 
 function UnlockAudio()
-    ccall((:SDL_UnlockAudio, libSDL2), Void, ())
+    ccall((:SDL_UnlockAudio, libSDL2), Cvoid, ())
 end
 
 function UnlockAudioDevice(dev::AudioDeviceID)
-    ccall((:SDL_UnlockAudioDevice, libSDL2), Void, (AudioDeviceID,), dev)
+    ccall((:SDL_UnlockAudioDevice, libSDL2), Cvoid, (AudioDeviceID,), dev)
 end
 
 function CloseAudio()
-    ccall((:SDL_CloseAudio, libSDL2), Void, ())
+    ccall((:SDL_CloseAudio, libSDL2), Cvoid, ())
 end
 
 function CloseAudioDevice(dev::AudioDeviceID)
-    ccall((:SDL_CloseAudioDevice, libSDL2), Void, (AudioDeviceID,), dev)
+    ccall((:SDL_CloseAudioDevice, libSDL2), Cvoid, (AudioDeviceID,), dev)
 end
 
 function SetClipboardText(text)
@@ -725,7 +725,7 @@ function HasClipboardText()
 end
 
 function _mm_empty()
-    ccall((:_mm_empty, libSDL2), Void, ())
+    ccall((:_mm_empty, libSDL2), Cvoid, ())
 end
 
 #=
@@ -994,15 +994,15 @@ function _mm_setr_pi8(__b0::UInt8, __b1::UInt8, __b2::UInt8, __b3::UInt8, __b4::
 end
 
 function posix_memalign(__memptr, __alignment::Csize_t, __size::Csize_t)
-    ccall((:posix_memalign, libSDL2), Cint, (Ptr{Ptr{Void}}, Csize_t, Csize_t), __memptr, __alignment, __size)
+    ccall((:posix_memalign, libSDL2), Cint, (Ptr{Ptr{Cvoid}}, Csize_t, Csize_t), __memptr, __alignment, __size)
 end
 
 function _mm_malloc(__size::Csize_t, __align::Csize_t)
-    ccall((:_mm_malloc, libSDL2), Ptr{Void}, (Csize_t, Csize_t), __size, __align)
+    ccall((:_mm_malloc, libSDL2), Ptr{Cvoid}, (Csize_t, Csize_t), __size, __align)
 end
 
 function _mm_free(__p)
-    ccall((:_mm_free, libSDL2), Void, (Ptr{Void},), __p)
+    ccall((:_mm_free, libSDL2), Cvoid, (Ptr{Cvoid},), __p)
 end
 
 function _mm_add_ss(__a::__m128, __b::__m128)
@@ -1358,47 +1358,47 @@ function _mm_setzero_ps()
 end
 
 function _mm_storeh_pi(__p, __a::__m128)
-    ccall((:_mm_storeh_pi, libSDL2), Void, (Ptr{__m64}, __m128), __p, __a)
+    ccall((:_mm_storeh_pi, libSDL2), Cvoid, (Ptr{__m64}, __m128), __p, __a)
 end
 
 function _mm_storel_pi(__p, __a::__m128)
-    ccall((:_mm_storel_pi, libSDL2), Void, (Ptr{__m64}, __m128), __p, __a)
+    ccall((:_mm_storel_pi, libSDL2), Cvoid, (Ptr{__m64}, __m128), __p, __a)
 end
 
 function _mm_store_ss(__p, __a::__m128)
-    ccall((:_mm_store_ss, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_store_ss, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_storeu_ps(__p, __a::__m128)
-    ccall((:_mm_storeu_ps, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_storeu_ps, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_store_ps(__p, __a::__m128)
-    ccall((:_mm_store_ps, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_store_ps, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_store1_ps(__p, __a::__m128)
-    ccall((:_mm_store1_ps, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_store1_ps, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_store_ps1(__p, __a::__m128)
-    ccall((:_mm_store_ps1, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_store_ps1, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_storer_ps(__p, __a::__m128)
-    ccall((:_mm_storer_ps, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_storer_ps, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_stream_pi(__p, __a::__m64)
-    ccall((:_mm_stream_pi, libSDL2), Void, (Ptr{__m64}, __m64), __p, __a)
+    ccall((:_mm_stream_pi, libSDL2), Cvoid, (Ptr{__m64}, __m64), __p, __a)
 end
 
 function _mm_stream_ps(__p, __a::__m128)
-    ccall((:_mm_stream_ps, libSDL2), Void, (Ptr{Cfloat}, __m128), __p, __a)
+    ccall((:_mm_stream_ps, libSDL2), Cvoid, (Ptr{Cfloat}, __m128), __p, __a)
 end
 
 function _mm_sfence()
-    ccall((:_mm_sfence, libSDL2), Void, ())
+    ccall((:_mm_sfence, libSDL2), Cvoid, ())
 end
 
 function _mm_max_pi16(__a::__m64, __b::__m64)
@@ -1426,7 +1426,7 @@ function _mm_mulhi_pu16(__a::__m64, __b::__m64)
 end
 
 function _mm_maskmove_si64(__d::__m64, __n::__m64, __p)
-    ccall((:_mm_maskmove_si64, libSDL2), Void, (__m64, __m64, Cstring), __d, __n, __p)
+    ccall((:_mm_maskmove_si64, libSDL2), Cvoid, (__m64, __m64, Cstring), __d, __n, __p)
 end
 
 function _mm_avg_pu8(__a::__m64, __b::__m64)
@@ -1446,7 +1446,7 @@ function _mm_getcsr()
 end
 
 function _mm_setcsr(__i::UInt32)
-    ccall((:_mm_setcsr, libSDL2), Void, (UInt32,), __i)
+    ccall((:_mm_setcsr, libSDL2), Cvoid, (UInt32,), __i)
 end
 
 function _mm_unpackhi_ps(__a::__m128, __b::__m128)
@@ -1798,7 +1798,7 @@ function _mm_loadu_pd(__dp)
 end
 
 function _mm_loadu_si64(__a)
-    ccall((:_mm_loadu_si64, libSDL2), __m128i, (Ptr{Void},), __a)
+    ccall((:_mm_loadu_si64, libSDL2), __m128i, (Ptr{Cvoid},), __a)
 end
 
 function _mm_load_sd(__dp)
@@ -1846,35 +1846,35 @@ function _mm_move_sd(__a::__m128d, __b::__m128d)
 end
 
 function _mm_store_sd(__dp, __a::__m128d)
-    ccall((:_mm_store_sd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_store_sd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_store_pd(__dp, __a::__m128d)
-    ccall((:_mm_store_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_store_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_store1_pd(__dp, __a::__m128d)
-    ccall((:_mm_store1_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_store1_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_store_pd1(__dp, __a::__m128d)
-    ccall((:_mm_store_pd1, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_store_pd1, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_storeu_pd(__dp, __a::__m128d)
-    ccall((:_mm_storeu_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_storeu_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_storer_pd(__dp, __a::__m128d)
-    ccall((:_mm_storer_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_storer_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_storeh_pd(__dp, __a::__m128d)
-    ccall((:_mm_storeh_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_storeh_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_storel_pd(__dp, __a::__m128d)
-    ccall((:_mm_storel_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __dp, __a)
+    ccall((:_mm_storel_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __dp, __a)
 end
 
 function _mm_add_epi8(__a::__m128i, __b::__m128i)
@@ -2234,47 +2234,47 @@ function _mm_setzero_si128()
 end
 
 function _mm_store_si128(__p, __b::__m128i)
-    ccall((:_mm_store_si128, libSDL2), Void, (Ptr{__m128i}, __m128i), __p, __b)
+    ccall((:_mm_store_si128, libSDL2), Cvoid, (Ptr{__m128i}, __m128i), __p, __b)
 end
 
 function _mm_storeu_si128(__p, __b::__m128i)
-    ccall((:_mm_storeu_si128, libSDL2), Void, (Ptr{__m128i}, __m128i), __p, __b)
+    ccall((:_mm_storeu_si128, libSDL2), Cvoid, (Ptr{__m128i}, __m128i), __p, __b)
 end
 
 function _mm_maskmoveu_si128(__d::__m128i, __n::__m128i, __p)
-    ccall((:_mm_maskmoveu_si128, libSDL2), Void, (__m128i, __m128i, Cstring), __d, __n, __p)
+    ccall((:_mm_maskmoveu_si128, libSDL2), Cvoid, (__m128i, __m128i, Cstring), __d, __n, __p)
 end
 
 function _mm_storel_epi64(__p, __a::__m128i)
-    ccall((:_mm_storel_epi64, libSDL2), Void, (Ptr{__m128i}, __m128i), __p, __a)
+    ccall((:_mm_storel_epi64, libSDL2), Cvoid, (Ptr{__m128i}, __m128i), __p, __a)
 end
 
 function _mm_stream_pd(__p, __a::__m128d)
-    ccall((:_mm_stream_pd, libSDL2), Void, (Ptr{Cdouble}, __m128d), __p, __a)
+    ccall((:_mm_stream_pd, libSDL2), Cvoid, (Ptr{Cdouble}, __m128d), __p, __a)
 end
 
 function _mm_stream_si128(__p, __a::__m128i)
-    ccall((:_mm_stream_si128, libSDL2), Void, (Ptr{__m128i}, __m128i), __p, __a)
+    ccall((:_mm_stream_si128, libSDL2), Cvoid, (Ptr{__m128i}, __m128i), __p, __a)
 end
 
 function _mm_stream_si32(__p, __a::Cint)
-    ccall((:_mm_stream_si32, libSDL2), Void, (Ptr{Cint}, Cint), __p, __a)
+    ccall((:_mm_stream_si32, libSDL2), Cvoid, (Ptr{Cint}, Cint), __p, __a)
 end
 
 function _mm_stream_si64(__p, __a::Clonglong)
-    ccall((:_mm_stream_si64, libSDL2), Void, (Ptr{Clonglong}, Clonglong), __p, __a)
+    ccall((:_mm_stream_si64, libSDL2), Cvoid, (Ptr{Clonglong}, Clonglong), __p, __a)
 end
 
 function _mm_clflush(__p)
-    ccall((:_mm_clflush, libSDL2), Void, (Ptr{Void},), __p)
+    ccall((:_mm_clflush, libSDL2), Cvoid, (Ptr{Cvoid},), __p)
 end
 
 function _mm_lfence()
-    ccall((:_mm_lfence, libSDL2), Void, ())
+    ccall((:_mm_lfence, libSDL2), Cvoid, ())
 end
 
 function _mm_mfence()
-    ccall((:_mm_mfence, libSDL2), Void, ())
+    ccall((:_mm_mfence, libSDL2), Cvoid, ())
 end
 
 function _mm_packs_epi16(__a::__m128i, __b::__m128i)
@@ -2384,7 +2384,7 @@ end
 =#
 
 function _mm_pause()
-    ccall((:_mm_pause, libSDL2), Void, ())
+    ccall((:_mm_pause, libSDL2), Cvoid, ())
 end
 
 function GetCPUCount()
@@ -2460,7 +2460,7 @@ function AllocFormat(pixel_format::Uint32)
 end
 
 function FreeFormat(format)
-    ccall((:SDL_FreeFormat, libSDL2), Void, (Ptr{PixelFormat},), format)
+    ccall((:SDL_FreeFormat, libSDL2), Cvoid, (Ptr{PixelFormat},), format)
 end
 
 function AllocPalette(ncolors::Cint)
@@ -2476,7 +2476,7 @@ function SetPaletteColors(palette, colors, firstcolor::Cint, ncolors::Cint)
 end
 
 function FreePalette(palette)
-    ccall((:SDL_FreePalette, libSDL2), Void, (Ptr{Palette},), palette)
+    ccall((:SDL_FreePalette, libSDL2), Cvoid, (Ptr{Palette},), palette)
 end
 
 function MapRGB(format, r, g, b)
@@ -2488,15 +2488,15 @@ function MapRGBA(format, r, g, b, a)
 end
 
 function GetRGB(pixel::Uint32, format, r, g, b)
-    ccall((:SDL_GetRGB, libSDL2), Void, (Uint32, Ptr{PixelFormat}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), pixel, format, r, g, b)
+    ccall((:SDL_GetRGB, libSDL2), Cvoid, (Uint32, Ptr{PixelFormat}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), pixel, format, r, g, b)
 end
 
 function GetRGBA(pixel::Uint32, format, r, g, b, a)
-    ccall((:SDL_GetRGBA, libSDL2), Void, (Uint32, Ptr{PixelFormat}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), pixel, format, r, g, b, a)
+    ccall((:SDL_GetRGBA, libSDL2), Cvoid, (Uint32, Ptr{PixelFormat}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}, Ptr{Uint8}), pixel, format, r, g, b, a)
 end
 
 function CalculateGammaRamp(gamma::Cfloat, ramp)
-    ccall((:SDL_CalculateGammaRamp, libSDL2), Void, (Cfloat, Ptr{Uint16}), gamma, ramp)
+    ccall((:SDL_CalculateGammaRamp, libSDL2), Cvoid, (Cfloat, Ptr{Uint16}), gamma, ramp)
 end
 
 function PointInRect(p, r)
@@ -2520,7 +2520,7 @@ function IntersectRect(A, B, result)
 end
 
 function UnionRect(A, B, result)
-    ccall((:SDL_UnionRect, libSDL2), Void, (Ptr{Rect}, Ptr{Rect}, Ptr{Rect}), A, B, result)
+    ccall((:SDL_UnionRect, libSDL2), Cvoid, (Ptr{Rect}, Ptr{Rect}, Ptr{Rect}), A, B, result)
 end
 
 function EnclosePoints(points, count::Cint, clip, result)
@@ -2540,15 +2540,15 @@ function CreateRGBSurfaceWithFormat(flags, width, height, depth, format)
 end
 
 function CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
-    ccall((:SDL_CreateRGBSurfaceFrom, libSDL2), Ptr{Surface}, (Ptr{Void}, Cint, Cint, Cint, Cint, UInt32, UInt32, UInt32, UInt32), pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
+    ccall((:SDL_CreateRGBSurfaceFrom, libSDL2), Ptr{Surface}, (Ptr{Cvoid}, Cint, Cint, Cint, Cint, UInt32, UInt32, UInt32, UInt32), pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask)
 end
 
 function CreateRGBSurfaceWithFormatFrom(pixels, width::Cint, height::Cint, depth::Cint, pitch::Cint, format::Uint32)
-    ccall((:SDL_CreateRGBSurfaceWithFormatFrom, libSDL2), Ptr{Surface}, (Ptr{Void}, Cint, Cint, Cint, Cint, Uint32), pixels, width, height, depth, pitch, format)
+    ccall((:SDL_CreateRGBSurfaceWithFormatFrom, libSDL2), Ptr{Surface}, (Ptr{Cvoid}, Cint, Cint, Cint, Cint, Uint32), pixels, width, height, depth, pitch, format)
 end
 
 function FreeSurface(surface)
-    ccall((:SDL_FreeSurface, libSDL2), Void, (Ptr{Surface},), surface)
+    ccall((:SDL_FreeSurface, libSDL2), Cvoid, (Ptr{Surface},), surface)
 end
 
 function SetSurfacePalette(surface, palette)
@@ -2560,7 +2560,7 @@ function LockSurface(surface)
 end
 
 function UnlockSurface(surface)
-    ccall((:SDL_UnlockSurface, libSDL2), Void, (Ptr{Surface},), surface)
+    ccall((:SDL_UnlockSurface, libSDL2), Cvoid, (Ptr{Surface},), surface)
 end
 
 function LoadBMP_RW(src, freesrc::Cint)
@@ -2614,7 +2614,7 @@ function SetClipRect(surface, rect)
 end
 
 function GetClipRect(surface, rect)
-    ccall((:SDL_GetClipRect, libSDL2), Void, (Ptr{Surface}, Ptr{Rect}), surface, rect)
+    ccall((:SDL_GetClipRect, libSDL2), Cvoid, (Ptr{Surface}, Ptr{Rect}), surface, rect)
 end
 
 function ConvertSurface(src, fmt, flags::Uint32)
@@ -2626,7 +2626,7 @@ function ConvertSurfaceFormat(src, pixel_format::Uint32, flags::Uint32)
 end
 
 function ConvertPixels(width::Cint, height::Cint, src_format::Uint32, src, src_pitch::Cint, dst_format::Uint32, dst, dst_pitch::Cint)
-    ccall((:SDL_ConvertPixels, libSDL2), Cint, (Cint, Cint, Uint32, Ptr{Void}, Cint, Uint32, Ptr{Void}, Cint), width, height, src_format, src, src_pitch, dst_format, dst, dst_pitch)
+    ccall((:SDL_ConvertPixels, libSDL2), Cint, (Cint, Cint, Uint32, Ptr{Cvoid}, Cint, Uint32, Ptr{Cvoid}, Cint), width, height, src_format, src, src_pitch, dst_format, dst, dst_pitch)
 end
 
 function FillRect(dst, rect, color::Uint32)
@@ -2670,7 +2670,7 @@ function VideoInit(driver_name)
 end
 
 function VideoQuit()
-    ccall((:SDL_VideoQuit, libSDL2), Void, ())
+    ccall((:SDL_VideoQuit, libSDL2), Cvoid, ())
 end
 
 function GetCurrentVideoDriver()
@@ -2738,7 +2738,7 @@ function CreateWindow(title, x::Cint, y::Cint, w::Cint, h::Cint, flags::Uint32)
 end
 
 function CreateWindowFrom(data)
-    ccall((:SDL_CreateWindowFrom, libSDL2), Ptr{Window}, (Ptr{Void},), data)
+    ccall((:SDL_CreateWindowFrom, libSDL2), Ptr{Window}, (Ptr{Cvoid},), data)
 end
 
 function GetWindowID(window)
@@ -2754,7 +2754,7 @@ function GetWindowFlags(window)
 end
 
 function SetWindowTitle(window, title)
-    ccall((:SDL_SetWindowTitle, libSDL2), Void, (Ptr{Window}, Cstring), window, title)
+    ccall((:SDL_SetWindowTitle, libSDL2), Cvoid, (Ptr{Window}, Cstring), window, title)
 end
 
 function GetWindowTitle(window)
@@ -2762,31 +2762,31 @@ function GetWindowTitle(window)
 end
 
 function SetWindowIcon(window, icon)
-    ccall((:SDL_SetWindowIcon, libSDL2), Void, (Ptr{Window}, Ptr{Surface}), window, icon)
+    ccall((:SDL_SetWindowIcon, libSDL2), Cvoid, (Ptr{Window}, Ptr{Surface}), window, icon)
 end
 
 function SetWindowData(window, name, userdata)
-    ccall((:SDL_SetWindowData, libSDL2), Ptr{Void}, (Ptr{Window}, Cstring, Ptr{Void}), window, name, userdata)
+    ccall((:SDL_SetWindowData, libSDL2), Ptr{Cvoid}, (Ptr{Window}, Cstring, Ptr{Cvoid}), window, name, userdata)
 end
 
 function GetWindowData(window, name)
-    ccall((:SDL_GetWindowData, libSDL2), Ptr{Void}, (Ptr{Window}, Cstring), window, name)
+    ccall((:SDL_GetWindowData, libSDL2), Ptr{Cvoid}, (Ptr{Window}, Cstring), window, name)
 end
 
 function SetWindowPosition(window, x::Cint, y::Cint)
-    ccall((:SDL_SetWindowPosition, libSDL2), Void, (Ptr{Window}, Cint, Cint), window, x, y)
+    ccall((:SDL_SetWindowPosition, libSDL2), Cvoid, (Ptr{Window}, Cint, Cint), window, x, y)
 end
 
 function GetWindowPosition(window, x, y)
-    ccall((:SDL_GetWindowPosition, libSDL2), Void, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, x, y)
+    ccall((:SDL_GetWindowPosition, libSDL2), Cvoid, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, x, y)
 end
 
 function SetWindowSize(window, w::Cint, h::Cint)
-    ccall((:SDL_SetWindowSize, libSDL2), Void, (Ptr{Window}, Cint, Cint), window, w, h)
+    ccall((:SDL_SetWindowSize, libSDL2), Cvoid, (Ptr{Window}, Cint, Cint), window, w, h)
 end
 
 function GetWindowSize(window, w, h)
-    ccall((:SDL_GetWindowSize, libSDL2), Void, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
+    ccall((:SDL_GetWindowSize, libSDL2), Cvoid, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
 end
 
 function GetWindowBordersSize(window, top, left, bottom, right)
@@ -2794,51 +2794,51 @@ function GetWindowBordersSize(window, top, left, bottom, right)
 end
 
 function SetWindowMinimumSize(window, min_w::Cint, min_h::Cint)
-    ccall((:SDL_SetWindowMinimumSize, libSDL2), Void, (Ptr{Window}, Cint, Cint), window, min_w, min_h)
+    ccall((:SDL_SetWindowMinimumSize, libSDL2), Cvoid, (Ptr{Window}, Cint, Cint), window, min_w, min_h)
 end
 
 function GetWindowMinimumSize(window, w, h)
-    ccall((:SDL_GetWindowMinimumSize, libSDL2), Void, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
+    ccall((:SDL_GetWindowMinimumSize, libSDL2), Cvoid, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
 end
 
 function SetWindowMaximumSize(window, max_w::Cint, max_h::Cint)
-    ccall((:SDL_SetWindowMaximumSize, libSDL2), Void, (Ptr{Window}, Cint, Cint), window, max_w, max_h)
+    ccall((:SDL_SetWindowMaximumSize, libSDL2), Cvoid, (Ptr{Window}, Cint, Cint), window, max_w, max_h)
 end
 
 function GetWindowMaximumSize(window, w, h)
-    ccall((:SDL_GetWindowMaximumSize, libSDL2), Void, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
+    ccall((:SDL_GetWindowMaximumSize, libSDL2), Cvoid, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
 end
 
 function SetWindowBordered(window, bordered::bool)
-    ccall((:SDL_SetWindowBordered, libSDL2), Void, (Ptr{Window}, bool), window, bordered)
+    ccall((:SDL_SetWindowBordered, libSDL2), Cvoid, (Ptr{Window}, bool), window, bordered)
 end
 
 function SetWindowResizable(window, resizable::bool)
-    ccall((:SDL_SetWindowResizable, libSDL2), Void, (Ptr{Window}, bool), window, resizable)
+    ccall((:SDL_SetWindowResizable, libSDL2), Cvoid, (Ptr{Window}, bool), window, resizable)
 end
 
 function ShowWindow(window)
-    ccall((:SDL_ShowWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_ShowWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function HideWindow(window)
-    ccall((:SDL_HideWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_HideWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function RaiseWindow(window)
-    ccall((:SDL_RaiseWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_RaiseWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function MaximizeWindow(window)
-    ccall((:SDL_MaximizeWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_MaximizeWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function MinimizeWindow(window)
-    ccall((:SDL_MinimizeWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_MinimizeWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function RestoreWindow(window)
-    ccall((:SDL_RestoreWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_RestoreWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function SetWindowFullscreen(window, flags::Uint32)
@@ -2858,7 +2858,7 @@ function UpdateWindowSurfaceRects(window, rects, numrects::Cint)
 end
 
 function SetWindowGrab(window, grabbed::bool)
-    ccall((:SDL_SetWindowGrab, libSDL2), Void, (Ptr{Window}, bool), window, grabbed)
+    ccall((:SDL_SetWindowGrab, libSDL2), Cvoid, (Ptr{Window}, bool), window, grabbed)
 end
 
 function GetWindowGrab(window)
@@ -2902,11 +2902,11 @@ function GetWindowGammaRamp(window, red, green, blue)
 end
 
 function SetWindowHitTest(window, callback::HitTest, callback_data)
-    ccall((:SDL_SetWindowHitTest, libSDL2), Cint, (Ptr{Window}, HitTest, Ptr{Void}), window, callback, callback_data)
+    ccall((:SDL_SetWindowHitTest, libSDL2), Cint, (Ptr{Window}, HitTest, Ptr{Cvoid}), window, callback, callback_data)
 end
 
 function DestroyWindow(window)
-    ccall((:SDL_DestroyWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_DestroyWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function IsScreenSaverEnabled()
@@ -2914,11 +2914,11 @@ function IsScreenSaverEnabled()
 end
 
 function EnableScreenSaver()
-    ccall((:SDL_EnableScreenSaver, libSDL2), Void, ())
+    ccall((:SDL_EnableScreenSaver, libSDL2), Cvoid, ())
 end
 
 function DisableScreenSaver()
-    ccall((:SDL_DisableScreenSaver, libSDL2), Void, ())
+    ccall((:SDL_DisableScreenSaver, libSDL2), Cvoid, ())
 end
 
 function GL_LoadLibrary(path)
@@ -2926,11 +2926,11 @@ function GL_LoadLibrary(path)
 end
 
 function GL_GetProcAddress(proc)
-    ccall((:SDL_GL_GetProcAddress, libSDL2), Ptr{Void}, (Cstring,), proc)
+    ccall((:SDL_GL_GetProcAddress, libSDL2), Ptr{Cvoid}, (Cstring,), proc)
 end
 
 function GL_UnloadLibrary()
-    ccall((:SDL_GL_UnloadLibrary, libSDL2), Void, ())
+    ccall((:SDL_GL_UnloadLibrary, libSDL2), Cvoid, ())
 end
 
 function GL_ExtensionSupported(extension)
@@ -2938,7 +2938,7 @@ function GL_ExtensionSupported(extension)
 end
 
 function GL_ResetAttributes()
-    ccall((:SDL_GL_ResetAttributes, libSDL2), Void, ())
+    ccall((:SDL_GL_ResetAttributes, libSDL2), Cvoid, ())
 end
 
 function GL_SetAttribute(attr::GLattr, value)
@@ -2966,7 +2966,7 @@ function GL_GetCurrentContext()
 end
 
 function GL_GetDrawableSize(window, w, h)
-    ccall((:SDL_GL_GetDrawableSize, libSDL2), Void, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
+    ccall((:SDL_GL_GetDrawableSize, libSDL2), Cvoid, (Ptr{Window}, Ptr{Cint}, Ptr{Cint}), window, w, h)
 end
 
 function GL_SetSwapInterval(interval::Cint)
@@ -2978,11 +2978,11 @@ function GL_GetSwapInterval()
 end
 
 function GL_SwapWindow(window)
-    ccall((:SDL_GL_SwapWindow, libSDL2), Void, (Ptr{Window},), window)
+    ccall((:SDL_GL_SwapWindow, libSDL2), Cvoid, (Ptr{Window},), window)
 end
 
 function GL_DeleteContext(context::GLContext)
-    ccall((:SDL_GL_DeleteContext, libSDL2), Void, (GLContext,), context)
+    ccall((:SDL_GL_DeleteContext, libSDL2), Cvoid, (GLContext,), context)
 end
 
 function GetKeyboardFocus()
@@ -2998,7 +2998,7 @@ function GetModState()
 end
 
 function SetModState(modstate::Keymod)
-    ccall((:SDL_SetModState, libSDL2), Void, (Keymod,), modstate)
+    ccall((:SDL_SetModState, libSDL2), Cvoid, (Keymod,), modstate)
 end
 
 function GetKeyFromScancode(scancode::Scancode)
@@ -3026,7 +3026,7 @@ function GetKeyFromName(name)
 end
 
 function StartTextInput()
-    ccall((:SDL_StartTextInput, libSDL2), Void, ())
+    ccall((:SDL_StartTextInput, libSDL2), Cvoid, ())
 end
 
 function IsTextInputActive()
@@ -3034,11 +3034,11 @@ function IsTextInputActive()
 end
 
 function StopTextInput()
-    ccall((:SDL_StopTextInput, libSDL2), Void, ())
+    ccall((:SDL_StopTextInput, libSDL2), Cvoid, ())
 end
 
 function SetTextInputRect(rect)
-    ccall((:SDL_SetTextInputRect, libSDL2), Void, (Ptr{Rect},), rect)
+    ccall((:SDL_SetTextInputRect, libSDL2), Cvoid, (Ptr{Rect},), rect)
 end
 
 function HasScreenKeyboardSupport()
@@ -3066,7 +3066,7 @@ function GetRelativeMouseState(x, y)
 end
 
 function WarpMouseInWindow(window, x::Cint, y::Cint)
-    ccall((:SDL_WarpMouseInWindow, libSDL2), Void, (Ptr{Window}, Cint, Cint), window, x, y)
+    ccall((:SDL_WarpMouseInWindow, libSDL2), Cvoid, (Ptr{Window}, Cint, Cint), window, x, y)
 end
 
 function WarpMouseGlobal(x::Cint, y::Cint)
@@ -3098,7 +3098,7 @@ function CreateSystemCursor(id::SystemCursor)
 end
 
 function SetCursor(cursor)
-    ccall((:SDL_SetCursor, libSDL2), Void, (Ptr{Cursor},), cursor)
+    ccall((:SDL_SetCursor, libSDL2), Cvoid, (Ptr{Cursor},), cursor)
 end
 
 function GetCursor()
@@ -3110,7 +3110,7 @@ function GetDefaultCursor()
 end
 
 function FreeCursor(cursor)
-    ccall((:SDL_FreeCursor, libSDL2), Void, (Ptr{Cursor},), cursor)
+    ccall((:SDL_FreeCursor, libSDL2), Cvoid, (Ptr{Cursor},), cursor)
 end
 
 function ShowCursor(toggle::Cint)
@@ -3146,7 +3146,7 @@ function JoystickGetGUID(joystick)
 end
 
 function JoystickGetGUIDString(guid::JoystickGUID, pszGUID, cbGUID::Cint)
-    ccall((:SDL_JoystickGetGUIDString, libSDL2), Void, (JoystickGUID, Cstring, Cint), guid, pszGUID, cbGUID)
+    ccall((:SDL_JoystickGetGUIDString, libSDL2), Cvoid, (JoystickGUID, Cstring, Cint), guid, pszGUID, cbGUID)
 end
 
 function JoystickGetGUIDFromString(pchGUID)
@@ -3178,7 +3178,7 @@ function JoystickNumButtons(joystick)
 end
 
 function JoystickUpdate()
-    ccall((:SDL_JoystickUpdate, libSDL2), Void, ())
+    ccall((:SDL_JoystickUpdate, libSDL2), Cvoid, ())
 end
 
 function JoystickEventState(state::Cint)
@@ -3202,7 +3202,7 @@ function JoystickGetButton(joystick, button::Cint)
 end
 
 function JoystickClose(joystick)
-    ccall((:SDL_JoystickClose, libSDL2), Void, (Ptr{Joystick},), joystick)
+    ccall((:SDL_JoystickClose, libSDL2), Cvoid, (Ptr{Joystick},), joystick)
 end
 
 function JoystickCurrentPowerLevel(joystick)
@@ -3258,7 +3258,7 @@ function GameControllerEventState(state::Cint)
 end
 
 function GameControllerUpdate()
-    ccall((:SDL_GameControllerUpdate, libSDL2), Void, ())
+    ccall((:SDL_GameControllerUpdate, libSDL2), Cvoid, ())
 end
 
 function GameControllerGetAxisFromString(pchString)
@@ -3294,7 +3294,7 @@ function GameControllerGetButton(gamecontroller, button::GameControllerButton)
 end
 
 function GameControllerClose(gamecontroller)
-    ccall((:SDL_GameControllerClose, libSDL2), Void, (Ptr{GameController},), gamecontroller)
+    ccall((:SDL_GameControllerClose, libSDL2), Cvoid, (Ptr{GameController},), gamecontroller)
 end
 
 function GetNumTouchDevices()
@@ -3330,7 +3330,7 @@ function LoadDollarTemplates(touchId::TouchID, src)
 end
 
 function PumpEvents()
-    ccall((:SDL_PumpEvents, libSDL2), Void, ())
+    ccall((:SDL_PumpEvents, libSDL2), Cvoid, ())
 end
 
 function PeepEvents(events, numevents::Cint, action::Eventaction, minType::Uint32, maxType::Uint32)
@@ -3346,11 +3346,11 @@ function HasEvents(minType::Uint32, maxType::Uint32)
 end
 
 function FlushEvent(_type::Uint32)
-    ccall((:SDL_FlushEvent, libSDL2), Void, (Uint32,), _type)
+    ccall((:SDL_FlushEvent, libSDL2), Cvoid, (Uint32,), _type)
 end
 
 function FlushEvents(minType::Uint32, maxType::Uint32)
-    ccall((:SDL_FlushEvents, libSDL2), Void, (Uint32, Uint32), minType, maxType)
+    ccall((:SDL_FlushEvents, libSDL2), Cvoid, (Uint32, Uint32), minType, maxType)
 end
 
 function PollEvent(event)
@@ -3370,23 +3370,23 @@ function PushEvent(event)
 end
 
 function SetEventFilter(filter::EventFilter, userdata)
-    ccall((:SDL_SetEventFilter, libSDL2), Void, (EventFilter, Ptr{Void}), filter, userdata)
+    ccall((:SDL_SetEventFilter, libSDL2), Cvoid, (EventFilter, Ptr{Cvoid}), filter, userdata)
 end
 
 function GetEventFilter(filter, userdata)
-    ccall((:SDL_GetEventFilter, libSDL2), bool, (Ptr{EventFilter}, Ptr{Ptr{Void}}), filter, userdata)
+    ccall((:SDL_GetEventFilter, libSDL2), bool, (Ptr{EventFilter}, Ptr{Ptr{Cvoid}}), filter, userdata)
 end
 
 function AddEventWatch(filter::EventFilter, userdata)
-    ccall((:SDL_AddEventWatch, libSDL2), Void, (EventFilter, Ptr{Void}), filter, userdata)
+    ccall((:SDL_AddEventWatch, libSDL2), Cvoid, (EventFilter, Ptr{Cvoid}), filter, userdata)
 end
 
 function DelEventWatch(filter::EventFilter, userdata)
-    ccall((:SDL_DelEventWatch, libSDL2), Void, (EventFilter, Ptr{Void}), filter, userdata)
+    ccall((:SDL_DelEventWatch, libSDL2), Cvoid, (EventFilter, Ptr{Cvoid}), filter, userdata)
 end
 
 function FilterEvents(filter::EventFilter, userdata)
-    ccall((:SDL_FilterEvents, libSDL2), Void, (EventFilter, Ptr{Void}), filter, userdata)
+    ccall((:SDL_FilterEvents, libSDL2), Cvoid, (EventFilter, Ptr{Cvoid}), filter, userdata)
 end
 
 function EventState(_type::Uint32, state::Cint)
@@ -3442,7 +3442,7 @@ function HapticOpenFromJoystick(joystick)
 end
 
 function HapticClose(haptic)
-    ccall((:SDL_HapticClose, libSDL2), Void, (Ptr{Haptic},), haptic)
+    ccall((:SDL_HapticClose, libSDL2), Cvoid, (Ptr{Haptic},), haptic)
 end
 
 function HapticNumEffects(haptic)
@@ -3482,7 +3482,7 @@ function HapticStopEffect(haptic, effect::Cint)
 end
 
 function HapticDestroyEffect(haptic, effect::Cint)
-    ccall((:SDL_HapticDestroyEffect, libSDL2), Void, (Ptr{Haptic}, Cint), haptic, effect)
+    ccall((:SDL_HapticDestroyEffect, libSDL2), Cvoid, (Ptr{Haptic}, Cint), haptic, effect)
 end
 
 function HapticGetEffectStatus(haptic, effect::Cint)
@@ -3542,35 +3542,35 @@ function GetHintBoolean(name, default_value::bool)
 end
 
 function AddHintCallback(name, callback::HintCallback, userdata)
-    ccall((:SDL_AddHintCallback, libSDL2), Void, (Cstring, HintCallback, Ptr{Void}), name, callback, userdata)
+    ccall((:SDL_AddHintCallback, libSDL2), Cvoid, (Cstring, HintCallback, Ptr{Cvoid}), name, callback, userdata)
 end
 
 function DelHintCallback(name, callback::HintCallback, userdata)
-    ccall((:SDL_DelHintCallback, libSDL2), Void, (Cstring, HintCallback, Ptr{Void}), name, callback, userdata)
+    ccall((:SDL_DelHintCallback, libSDL2), Cvoid, (Cstring, HintCallback, Ptr{Cvoid}), name, callback, userdata)
 end
 
 function ClearHints()
-    ccall((:SDL_ClearHints, libSDL2), Void, ())
+    ccall((:SDL_ClearHints, libSDL2), Cvoid, ())
 end
 
 function LoadObject(sofile)
-    ccall((:SDL_LoadObject, libSDL2), Ptr{Void}, (Cstring,), sofile)
+    ccall((:SDL_LoadObject, libSDL2), Ptr{Cvoid}, (Cstring,), sofile)
 end
 
 function LoadFunction(handle, name)
-    ccall((:SDL_LoadFunction, libSDL2), Ptr{Void}, (Ptr{Void}, Cstring), handle, name)
+    ccall((:SDL_LoadFunction, libSDL2), Ptr{Cvoid}, (Ptr{Cvoid}, Cstring), handle, name)
 end
 
 function UnloadObject(handle)
-    ccall((:SDL_UnloadObject, libSDL2), Void, (Ptr{Void},), handle)
+    ccall((:SDL_UnloadObject, libSDL2), Cvoid, (Ptr{Cvoid},), handle)
 end
 
 function LogSetAllPriority(priority::LogPriority)
-    ccall((:SDL_LogSetAllPriority, libSDL2), Void, (LogPriority,), priority)
+    ccall((:SDL_LogSetAllPriority, libSDL2), Cvoid, (LogPriority,), priority)
 end
 
 function LogSetPriority(category::Cint, priority::LogPriority)
-    ccall((:SDL_LogSetPriority, libSDL2), Void, (Cint, LogPriority), category, priority)
+    ccall((:SDL_LogSetPriority, libSDL2), Cvoid, (Cint, LogPriority), category, priority)
 end
 
 function LogGetPriority(category::Cint)
@@ -3578,19 +3578,19 @@ function LogGetPriority(category::Cint)
 end
 
 function LogResetPriorities()
-    ccall((:SDL_LogResetPriorities, libSDL2), Void, ())
+    ccall((:SDL_LogResetPriorities, libSDL2), Cvoid, ())
 end
 
 function LogMessageV(category::Cint, priority::LogPriority, fmt, ap::va_list)
-    ccall((:SDL_LogMessageV, libSDL2), Void, (Cint, LogPriority, Cstring, va_list), category, priority, fmt, ap)
+    ccall((:SDL_LogMessageV, libSDL2), Cvoid, (Cint, LogPriority, Cstring, va_list), category, priority, fmt, ap)
 end
 
 function LogGetOutputFunction(callback, userdata)
-    ccall((:SDL_LogGetOutputFunction, libSDL2), Void, (Ptr{LogOutputFunction}, Ptr{Ptr{Void}}), callback, userdata)
+    ccall((:SDL_LogGetOutputFunction, libSDL2), Cvoid, (Ptr{LogOutputFunction}, Ptr{Ptr{Cvoid}}), callback, userdata)
 end
 
 function LogSetOutputFunction(callback::LogOutputFunction, userdata)
-    ccall((:SDL_LogSetOutputFunction, libSDL2), Void, (LogOutputFunction, Ptr{Void}), callback, userdata)
+    ccall((:SDL_LogSetOutputFunction, libSDL2), Cvoid, (LogOutputFunction, Ptr{Cvoid}), callback, userdata)
 end
 
 function ShowMessageBox(messageboxdata, buttonid)
@@ -3674,7 +3674,7 @@ function GetTextureBlendMode(texture, blendMode)
 end
 
 function UpdateTexture(texture, rect, pixels, pitch::Cint)
-    ccall((:SDL_UpdateTexture, libSDL2), Cint, (Ptr{Texture}, Ptr{Rect}, Ptr{Void}, Cint), texture, rect, pixels, pitch)
+    ccall((:SDL_UpdateTexture, libSDL2), Cint, (Ptr{Texture}, Ptr{Rect}, Ptr{Cvoid}, Cint), texture, rect, pixels, pitch)
 end
 
 function UpdateYUVTexture(texture, rect, Yplane, Ypitch::Cint, Uplane, Upitch::Cint, Vplane, Vpitch::Cint)
@@ -3682,11 +3682,11 @@ function UpdateYUVTexture(texture, rect, Yplane, Ypitch::Cint, Uplane, Upitch::C
 end
 
 function LockTexture(texture, rect, pixels, pitch)
-    ccall((:SDL_LockTexture, libSDL2), Cint, (Ptr{Texture}, Ptr{Rect}, Ptr{Ptr{Void}}, Ptr{Cint}), texture, rect, pixels, pitch)
+    ccall((:SDL_LockTexture, libSDL2), Cint, (Ptr{Texture}, Ptr{Rect}, Ptr{Ptr{Cvoid}}, Ptr{Cint}), texture, rect, pixels, pitch)
 end
 
 function UnlockTexture(texture)
-    ccall((:SDL_UnlockTexture, libSDL2), Void, (Ptr{Texture},), texture)
+    ccall((:SDL_UnlockTexture, libSDL2), Cvoid, (Ptr{Texture},), texture)
 end
 
 function RenderTargetSupported(renderer)
@@ -3706,7 +3706,7 @@ function RenderSetLogicalSize(renderer, w::Cint, h::Cint)
 end
 
 function RenderGetLogicalSize(renderer, w, h)
-    ccall((:SDL_RenderGetLogicalSize, libSDL2), Void, (Ptr{Renderer}, Ptr{Cint}, Ptr{Cint}), renderer, w, h)
+    ccall((:SDL_RenderGetLogicalSize, libSDL2), Cvoid, (Ptr{Renderer}, Ptr{Cint}, Ptr{Cint}), renderer, w, h)
 end
 
 function RenderSetIntegerScale(renderer, enable::bool)
@@ -3722,7 +3722,7 @@ function RenderSetViewport(renderer, rect)
 end
 
 function RenderGetViewport(renderer, rect)
-    ccall((:SDL_RenderGetViewport, libSDL2), Void, (Ptr{Renderer}, Ptr{Rect}), renderer, rect)
+    ccall((:SDL_RenderGetViewport, libSDL2), Cvoid, (Ptr{Renderer}, Ptr{Rect}), renderer, rect)
 end
 
 function RenderSetClipRect(renderer, rect)
@@ -3730,7 +3730,7 @@ function RenderSetClipRect(renderer, rect)
 end
 
 function RenderGetClipRect(renderer, rect)
-    ccall((:SDL_RenderGetClipRect, libSDL2), Void, (Ptr{Renderer}, Ptr{Rect}), renderer, rect)
+    ccall((:SDL_RenderGetClipRect, libSDL2), Cvoid, (Ptr{Renderer}, Ptr{Rect}), renderer, rect)
 end
 
 function RenderIsClipEnabled(renderer)
@@ -3742,7 +3742,7 @@ function RenderSetScale(renderer, scaleX::Cfloat, scaleY::Cfloat)
 end
 
 function RenderGetScale(renderer, scaleX, scaleY)
-    ccall((:SDL_RenderGetScale, libSDL2), Void, (Ptr{Renderer}, Ptr{Cfloat}, Ptr{Cfloat}), renderer, scaleX, scaleY)
+    ccall((:SDL_RenderGetScale, libSDL2), Cvoid, (Ptr{Renderer}, Ptr{Cfloat}, Ptr{Cfloat}), renderer, scaleX, scaleY)
 end
 
 function SetRenderDrawColor(renderer, r::Int, g::Int, b::Int, a::Int)
@@ -3806,19 +3806,19 @@ function RenderCopyEx(renderer, texture, srcrect, dstrect, angle::Cdouble, cente
 end
 
 function RenderReadPixels(renderer, rect, format::Uint32, pixels, pitch::Cint)
-    ccall((:SDL_RenderReadPixels, libSDL2), Cint, (Ptr{Renderer}, Ptr{Rect}, Uint32, Ptr{Void}, Cint), renderer, rect, format, pixels, pitch)
+    ccall((:SDL_RenderReadPixels, libSDL2), Cint, (Ptr{Renderer}, Ptr{Rect}, Uint32, Ptr{Cvoid}, Cint), renderer, rect, format, pixels, pitch)
 end
 
 function RenderPresent(renderer)
-    ccall((:SDL_RenderPresent, libSDL2), Void, (Ptr{Renderer},), renderer)
+    ccall((:SDL_RenderPresent, libSDL2), Cvoid, (Ptr{Renderer},), renderer)
 end
 
 function DestroyTexture(texture)
-    ccall((:SDL_DestroyTexture, libSDL2), Void, (Ptr{Texture},), texture)
+    ccall((:SDL_DestroyTexture, libSDL2), Cvoid, (Ptr{Texture},), texture)
 end
 
 function DestroyRenderer(renderer)
-    ccall((:SDL_DestroyRenderer, libSDL2), Void, (Ptr{Renderer},), renderer)
+    ccall((:SDL_DestroyRenderer, libSDL2), Cvoid, (Ptr{Renderer},), renderer)
 end
 
 function GL_BindTexture(texture, texw, texh)
@@ -3842,11 +3842,11 @@ function GetPerformanceFrequency()
 end
 
 function Delay(ms::Uint32)
-    ccall((:SDL_Delay, libSDL2), Void, (Uint32,), ms)
+    ccall((:SDL_Delay, libSDL2), Cvoid, (Uint32,), ms)
 end
 
 function AddTimer(interval::Uint32, callback::TimerCallback, param)
-    ccall((:SDL_AddTimer, libSDL2), TimerID, (Uint32, TimerCallback, Ptr{Void}), interval, callback, param)
+    ccall((:SDL_AddTimer, libSDL2), TimerID, (Uint32, TimerCallback, Ptr{Cvoid}), interval, callback, param)
 end
 
 function RemoveTimer(id::TimerID)
@@ -3854,7 +3854,7 @@ function RemoveTimer(id::TimerID)
 end
 
 function GetVersion(ver)
-    ccall((:SDL_GetVersion, libSDL2), Void, (Ptr{SDL_version},), ver)
+    ccall((:SDL_GetVersion, libSDL2), Cvoid, (Ptr{SDL_version},), ver)
 end
 
 function GetRevision()
@@ -3874,7 +3874,7 @@ function InitSubSystem(flags::Uint32)
 end
 
 function QuitSubSystem(flags::Uint32)
-    ccall((:SDL_QuitSubSystem, libSDL2), Void, (Uint32,), flags)
+    ccall((:SDL_QuitSubSystem, libSDL2), Cvoid, (Uint32,), flags)
 end
 
 function WasInit(flags::Uint32)
@@ -3882,5 +3882,5 @@ function WasInit(flags::Uint32)
 end
 
 function Quit()
-    ccall((:SDL_Quit, libSDL2), Void, ())
+    ccall((:SDL_Quit, libSDL2), Cvoid, ())
 end
