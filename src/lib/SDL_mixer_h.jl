@@ -87,8 +87,8 @@ mutable struct _Mix_Music
 end
 
 Mix_Music = _Mix_Music
-Mix_EffectFunc_t = Ptr{Void}
-Mix_EffectDone_t = Ptr{Void}
+Mix_EffectFunc_t = Ptr{Cvoid}
+Mix_EffectDone_t = Ptr{Cvoid}
 
 # begin enum ANONYMOUS_8
 const ANONYMOUS_8 = UInt32

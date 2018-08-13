@@ -12,7 +12,7 @@ function Mix_Init(flags::Cint)
 end
 
 function Mix_Quit()
-    ccall((:Mix_Quit, libSDL2_mixer), Void, ())
+    ccall((:Mix_Quit, libSDL2_mixer), Cvoid, ())
 end
 
 function Mix_OpenAudio(frequency::Cint, format::Uint16, channels::Cint, chunksize::Cint)
@@ -56,11 +56,11 @@ function Mix_QuickLoad_RAW(mem, len::Uint32)
 end
 
 function Mix_FreeChunk(chunk)
-    ccall((:Mix_FreeChunk, libSDL2_mixer), Void, (Ptr{Mix_Chunk},), chunk)
+    ccall((:Mix_FreeChunk, libSDL2_mixer), Cvoid, (Ptr{Mix_Chunk},), chunk)
 end
 
 function Mix_FreeMusic(music)
-    ccall((:Mix_FreeMusic, libSDL2_mixer), Void, (Ptr{Mix_Music},), music)
+    ccall((:Mix_FreeMusic, libSDL2_mixer), Cvoid, (Ptr{Mix_Music},), music)
 end
 
 function Mix_GetNumChunkDecoders()
@@ -92,27 +92,27 @@ function Mix_GetMusicType(music)
 end
 
 function Mix_SetPostMix(mix_func, arg)
-    ccall((:Mix_SetPostMix, libSDL2_mixer), Void, (Ptr{Void}, Ptr{Void}), mix_func, arg)
+    ccall((:Mix_SetPostMix, libSDL2_mixer), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}), mix_func, arg)
 end
 
 function Mix_HookMusic(mix_func, arg)
-    ccall((:Mix_HookMusic, libSDL2_mixer), Void, (Ptr{Void}, Ptr{Void}), mix_func, arg)
+    ccall((:Mix_HookMusic, libSDL2_mixer), Cvoid, (Ptr{Cvoid}, Ptr{Cvoid}), mix_func, arg)
 end
 
 function Mix_HookMusicFinished(music_finished)
-    ccall((:Mix_HookMusicFinished, libSDL2_mixer), Void, (Ptr{Void},), music_finished)
+    ccall((:Mix_HookMusicFinished, libSDL2_mixer), Cvoid, (Ptr{Cvoid},), music_finished)
 end
 
 function Mix_GetMusicHookData()
-    ccall((:Mix_GetMusicHookData, libSDL2_mixer), Ptr{Void}, ())
+    ccall((:Mix_GetMusicHookData, libSDL2_mixer), Ptr{Cvoid}, ())
 end
 
 function Mix_ChannelFinished(channel_finished)
-    ccall((:Mix_ChannelFinished, libSDL2_mixer), Void, (Ptr{Void},), channel_finished)
+    ccall((:Mix_ChannelFinished, libSDL2_mixer), Cvoid, (Ptr{Cvoid},), channel_finished)
 end
 
 function Mix_RegisterEffect(chan::Cint, f::Mix_EffectFunc_t, d::Mix_EffectDone_t, arg)
-    ccall((:Mix_RegisterEffect, libSDL2_mixer), Cint, (Cint, Mix_EffectFunc_t, Mix_EffectDone_t, Ptr{Void}), chan, f, d, arg)
+    ccall((:Mix_RegisterEffect, libSDL2_mixer), Cint, (Cint, Mix_EffectFunc_t, Mix_EffectDone_t, Ptr{Cvoid}), chan, f, d, arg)
 end
 
 function Mix_UnregisterEffect(channel::Cint, f::Mix_EffectFunc_t)
@@ -236,11 +236,11 @@ function Mix_FadingChannel(which::Cint)
 end
 
 function Mix_Pause(channel::Cint)
-    ccall((:Mix_Pause, libSDL2_mixer), Void, (Cint,), channel)
+    ccall((:Mix_Pause, libSDL2_mixer), Cvoid, (Cint,), channel)
 end
 
 function Mix_Resume(channel::Cint)
-    ccall((:Mix_Resume, libSDL2_mixer), Void, (Cint,), channel)
+    ccall((:Mix_Resume, libSDL2_mixer), Cvoid, (Cint,), channel)
 end
 
 function Mix_Paused(channel::Cint)
@@ -248,15 +248,15 @@ function Mix_Paused(channel::Cint)
 end
 
 function Mix_PauseMusic()
-    ccall((:Mix_PauseMusic, libSDL2_mixer), Void, ())
+    ccall((:Mix_PauseMusic, libSDL2_mixer), Cvoid, ())
 end
 
 function Mix_ResumeMusic()
-    ccall((:Mix_ResumeMusic, libSDL2_mixer), Void, ())
+    ccall((:Mix_ResumeMusic, libSDL2_mixer), Cvoid, ())
 end
 
 function Mix_RewindMusic()
-    ccall((:Mix_RewindMusic, libSDL2_mixer), Void, ())
+    ccall((:Mix_RewindMusic, libSDL2_mixer), Cvoid, ())
 end
 
 function Mix_PausedMusic()
@@ -296,7 +296,7 @@ function Mix_GetSoundFonts()
 end
 
 function Mix_EachSoundFont(_function, data)
-    ccall((:Mix_EachSoundFont, libSDL2_mixer), Cint, (Ptr{Void}, Ptr{Void}), _function, data)
+    ccall((:Mix_EachSoundFont, libSDL2_mixer), Cint, (Ptr{Cvoid}, Ptr{Cvoid}), _function, data)
 end
 
 function Mix_GetChunk(channel::Cint)
@@ -304,5 +304,5 @@ function Mix_GetChunk(channel::Cint)
 end
 
 function Mix_CloseAudio()
-    ccall((:Mix_CloseAudio, libSDL2_mixer), Void, ())
+    ccall((:Mix_CloseAudio, libSDL2_mixer), Cvoid, ())
 end
