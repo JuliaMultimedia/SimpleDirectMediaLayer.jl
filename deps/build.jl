@@ -17,12 +17,13 @@ if Sys.isapple()
     provides(Homebrew.HB, "SDL2_mixer", libSDL2_mixer, os = :Darwin)
 end
 
-provides(AptGet, "libsdl2-2.0-0", libSDL2)
-provides(AptGet, "libsdl2-ttf-2.0-0",libSDL2_ttf)
-provides(AptGet, "libsdl2-mixer-2.0-0",libSDL2_mixer)
-
-provides(Yum, "SDL2", libSDL2)
-provides(Pacman, "sdl2", libSDL2)
+if Sys.islinux()
+    provides(AptGet, "libsdl2-2.0-0", libSDL2)
+    provides(AptGet, "libsdl2-ttf-2.0-0",libSDL2_ttf)
+    provides(AptGet, "libsdl2-mixer-2.0-0",libSDL2_mixer)
+    provides(Yum, "SDL2", libSDL2)
+    provides(Pacman, "sdl2", libSDL2)
+end
 
 if Sys.iswindows()
     # HACK: First, install just libSDL2, so that the other libs have access to it.
