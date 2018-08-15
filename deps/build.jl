@@ -1,5 +1,6 @@
 using BinDeps
 using Compat
+using Libdl  # For the Windows HACK
 
 @BinDeps.setup
 
