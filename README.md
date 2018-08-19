@@ -4,7 +4,6 @@
 [![Build Status](https://ci.appveyor.com/api/projects/status/kg3gx5ngbbewjstr?svg=true)](https://ci.appveyor.com/project/jonathanBieler/sdl2-jl)
 
 [![Coverage Status](https://coveralls.io/repos/jonathanBieler/SimpleDirectMediaLayer.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/jonathanBieler/SimpleDirectMediaLayer.jl?branch=master)
-[![codecov.io](http://codecov.io/github/jonathanBieler/SimpleDirectMediaLayer.jl/coverage.svg?branch=master)](http://codecov.io/github/jonathanBieler/SDLSimpleDirectMediaLayer2.jl?branch=master)
 
 Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/ihnorton/Clang.jl). 
 
