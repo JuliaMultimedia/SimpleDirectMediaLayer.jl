@@ -1,15 +1,14 @@
 environment:
   matrix:
-  #- JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/0.6/julia-0.6-latest-win32.exe"
-  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/0.6/julia-0.6-latest-win64.exe"
-  #- JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe"
+  #- JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x86/0.7/julia-0.7-latest-win32.exe"
+  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/0.7/julia-0.7-latest-win64.exe"
+  - JULIA_URL: "https://julialang-s3.julialang.org/bin/winnt/x64/1.0/julia-1.0-latest-win64.exe"
   - JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe"
 
 ## uncomment the following lines to allow failures on nightly julia
 ## (tests will run but not make your overall status red)
 matrix:
   allow_failures:
-#  - JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x86/julia-latest-win32.exe"
   - JULIA_URL: "https://julialangnightlies-s3.julialang.org/bin/winnt/x64/julia-latest-win64.exe"
 
 branches:
@@ -40,8 +39,8 @@ install:
 build_script:
 # Need to convert from shallow to complete for Pkg.clone to work
   - IF EXIST .git\shallow (git fetch --unshallow)
-  - C:\projects\julia\bin\julia -e "versioninfo();
-      Pkg.clone(pwd(), \"SimpleDirectMediaLayer\"); Pkg.build(\"SimpleDirectMediaLayer\");
+  - C:\projects\julia\bin\julia -e "using InteractiveUtils; versioninfo();
+      using Pkg; Pkg.clone(pwd(), \"SimpleDirectMediaLayer\"); Pkg.build(\"SimpleDirectMediaLayer\");
 
 test_script:
-  - C:\projects\julia\bin\julia -e "Pkg.test(\"SimpleDirectMediaLayer\")"
+  - C:\projects\julia\bin\julia -e "using Pkg; Pkg.test(\"SimpleDirectMediaLayer\")"

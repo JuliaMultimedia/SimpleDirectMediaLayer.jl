@@ -1,6 +1,6 @@
 using SimpleDirectMediaLayer
 const SDL2 = SimpleDirectMediaLayer
-using Base.Test
+using Test
 
 SDL2_pkg_dir = joinpath(@__DIR__, "..","..")
 

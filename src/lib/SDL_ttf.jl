@@ -7,7 +7,7 @@ function TTF_Linked_Version()
 end
 
 function TTF_ByteSwappedUNICODE(swapped::Cint)
-    ccall((:TTF_ByteSwappedUNICODE, libSDL2_ttf), Void, (Cint,), swapped)
+    ccall((:TTF_ByteSwappedUNICODE, libSDL2_ttf), Cvoid, (Cint,), swapped)
 end
 
 function TTF_Init()
@@ -35,7 +35,7 @@ function TTF_GetFontStyle(font)
 end
 
 function TTF_SetFontStyle(font, style::Cint)
-    ccall((:TTF_SetFontStyle, libSDL2_ttf), Void, (Ptr{TTF_Font}, Cint), font, style)
+    ccall((:TTF_SetFontStyle, libSDL2_ttf), Cvoid, (Ptr{TTF_Font}, Cint), font, style)
 end
 
 function TTF_GetFontOutline(font)
@@ -43,7 +43,7 @@ function TTF_GetFontOutline(font)
 end
 
 function TTF_SetFontOutline(font, outline::Cint)
-    ccall((:TTF_SetFontOutline, libSDL2_ttf), Void, (Ptr{TTF_Font}, Cint), font, outline)
+    ccall((:TTF_SetFontOutline, libSDL2_ttf), Cvoid, (Ptr{TTF_Font}, Cint), font, outline)
 end
 
 function TTF_GetFontHinting(font)
@@ -51,7 +51,7 @@ function TTF_GetFontHinting(font)
 end
 
 function TTF_SetFontHinting(font, hinting::Cint)
-    ccall((:TTF_SetFontHinting, libSDL2_ttf), Void, (Ptr{TTF_Font}, Cint), font, hinting)
+    ccall((:TTF_SetFontHinting, libSDL2_ttf), Cvoid, (Ptr{TTF_Font}, Cint), font, hinting)
 end
 
 function TTF_FontHeight(font)
@@ -75,7 +75,7 @@ function TTF_GetFontKerning(font)
 end
 
 function TTF_SetFontKerning(font, allowed::Cint)
-    ccall((:TTF_SetFontKerning, libSDL2_ttf), Void, (Ptr{TTF_Font}, Cint), font, allowed)
+    ccall((:TTF_SetFontKerning, libSDL2_ttf), Cvoid, (Ptr{TTF_Font}, Cint), font, allowed)
 end
 
 function TTF_FontFaces(font)
@@ -175,11 +175,11 @@ function TTF_RenderGlyph_Blended(font, ch::Uint16, fg::Color)
 end
 
 function TTF_CloseFont(font)
-    ccall((:TTF_CloseFont, libSDL2_ttf), Void, (Ptr{TTF_Font},), font)
+    ccall((:TTF_CloseFont, libSDL2_ttf), Cvoid, (Ptr{TTF_Font},), font)
 end
 
 function TTF_Quit()
-    ccall((:TTF_Quit, libSDL2_ttf), Void, ())
+    ccall((:TTF_Quit, libSDL2_ttf), Cvoid, ())
 end
 
 function TTF_WasInit()

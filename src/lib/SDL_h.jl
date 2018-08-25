@@ -178,7 +178,7 @@ const NULL_WHILE_LOOP_CONDITION = 0
 # Skipping MacroDefinition: assert_paranoid ( condition ) disabled_assert ( condition )
 # Skipping MacroDefinition: assert_always ( condition ) enabled_assert ( condition )
 
-# const AssertState = Void
+# const AssertState = Cvoid
 # const assert_state = AssertState
 
 mutable struct AssertData
@@ -188,7 +188,7 @@ mutable struct AssertData
     filename::Cstring
     linenum::Cint
     _function::Cstring
-    next::Ptr{Void}
+    next::Ptr{Cvoid}
 end
 
 const assert_data = AssertData
@@ -528,7 +528,7 @@ const dummy_enum = NTuple{1, Cint}
 mutable struct _iconv_t
 end
 
-const iconv_t = Ptr{Void}
+const iconv_t = Ptr{Cvoid}
 
 # begin enum ANONYMOUS_3
 const ANONYMOUS_3 = UInt32
@@ -539,9 +539,9 @@ const ASSERTION_IGNORE = (UInt32)(3)
 const ASSERTION_ALWAYS_IGNORE = (UInt32)(4)
 # end enum ANONYMOUS_3
 
-const AssertionHandler = Ptr{Void}
+const AssertionHandler = Ptr{Cvoid}
 const SpinLock = Cint
-const atomic_t = Void
+const atomic_t = Cvoid
 
 # begin enum ANONYMOUS_4
 const ANONYMOUS_4 = UInt32
@@ -580,20 +580,20 @@ const THREAD_PRIORITY_HIGH = (UInt32)(2)
 # end enum ANONYMOUS_5
 
 const ThreadPriority = UInt32
-const ThreadFunction = Ptr{Void}
+const ThreadFunction = Ptr{Cvoid}
 
 mutable struct RWops
-    size::Ptr{Void}
-    seek::Ptr{Void}
-    read::Ptr{Void}
-    write::Ptr{Void}
-    close::Ptr{Void}
+    size::Ptr{Cvoid}
+    seek::Ptr{Cvoid}
+    read::Ptr{Cvoid}
+    write::Ptr{Cvoid}
+    close::Ptr{Cvoid}
     _type::Uint32
-    hidden::Void
+    hidden::Cvoid
 end
 
 const AudioFormat = Uint16
-const AudioCallback = Ptr{Void}
+const AudioCallback = Ptr{Cvoid}
 
 mutable struct AudioSpec
     freq::Cint
@@ -604,10 +604,10 @@ mutable struct AudioSpec
     padding::Uint16
     size::Uint32
     callback::AudioCallback
-    userdata::Ptr{Void}
+    userdata::Ptr{Cvoid}
 end
 
-const AudioFilter = Ptr{Void}
+const AudioFilter = Ptr{Cvoid}
 const AudioDeviceID = Uint32
 
 # begin enum ANONYMOUS_6
@@ -751,7 +751,7 @@ mutable struct PixelFormat
     Bshift::Uint8
     Ashift::Uint8
     refcount::Cint
-    next::Ptr{Void}
+    next::Ptr{Cvoid}
 end
 
 mutable struct Point
@@ -782,12 +782,12 @@ mutable struct Surface
     w::Cint
     h::Cint
     pitch::Cint
-    pixels::Ptr{Void}
-    userdata::Ptr{Void}
+    pixels::Ptr{Cvoid}
+    userdata::Ptr{Cvoid}
     locked::Cint
-    lock_data::Ptr{Void}
+    lock_data::Ptr{Cvoid}
     clip_rect::Rect
-    map::Ptr{Void}
+    map::Ptr{Cvoid}
     refcount::Cint
 end
 
@@ -795,13 +795,13 @@ MUSTLOCK(S::Ptr{Surface}) = ((unsafe_load(S).flags & RLEACCEL) != 0)
 LoadBMP(file) = LoadBMP_RW(RWFromFile(file, "rb"), Int32(1))
 SaveBMP(surface::Ptr{Surface}, file) = SaveBMP_RW(surface, RWFromFile(file, "wb" ), Int32(1))
 
-const blit = Ptr{Void}
+const blit = Ptr{Cvoid}
 mutable struct DisplayMode
     format::Uint32        # pixel format
     w::Cint               # width, in screen coordinates
     h::Cint               # height, in screen coordinates
     refresh_rate::Cint    # refresh rate (or zero for unspecified)
-    driverdata::Ptr{Void} # driver-specific data, initialize to 0
+    driverdata::Ptr{Cvoid} # driver-specific data, initialize to 0
 end
 
 mutable struct Window
@@ -855,7 +855,7 @@ const WINDOWEVENT_HIT_TEST = (UInt32)(16)
 # end enum ANONYMOUS_15
 
 const WindowEventID = UInt32
-const GLContext = Ptr{Void}
+const GLContext = Ptr{Cvoid}
 
 # begin enum ANONYMOUS_16
 const ANONYMOUS_16 = UInt32
@@ -930,7 +930,7 @@ const HITTEST_RESIZE_LEFT = (UInt32)(9)
 # end enum ANONYMOUS_20
 
 const HitTestResult = UInt32
-const HitTest = Ptr{Void}  # This should be a function pointer.
+const HitTest = Ptr{Cvoid}  # This should be a function pointer.
 
 # begin enum ANONYMOUS_21
 const ANONYMOUS_21 = UInt32
@@ -1499,7 +1499,7 @@ const GameControllerBindType = UInt32
 
 mutable struct GameControllerButtonBind
     bindType::GameControllerBindType
-    value::Void
+    value::Cvoid
 end
 
 # begin enum ANONYMOUS_28
@@ -1832,8 +1832,8 @@ mutable struct UserEvent <: AbstractEvent
     timestamp::Uint32
     windowID::Uint32
     code::Sint32
-    data1::Ptr{Void}
-    data2::Ptr{Void}
+    data1::Ptr{Cvoid}
+    data2::Ptr{Cvoid}
 end
 
 mutable struct SysWMmsg
@@ -1872,7 +1872,7 @@ function Event(t::EventType)
     nothing
 end
 
-#const Event = Void
+#const Event = Cvoid
 
 # begin enum ANONYMOUS_31
 const ANONYMOUS_31 = UInt32
@@ -1882,7 +1882,7 @@ const GETEVENT = (UInt32)(2)
 # end enum ANONYMOUS_31
 
 const Eventaction = UInt32
-const EventFilter = Ptr{Void}
+const EventFilter = Ptr{Cvoid}
 
 mutable struct _Haptic
 end
@@ -1983,7 +1983,7 @@ mutable struct HapticEffect
     _HapticEffect::Uint16
 end
 
-#const HapticEffect = Void
+#const HapticEffect = Cvoid
 
 # begin enum ANONYMOUS_32
 const ANONYMOUS_32 = UInt32
@@ -1993,7 +1993,7 @@ const HINT_OVERRIDE = (UInt32)(2)
 # end enum ANONYMOUS_32
 
 const HintPriority = UInt32
-const HintCallback = Ptr{Void}
+const HintCallback = Ptr{Cvoid}
 
 # begin enum ANONYMOUS_33
 const ANONYMOUS_33 = UInt32
@@ -2031,7 +2031,7 @@ const NUM_LOG_PRIORITIES = (UInt32)(7)
 # end enum ANONYMOUS_34
 
 const LogPriority = UInt32
-const LogOutputFunction = Ptr{Void}
+const LogOutputFunction = Ptr{Cvoid}
 
 # begin enum ANONYMOUS_35
 const ANONYMOUS_35 = UInt32
@@ -2048,9 +2048,9 @@ const MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT = (UInt32)(1)
 const MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT = (UInt32)(2)
 # end enum ANONYMOUS_36
 
-const MessageBoxButtonFlags = Void
-const MessageBoxButtonData = Void
-const MessageBoxColor = Void
+const MessageBoxButtonFlags = Cvoid
+const MessageBoxButtonData = Cvoid
+const MessageBoxColor = Cvoid
 
 # begin enum ANONYMOUS_37
 const ANONYMOUS_37 = UInt32
@@ -2062,9 +2062,9 @@ const MESSAGEBOX_COLOR_BUTTON_SELECTED = (UInt32)(4)
 const MESSAGEBOX_COLOR_MAX = (UInt32)(5)
 # end enum ANONYMOUS_37
 
-const MessageBoxColorType = Void
-const MessageBoxColorScheme = Void
-const MessageBoxData = Void
+const MessageBoxColorType = Cvoid
+const MessageBoxColorScheme = Cvoid
+const MessageBoxData = Cvoid
 
 # begin enum ANONYMOUS_38
 const ANONYMOUS_38 = UInt32
@@ -2129,7 +2129,7 @@ end
 mutable struct Texture
 end
 
-const TimerCallback = Ptr{Void}
+const TimerCallback = Ptr{Cvoid}
 const TimerID = Cint
 
 mutable struct SDL_version
