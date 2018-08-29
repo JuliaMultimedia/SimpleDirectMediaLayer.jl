@@ -52,7 +52,7 @@ if Sys.iswindows()
     # SDL2 is loaded first at runtime.
     deps_jl = joinpath(@__DIR__, "deps.jl")
     depslines = readlines(deps_jl)
-    liblines = ismatch.(r"SDL2", depslines)
+    liblines = [occursin(r"SDL2", line) for line in depslines]
     depslines[liblines] = sort(depslines[liblines])
     write(deps_jl, join(depslines, "\n"))
 else
