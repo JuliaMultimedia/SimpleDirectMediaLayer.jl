@@ -9,6 +9,7 @@ if !Sys.iswindows()
     # HACK: These definitions must come later for windows.
     libSDL2_ttf = library_dependency("libSDL2_ttf", aliases = ["SDL_ttf","SDL2_ttf", "libsdl2-ttf-2.0-0","libSDL2_ttf-2.0.so.0"])
     libSDL2_mixer = library_dependency("libSDL2_mixer", aliases = ["SDL_mixer","SDL2_mixer", "libsdl2-mixer-2.0-0","libSDL2_mixer-2.0.so.0"])
+    libSDL2_image = library_dependency("libSDL2_image", aliases = ["SDL_image"])
 end
 
 if Sys.isapple()
@@ -16,6 +17,7 @@ if Sys.isapple()
     provides(Homebrew.HB, "sdl2", libSDL2, os = :Darwin)
     provides(Homebrew.HB, "SDL2_ttf", libSDL2_ttf, os = :Darwin)
     provides(Homebrew.HB, "SDL2_mixer", libSDL2_mixer, os = :Darwin)
+    provides(Homebrew.HB, "SDL2_image", libSDL2_image, os = :Darwin)
 end
 
 if Sys.islinux()
@@ -60,5 +62,6 @@ else
         "libSDL2" => "libSDL2",
         "libSDL2_ttf" => "libSDL2_ttf",
         "libSDL2_mixer" => "libSDL2_mixer",
+        "libSDL2_image" => "libSDL2_image",
     )
 end
