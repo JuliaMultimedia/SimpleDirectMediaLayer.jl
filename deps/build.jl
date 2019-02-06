@@ -24,6 +24,8 @@ if Sys.islinux()
     provides(AptGet, "libsdl2-mixer-2.0-0",libSDL2_mixer)
     provides(Yum, "SDL2", libSDL2)
     provides(Pacman, "sdl2", libSDL2)
+    provides(Pacman, "sdl2_ttf", libSDL2_ttf)
+    provides(Pacman, "sdl2_mixer", libSDL2_mixer)
 end
 
 if Sys.iswindows()
