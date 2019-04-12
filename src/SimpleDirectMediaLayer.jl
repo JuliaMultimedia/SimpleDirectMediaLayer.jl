@@ -57,8 +57,6 @@ module SimpleDirectMediaLayer
         evtype = Event(t)
         evtype == nothing && return nothing
 
-        evtype == KeyboardEvent && info(ev)
-
         unsafe_load( Ptr{evtype}(pointer_from_objref(ev)) )
     end
 
