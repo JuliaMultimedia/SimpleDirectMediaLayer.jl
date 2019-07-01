@@ -51,6 +51,7 @@ if Sys.iswindows()
         "libSDL2" => "libSDL2",
         "libSDL2_ttf" => "libSDL2_ttf",
         "libSDL2_mixer" => "libSDL2_mixer",
+        "libSDL2_image" => "libSDL2_image",
     )
     # HACK: Finally, hilariously, reorder the @checked_lib lines to make sure
     # SDL2 is loaded first at runtime.
