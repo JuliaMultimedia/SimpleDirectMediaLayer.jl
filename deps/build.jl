@@ -45,6 +45,7 @@ if Sys.iswindows()
     Libdl.dlopen(joinpath(@__DIR__, "libSDL2", "SDL2.dll"))
     provides(Binaries, URI("https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.14-win32-x64.zip"), libSDL2_ttf, unpacked_dir=".", os = :Windows)
     provides(Binaries, URI("https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.2-win32-x64.zip"), libSDL2_mixer, unpacked_dir=".", os = :Windows)
+    provides(Binaries, URI("https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.4-win32-x64.zip"), libSDL2_image, unpacked_dir=".", os = :Windows)
     # Regenerate the deps.jl file with all three libs.
     @BinDeps.install Dict(
         "libSDL2" => "libSDL2",
