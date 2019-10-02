@@ -1,7 +1,7 @@
 name = "SimpleDirectMediaLayer"
 uuid = "98e33af6-2ee5-5afd-9e75-cbc738b767c4"
 repo = "https://github.com/jonathanBieler/SimpleDirectMediaLayer.jl.git"
-version = "0.1.1"
+version = "0.2.0"
 
 [deps]
 BinaryProvider = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
