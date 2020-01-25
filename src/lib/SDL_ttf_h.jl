@@ -1,7 +1,5 @@
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-using Compat
-
 const OBJC_NEW_PROPERTIES = 1
 const SDL_TTF_MAJOR_VERSION = 2
 const SDL_TTF_MINOR_VERSION = 0
