@@ -23,7 +23,11 @@ win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int3
 
 renderer = SDL2.CreateRenderer(win, Int32(-1),
              UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
-@test renderer != C_NULL
+if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    @test_broken renderer != C_NULL
+else
+    @test renderer != C_NULL
+end
 
 # Close window
 SDL2.DestroyWindow(win)
@@ -34,7 +38,11 @@ win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int3
 @test win != C_NULL
 renderer = SDL2.CreateRenderer(win, Int32(-1),
              UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
-@test renderer != C_NULL
+if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    @test_broken renderer != C_NULL
+else
+    @test renderer != C_NULL
+end
 
 SDL2.Quit()
 end
@@ -59,7 +67,11 @@ renderer = SDL2.CreateRenderer(win, Int32(-1),
              UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
 
 rect = SDL2.Rect(1,1,50,50)
-@test 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
+if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    @test_broken 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
+else
+    @test 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
+end
 
 
 @testset "Load/Save BMP" begin
@@ -68,10 +80,19 @@ img = SDL2.LoadBMP(joinpath(SDL2_pkg_dir, "assets/cat.bmp"))
 @test img != C_NULL
 
 img_tex = SDL2.CreateTextureFromSurface(renderer, img);
-@test img_tex != C_NULL
+if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    @test_broken img_tex != C_NULL
+else
+    @test img_tex != C_NULL
+end
+
 
 src = SDL2.Rect(0,0,0,0)
-@test 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
+if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    @test_broken 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
+else
+    @test 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
+end
 SDL2.RenderPresent(renderer)
 
 # Save bmp
