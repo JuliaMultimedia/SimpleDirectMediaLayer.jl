@@ -1,7 +1,5 @@
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 
-using Compat
-
 const SDL_IMAGE_MAJOR_VERSION = 2
 const SDL_IMAGE_MINOR_VERSION = 0
 const SDL_IMAGE_PATCHLEVEL = 4
