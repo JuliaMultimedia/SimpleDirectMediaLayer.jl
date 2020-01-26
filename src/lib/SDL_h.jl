@@ -1,9 +1,6 @@
 # Automatically generated using Clang.jl wrap_c, version 0.0.0
 # \$\(Expr\(:typealias, :(.+), :\((.+)\)\)\) -> const $1 = $2
 
-
-using Compat
-
 const OBJC_NEW_PROPERTIES = 1
 
 # Skipping MacroDefinition: DEPRECATED __attribute__ ( ( deprecated ) )

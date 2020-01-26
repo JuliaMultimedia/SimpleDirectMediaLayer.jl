@@ -1,17 +1,19 @@
 __precompile__()
 module SimpleDirectMediaLayer
 
+    using SDL2_jll
+    using SDL2_mixer_jll
+    using SDL2_image_jll
+    using SDL2_ttf_jll
+
+    Base.@deprecate_binding libSDL2       SimpleDirectMediaLayer.libsdl2       false
+    Base.@deprecate_binding libSDL2_mixer SimpleDirectMediaLayer.libsdl2_mixer false
+    Base.@deprecate_binding libSDL2_ttf   SimpleDirectMediaLayer.libsdl2_ttf   false
+
     using ColorTypes
 
     import Base.unsafe_convert
     export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
-
-    const depsfile = joinpath(dirname(@__FILE__), "..", "deps", "deps.jl")
-    if isfile(depsfile)
-        include(depsfile)
-    else
-        error("SimpleDirectMediaLayer not properly installed. Please run Pkg.build(\"SimpleDirectMediaLayer\") then restart Julia.")
-    end
 
     include("lib/SDL.jl")
     include("lib/SDL_ttf.jl")
