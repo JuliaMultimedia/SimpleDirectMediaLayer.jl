@@ -59,10 +59,10 @@ using DataDeps: unpack
 unpack("downloads/SDL2-$sdl2_version.tar.gz"; keep_originals=true)
 
 # Generate .jl
+# This is copied from the Clang.jl readme and then I changed the obvious bits.
 using Clang: CLANG_INCLUDE, init
 
-# This is copied from the Clang.jl readme and then I changed the obvious bits and deleted everything that
-# could be deleted without breaking it.
+# Clang complains that it can't find stddef.h, but that probably doesn't matter. Can add to the include line if it does.
 LIBSDL_INCLUDE = "SDL2-$sdl2_version/include/"
 LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_INCLUDE) if endswith(header, ".h")]
 
@@ -70,13 +70,21 @@ LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_
 filter!(!fn -> occursin("test", fn), LIBSDL_HEADERS)
 filter!(!fn -> occursin("opengl", fn), LIBSDL_HEADERS)
 
+bindings_dir = joinpath(@__DIR__, "bindings")
+SDL_jl = joinpath(bindings_dir, "SDL.jl")
+SDL_h_jl = joinpath(bindings_dir, "SDL_h.jl")
+
+mkpath(bindings_dir)
+
 wc = init(; headers = LIBSDL_HEADERS,          
-            output_file = joinpath(@__DIR__, "libsdl_api.jl"),
-            common_file = joinpath(@__DIR__, "libsdl_common.jl"),
+            output_dir = bindings_dir,
+            output_file = SDL_jl,
+            common_file = SDL_h_jl,
             clang_includes = vcat(LIBSDL_INCLUDE, CLANG_INCLUDE),
-            # clang_args = ["-I", joinpath(LIBSDL_INCLUDE, "..")],
+            #= clang_args = ["-I", joinpath(STDLIB_INCLUDE, "..")], =#
             # I don't know what this does, but deleting it gives us an error.
             header_wrapped = (root, current) -> root == current,
+            header_library = x -> "libsdl",
             )
 
 run(wc)
@@ -89,8 +97,8 @@ function rm_SDL_(fn)
     write(fn, str)
 end
 
-rm_SDL_("libsdl_api.jl")
-rm_SDL_("libsdl_common.jl")
+rm_SDL_(SDL_jl)
+rm_SDL_(SDL_h_jl)
 
 # Compare them
 
@@ -114,8 +122,8 @@ function normjl(filename)
     return str
 end
 
-write("mine.jl", normjl("libsdl_api.jl"))
+write("mine.jl", normjl(SDL_jl))
 write("theirs.jl", normjl("../src/lib/SDL.jl"))
 
-write("mine_h.jl", normjl("libsdl_common.jl"))
+write("mine_h.jl", normjl(SDL_h_jl))
 write("theirs_h.jl", normjl("../src/lib/SDL_h.jl"))
