@@ -88,6 +88,7 @@ LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_
 # I think Jonathan excluded these, too.
 filter!(!fn -> occursin("test", fn), LIBSDL_HEADERS)
 filter!(!fn -> occursin("opengl", fn), LIBSDL_HEADERS)
+filter!(!fn -> occursin("config", fn), LIBSDL_HEADERS)
 
 bindings_dir = joinpath(dir, "bindings")
 SDL_jl = joinpath(bindings_dir, "SDL.jl")
