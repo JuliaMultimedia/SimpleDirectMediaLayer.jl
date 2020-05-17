@@ -114,7 +114,7 @@ run(wc)
 
 function rm_SDL_(fn)
     str = String(read(fn))
-    str = replace(str, r"([^:])SDL_" => s"\1");
+    str = replace(str, r"(::|[^:])SDL_" => s"\1");
     write(fn, str)
 end
 
