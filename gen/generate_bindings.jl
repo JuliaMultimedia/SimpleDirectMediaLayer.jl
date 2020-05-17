@@ -79,7 +79,7 @@ isdir("SDL2-$sdl2_version") ||
 
 # Generate .jl
 # This is copied from the Clang.jl readme and then I changed the obvious bits.
-using Clang: CLANG_INCLUDE, init
+using Clang: CLANG_INCLUDE, InternalOptions, init
 
 # Clang complains that it can't find stddef.h, but that probably doesn't matter. Can add to the include line if it does.
 LIBSDL_INCLUDE = "SDL2-$sdl2_version/include/"
@@ -104,6 +104,8 @@ wc = init(; headers = LIBSDL_HEADERS,
             # I don't know what this does, but deleting it gives us an error.
             header_wrapped = (root, current) -> root == current,
             header_library = x -> "libsdl",
+            # Generate mutable structs
+            options = InternalOptions(true, true),
             )
 
 run(wc)
