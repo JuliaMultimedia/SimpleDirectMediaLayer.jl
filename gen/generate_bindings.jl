@@ -1,14 +1,14 @@
 """
-Generate bindings for SDL from the C source
+Generate bindings for SDL from the C headers
 
 
 ## Outline
 
 Download and extract source
-Run Clang.jl on it
-Remove extra SDL_ bit
+Generate bindings with Clang.jl
+    Running on linux gives fewer warnings and better output than windows
+Remove SDL_ prefix
 Compare with original
-
     Some of these are manual changes, some will be due to Clang.jl changes. Some might be
     deliberate configuration differences.
     
@@ -17,7 +17,13 @@ Compare with original
         I don't know whether that was required to get things to run or whether they 
         just wanted the documentation.
 
+            Probably required. Running on an OS where Clang can find the
+            stdlibs (linux) has defined them correctly.
+
         They have type annotations in the functions signature most of the time and I don't
+
+            TODO: check if ccall helps us out more if we don't have specific
+            types in the funcs.
 
         They manually added a macro
 
@@ -31,6 +37,13 @@ Compare with original
     Differences in SDL_h.jl
         Mine uses @cenum, and that makes the diff a huge mess. I'll work on it another time.
 
+        They've made some manual changes to Events (mostly just adding AbstractEvent as a parent)
+
+        They've made empty structs for some CVoid types (mine just sets typename = CVoid
+
+        They've capitalised some type names (mutex, sem) - seems like a bad idea? Names should be consistent, probably.
+
+
 ## Future work
 
 Once the experimentation is over, the downloading and extracting code can go
@@ -42,6 +55,33 @@ Decide if the opengl headers should be excluded or not.
 Try running your examples with these bindings.
 
 Maybe parse and rewrite the files rather than string mangling.
+
+
+### How to integrate manual changes
+
+e.g. I'd want to edit SDL_Event and rename WindowShowMode
+
+If the diffs are stable enough across versions I could just manually merge. Let's test that...
+    Functions move up and down in an unpredictable way between 2.0.5 and 2.0.12, so lexical sorting at least within each file would probably be sensible.
+
+
+### SDL_ prefix issue
+
+Literally every function has an SDL_ prefix, so we can remove those fine.
+
+With the structures and constants, however, there's a mix and we'll get (rare)
+collisions if we just automatically remove all prefixes (WindowShowMode and
+SDL_WindowShowMode are both defined, for example).
+
+
+### Low priority aesthetic issues
+
+Some types have lowercase names (mutex, sem, semaphore) (Maybe shouldn't fix this?)
+
+Some types are aliased (Uint64 - UInt64, sem - semaphore, ...)
+
+There are docstrings in the headers that we could extract. This site has them, but it's not very ergonomic. We could extract them with doxygen or whatever.
+https://happiness_follows.gitee.io/doc_translate/SDL2-2.0.7/html/annotated.html
 
 """
 
@@ -77,12 +117,20 @@ using DataDeps: unpack
 isdir("SDL2-$sdl2_version") ||
     unpack("downloads/SDL2-$sdl2_version.tar.gz"; keep_originals=true)
 
-# Generate .jl
+
+### Generate bindings
+
 # This is copied from the Clang.jl readme and then I changed the obvious bits.
 using Clang: CLANG_INCLUDE, InternalOptions, init
 
-# Clang complains that it can't find stddef.h, but that probably doesn't matter. Can add to the include line if it does.
+# On windows, Clang will complain that it can't find a load of headers and this
+# genuinely causes problems. Set a proper include or compile on a system where
+# clang is more likely to find the headers.
 LIBSDL_INCLUDE = "SDL2-$sdl2_version/include/"
+
+# readdir() sorts the names, and Clang seems to generate the bindinds
+# sequentially in this order, so that should make our diffs easy to read
+# between versions
 LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_INCLUDE) if endswith(header, ".h")]
 
 # I think Jonathan excluded these, too.
@@ -111,7 +159,8 @@ wc = init(; headers = LIBSDL_HEADERS,
 
 run(wc)
 
-# Remove SDL_
+
+### Remove SDL_ prefix
 
 function rm_SDL_(fn)
     str = String(read(fn))
@@ -122,7 +171,8 @@ end
 rm_SDL_(SDL_jl)
 rm_SDL_(SDL_h_jl)
 
-# Compare them
+
+### Compare with original
 
 """
 Give diff a chance to work by sorting the blocks
