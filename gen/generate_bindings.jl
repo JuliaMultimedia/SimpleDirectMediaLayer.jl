@@ -64,7 +64,9 @@ urls = [
 # Get sources
 mkpath("downloads")
 for (_, url) in urls
-    download(url, joinpath("downloads", basename(url)))
+    if !isfile(joinpath("downloads", basename(url)))
+        download(url, joinpath("downloads", basename(url)))
+    end
 end
 
 # Unpack their include dirs
@@ -72,7 +74,8 @@ using DataDeps: unpack
 
 # Let's just do this one at a time for now.
 
-unpack("downloads/SDL2-$sdl2_version.tar.gz"; keep_originals=true)
+isdir("SDL2-$sdl2_version") ||
+    unpack("downloads/SDL2-$sdl2_version.tar.gz"; keep_originals=true)
 
 # Generate .jl
 # This is copied from the Clang.jl readme and then I changed the obvious bits.
