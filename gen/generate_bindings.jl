@@ -103,7 +103,7 @@ wc = init(; headers = LIBSDL_HEADERS,
             #= clang_args = ["-I", joinpath(STDLIB_INCLUDE, "..")], =#
             # I don't know what this does, but deleting it gives us an error.
             header_wrapped = (root, current) -> root == current,
-            header_library = x -> "libsdl",
+            header_library = x -> "libsdl2",
             # Generate mutable structs
             options = InternalOptions(true, true),
             )
