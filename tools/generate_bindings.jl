@@ -1,0 +1,121 @@
+"""
+Generate bindings for SDL from the C source
+
+
+## Outline
+
+Download and extract source
+Run Clang.jl on it
+Remove extra SDL_ bit
+Compare with original
+
+    Some of these are manual changes, some will be due to Clang.jl changes. Some might be
+    deliberate configuration differences.
+    
+    Differences in SDL.jl
+        They manually changed a bunch of types from Cint to more specific things.
+        I don't know whether that was required to get things to run or whether they 
+        just wanted the documentation.
+
+        They have type annotations in the functions signature most of the time and I don't
+
+        They manually added a macro
+
+        There are a few more functions in mine
+
+        There are a load of _mm_* functions in theirs
+
+        Some functions in mine take and return no arguments when they definitely should
+        (iconv, writeu8, utf8strlcpy)
+
+    Differences in SDL_h.jl
+        Mine uses @cenum, and that makes the diff a huge mess. I'll work on it another time.
+"""
+
+# Latest
+# sdl2_version = "2.0.12"
+
+# The version in the comment of SDL.jl
+sdl2_version = "2.0.5"
+
+urls = [
+    :sdl2 => "http://www.libsdl.org/release/SDL2-$sdl2_version.tar.gz"
+    # :sdl2_image => "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.5.tar.gz"
+    # :sdl2_mixer => "https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz"
+    # :sdl2_ttf => "https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.15.tar.gz"
+]
+
+# Get sources
+mkpath("downloads")
+for (_, url) in urls
+    download(url, joinpath("downloads", basename(url)))
+end
+
+# Unpack their include dirs
+using DataDeps: unpack
+
+# Let's just do this one at a time for now.
+
+unpack("downloads/SDL2-$sdl2_version.tar.gz"; keep_originals=true)
+
+# Generate .jl
+using Clang: CLANG_INCLUDE, init
+
+# This is copied from the Clang.jl readme and then I changed the obvious bits and deleted everything that
+# could be deleted without breaking it.
+LIBSDL_INCLUDE = "SDL2-$sdl2_version/include/"
+LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_INCLUDE) if endswith(header, ".h")]
+
+# I think Jonathan excluded these, too.
+filter!(!fn -> occursin("test", fn), LIBSDL_HEADERS)
+filter!(!fn -> occursin("opengl", fn), LIBSDL_HEADERS)
+
+wc = init(; headers = LIBSDL_HEADERS,          
+            output_file = joinpath(@__DIR__, "libsdl_api.jl"),
+            common_file = joinpath(@__DIR__, "libsdl_common.jl"),
+            clang_includes = vcat(LIBSDL_INCLUDE, CLANG_INCLUDE),
+            # clang_args = ["-I", joinpath(LIBSDL_INCLUDE, "..")],
+            # I don't know what this does, but deleting it gives us an error.
+            header_wrapped = (root, current) -> root == current,
+            )
+
+run(wc)
+
+# Remove SDL_
+
+function rm_SDL_(fn)
+    str = String(read(fn))
+    str = replace(str, r"([^:])SDL_" => s"\1");
+    write(fn, str)
+end
+
+rm_SDL_("libsdl_api.jl")
+rm_SDL_("libsdl_common.jl")
+
+# Compare them
+
+"""
+Give diff a chance to work by sorting the blocks
+
+Pretty useless with the `common` output because of the enums.
+
+"""
+function normjl(filename)
+    lines = readlines(filename)
+    lines = filter(s -> !startswith(s, "#"), lines)
+
+    funcs = split(join(lines, "\n"), "\n\n")
+    funcs = strip.(funcs)
+    funcs = filter(!isempty, funcs)
+    # funcs = replace.(funcs, r"([^:])SDL_" => s"\1");
+    funcs = sort(funcs)
+    
+    str = join(funcs, "\n\n")
+    return str
+end
+
+write("mine.jl", normjl("libsdl_api.jl"))
+write("theirs.jl", normjl("../src/lib/SDL.jl"))
+
+write("mine_h.jl", normjl("libsdl_common.jl"))
+write("theirs_h.jl", normjl("../src/lib/SDL_h.jl"))
