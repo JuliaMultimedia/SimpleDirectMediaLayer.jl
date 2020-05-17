@@ -30,7 +30,23 @@ Compare with original
 
     Differences in SDL_h.jl
         Mine uses @cenum, and that makes the diff a huge mess. I'll work on it another time.
+
+## Future work
+
+Once the experimentation is over, the downloading and extracting code can go
+and we can just vendor the includes from the right SDL2 version, maybe keeping
+a script for downloading and extracting them for the future. Maybe not.
+
+Decide if the opengl headers should be excluded or not.
+
+Try running your examples with these bindings.
+
+Maybe parse and rewrite the files rather than string mangling.
+
 """
+
+const dir = @__DIR__
+cd(dir)
 
 # Latest
 # sdl2_version = "2.0.12"
@@ -70,7 +86,7 @@ LIBSDL_HEADERS = [joinpath(LIBSDL_INCLUDE, header) for header in readdir(LIBSDL_
 filter!(!fn -> occursin("test", fn), LIBSDL_HEADERS)
 filter!(!fn -> occursin("opengl", fn), LIBSDL_HEADERS)
 
-bindings_dir = joinpath(@__DIR__, "bindings")
+bindings_dir = joinpath(dir, "bindings")
 SDL_jl = joinpath(bindings_dir, "SDL.jl")
 SDL_h_jl = joinpath(bindings_dir, "SDL_h.jl")
 
@@ -122,8 +138,8 @@ function normjl(filename)
     return str
 end
 
-write("mine.jl", normjl(SDL_jl))
-write("theirs.jl", normjl("../src/lib/SDL.jl"))
+write("bindings/mine.jl", normjl(SDL_jl))
+write("bindings/theirs.jl", normjl("../src/lib/SDL.jl"))
 
-write("mine_h.jl", normjl(SDL_h_jl))
-write("theirs_h.jl", normjl("../src/lib/SDL_h.jl"))
+write("bindings/mine_h.jl", normjl(SDL_h_jl))
+write("bindings/theirs_h.jl", normjl("../src/lib/SDL_h.jl"))
