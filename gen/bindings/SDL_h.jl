@@ -14,8 +14,9 @@ const ASSERT_LEVEL = 2
 
 # Skipping MacroDefinition: TriggerBreakpoint ( ) __asm__ __volatile__ ( "int $3\n\t" )
 
-const FILE = __FILE__
-const LINE = __LINE__
+#= # Pointless =#
+#= const FILE = __FILE__ =#
+#= const LINE = __LINE__ =#
 const NULL_WHILE_LOOP_CONDITION = 0
 
 # Skipping MacroDefinition: disabled_assert ( condition ) do { ( void ) sizeof ( ( condition ) ) ; } while ( NULL_WHILE_LOOP_CONDITION )
@@ -139,7 +140,8 @@ end
 const CACHELINE_SIZE = 128
 const LIL_ENDIAN = 1234
 const BIG_ENDIAN = 4321
-const BYTEORDER = __BYTE_ORDER
+#= # Pointless. Aliases a C macro we didn't copy. =#
+#= const BYTEORDER = __BYTE_ORDER =#
 
 # Skipping MacroDefinition: SwapLE16 ( X ) ( X )
 # Skipping MacroDefinition: SwapLE32 ( X ) ( X )
@@ -759,7 +761,9 @@ mutable struct SysWMEvent
 end
 
 mutable struct Event
-    padding::NTuple{56, Uint8}
+    _Event::NTuple{56, Uint8}
+    # This should probably be defined manually.
+    #= padding::NTuple{56, Uint8} =#
 end
 
 @cenum eventaction::UInt32 begin
@@ -1166,6 +1170,7 @@ const MUTEX_TIMEDOUT = 1
 # Skipping MacroDefinition: mutexP ( m ) LockMutex ( m )
 # Skipping MacroDefinition: mutexV ( m ) UnlockMutex ( m )
 
+#= # I don't really need to keep these changed, but they no longer do anything =#
 const mutex = Cvoid
 const semaphore = Cvoid
 const sem = semaphore
@@ -1335,7 +1340,9 @@ const WINDOW_LACKS_SHAPE = -3
 
 # Skipping MacroDefinition: SHAPEMODEALPHA ( mode ) ( mode == ShapeModeDefault || mode == ShapeModeBinarizeAlpha || mode == ShapeModeReverseBinarizeAlpha )
 
-@cenum WindowShapeMode::UInt32 begin
+#= # I added an underscore here to prevent the enum and the struct having the same =#
+#= # name once the SDL_ prefix is removed. =#
+@cenum _WindowShapeMode::UInt32 begin
     ShapeModeDefault = 0
     ShapeModeBinarizeAlpha = 1
     ShapeModeReverseBinarizeAlpha = 2
@@ -1348,7 +1355,8 @@ mutable struct WindowShapeParams
 end
 
 mutable struct WindowShapeMode
-    mode::WindowShapeMode
+    #= mode::WindowShapeMode =#
+    mode::_WindowShapeMode
     parameters::WindowShapeParams
 end
 
@@ -1360,16 +1368,19 @@ end
 # Skipping MacroDefinition: const_cast ( type , expression ) ( ( type ) ( expression ) )
 # Skipping MacroDefinition: FOURCC ( A , B , C , D ) ( ( static_cast ( Uint32 , static_cast ( Uint8 , ( A ) ) ) << 0 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( B ) ) ) << 8 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( C ) ) ) << 16 ) | ( static_cast ( Uint32 , static_cast ( Uint8 , ( D ) ) ) << 24 ) )
 
+#= # More pointless macros =#
+#= # These ones define format strings for printf for different types =#
 const PRIs64 = "ld"
 const PRIu64 = "lu"
 const PRIx64 = "lx"
 const PRIX64 = "lX"
-const IN_BYTECAP = x
-const INOUT_Z_CAP = x
-const OUT_Z_CAP = x
-const OUT_CAP = x
-const OUT_BYTECAP = x
-const OUT_Z_BYTECAP = x
+#= # More pointless macros =#
+#= const IN_BYTECAP = x =#
+#= const INOUT_Z_CAP = x =#
+#= const OUT_Z_CAP = x =#
+#= const OUT_CAP = x =#
+#= const OUT_BYTECAP = x =#
+#= const OUT_Z_BYTECAP = x =#
 
 # Skipping MacroDefinition: PRINTF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __printf__ , fmtargnumber , fmtargnumber + 1 ) ) )
 # Skipping MacroDefinition: SCANF_VARARG_FUNC ( fmtargnumber ) __attribute__ ( ( format ( __scanf__ , fmtargnumber , fmtargnumber + 1 ) ) )
@@ -1391,10 +1402,12 @@ const M_PI = 3.141592653589793
 # Skipping MacroDefinition: iconv_utf8_ucs2 ( S ) ( Uint16 * ) iconv_string ( "UCS-2-INTERNAL" , "UTF-8" , S , strlen ( S ) + 1 )
 # Skipping MacroDefinition: iconv_utf8_ucs4 ( S ) ( Uint32 * ) iconv_string ( "UCS-4-INTERNAL" , "UTF-8" , S , strlen ( S ) + 1 )
 
-@cenum bool::UInt32 begin
-    FALSE = 0
-    TRUE = 1
-end
+#= # Some of the tests pass a UInt32 in where we now expect a `bool` and there's =#
+#= # no automatic conversion yet. =#
+#= @cenum bool::UInt32 begin =#
+#=     FALSE = 0 =#
+#=     TRUE = 1 =#
+#= end =#
 
 
 const Sint8 = Int8
@@ -1425,8 +1438,9 @@ const DONTFREE = 0x00000004
 # Skipping MacroDefinition: LoadBMP ( file ) LoadBMP_RW ( RWFromFile ( file , "rb" ) , 1 )
 # Skipping MacroDefinition: SaveBMP ( surface , file ) SaveBMP_RW ( surface , RWFromFile ( file , "wb" ) , 1 )
 
-const BlitSurface = UpperBlit
-const BlitScaled = UpperBlitScaled
+#= # These are function aliases, but _h is included before the api, so they don't work. =#
+#= const BlitSurface = UpperBlit =#
+#= const BlitScaled = UpperBlitScaled =#
 
 mutable struct Surface
     flags::Uint32

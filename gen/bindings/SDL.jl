@@ -985,75 +985,75 @@ end
 
 
 function CreateMutex()
-    ccall((:SDL_CreateMutex, libsdl2), Ptr{mutex}, ())
+    ccall((:SDL_CreateMutex, libsdl2), Ptr{Mutex}, ())
 end
 
 function LockMutex(mutex)
-    ccall((:SDL_LockMutex, libsdl2), Cint, (Ptr{mutex},), mutex)
+    ccall((:SDL_LockMutex, libsdl2), Cint, (Ptr{Mutex},), mutex)
 end
 
 function TryLockMutex(mutex)
-    ccall((:SDL_TryLockMutex, libsdl2), Cint, (Ptr{mutex},), mutex)
+    ccall((:SDL_TryLockMutex, libsdl2), Cint, (Ptr{Mutex},), mutex)
 end
 
 function UnlockMutex(mutex)
-    ccall((:SDL_UnlockMutex, libsdl2), Cint, (Ptr{mutex},), mutex)
+    ccall((:SDL_UnlockMutex, libsdl2), Cint, (Ptr{Mutex},), mutex)
 end
 
 function DestroyMutex(mutex)
-    ccall((:SDL_DestroyMutex, libsdl2), Cvoid, (Ptr{mutex},), mutex)
+    ccall((:SDL_DestroyMutex, libsdl2), Cvoid, (Ptr{Mutex},), mutex)
 end
 
 function CreateSemaphore(initial_value)
-    ccall((:SDL_CreateSemaphore, libsdl2), Ptr{sem}, (Uint32,), initial_value)
+    ccall((:SDL_CreateSemaphore, libsdl2), Ptr{Sem}, (Uint32,), initial_value)
 end
 
 function DestroySemaphore(sem)
-    ccall((:SDL_DestroySemaphore, libsdl2), Cvoid, (Ptr{sem},), sem)
+    ccall((:SDL_DestroySemaphore, libsdl2), Cvoid, (Ptr{Sem},), sem)
 end
 
 function SemWait(sem)
-    ccall((:SDL_SemWait, libsdl2), Cint, (Ptr{sem},), sem)
+    ccall((:SDL_SemWait, libsdl2), Cint, (Ptr{Sem},), sem)
 end
 
 function SemTryWait(sem)
-    ccall((:SDL_SemTryWait, libsdl2), Cint, (Ptr{sem},), sem)
+    ccall((:SDL_SemTryWait, libsdl2), Cint, (Ptr{Sem},), sem)
 end
 
 function SemWaitTimeout(sem, ms)
-    ccall((:SDL_SemWaitTimeout, libsdl2), Cint, (Ptr{sem}, Uint32), sem, ms)
+    ccall((:SDL_SemWaitTimeout, libsdl2), Cint, (Ptr{Sem}, Uint32), sem, ms)
 end
 
 function SemPost(sem)
-    ccall((:SDL_SemPost, libsdl2), Cint, (Ptr{sem},), sem)
+    ccall((:SDL_SemPost, libsdl2), Cint, (Ptr{Sem},), sem)
 end
 
 function SemValue(sem)
-    ccall((:SDL_SemValue, libsdl2), Uint32, (Ptr{sem},), sem)
+    ccall((:SDL_SemValue, libsdl2), Uint32, (Ptr{Sem},), sem)
 end
 
 function CreateCond()
-    ccall((:SDL_CreateCond, libsdl2), Ptr{cond}, ())
+    ccall((:SDL_CreateCond, libsdl2), Ptr{Cond}, ())
 end
 
-function DestroyCond(cond)
-    ccall((:SDL_DestroyCond, libsdl2), Cvoid, (Ptr{cond},), cond)
+function DestroyCond(cond::Ptr{Cond})
+    ccall((:SDL_DestroyCond, libsdl2), Cvoid, (Ptr{Cond},), cond)
 end
 
 function CondSignal(cond)
-    ccall((:SDL_CondSignal, libsdl2), Cint, (Ptr{cond},), cond)
+    ccall((:SDL_CondSignal, libsdl2), Cint, (Ptr{Cond},), cond)
 end
 
 function CondBroadcast(cond)
-    ccall((:SDL_CondBroadcast, libsdl2), Cint, (Ptr{cond},), cond)
+    ccall((:SDL_CondBroadcast, libsdl2), Cint, (Ptr{Cond},), cond)
 end
 
 function CondWait(cond, mutex)
-    ccall((:SDL_CondWait, libsdl2), Cint, (Ptr{cond}, Ptr{mutex}), cond, mutex)
+    ccall((:SDL_CondWait, libsdl2), Cint, (Ptr{Cond}, Ptr{Mutex}), cond, mutex)
 end
 
 function CondWaitTimeout(cond, mutex, ms)
-    ccall((:SDL_CondWaitTimeout, libsdl2), Cint, (Ptr{cond}, Ptr{mutex}, Uint32), cond, mutex, ms)
+    ccall((:SDL_CondWaitTimeout, libsdl2), Cint, (Ptr{Cond}, Ptr{Mutex}, Uint32), cond, mutex, ms)
 end
 # Julia wrapper for header: name.h
 # Automatically generated using Clang.jl
