@@ -34,6 +34,8 @@ Compare with original
         Some functions in mine take and return no arguments when they definitely should
         (iconv, writeu8, utf8strlcpy)
 
+            This was fixed by running on linux
+
     Differences in SDL_h.jl
         Mine uses @cenum, and that makes the diff a huge mess. I'll work on it another time.
 
@@ -44,17 +46,40 @@ Compare with original
         They've capitalised some type names (mutex, sem) - seems like a bad idea? Names should be consistent, probably.
 
 
+## Next
+
+Run the tests with these bindings.
+
+
 ## Future work
 
 Once the experimentation is over, the downloading and extracting code can go
 and we can just vendor the includes from the right SDL2 version, maybe keeping
 a script for downloading and extracting them for the future. Maybe not.
 
-Decide if the opengl headers should be excluded or not.
+Decide if the opengl, opengles, vulkan, metal, headers should be excluded or not.
 
 Try running your examples with these bindings.
 
 Maybe parse and rewrite the files rather than string mangling.
+
+Find out why `using SimpleDirectMediaLayer` is slow:
+
+    `julia -e using pkgname`
+
+    time(s) pkgname
+    6.7     SimpleDirectMediaLayer
+    6.6     SDL2_jll, SDL2_image_jll, SDL2_mixer_jll, SDL2_ttf_jll, ColorTypes
+    5.7     SDL2_jll, SDL2_image_jll, SDL2_mixer_jll, SDL2_ttf_jll
+    3.5     SDL2_jll
+    4.5     SDL2_image_jll
+    1.2     ColorTypes
+
+    3.0     Strs
+    1.5     ThreadsX
+
+    Suggests we can only save time by loading the jlls lazily or by modifying
+    the dependencies directly.
 
 
 ### How to integrate manual changes
