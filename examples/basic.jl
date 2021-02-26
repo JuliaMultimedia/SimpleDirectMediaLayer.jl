@@ -1,20 +1,4 @@
-# Simple DirectMedia Layer
-
-
-[![Coverage Status](https://coveralls.io/repos/github/jonathanBieler/SimpleDirectMediaLayer.jl/badge.svg?branch=master)](https://coveralls.io/github/jonathanBieler/SimpleDirectMediaLayer.jl?branch=master)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
-Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). 
-
-## Installation
-```
-add SimpleDirectMediaLayer
-```
-
-Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
-
-## Quick start
-```
+# ref: https://www.geeksforgeeks.org/sdl-library-in-c-c-with-examples/
 using SimpleDirectMediaLayer.LibSDL2
 
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)

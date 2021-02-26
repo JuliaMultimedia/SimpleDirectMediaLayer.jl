@@ -1,140 +1,105 @@
-using SimpleDirectMediaLayer
-const SDL2 = SimpleDirectMediaLayer
+using SimpleDirectMediaLayer.LibSDL2
 using Test
 
-SDL2_pkg_dir = joinpath(@__DIR__, "..","..")
+SDL2_pkg_dir = joinpath(@__DIR__, "..", "..")
 
 @testset "Init+Quit" begin
-# Test that you can init and quit SDL multiple times correctly.
-@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
-SDL2.Quit()
+    # Test that you can init and quit SDL multiple times correctly.
+    @test SDL_Init(SDL_INIT_VIDEO) == 0
+    SDL_Quit()
 
-@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
-SDL2.Quit()
+    @test SDL_Init(SDL_INIT_VIDEO) == 0
+    SDL_Quit()
 end
 
 
 @testset "Window open+close" begin
-@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
-# Create window
-win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int32(400),
-         UInt32(SDL2.WINDOW_SHOWN))
-@test win != C_NULL
+    @test SDL_Init(SDL_INIT_VIDEO) == 0
+    # Create window
+    win = SDL_CreateWindow("Hello World!", 100, 100, 300, 400, SDL_WINDOW_HIDDEN)
+    @test win != C_NULL
 
-renderer = SDL2.CreateRenderer(win, Int32(-1),
-             UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
-if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-    @test_broken renderer != C_NULL
-else
+    renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
+    if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+        @test_broken renderer != C_NULL
+    else
+        @test renderer != C_NULL
+    end
+
+    # Close window
+    SDL_DestroyWindow(win)
+
+    # Create window again
+    win = SDL_CreateWindow("Hello World!", 100, 100, 300, 400, SDL_WINDOW_HIDDEN)
+    @test win != C_NULL
+    renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
     @test renderer != C_NULL
-end
 
-# Close window
-SDL2.DestroyWindow(win)
-
-# Create window again
-win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int32(400),
-         UInt32(SDL2.WINDOW_SHOWN))
-@test win != C_NULL
-renderer = SDL2.CreateRenderer(win, Int32(-1),
-             UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
-if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-    @test_broken renderer != C_NULL
-else
-    @test renderer != C_NULL
-end
-
-SDL2.Quit()
+    SDL_Quit()
 end
 
 @testset "Window" begin
-@test 0 == SDL2.Init(UInt32(SDL2.INIT_VIDEO))
+    @test SDL_Init(SDL_INIT_VIDEO) == 0
 
-win = SDL2.CreateWindow("Hello World!", Int32(100), Int32(100), Int32(300), Int32(400),
-         UInt32(SDL2.WINDOW_SHOWN))
+    win = SDL_CreateWindow("Hello World!", 100, 100, 300, 400, SDL_WINDOW_HIDDEN)
 
-# Test get size
-w,h = Int32[-1],Int32[-1]
-SDL2.GetWindowSize(win, w,h)
-@test 300 == w[]
-@test 400 == h[]
+    # Test get size
+    w, h = Ref{Cint}(-1), Ref{Cint}(-1)
+    SDL_GetWindowSize(win, w, h)
+    @test w[] == 300
+    @test h[] == 400
 
-e = SDL2.event()
-@test typeof(e) <: SDL2.WindowEvent
+    # Test drawing
+    renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
 
-# Test drawing
-renderer = SDL2.CreateRenderer(win, Int32(-1),
-             UInt32(SDL2.RENDERER_ACCELERATED | SDL2.RENDERER_PRESENTVSYNC))
+    rect = SDL_Rect(1, 1, 50, 50)
+    @test SDL_RenderFillRect(renderer, Ref(rect)) == 0
 
-rect = SDL2.Rect(1,1,50,50)
-if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-    @test_broken 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
-else
-    @test 0 == SDL2.RenderFillRect(renderer, pointer_from_objref(rect) )
-end
+    @testset "Load/Save BMP" begin
+        img = SDL_LoadBMP_RW(SDL_RWFromFile(joinpath(SDL2_pkg_dir, "assets/cat.bmp"), "rb"), 1)
+        @test img != C_NULL
 
+        img_tex = SDL_CreateTextureFromSurface(renderer, img)
+        @test img_tex != C_NULL
 
-@testset "Load/Save BMP" begin
+        src = SDL_Rect(0,0,0,0)
+        @test SDL_RenderCopy(renderer, img_tex, C_NULL, C_NULL) == 0 # Fill the renderer with img
+        SDL_RenderPresent(renderer)
 
-img = SDL2.LoadBMP(joinpath(SDL2_pkg_dir, "assets/cat.bmp"))
-@test img != C_NULL
+        # Save bmp
+        tmpFile = tempname()*".bmp"
+        @test SDL_SaveBMP_RW(img, SDL_RWFromFile(tmpFile, "w"), 1) == 0
 
-img_tex = SDL2.CreateTextureFromSurface(renderer, img);
-if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-    @test_broken img_tex != C_NULL
-else
-    @test img_tex != C_NULL
-end
+        img2 = SDL_LoadBMP_RW(SDL_RWFromFile(tmpFile, "r"), 1)
+        @test img2 != C_NULL
 
+        # Compare the two images
+        # Some surfaces must be locked before accessing pixels.
+        @test 0 == SDL_LockSurface(img)
+        @test 0 == SDL_LockSurface(img2)
 
-src = SDL2.Rect(0,0,0,0)
-if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-    @test_broken 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
-else
-    @test 0 == SDL2.RenderCopy(renderer, img_tex, C_NULL, C_NULL) # Fill the renderer with img
-end
-SDL2.RenderPresent(renderer)
+        img_surface1 = unsafe_load(img)
+        img_surface2 = unsafe_load(img2)
 
-# Save bmp
-tmpFile = tempname()*".bmp"
-@test 0 == SDL2.SaveBMP(img, tmpFile)
+        @test (img_surface1.w, img_surface1.h) == (img_surface2.w, img_surface2.h)
 
-img2 = SDL2.LoadBMP(tmpFile)
-@test img2 != C_NULL
+        @test img_surface1.format != C_NULL
+        @test img_surface2.format != C_NULL
 
-# Compare the two images
-if SDL2.MUSTLOCK(img)
-    # Some surfaces must be locked before accessing pixels.
-    @test 0 == SDL2.LockSurface(img)
-    @test 0 == SDL2.LockSurface(img2)
-end
+        # Test pixels are equal
+        pxl_format1 = unsafe_load(img_surface1.format)
+        numPixelBytes = img_surface1.w * img_surface1.h * pxl_format1.BytesPerPixel
+        pixels1 = [unsafe_load(Ptr{UInt8}(img_surface1.pixels), i) for i in 1:numPixelBytes]
+        pixels2 = [unsafe_load(Ptr{UInt8}(img_surface2.pixels), i) for i in 1:numPixelBytes]
 
-img_surface1 = unsafe_load(img)
-img_surface2 = unsafe_load(img2)
+        @test pixels1 == pixels2
 
-@test (img_surface1.w, img_surface1.h) == (img_surface2.w, img_surface2.h)
+        # Some surfaces must be locked/unlocked while accessing pixels.
+        SDL_UnlockSurface(img)
+        SDL_UnlockSurface(img2)
+    end
 
-@test img_surface1.format != C_NULL
-@test img_surface2.format != C_NULL
-
-# Test pixels are equal
-pxl_format1 = unsafe_load(img_surface1.format)
-numPixelBytes = img_surface1.w * img_surface1.h * pxl_format1.BytesPerPixel
-pixels1 = [unsafe_load(Ptr{UInt8}(img_surface1.pixels), i) for i in 1:numPixelBytes]
-pixels2 = [unsafe_load(Ptr{UInt8}(img_surface2.pixels), i) for i in 1:numPixelBytes]
-
-@test pixels1 == pixels2
-
-if SDL2.MUSTLOCK(img)
-    # Some surfaces must be locked/unlocked while accessing pixels.
-    SDL2.UnlockSurface(img)
-    SDL2.UnlockSurface(img2)
-end
-
-end  # @testset "BMP"
-
-# Close window
-SDL2.DestroyWindow(win)
-
-SDL2.Quit()
+    # Close window
+    SDL_DestroyWindow(win)
+    SDL_Quit()
 end

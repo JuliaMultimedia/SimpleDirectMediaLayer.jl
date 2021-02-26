@@ -1,63 +1,51 @@
-__precompile__()
 module SimpleDirectMediaLayer
 
-    using SDL2_jll
-    using SDL2_mixer_jll
-    using SDL2_image_jll
-    using SDL2_ttf_jll
-
-    Base.@deprecate_binding libSDL2       SimpleDirectMediaLayer.libsdl2       false
-    Base.@deprecate_binding libSDL2_mixer SimpleDirectMediaLayer.libsdl2_mixer false
-    Base.@deprecate_binding libSDL2_ttf   SimpleDirectMediaLayer.libsdl2_ttf   false
+    include("LibSDL2.jl")
+    using .LibSDL2
 
     using ColorTypes
 
     import Base.unsafe_convert
     export  TTF_Init, TTF_OpenFont, TTF_RenderText_Blended, TTF_SizeText
 
-    include("lib/SDL.jl")
-    include("lib/SDL_ttf.jl")
-    include("lib/SDL_mixer.jl")
-    include("lib/SDL_image.jl")
-
     mutable struct SDLWindow
-        win::Ptr{Window}
-        renderer::Ptr{Renderer}
+        win::Ptr{SDL_Window}
+        renderer::Ptr{SDL_Renderer}
 
         function SDLWindow(w,h,title="SDL Window")
-            win = CreateWindow(title, Int32(100), Int32(100), Int32(w), Int32(h), UInt32(WINDOW_SHOWN | WINDOW_INPUT_FOCUS))
-            SetWindowResizable(win,true)
+            win = SDL_CreateWindow(title, Int32(100), Int32(100), Int32(w), Int32(h), UInt32(SDL_WINDOW_SHOWN | SDL_WINDOW_INPUT_FOCUS))
+            SDL_SetWindowResizable(win,true)
 
-            renderer = CreateRenderer(win, Int32(-1), UInt32(RENDERER_ACCELERATED | RENDERER_PRESENTVSYNC) )
+            renderer = SDL_CreateRenderer(win, Int32(-1), UInt32(SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC) )
 
             new(win, renderer)
         end
     end
 
     function init()
-        GL_SetAttribute(GL_MULTISAMPLEBUFFERS, 4)
-        GL_SetAttribute(GL_MULTISAMPLESAMPLES, 4)
-        Init(UInt32(INIT_VIDEO))
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 4)
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4)
+        SDL_Init(UInt32(SDL_INIT_VIDEO))
         TTF_Init()
         Mix_OpenAudio(Int32(22050), UInt16(MIX_DEFAULT_FORMAT), Int32(2), Int32(1024) )
     end
 
     function mouse_position()
         x,y = Int[1], Int[1]
-        GetMouseState(pointer(x), pointer(y))
+        SDL_GetMouseState(pointer(x), pointer(y))
         x[1],y[1]
     end
 
     function event()
-        ev = Event(ntuple(i->UInt8(0),56))
-        PollEvent(pointer_from_objref(ev)) == 0 && return nothing
+        ev = SDL_Event(ntuple(i->UInt8(0),56))
+        SDL_PollEvent(pointer_from_objref(ev)) == 0 && return nothing
 
         t = UInt32(0)
         for x in ev._Event[4:-1:1]
             t = t << (sizeof(x)*8)
             t |= x
         end
-        evtype = Event(t)
+        evtype = SDL_Event(t)
         evtype == nothing && return nothing
 
         unsafe_load( Ptr{evtype}(pointer_from_objref(ev)) )
