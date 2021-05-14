@@ -5,7 +5,7 @@ SDL2_pkg_dir = joinpath(@__DIR__, "..", "..")
 audio_example_assets_dir = joinpath(SDL2_pkg_dir, "examples", "audio_example")
 
 # check that an audio device if available
-SDL_Init(SDL_INIT_VIDEO)
+SDL_Init(SDL_INIT_AUDIO)
 device = Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024)
 
 if device == 0
@@ -14,19 +14,19 @@ if device == 0
 
     @testset "Init+Quit" begin
         # Test that you can init and quit SDL_mixer multiple times correctly.
-        @test SDL_Init(SDL_INIT_VIDEO) == 0
+        @test SDL_Init(SDL_INIT_AUDIO) == 0
         @test Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == 0
         Mix_CloseAudio()
         SDL_Quit()
 
-        @test SDL_Init(SDL_INIT_VIDEO) == 0
+        @test SDL_Init(SDL_INIT_AUDIO) == 0
         @test Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == 0
         Mix_CloseAudio()
         SDL_Quit()
     end
 
     @testset "Sounds" begin
-        SDL_Init(0)
+        SDL_Init(SDL_INIT_AUDIO)
         Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024)
 
         med = Mix_LoadWAV_RW(SDL_RWFromFile(joinpath(audio_example_assets_dir, "medium.wav"), "rb"), 1)
@@ -50,7 +50,7 @@ if device == 0
     end
 
     @testset "Music" begin
-        SDL_Init(0)
+        SDL_Init(SDL_INIT_AUDIO)
         Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024)
 
         # Load the music

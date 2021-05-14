@@ -1,11 +1,9 @@
 # This file transformed from Lazy Foo' Productions "Playing Sounds" tutorial:
 # http://lazyfoo.net/SDL_tutorials/lesson11/index.php
 
-using SimpleDirectMediaLayer
 using SimpleDirectMediaLayer.LibSDL2
-const SDL2 = SimpleDirectMediaLayer
 
-SDL2.init()
+SDL_Init(SDL_INIT_AUDIO)
 
 #Load the music
 aud_files = dirname(@__FILE__)
@@ -15,11 +13,11 @@ if (music == C_NULL)
     error("$aud_files/beat.wav not found.")
 end
 
-# scratch = Mix_LoadWAV_RW("$aud_files/scratch.wav")
-# high = Mix_LoadWAV_RW("$aud_files/high.wav")
-# med = Mix_LoadWAV("$aud_files/medium.wav")
-# low = Mix_LoadWAV("$aud_files/low.wav")
-# Mix_PlayChannelTimed( Int32(-1), med, Int32(0) )
+scratch = Mix_LoadWAV_RW(SDL_RWFromFile("$aud_files/scratch.wav", "rb"), 1)
+high = Mix_LoadWAV_RW(SDL_RWFromFile("$aud_files/high.wav", "rb"), 1)
+med = Mix_LoadWAV_RW(SDL_RWFromFile("$aud_files/medium.wav", "rb"), 1)
+low = Mix_LoadWAV_RW(SDL_RWFromFile("$aud_files/low.wav", "rb"), 1)
+Mix_PlayChannelTimed(-1, med, 0, -1)
 
 Mix_PlayMusic(music, -1)
 sleep(1)
