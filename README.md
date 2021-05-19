@@ -1,14 +1,15 @@
 # Simple DirectMedia Layer
 
-
-[![Coverage Status](https://coveralls.io/repos/github/jonathanBieler/SimpleDirectMediaLayer.jl/badge.svg?branch=master)](https://coveralls.io/github/jonathanBieler/SimpleDirectMediaLayer.jl?branch=master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CI](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/ci.yml)
+[![TagBot](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/TagBot.yml/badge.svg)](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/TagBot.yml)
+[![Coverage Status](https://coveralls.io/repos/github/jonathanBieler/SimpleDirectMediaLayer.jl/badge.svg?branch=master)](https://coveralls.io/github/jonathanBieler/SimpleDirectMediaLayer.jl?branch=master)
 
 Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). 
 
 ## Installation
 ```
-add SimpleDirectMediaLayer
+pkg> dev SimpleDirectMediaLayer
 ```
 
 Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
