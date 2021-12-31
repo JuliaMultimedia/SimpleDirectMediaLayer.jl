@@ -8,14 +8,14 @@
 Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). 
 
 ## Installation
-```
+```julia
 pkg> dev SimpleDirectMediaLayer
 ```
 
 Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
 
 ## Quick start
-```
+```julia
 using SimpleDirectMediaLayer.LibSDL2
 
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
@@ -90,3 +90,4 @@ finally
     SDL_DestroyWindow(win)
     SDL_Quit()
 end
+```
