@@ -31,13 +31,22 @@ printer_blacklist = [
     "IMG_GetError",
     "TTF_SetError",
     "TTF_GetError",
+    "_HAS_FALLTHROUGH",
+    "SDL_PRIu32",
+    "SDL_PRIs32",
+    "SDL_PRIx32",
+    "SDL_PRIX32",
+    "HAS_BUILTIN_BSWAP16",
+    "HAS_BUILTIN_BSWAP32",
+    "HAS_BUILTIN_BSWAP64",
+    "HAS_BROKEN_BSWAP",
 ]
 
 
 [codegen.macro]
 macro_mode = "basic"
 
-functionlike_macro_whitelist = [
+functionlike_macro_includelist = [
     "SDL_WINDOWPOS_UNDEFINED_DISPLAY",
     "SDL_WINDOWPOS_CENTERED_DISPLAY",
     "SDL_BUTTON",

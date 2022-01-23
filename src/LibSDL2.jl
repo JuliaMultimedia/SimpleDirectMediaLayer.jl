@@ -6266,8 +6266,6 @@ const __MACOSX__ = 1
 
 # Skipping MacroDefinition: SDL_NORETURN __attribute__ ( ( noreturn ) )
 
-const _HAS_FALLTHROUGH = __has_attribute(__fallthrough__)
-
 # Skipping MacroDefinition: SDL_FALLTHROUGH __attribute__ ( ( __fallthrough__ ) )
 
 const SIZEOF_VOIDP = 8
@@ -6562,14 +6560,6 @@ const SDL_MIN_UINT64 = Uint64(Culonglong(0x0000000000000000))
 
 const SDL_PRIs64 = "lld"
 
-const SDL_PRIs32 = PRId32
-
-const SDL_PRIu32 = PRIu32
-
-const SDL_PRIx32 = PRIx32
-
-const SDL_PRIX32 = PRIX32
-
 const SDL_ASSERT_LEVEL = 2
 
 # Skipping MacroDefinition: SDL_FUNCTION __func__
@@ -6585,14 +6575,6 @@ const SDL_LIL_ENDIAN = 1234
 const SDL_BIG_ENDIAN = 4321
 
 const SDL_BYTEORDER = SDL_LIL_ENDIAN
-
-const HAS_BUILTIN_BSWAP16 = _SDL_HAS_BUILTIN(__builtin_bswap16) || (__GNUC__ > 4 || __GNUC__ == 4 && __GNUC_MINOR__ >= 8)
-
-const HAS_BUILTIN_BSWAP32 = _SDL_HAS_BUILTIN(__builtin_bswap32) || (__GNUC__ > 4 || __GNUC__ == 4 && __GNUC_MINOR__ >= 3)
-
-const HAS_BUILTIN_BSWAP64 = _SDL_HAS_BUILTIN(__builtin_bswap64) || (__GNUC__ > 4 || __GNUC__ == 4 && __GNUC_MINOR__ >= 3)
-
-const HAS_BROKEN_BSWAP = __GNUC__ == 2 && __GNUC_MINOR__ <= 95
 
 const SDL_MUTEX_TIMEDOUT = 1
 
@@ -6700,13 +6682,19 @@ const SDL_BlitScaled = SDL_UpperBlitScaled
 
 const SDL_WINDOWPOS_UNDEFINED_MASK = Cuint(0x1fff0000)
 
+SDL_WINDOWPOS_UNDEFINED_DISPLAY(X) = SDL_WINDOWPOS_UNDEFINED_MASK | X
+
 const SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0)
 
 const SDL_WINDOWPOS_CENTERED_MASK = Cuint(0x2fff0000)
 
+SDL_WINDOWPOS_CENTERED_DISPLAY(X) = SDL_WINDOWPOS_CENTERED_MASK | X
+
 const SDL_WINDOWPOS_CENTERED = SDL_WINDOWPOS_CENTERED_DISPLAY(0)
 
 const SDLK_SCANCODE_MASK = 1 << 30
+
+SDL_BUTTON(X) = 1 << (X - 1)
 
 const SDL_BUTTON_LEFT = 1
 
@@ -7087,6 +7075,8 @@ const SDL_MAJOR_VERSION = 2
 const SDL_MINOR_VERSION = 0
 
 const SDL_PATCHLEVEL = 20
+
+SDL_VERSIONNUM(X, Y, Z) = X * 1000 + Y * 100 + Z
 
 const SDL_COMPILEDVERSION = SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL)
 
