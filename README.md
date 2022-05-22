@@ -9,7 +9,8 @@ Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. Th
 
 ## Installation
 ```julia
-pkg> dev SimpleDirectMediaLayer
+using Pkg
+pkg"add SimpleDirectMediaLayer"
 ```
 
 Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
