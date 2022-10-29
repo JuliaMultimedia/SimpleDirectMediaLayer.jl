@@ -8,14 +8,13 @@
 [![deps](https://juliahub.com/docs/SimpleDirectMediaLayer/deps.svg)](https://juliahub.com/ui/Packages/SimpleDirectMediaLayer/vVozl?t=2)
 [![Genie Downloads](https://shields.io/endpoint?url=https://pkgs.genieframework.com/api/v1/badge/SimpleDirectMediaLayer)](https://pkgs.genieframework.com?packages=SimpleDirectMediaLayer)
 
-Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). 
+Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
 
 ## Installation
 ```julia
 pkg> add SimpleDirectMediaLayer
 ```
-
-Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
+For Linux users, you probably need to manually config the environment variable `ALSA_CONFIG_PATH`. If the path is empty, the default value `/usr/share/alsa/alsa.conf` will be used. Please refer to https://github.com/JuliaPackaging/Yggdrasil/issues/1432 for more details.
 
 ## Quick start
 ```julia
