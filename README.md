@@ -1,21 +1,25 @@
 # Simple DirectMedia Layer
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CI](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/ci.yml)
 [![TagBot](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/TagBot.yml/badge.svg)](https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl/actions/workflows/TagBot.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jonathanBieler/SimpleDirectMediaLayer.jl/badge.svg?branch=master)](https://coveralls.io/github/jonathanBieler/SimpleDirectMediaLayer.jl?branch=master)
+[![pkgeval](https://juliahub.com/docs/SimpleDirectMediaLayer/pkgeval.svg)](https://juliahub.com/ui/Packages/SimpleDirectMediaLayer/vVozl)
+[![version](https://juliahub.com/docs/SimpleDirectMediaLayer/version.svg)](https://juliahub.com/ui/Packages/SimpleDirectMediaLayer/vVozl)
+[![deps](https://juliahub.com/docs/SimpleDirectMediaLayer/deps.svg)](https://juliahub.com/ui/Packages/SimpleDirectMediaLayer/vVozl?t=2)
+[![Genie Downloads](https://shields.io/endpoint?url=https://pkgs.genieframework.com/api/v1/badge/SimpleDirectMediaLayer)](https://pkgs.genieframework.com?packages=SimpleDirectMediaLayer)
 
 Bindings for the [Simple DirectMedia Layer](https://www.libsdl.org/) library. The bindings were generated using [Clang.jl](https://github.com/JuliaInterop/Clang.jl). 
 
 ## Installation
 ```julia
-pkg> dev SimpleDirectMediaLayer
+pkg> add SimpleDirectMediaLayer
 ```
 
 Documentation can be found on the [SDL wiki](https://wiki.libsdl.org/FrontPage).
 
 ## Quick start
 ```julia
+using SimpleDirectMediaLayer
 using SimpleDirectMediaLayer.LibSDL2
 
 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 16)
@@ -28,7 +32,7 @@ SDL_SetWindowResizable(win, SDL_TRUE)
 
 renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)
 
-surface = IMG_Load(joinpath(@__DIR__, "..", "assets", "cat.png"))
+surface = IMG_Load(joinpath(dirname(pathof(SimpleDirectMediaLayer)), "..", "assets", "cat.png"))
 tex = SDL_CreateTextureFromSurface(renderer, surface)
 SDL_FreeSurface(surface)
 
