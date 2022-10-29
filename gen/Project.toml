@@ -1,5 +1,6 @@
 [deps]
 Clang = "40e3b903-d033-50b4-a0cc-940c62c95e31"
+SDL2_gfx_jll = "323748d4-b4be-59be-a22c-1904c60787cb"
 SDL2_image_jll = "41f3cfe1-fd11-58ad-8074-b9730c29438b"
 SDL2_jll = "ab825dc5-c88e-5901-9575-1e5e20358fcf"
 SDL2_mixer_jll = "7e88e5ca-120e-58e7-9660-b2187fd466c0"
