@@ -60,29 +60,13 @@ function SDL_wcslen(wstr)
 end
 
 struct SDL_AssertData
-    data::NTuple{48, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_AssertData}, f::Symbol)
-    f === :always_ignore && return Ptr{Cint}(x + 0)
-    f === :trigger_count && return Ptr{Cuint}(x + 4)
-    f === :condition && return Ptr{Ptr{Cchar}}(x + 8)
-    f === :filename && return Ptr{Ptr{Cchar}}(x + 16)
-    f === :linenum && return Ptr{Cint}(x + 24)
-    f === :_function && return Ptr{Ptr{Cchar}}(x + 32)
-    f === :next && return Ptr{Ptr{SDL_AssertData}}(x + 40)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_AssertData, f::Symbol)
-    r = Ref{SDL_AssertData}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_AssertData}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_AssertData}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    always_ignore::Cint
+    trigger_count::Cuint
+    condition::Ptr{Cchar}
+    filename::Ptr{Cchar}
+    linenum::Cint
+    _function::Ptr{Cchar}
+    next::Ptr{SDL_AssertData}
 end
 
 @cenum SDL_AssertState::UInt32 begin
@@ -132,25 +116,25 @@ function SDL_UnlockMutex(mutex)
     ccall((:SDL_UnlockMutex, libsdl2), Cint, (Ptr{SDL_mutex},), mutex)
 end
 
-struct __JL_Ctag_248
+struct __JL_Ctag_249
     data::NTuple{24, UInt8}
 end
 
-function Base.getproperty(x::Ptr{__JL_Ctag_248}, f::Symbol)
-    f === :stdio && return Ptr{__JL_Ctag_249}(x + 0)
-    f === :mem && return Ptr{__JL_Ctag_250}(x + 0)
-    f === :unknown && return Ptr{__JL_Ctag_251}(x + 0)
+function Base.getproperty(x::Ptr{__JL_Ctag_249}, f::Symbol)
+    f === :stdio && return Ptr{__JL_Ctag_250}(x + 0)
+    f === :mem && return Ptr{__JL_Ctag_251}(x + 0)
+    f === :unknown && return Ptr{__JL_Ctag_252}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::__JL_Ctag_248, f::Symbol)
-    r = Ref{__JL_Ctag_248}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_248}, r)
+function Base.getproperty(x::__JL_Ctag_249, f::Symbol)
+    r = Ref{__JL_Ctag_249}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_249}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{__JL_Ctag_248}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{__JL_Ctag_249}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
@@ -165,7 +149,7 @@ function Base.getproperty(x::Ptr{SDL_RWops}, f::Symbol)
     f === :write && return Ptr{Ptr{Cvoid}}(x + 24)
     f === :close && return Ptr{Ptr{Cvoid}}(x + 32)
     f === :type && return Ptr{Uint32}(x + 40)
-    f === :hidden && return Ptr{__JL_Ctag_248}(x + 48)
+    f === :hidden && return Ptr{__JL_Ctag_249}(x + 48)
     return getfield(x, f)
 end
 
@@ -222,34 +206,23 @@ end
 mutable struct SDL_BlitMap end
 
 struct SDL_Surface
-    data::NTuple{96, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_Surface}, f::Symbol)
-    f === :flags && return Ptr{Uint32}(x + 0)
-    f === :format && return Ptr{Ptr{SDL_PixelFormat}}(x + 8)
-    f === :w && return Ptr{Cint}(x + 16)
-    f === :h && return Ptr{Cint}(x + 20)
-    f === :pitch && return Ptr{Cint}(x + 24)
-    f === :pixels && return Ptr{Ptr{Cvoid}}(x + 32)
-    f === :userdata && return Ptr{Ptr{Cvoid}}(x + 40)
-    f === :locked && return Ptr{Cint}(x + 48)
-    f === :list_blitmap && return Ptr{Ptr{Cvoid}}(x + 56)
-    f === :clip_rect && return Ptr{SDL_Rect}(x + 64)
-    f === :map && return Ptr{Ptr{SDL_BlitMap}}(x + 80)
-    f === :refcount && return Ptr{Cint}(x + 88)
-    return getfield(x, f)
+    flags::Uint32
+    format::Ptr{Cvoid} # format::Ptr{SDL_PixelFormat}
+    w::Cint
+    h::Cint
+    pitch::Cint
+    pixels::Ptr{Cvoid}
+    userdata::Ptr{Cvoid}
+    locked::Cint
+    list_blitmap::Ptr{Cvoid}
+    clip_rect::SDL_Rect
+    map::Ptr{SDL_BlitMap}
+    refcount::Cint
 end
 
 function Base.getproperty(x::SDL_Surface, f::Symbol)
-    r = Ref{SDL_Surface}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_Surface}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_Surface}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    f === :format && return Ptr{SDL_PixelFormat}(getfield(x, f))
+    return getfield(x, f)
 end
 
 function SDL_LoadBMP_RW(src, freesrc)
@@ -1566,64 +1539,32 @@ end
 end
 
 struct SDL_Palette
-    data::NTuple{24, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_Palette}, f::Symbol)
-    f === :ncolors && return Ptr{Cint}(x + 0)
-    f === :colors && return Ptr{Ptr{SDL_Color}}(x + 8)
-    f === :version && return Ptr{Uint32}(x + 16)
-    f === :refcount && return Ptr{Cint}(x + 20)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_Palette, f::Symbol)
-    r = Ref{SDL_Palette}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_Palette}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_Palette}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    ncolors::Cint
+    colors::Ptr{SDL_Color}
+    version::Uint32
+    refcount::Cint
 end
 
 struct SDL_PixelFormat
-    data::NTuple{56, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_PixelFormat}, f::Symbol)
-    f === :format && return Ptr{Uint32}(x + 0)
-    f === :palette && return Ptr{Ptr{SDL_Palette}}(x + 8)
-    f === :BitsPerPixel && return Ptr{Uint8}(x + 16)
-    f === :BytesPerPixel && return Ptr{Uint8}(x + 17)
-    f === :padding && return Ptr{NTuple{2, Uint8}}(x + 18)
-    f === :Rmask && return Ptr{Uint32}(x + 20)
-    f === :Gmask && return Ptr{Uint32}(x + 24)
-    f === :Bmask && return Ptr{Uint32}(x + 28)
-    f === :Amask && return Ptr{Uint32}(x + 32)
-    f === :Rloss && return Ptr{Uint8}(x + 36)
-    f === :Gloss && return Ptr{Uint8}(x + 37)
-    f === :Bloss && return Ptr{Uint8}(x + 38)
-    f === :Aloss && return Ptr{Uint8}(x + 39)
-    f === :Rshift && return Ptr{Uint8}(x + 40)
-    f === :Gshift && return Ptr{Uint8}(x + 41)
-    f === :Bshift && return Ptr{Uint8}(x + 42)
-    f === :Ashift && return Ptr{Uint8}(x + 43)
-    f === :refcount && return Ptr{Cint}(x + 44)
-    f === :next && return Ptr{Ptr{SDL_PixelFormat}}(x + 48)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_PixelFormat, f::Symbol)
-    r = Ref{SDL_PixelFormat}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_PixelFormat}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_PixelFormat}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    format::Uint32
+    palette::Ptr{SDL_Palette}
+    BitsPerPixel::Uint8
+    BytesPerPixel::Uint8
+    padding::NTuple{2, Uint8}
+    Rmask::Uint32
+    Gmask::Uint32
+    Bmask::Uint32
+    Amask::Uint32
+    Rloss::Uint8
+    Gloss::Uint8
+    Bloss::Uint8
+    Aloss::Uint8
+    Rshift::Uint8
+    Gshift::Uint8
+    Bshift::Uint8
+    Ashift::Uint8
+    refcount::Cint
+    next::Ptr{SDL_PixelFormat}
 end
 
 function SDL_GetPixelFormatName(format)
@@ -2948,26 +2889,10 @@ end
 end
 
 struct SDL_Keysym
-    data::NTuple{16, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_Keysym}, f::Symbol)
-    f === :scancode && return Ptr{SDL_Scancode}(x + 0)
-    f === :sym && return Ptr{SDL_Keycode}(x + 4)
-    f === :mod && return Ptr{Uint16}(x + 8)
-    f === :unused && return Ptr{Uint32}(x + 12)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_Keysym, f::Symbol)
-    r = Ref{SDL_Keysym}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_Keysym}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_Keysym}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    scancode::SDL_Scancode
+    sym::SDL_Keycode
+    mod::Uint16
+    unused::Uint32
 end
 
 function SDL_GetKeyboardFocus()
@@ -3471,25 +3396,25 @@ end
     SDL_CONTROLLER_BINDTYPE_HAT = 3
 end
 
-struct __JL_Ctag_252
+struct __JL_Ctag_253
     data::NTuple{8, UInt8}
 end
 
-function Base.getproperty(x::Ptr{__JL_Ctag_252}, f::Symbol)
+function Base.getproperty(x::Ptr{__JL_Ctag_253}, f::Symbol)
     f === :button && return Ptr{Cint}(x + 0)
     f === :axis && return Ptr{Cint}(x + 0)
-    f === :hat && return Ptr{__JL_Ctag_253}(x + 0)
+    f === :hat && return Ptr{__JL_Ctag_254}(x + 0)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::__JL_Ctag_252, f::Symbol)
-    r = Ref{__JL_Ctag_252}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_252}, r)
+function Base.getproperty(x::__JL_Ctag_253, f::Symbol)
+    r = Ref{__JL_Ctag_253}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_253}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{__JL_Ctag_252}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{__JL_Ctag_253}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
@@ -3499,7 +3424,7 @@ end
 
 function Base.getproperty(x::Ptr{SDL_GameControllerButtonBind}, f::Symbol)
     f === :bindType && return Ptr{SDL_GameControllerBindType}(x + 0)
-    f === :value && return Ptr{__JL_Ctag_252}(x + 4)
+    f === :value && return Ptr{__JL_Ctag_253}(x + 4)
     return getfield(x, f)
 end
 
@@ -4225,205 +4150,93 @@ mutable struct _SDL_Haptic end
 const SDL_Haptic = _SDL_Haptic
 
 struct SDL_HapticDirection
-    data::NTuple{16, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticDirection}, f::Symbol)
-    f === :type && return Ptr{Uint8}(x + 0)
-    f === :dir && return Ptr{NTuple{3, Sint32}}(x + 4)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticDirection, f::Symbol)
-    r = Ref{SDL_HapticDirection}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticDirection}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticDirection}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint8
+    dir::NTuple{3, Sint32}
 end
 
 struct SDL_HapticConstant
-    data::NTuple{40, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticConstant}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :direction && return Ptr{SDL_HapticDirection}(x + 4)
-    f === :length && return Ptr{Uint32}(x + 20)
-    f === :delay && return Ptr{Uint16}(x + 24)
-    f === :button && return Ptr{Uint16}(x + 26)
-    f === :interval && return Ptr{Uint16}(x + 28)
-    f === :level && return Ptr{Sint16}(x + 30)
-    f === :attack_length && return Ptr{Uint16}(x + 32)
-    f === :attack_level && return Ptr{Uint16}(x + 34)
-    f === :fade_length && return Ptr{Uint16}(x + 36)
-    f === :fade_level && return Ptr{Uint16}(x + 38)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticConstant, f::Symbol)
-    r = Ref{SDL_HapticConstant}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticConstant}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticConstant}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    direction::SDL_HapticDirection
+    length::Uint32
+    delay::Uint16
+    button::Uint16
+    interval::Uint16
+    level::Sint16
+    attack_length::Uint16
+    attack_level::Uint16
+    fade_length::Uint16
+    fade_level::Uint16
 end
 
 struct SDL_HapticPeriodic
-    data::NTuple{48, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticPeriodic}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :direction && return Ptr{SDL_HapticDirection}(x + 4)
-    f === :length && return Ptr{Uint32}(x + 20)
-    f === :delay && return Ptr{Uint16}(x + 24)
-    f === :button && return Ptr{Uint16}(x + 26)
-    f === :interval && return Ptr{Uint16}(x + 28)
-    f === :period && return Ptr{Uint16}(x + 30)
-    f === :magnitude && return Ptr{Sint16}(x + 32)
-    f === :offset && return Ptr{Sint16}(x + 34)
-    f === :phase && return Ptr{Uint16}(x + 36)
-    f === :attack_length && return Ptr{Uint16}(x + 38)
-    f === :attack_level && return Ptr{Uint16}(x + 40)
-    f === :fade_length && return Ptr{Uint16}(x + 42)
-    f === :fade_level && return Ptr{Uint16}(x + 44)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticPeriodic, f::Symbol)
-    r = Ref{SDL_HapticPeriodic}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticPeriodic}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticPeriodic}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    direction::SDL_HapticDirection
+    length::Uint32
+    delay::Uint16
+    button::Uint16
+    interval::Uint16
+    period::Uint16
+    magnitude::Sint16
+    offset::Sint16
+    phase::Uint16
+    attack_length::Uint16
+    attack_level::Uint16
+    fade_length::Uint16
+    fade_level::Uint16
 end
 
 struct SDL_HapticCondition
-    data::NTuple{68, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticCondition}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :direction && return Ptr{SDL_HapticDirection}(x + 4)
-    f === :length && return Ptr{Uint32}(x + 20)
-    f === :delay && return Ptr{Uint16}(x + 24)
-    f === :button && return Ptr{Uint16}(x + 26)
-    f === :interval && return Ptr{Uint16}(x + 28)
-    f === :right_sat && return Ptr{NTuple{3, Uint16}}(x + 30)
-    f === :left_sat && return Ptr{NTuple{3, Uint16}}(x + 36)
-    f === :right_coeff && return Ptr{NTuple{3, Sint16}}(x + 42)
-    f === :left_coeff && return Ptr{NTuple{3, Sint16}}(x + 48)
-    f === :deadband && return Ptr{NTuple{3, Uint16}}(x + 54)
-    f === :center && return Ptr{NTuple{3, Sint16}}(x + 60)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticCondition, f::Symbol)
-    r = Ref{SDL_HapticCondition}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticCondition}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticCondition}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    direction::SDL_HapticDirection
+    length::Uint32
+    delay::Uint16
+    button::Uint16
+    interval::Uint16
+    right_sat::NTuple{3, Uint16}
+    left_sat::NTuple{3, Uint16}
+    right_coeff::NTuple{3, Sint16}
+    left_coeff::NTuple{3, Sint16}
+    deadband::NTuple{3, Uint16}
+    center::NTuple{3, Sint16}
 end
 
 struct SDL_HapticRamp
-    data::NTuple{44, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticRamp}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :direction && return Ptr{SDL_HapticDirection}(x + 4)
-    f === :length && return Ptr{Uint32}(x + 20)
-    f === :delay && return Ptr{Uint16}(x + 24)
-    f === :button && return Ptr{Uint16}(x + 26)
-    f === :interval && return Ptr{Uint16}(x + 28)
-    f === :start && return Ptr{Sint16}(x + 30)
-    f === :_end && return Ptr{Sint16}(x + 32)
-    f === :attack_length && return Ptr{Uint16}(x + 34)
-    f === :attack_level && return Ptr{Uint16}(x + 36)
-    f === :fade_length && return Ptr{Uint16}(x + 38)
-    f === :fade_level && return Ptr{Uint16}(x + 40)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticRamp, f::Symbol)
-    r = Ref{SDL_HapticRamp}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticRamp}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticRamp}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    direction::SDL_HapticDirection
+    length::Uint32
+    delay::Uint16
+    button::Uint16
+    interval::Uint16
+    start::Sint16
+    _end::Sint16
+    attack_length::Uint16
+    attack_level::Uint16
+    fade_length::Uint16
+    fade_level::Uint16
 end
 
 struct SDL_HapticLeftRight
-    data::NTuple{12, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticLeftRight}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :length && return Ptr{Uint32}(x + 4)
-    f === :large_magnitude && return Ptr{Uint16}(x + 8)
-    f === :small_magnitude && return Ptr{Uint16}(x + 10)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticLeftRight, f::Symbol)
-    r = Ref{SDL_HapticLeftRight}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticLeftRight}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticLeftRight}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    length::Uint32
+    large_magnitude::Uint16
+    small_magnitude::Uint16
 end
 
 struct SDL_HapticCustom
-    data::NTuple{56, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_HapticCustom}, f::Symbol)
-    f === :type && return Ptr{Uint16}(x + 0)
-    f === :direction && return Ptr{SDL_HapticDirection}(x + 4)
-    f === :length && return Ptr{Uint32}(x + 20)
-    f === :delay && return Ptr{Uint16}(x + 24)
-    f === :button && return Ptr{Uint16}(x + 26)
-    f === :interval && return Ptr{Uint16}(x + 28)
-    f === :channels && return Ptr{Uint8}(x + 30)
-    f === :period && return Ptr{Uint16}(x + 32)
-    f === :samples && return Ptr{Uint16}(x + 34)
-    f === :data && return Ptr{Ptr{Uint16}}(x + 40)
-    f === :attack_length && return Ptr{Uint16}(x + 48)
-    f === :attack_level && return Ptr{Uint16}(x + 50)
-    f === :fade_length && return Ptr{Uint16}(x + 52)
-    f === :fade_level && return Ptr{Uint16}(x + 54)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::SDL_HapticCustom, f::Symbol)
-    r = Ref{SDL_HapticCustom}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_HapticCustom}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_HapticCustom}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    type::Uint16
+    direction::SDL_HapticDirection
+    length::Uint32
+    delay::Uint16
+    button::Uint16
+    interval::Uint16
+    channels::Uint8
+    period::Uint16
+    samples::Uint16
+    data::Ptr{Uint16}
+    attack_length::Uint16
+    attack_level::Uint16
+    fade_length::Uint16
+    fade_level::Uint16
 end
 
 struct SDL_HapticEffect
@@ -4577,36 +4390,27 @@ mutable struct SDL_hid_device_ end
 const SDL_hid_device = SDL_hid_device_
 
 struct SDL_hid_device_info
-    data::NTuple{80, UInt8}
-end
-
-function Base.getproperty(x::Ptr{SDL_hid_device_info}, f::Symbol)
-    f === :path && return Ptr{Ptr{Cchar}}(x + 0)
-    f === :vendor_id && return Ptr{Cushort}(x + 8)
-    f === :product_id && return Ptr{Cushort}(x + 10)
-    f === :serial_number && return Ptr{Ptr{Cwchar_t}}(x + 16)
-    f === :release_number && return Ptr{Cushort}(x + 24)
-    f === :manufacturer_string && return Ptr{Ptr{Cwchar_t}}(x + 32)
-    f === :product_string && return Ptr{Ptr{Cwchar_t}}(x + 40)
-    f === :usage_page && return Ptr{Cushort}(x + 48)
-    f === :usage && return Ptr{Cushort}(x + 50)
-    f === :interface_number && return Ptr{Cint}(x + 52)
-    f === :interface_class && return Ptr{Cint}(x + 56)
-    f === :interface_subclass && return Ptr{Cint}(x + 60)
-    f === :interface_protocol && return Ptr{Cint}(x + 64)
-    f === :next && return Ptr{Ptr{SDL_hid_device_info}}(x + 72)
-    return getfield(x, f)
+    path::Ptr{Cchar}
+    vendor_id::Cushort
+    product_id::Cushort
+    serial_number::Ptr{Cvoid} # serial_number::Ptr{Cwchar_t}
+    release_number::Cushort
+    manufacturer_string::Ptr{Cvoid} # manufacturer_string::Ptr{Cwchar_t}
+    product_string::Ptr{Cvoid} # product_string::Ptr{Cwchar_t}
+    usage_page::Cushort
+    usage::Cushort
+    interface_number::Cint
+    interface_class::Cint
+    interface_subclass::Cint
+    interface_protocol::Cint
+    next::Ptr{SDL_hid_device_info}
 end
 
 function Base.getproperty(x::SDL_hid_device_info, f::Symbol)
-    r = Ref{SDL_hid_device_info}(x)
-    ptr = Base.unsafe_convert(Ptr{SDL_hid_device_info}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{SDL_hid_device_info}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
+    f === :serial_number && return Ptr{Cwchar_t}(getfield(x, f))
+    f === :manufacturer_string && return Ptr{Cwchar_t}(getfield(x, f))
+    f === :product_string && return Ptr{Cwchar_t}(getfield(x, f))
+    return getfield(x, f)
 end
 
 function SDL_hid_init()
@@ -5411,41 +5215,6 @@ function SDL_Quit()
     ccall((:SDL_Quit, libsdl2), Cvoid, ())
 end
 
-struct Mix_Chunk
-    data::NTuple{24, UInt8}
-end
-
-function Base.getproperty(x::Ptr{Mix_Chunk}, f::Symbol)
-    f === :allocated && return Ptr{Cint}(x + 0)
-    f === :abuf && return Ptr{Ptr{Uint8}}(x + 8)
-    f === :alen && return Ptr{Uint32}(x + 16)
-    f === :volume && return Ptr{Uint8}(x + 20)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::Mix_Chunk, f::Symbol)
-    r = Ref{Mix_Chunk}(x)
-    ptr = Base.unsafe_convert(Ptr{Mix_Chunk}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{Mix_Chunk}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-function Mix_LoadWAV_RW(src, freesrc)
-    ccall((:Mix_LoadWAV_RW, libsdl2_mixer), Ptr{Mix_Chunk}, (Ptr{SDL_RWops}, Cint), src, freesrc)
-end
-
-function Mix_PlayChannelTimed(channel, chunk, loops, ticks)
-    ccall((:Mix_PlayChannelTimed, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint, Cint), channel, chunk, loops, ticks)
-end
-
-function Mix_FadeInChannelTimed(channel, chunk, loops, ms, ticks)
-    ccall((:Mix_FadeInChannelTimed, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint, Cint, Cint), channel, chunk, loops, ms, ticks)
-end
-
 function Mix_Linked_Version()
     ccall((:Mix_Linked_Version, libsdl2_mixer), Ptr{SDL_version}, ())
 end
@@ -5465,6 +5234,13 @@ end
 
 function Mix_Quit()
     ccall((:Mix_Quit, libsdl2_mixer), Cvoid, ())
+end
+
+struct Mix_Chunk
+    allocated::Cint
+    abuf::Ptr{Uint8}
+    alen::Uint32
+    volume::Uint8
 end
 
 @cenum Mix_Fading::UInt32 begin
@@ -5499,12 +5275,20 @@ function Mix_OpenAudioDevice(frequency, format, channels, chunksize, device, all
     ccall((:Mix_OpenAudioDevice, libsdl2_mixer), Cint, (Cint, Uint16, Cint, Cint, Ptr{Cchar}, Cint), frequency, format, channels, chunksize, device, allowed_changes)
 end
 
+function Mix_QuerySpec(frequency, format, channels)
+    ccall((:Mix_QuerySpec, libsdl2_mixer), Cint, (Ptr{Cint}, Ptr{Uint16}, Ptr{Cint}), frequency, format, channels)
+end
+
 function Mix_AllocateChannels(numchans)
     ccall((:Mix_AllocateChannels, libsdl2_mixer), Cint, (Cint,), numchans)
 end
 
-function Mix_QuerySpec(frequency, format, channels)
-    ccall((:Mix_QuerySpec, libsdl2_mixer), Cint, (Ptr{Cint}, Ptr{Uint16}, Ptr{Cint}), frequency, format, channels)
+function Mix_LoadWAV_RW(src, freesrc)
+    ccall((:Mix_LoadWAV_RW, libsdl2_mixer), Ptr{Mix_Chunk}, (Ptr{SDL_RWops}, Cint), src, freesrc)
+end
+
+function Mix_LoadWAV(file)
+    ccall((:Mix_LoadWAV, libsdl2_mixer), Ptr{Mix_Chunk}, (Ptr{Cchar},), file)
 end
 
 function Mix_LoadMUS(file)
@@ -5561,6 +5345,26 @@ end
 
 function Mix_GetMusicType(music)
     ccall((:Mix_GetMusicType, libsdl2_mixer), Mix_MusicType, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicTitle(music)
+    ccall((:Mix_GetMusicTitle, libsdl2_mixer), Ptr{Cchar}, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicTitleTag(music)
+    ccall((:Mix_GetMusicTitleTag, libsdl2_mixer), Ptr{Cchar}, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicArtistTag(music)
+    ccall((:Mix_GetMusicArtistTag, libsdl2_mixer), Ptr{Cchar}, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicAlbumTag(music)
+    ccall((:Mix_GetMusicAlbumTag, libsdl2_mixer), Ptr{Cchar}, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicCopyrightTag(music)
+    ccall((:Mix_GetMusicCopyrightTag, libsdl2_mixer), Ptr{Cchar}, (Ptr{Mix_Music},), music)
 end
 
 function Mix_SetPostMix(mix_func, arg)
@@ -5645,6 +5449,14 @@ function Mix_GroupNewer(tag)
     ccall((:Mix_GroupNewer, libsdl2_mixer), Cint, (Cint,), tag)
 end
 
+function Mix_PlayChannel(channel, chunk, loops)
+    ccall((:Mix_PlayChannel, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint), channel, chunk, loops)
+end
+
+function Mix_PlayChannelTimed(channel, chunk, loops, ticks)
+    ccall((:Mix_PlayChannelTimed, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint, Cint), channel, chunk, loops, ticks)
+end
+
 function Mix_PlayMusic(music, loops)
     ccall((:Mix_PlayMusic, libsdl2_mixer), Cint, (Ptr{Mix_Music}, Cint), music, loops)
 end
@@ -5657,6 +5469,14 @@ function Mix_FadeInMusicPos(music, loops, ms, position)
     ccall((:Mix_FadeInMusicPos, libsdl2_mixer), Cint, (Ptr{Mix_Music}, Cint, Cint, Cdouble), music, loops, ms, position)
 end
 
+function Mix_FadeInChannel(channel, chunk, loops, ms)
+    ccall((:Mix_FadeInChannel, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint, Cint), channel, chunk, loops, ms)
+end
+
+function Mix_FadeInChannelTimed(channel, chunk, loops, ms, ticks)
+    ccall((:Mix_FadeInChannelTimed, libsdl2_mixer), Cint, (Cint, Ptr{Mix_Chunk}, Cint, Cint, Cint), channel, chunk, loops, ms, ticks)
+end
+
 function Mix_Volume(channel, volume)
     ccall((:Mix_Volume, libsdl2_mixer), Cint, (Cint, Cint), channel, volume)
 end
@@ -5667,6 +5487,14 @@ end
 
 function Mix_VolumeMusic(volume)
     ccall((:Mix_VolumeMusic, libsdl2_mixer), Cint, (Cint,), volume)
+end
+
+function Mix_GetMusicVolume(music)
+    ccall((:Mix_GetMusicVolume, libsdl2_mixer), Cint, (Ptr{Mix_Music},), music)
+end
+
+function Mix_MasterVolume(volume)
+    ccall((:Mix_MasterVolume, libsdl2_mixer), Cint, (Cint,), volume)
 end
 
 function Mix_HaltChannel(channel)
@@ -5733,8 +5561,32 @@ function Mix_PausedMusic()
     ccall((:Mix_PausedMusic, libsdl2_mixer), Cint, ())
 end
 
+function Mix_ModMusicJumpToOrder(order)
+    ccall((:Mix_ModMusicJumpToOrder, libsdl2_mixer), Cint, (Cint,), order)
+end
+
 function Mix_SetMusicPosition(position)
     ccall((:Mix_SetMusicPosition, libsdl2_mixer), Cint, (Cdouble,), position)
+end
+
+function Mix_GetMusicPosition(music)
+    ccall((:Mix_GetMusicPosition, libsdl2_mixer), Cdouble, (Ptr{Mix_Music},), music)
+end
+
+function Mix_MusicDuration(music)
+    ccall((:Mix_MusicDuration, libsdl2_mixer), Cdouble, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicLoopStartTime(music)
+    ccall((:Mix_GetMusicLoopStartTime, libsdl2_mixer), Cdouble, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicLoopEndTime(music)
+    ccall((:Mix_GetMusicLoopEndTime, libsdl2_mixer), Cdouble, (Ptr{Mix_Music},), music)
+end
+
+function Mix_GetMusicLoopLengthTime(music)
+    ccall((:Mix_GetMusicLoopLengthTime, libsdl2_mixer), Cdouble, (Ptr{Mix_Music},), music)
 end
 
 function Mix_Playing(channel)
@@ -5769,6 +5621,14 @@ function Mix_EachSoundFont(_function, data)
     ccall((:Mix_EachSoundFont, libsdl2_mixer), Cint, (Ptr{Cvoid}, Ptr{Cvoid}), _function, data)
 end
 
+function Mix_SetTimidityCfg(path)
+    ccall((:Mix_SetTimidityCfg, libsdl2_mixer), Cint, (Ptr{Cchar},), path)
+end
+
+function Mix_GetTimidityCfg()
+    ccall((:Mix_GetTimidityCfg, libsdl2_mixer), Ptr{Cchar}, ())
+end
+
 function Mix_GetChunk(channel)
     ccall((:Mix_GetChunk, libsdl2_mixer), Ptr{Mix_Chunk}, (Cint,), channel)
 end
@@ -5786,6 +5646,8 @@ end
     IMG_INIT_PNG = 2
     IMG_INIT_TIF = 4
     IMG_INIT_WEBP = 8
+    IMG_INIT_JXL = 16
+    IMG_INIT_AVIF = 32
 end
 
 function IMG_Init(flags)
@@ -5820,6 +5682,10 @@ function IMG_LoadTextureTyped_RW(renderer, src, freesrc, type)
     ccall((:IMG_LoadTextureTyped_RW, libsdl2_image), Ptr{SDL_Texture}, (Ptr{SDL_Renderer}, Ptr{SDL_RWops}, Cint, Ptr{Cchar}), renderer, src, freesrc, type)
 end
 
+function IMG_isAVIF(src)
+    ccall((:IMG_isAVIF, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
+end
+
 function IMG_isICO(src)
     ccall((:IMG_isICO, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
 end
@@ -5838,6 +5704,10 @@ end
 
 function IMG_isJPG(src)
     ccall((:IMG_isJPG, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
+end
+
+function IMG_isJXL(src)
+    ccall((:IMG_isJXL, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
 end
 
 function IMG_isLBM(src)
@@ -5860,6 +5730,10 @@ function IMG_isSVG(src)
     ccall((:IMG_isSVG, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
 end
 
+function IMG_isQOI(src)
+    ccall((:IMG_isQOI, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
+end
+
 function IMG_isTIF(src)
     ccall((:IMG_isTIF, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
 end
@@ -5878,6 +5752,10 @@ end
 
 function IMG_isWEBP(src)
     ccall((:IMG_isWEBP, libsdl2_image), Cint, (Ptr{SDL_RWops},), src)
+end
+
+function IMG_LoadAVIF_RW(src)
+    ccall((:IMG_LoadAVIF_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
 end
 
 function IMG_LoadICO_RW(src)
@@ -5900,6 +5778,10 @@ function IMG_LoadJPG_RW(src)
     ccall((:IMG_LoadJPG_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
 end
 
+function IMG_LoadJXL_RW(src)
+    ccall((:IMG_LoadJXL_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
+end
+
 function IMG_LoadLBM_RW(src)
     ccall((:IMG_LoadLBM_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
 end
@@ -5918,6 +5800,10 @@ end
 
 function IMG_LoadSVG_RW(src)
     ccall((:IMG_LoadSVG_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
+end
+
+function IMG_LoadQOI_RW(src)
+    ccall((:IMG_LoadQOI_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
 end
 
 function IMG_LoadTGA_RW(src)
@@ -5944,8 +5830,16 @@ function IMG_LoadWEBP_RW(src)
     ccall((:IMG_LoadWEBP_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops},), src)
 end
 
+function IMG_LoadSizedSVG_RW(src, width, height)
+    ccall((:IMG_LoadSizedSVG_RW, libsdl2_image), Ptr{SDL_Surface}, (Ptr{SDL_RWops}, Cint, Cint), src, width, height)
+end
+
 function IMG_ReadXPMFromArray(xpm)
     ccall((:IMG_ReadXPMFromArray, libsdl2_image), Ptr{SDL_Surface}, (Ptr{Ptr{Cchar}},), xpm)
+end
+
+function IMG_ReadXPMFromArrayToRGB888(xpm)
+    ccall((:IMG_ReadXPMFromArrayToRGB888, libsdl2_image), Ptr{SDL_Surface}, (Ptr{Ptr{Cchar}},), xpm)
 end
 
 function IMG_SavePNG(surface, file)
@@ -5962,6 +5856,34 @@ end
 
 function IMG_SaveJPG_RW(surface, dst, freedst, quality)
     ccall((:IMG_SaveJPG_RW, libsdl2_image), Cint, (Ptr{SDL_Surface}, Ptr{SDL_RWops}, Cint, Cint), surface, dst, freedst, quality)
+end
+
+struct IMG_Animation
+    w::Cint
+    h::Cint
+    count::Cint
+    frames::Ptr{Ptr{SDL_Surface}}
+    delays::Ptr{Cint}
+end
+
+function IMG_LoadAnimation(file)
+    ccall((:IMG_LoadAnimation, libsdl2_image), Ptr{IMG_Animation}, (Ptr{Cchar},), file)
+end
+
+function IMG_LoadAnimation_RW(src, freesrc)
+    ccall((:IMG_LoadAnimation_RW, libsdl2_image), Ptr{IMG_Animation}, (Ptr{SDL_RWops}, Cint), src, freesrc)
+end
+
+function IMG_LoadAnimationTyped_RW(src, freesrc, type)
+    ccall((:IMG_LoadAnimationTyped_RW, libsdl2_image), Ptr{IMG_Animation}, (Ptr{SDL_RWops}, Cint, Ptr{Cchar}), src, freesrc, type)
+end
+
+function IMG_FreeAnimation(anim)
+    ccall((:IMG_FreeAnimation, libsdl2_image), Cvoid, (Ptr{IMG_Animation},), anim)
+end
+
+function IMG_LoadGIFAnimation_RW(src)
+    ccall((:IMG_LoadGIFAnimation_RW, libsdl2_image), Ptr{IMG_Animation}, (Ptr{SDL_RWops},), src)
 end
 
 mutable struct _TTF_Font end
@@ -6160,37 +6082,13 @@ function TTF_GetFontKerningSizeGlyphs(font, previous_ch, ch)
     ccall((:TTF_GetFontKerningSizeGlyphs, libsdl2_ttf), Cint, (Ptr{TTF_Font}, Uint16, Uint16), font, previous_ch, ch)
 end
 
-struct __JL_Ctag_249
+struct __JL_Ctag_250
     autoclose::SDL_bool
     fp::Ptr{Libc.FILE}
 end
-function Base.getproperty(x::Ptr{__JL_Ctag_249}, f::Symbol)
+function Base.getproperty(x::Ptr{__JL_Ctag_250}, f::Symbol)
     f === :autoclose && return Ptr{SDL_bool}(x + 0)
     f === :fp && return Ptr{Ptr{Libc.FILE}}(x + 8)
-    return getfield(x, f)
-end
-
-function Base.getproperty(x::__JL_Ctag_249, f::Symbol)
-    r = Ref{__JL_Ctag_249}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_249}, r)
-    fptr = getproperty(ptr, f)
-    GC.@preserve r unsafe_load(fptr)
-end
-
-function Base.setproperty!(x::Ptr{__JL_Ctag_249}, f::Symbol, v)
-    unsafe_store!(getproperty(x, f), v)
-end
-
-
-struct __JL_Ctag_250
-    base::Ptr{Uint8}
-    here::Ptr{Uint8}
-    stop::Ptr{Uint8}
-end
-function Base.getproperty(x::Ptr{__JL_Ctag_250}, f::Symbol)
-    f === :base && return Ptr{Ptr{Uint8}}(x + 0)
-    f === :here && return Ptr{Ptr{Uint8}}(x + 8)
-    f === :stop && return Ptr{Ptr{Uint8}}(x + 16)
     return getfield(x, f)
 end
 
@@ -6207,12 +6105,14 @@ end
 
 
 struct __JL_Ctag_251
-    data1::Ptr{Cvoid}
-    data2::Ptr{Cvoid}
+    base::Ptr{Uint8}
+    here::Ptr{Uint8}
+    stop::Ptr{Uint8}
 end
 function Base.getproperty(x::Ptr{__JL_Ctag_251}, f::Symbol)
-    f === :data1 && return Ptr{Ptr{Cvoid}}(x + 0)
-    f === :data2 && return Ptr{Ptr{Cvoid}}(x + 8)
+    f === :base && return Ptr{Ptr{Uint8}}(x + 0)
+    f === :here && return Ptr{Ptr{Uint8}}(x + 8)
+    f === :stop && return Ptr{Ptr{Uint8}}(x + 16)
     return getfield(x, f)
 end
 
@@ -6228,24 +6128,46 @@ function Base.setproperty!(x::Ptr{__JL_Ctag_251}, f::Symbol, v)
 end
 
 
-struct __JL_Ctag_253
+struct __JL_Ctag_252
+    data1::Ptr{Cvoid}
+    data2::Ptr{Cvoid}
+end
+function Base.getproperty(x::Ptr{__JL_Ctag_252}, f::Symbol)
+    f === :data1 && return Ptr{Ptr{Cvoid}}(x + 0)
+    f === :data2 && return Ptr{Ptr{Cvoid}}(x + 8)
+    return getfield(x, f)
+end
+
+function Base.getproperty(x::__JL_Ctag_252, f::Symbol)
+    r = Ref{__JL_Ctag_252}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_252}, r)
+    fptr = getproperty(ptr, f)
+    GC.@preserve r unsafe_load(fptr)
+end
+
+function Base.setproperty!(x::Ptr{__JL_Ctag_252}, f::Symbol, v)
+    unsafe_store!(getproperty(x, f), v)
+end
+
+
+struct __JL_Ctag_254
     hat::Cint
     hat_mask::Cint
 end
-function Base.getproperty(x::Ptr{__JL_Ctag_253}, f::Symbol)
+function Base.getproperty(x::Ptr{__JL_Ctag_254}, f::Symbol)
     f === :hat && return Ptr{Cint}(x + 0)
     f === :hat_mask && return Ptr{Cint}(x + 4)
     return getfield(x, f)
 end
 
-function Base.getproperty(x::__JL_Ctag_253, f::Symbol)
-    r = Ref{__JL_Ctag_253}(x)
-    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_253}, r)
+function Base.getproperty(x::__JL_Ctag_254, f::Symbol)
+    r = Ref{__JL_Ctag_254}(x)
+    ptr = Base.unsafe_convert(Ptr{__JL_Ctag_254}, r)
     fptr = getproperty(ptr, f)
     GC.@preserve r unsafe_load(fptr)
 end
 
-function Base.setproperty!(x::Ptr{__JL_Ctag_253}, f::Symbol, v)
+function Base.setproperty!(x::Ptr{__JL_Ctag_254}, f::Symbol, v)
     unsafe_store!(getproperty(x, f), v)
 end
 
@@ -6525,8 +6447,6 @@ const SDL_VIDEO_VULKAN = 1
 const SDL_VIDEO_METAL = 1
 
 const SDL_POWER_MACOSX = 1
-
-const SDL_FILESYSTEM_COCOA = 1
 
 const SDL_ASSEMBLY_ROUTINES = 1
 
@@ -7102,9 +7022,9 @@ const SDL_INIT_EVERYTHING = ((((((SDL_INIT_TIMER | SDL_INIT_AUDIO) | SDL_INIT_VI
 
 const SDL_MIXER_MAJOR_VERSION = 2
 
-const SDL_MIXER_MINOR_VERSION = 0
+const SDL_MIXER_MINOR_VERSION = 6
 
-const SDL_MIXER_PATCHLEVEL = 4
+const SDL_MIXER_PATCHLEVEL = 0
 
 const MIX_MAJOR_VERSION = SDL_MIXER_MAJOR_VERSION
 
@@ -7116,7 +7036,7 @@ const SDL_MIXER_COMPILEDVERSION = SDL_VERSIONNUM(SDL_MIXER_MAJOR_VERSION, SDL_MI
 
 const MIX_CHANNELS = 8
 
-const MIX_DEFAULT_FREQUENCY = 22050
+const MIX_DEFAULT_FREQUENCY = 44100
 
 const MIX_DEFAULT_FORMAT = AUDIO_S16LSB
 
@@ -7128,11 +7048,13 @@ const MIX_CHANNEL_POST = -2
 
 const MIX_EFFECTSMAXSPEED = "MIX_EFFECTSMAXSPEED"
 
+const Mix_OutOfMemory = SDL_OutOfMemory
+
 const SDL_IMAGE_MAJOR_VERSION = 2
 
-const SDL_IMAGE_MINOR_VERSION = 0
+const SDL_IMAGE_MINOR_VERSION = 6
 
-const SDL_IMAGE_PATCHLEVEL = 5
+const SDL_IMAGE_PATCHLEVEL = 2
 
 const SDL_IMAGE_COMPILEDVERSION = SDL_VERSIONNUM(SDL_IMAGE_MAJOR_VERSION, SDL_IMAGE_MINOR_VERSION, SDL_IMAGE_PATCHLEVEL)
 
