@@ -10,6 +10,7 @@ SDL2_image_jll = "41f3cfe1-fd11-58ad-8074-b9730c29438b"
 SDL2_jll = "ab825dc5-c88e-5901-9575-1e5e20358fcf"
 SDL2_mixer_jll = "7e88e5ca-120e-58e7-9660-b2187fd466c0"
 SDL2_ttf_jll = "ca9d4746-8a27-5104-babe-80f83b336947"
+alsa_plugins_jll = "5ac2f6bb-493e-5871-9171-112d4c21a6e7"
 
 [compat]
 CEnum = "0.4"

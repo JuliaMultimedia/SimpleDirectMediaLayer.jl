@@ -1,4 +1,8 @@
 module SimpleDirectMediaLayer
+    if Sys.islinux()
+        using alsa_plugins_jll
+        ENV["ALSA_PLUGIN_DIR"] = joinpath(alsa_plugins_jll.artifact_dir, "lib", "alsa-lib")
+    end
 
     include("LibSDL2.jl")
     using .LibSDL2
@@ -23,6 +27,10 @@ module SimpleDirectMediaLayer
     end
 
     function init()
+        if Sys.islinux() && !haskey(ENV, "ALSA_CONFIG_PATH")
+            ENV["ALSA_CONFIG_PATH"] = "/usr/share/alsa/alsa.conf"
+        end
+
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 4)
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4)
         SDL_Init(UInt32(SDL_INIT_VIDEO))
