@@ -27,6 +27,7 @@ printer_blacklist = [
     "Mix_SetError",
     "Mix_GetError",
     "Mix_ClearError",
+    "Mix_OutOfMemory",
     "IMG_SetError",
     "IMG_GetError",
     "TTF_SetError",
