@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.0-rc4"
+julia_version = "1.8.2"
 manifest_format = "2.0"
-project_hash = "88efc96e799f275e99842e024b63e36570405cda"
+project_hash = "d4628ff4d1f4d3ced4b565bd7b25c2e5d6c5f79f"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -414,6 +414,12 @@ git-tree-sha1 = "34755bff50b6b08988cdfe5fee69c1c1b24ff810"
 uuid = "da37f231-8920-5702-a09a-bdd970cb6ddc"
 version = "1.4.0+0"
 
+[[deps.SDL2_gfx_jll]]
+deps = ["Libdl", "Pkg", "SDL2_jll"]
+git-tree-sha1 = "a774ed8492af340dea6f5cd0c7ae0f797c0f1c66"
+uuid = "323748d4-b4be-59be-a22c-1904c60787cb"
+version = "1.0.3+0"
+
 [[deps.SDL2_image_jll]]
 deps = ["Artifacts", "JLLWrappers", "JpegTurbo_jll", "Libdl", "Libtiff_jll", "Pkg", "SDL2_jll", "libpng_jll", "libwebp_jll"]
 git-tree-sha1 = "7ef5ef320ac06a59b4de273e6b3f892d83dab0da"
@@ -468,7 +474,7 @@ version = "1.0.0"
 [[deps.Tar]]
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
-version = "1.10.0"
+version = "1.10.1"
 
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
