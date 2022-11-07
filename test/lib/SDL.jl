@@ -20,11 +20,7 @@ end
     @test win != C_NULL
 
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
-    if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
-        @test_broken renderer != C_NULL
-    else
-        @test renderer != C_NULL
-    end
+    @test renderer != C_NULL
 
     # Close window
     SDL_DestroyWindow(win)

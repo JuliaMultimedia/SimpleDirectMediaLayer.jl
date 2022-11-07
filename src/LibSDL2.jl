@@ -47,6 +47,10 @@ function SDL_memset(dst, c, len)
     ccall((:SDL_memset, libsdl2), Ptr{Cvoid}, (Ptr{Cvoid}, Cint, Csize_t), dst, c, len)
 end
 
+function SDL_memcpy(dst, src, len)
+    ccall((:SDL_memcpy, libsdl2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), dst, src, len)
+end
+
 function SDL_iconv_string(tocode, fromcode, inbuf, inbytesleft)
     ccall((:SDL_iconv_string, libsdl2), Ptr{Cchar}, (Ptr{Cchar}, Ptr{Cchar}, Ptr{Cchar}, Csize_t), tocode, fromcode, inbuf, inbytesleft)
 end
@@ -57,6 +61,14 @@ end
 
 function SDL_wcslen(wstr)
     ccall((:SDL_wcslen, libsdl2), Csize_t, (Ptr{Cwchar_t},), wstr)
+end
+
+function _SDL_size_mul_overflow_builtin(a, b, ret)
+    ccall((:_SDL_size_mul_overflow_builtin, libsdl2), Cint, (Csize_t, Csize_t, Ptr{Csize_t}), a, b, ret)
+end
+
+function _SDL_size_add_overflow_builtin(a, b, ret)
+    ccall((:_SDL_size_add_overflow_builtin, libsdl2), Cint, (Csize_t, Csize_t, Ptr{Csize_t}), a, b, ret)
 end
 
 struct SDL_AssertData
@@ -260,6 +272,7 @@ function Base.getproperty(x::Ptr{SDL_Event}, f::Symbol)
     f === :window && return Ptr{SDL_WindowEvent}(x + 0)
     f === :key && return Ptr{SDL_KeyboardEvent}(x + 0)
     f === :edit && return Ptr{SDL_TextEditingEvent}(x + 0)
+    f === :editExt && return Ptr{SDL_TextEditingExtEvent}(x + 0)
     f === :text && return Ptr{SDL_TextInputEvent}(x + 0)
     f === :motion && return Ptr{SDL_MouseMotionEvent}(x + 0)
     f === :button && return Ptr{SDL_MouseButtonEvent}(x + 0)
@@ -269,6 +282,7 @@ function Base.getproperty(x::Ptr{SDL_Event}, f::Symbol)
     f === :jhat && return Ptr{SDL_JoyHatEvent}(x + 0)
     f === :jbutton && return Ptr{SDL_JoyButtonEvent}(x + 0)
     f === :jdevice && return Ptr{SDL_JoyDeviceEvent}(x + 0)
+    f === :jbattery && return Ptr{SDL_JoyBatteryEvent}(x + 0)
     f === :caxis && return Ptr{SDL_ControllerAxisEvent}(x + 0)
     f === :cbutton && return Ptr{SDL_ControllerButtonEvent}(x + 0)
     f === :cdevice && return Ptr{SDL_ControllerDeviceEvent}(x + 0)
@@ -321,27 +335,9 @@ end
     SDL_TRUE = 1
 end
 
-const SDL_compile_time_assert_uint8 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_sint8 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_uint16 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_sint16 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_uint32 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_sint32 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_uint64 = NTuple{1, Cint}
-
-const SDL_compile_time_assert_sint64 = NTuple{1, Cint}
-
 @cenum SDL_DUMMY_ENUM::UInt32 begin
     DUMMY_ENUM_VALUE = 0
 end
-
-const SDL_compile_time_assert_enum = NTuple{1, Cint}
 
 function SDL_malloc(size)
     ccall((:SDL_malloc, libsdl2), Ptr{Cvoid}, (Csize_t,), size)
@@ -371,6 +367,10 @@ const SDL_realloc_func = Ptr{Cvoid}
 # typedef void ( SDLCALL * SDL_free_func ) ( void * mem )
 const SDL_free_func = Ptr{Cvoid}
 
+function SDL_GetOriginalMemoryFunctions(malloc_func, calloc_func, realloc_func, free_func)
+    ccall((:SDL_GetOriginalMemoryFunctions, libsdl2), Cvoid, (Ptr{SDL_malloc_func}, Ptr{SDL_calloc_func}, Ptr{SDL_realloc_func}, Ptr{SDL_free_func}), malloc_func, calloc_func, realloc_func, free_func)
+end
+
 function SDL_GetMemoryFunctions(malloc_func, calloc_func, realloc_func, free_func)
     ccall((:SDL_GetMemoryFunctions, libsdl2), Cvoid, (Ptr{SDL_malloc_func}, Ptr{SDL_calloc_func}, Ptr{SDL_realloc_func}, Ptr{SDL_free_func}), malloc_func, calloc_func, realloc_func, free_func)
 end
@@ -393,6 +393,10 @@ end
 
 function SDL_qsort(base, nmemb, size, compare)
     ccall((:SDL_qsort, libsdl2), Cvoid, (Ptr{Cvoid}, Csize_t, Csize_t, Ptr{Cvoid}), base, nmemb, size, compare)
+end
+
+function SDL_bsearch(key, base, nmemb, size, compare)
+    ccall((:SDL_bsearch, libsdl2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t, Csize_t, Ptr{Cvoid}), key, base, nmemb, size, compare)
 end
 
 function SDL_abs(x)
@@ -455,16 +459,16 @@ function SDL_tolower(x)
     ccall((:SDL_tolower, libsdl2), Cint, (Cint,), x)
 end
 
+function SDL_crc16(crc, data, len)
+    ccall((:SDL_crc16, libsdl2), Uint16, (Uint16, Ptr{Cvoid}, Csize_t), crc, data, len)
+end
+
 function SDL_crc32(crc, data, len)
     ccall((:SDL_crc32, libsdl2), Uint32, (Uint32, Ptr{Cvoid}, Csize_t), crc, data, len)
 end
 
 function SDL_memset4(dst, val, dwords)
     ccall((:SDL_memset4, libsdl2), Cvoid, (Ptr{Cvoid}, Uint32, Csize_t), dst, val, dwords)
-end
-
-function SDL_memcpy(dst, src, len)
-    ccall((:SDL_memcpy, libsdl2), Ptr{Cvoid}, (Ptr{Cvoid}, Ptr{Cvoid}, Csize_t), dst, src, len)
 end
 
 function SDL_memmove(dst, src, len)
@@ -553,6 +557,10 @@ end
 
 function SDL_utf8strlen(str)
     ccall((:SDL_utf8strlen, libsdl2), Csize_t, (Ptr{Cchar},), str)
+end
+
+function SDL_utf8strnlen(str, bytes)
+    ccall((:SDL_utf8strnlen, libsdl2), Csize_t, (Ptr{Cchar}, Csize_t), str, bytes)
 end
 
 function SDL_itoa(value, str, radix)
@@ -1216,6 +1224,10 @@ function SDL_GetAudioDeviceSpec(index, iscapture, spec)
     ccall((:SDL_GetAudioDeviceSpec, libsdl2), Cint, (Cint, Cint, Ptr{SDL_AudioSpec}), index, iscapture, spec)
 end
 
+function SDL_GetDefaultAudioInfo(name, spec, iscapture)
+    ccall((:SDL_GetDefaultAudioInfo, libsdl2), Cint, (Ptr{Ptr{Cchar}}, Ptr{SDL_AudioSpec}, Cint), name, spec, iscapture)
+end
+
 function SDL_OpenAudioDevice(device, iscapture, desired, obtained, allowed_changes)
     ccall((:SDL_OpenAudioDevice, libsdl2), SDL_AudioDeviceID, (Ptr{Cchar}, Cint, Ptr{SDL_AudioSpec}, Ptr{SDL_AudioSpec}, Cint), device, iscapture, desired, obtained, allowed_changes)
 end
@@ -1408,6 +1420,14 @@ end
 
 function SDL_HasNEON()
     ccall((:SDL_HasNEON, libsdl2), SDL_bool, ())
+end
+
+function SDL_HasLSX()
+    ccall((:SDL_HasLSX, libsdl2), SDL_bool, ())
+end
+
+function SDL_HasLASX()
+    ccall((:SDL_HasLASX, libsdl2), SDL_bool, ())
 end
 
 function SDL_GetSystemRAM()
@@ -1670,6 +1690,42 @@ end
 
 function SDL_IntersectRectAndLine(rect, X1, Y1, X2, Y2)
     ccall((:SDL_IntersectRectAndLine, libsdl2), SDL_bool, (Ptr{SDL_Rect}, Ptr{Cint}, Ptr{Cint}, Ptr{Cint}, Ptr{Cint}), rect, X1, Y1, X2, Y2)
+end
+
+function SDL_PointInFRect(p, r)
+    ccall((:SDL_PointInFRect, libsdl2), SDL_bool, (Ptr{SDL_FPoint}, Ptr{SDL_FRect}), p, r)
+end
+
+function SDL_FRectEmpty(r)
+    ccall((:SDL_FRectEmpty, libsdl2), SDL_bool, (Ptr{SDL_FRect},), r)
+end
+
+function SDL_FRectEqualsEpsilon(a, b, epsilon)
+    ccall((:SDL_FRectEqualsEpsilon, libsdl2), SDL_bool, (Ptr{SDL_FRect}, Ptr{SDL_FRect}, Cfloat), a, b, epsilon)
+end
+
+function SDL_FRectEquals(a, b)
+    ccall((:SDL_FRectEquals, libsdl2), SDL_bool, (Ptr{SDL_FRect}, Ptr{SDL_FRect}), a, b)
+end
+
+function SDL_HasIntersectionF(A, B)
+    ccall((:SDL_HasIntersectionF, libsdl2), SDL_bool, (Ptr{SDL_FRect}, Ptr{SDL_FRect}), A, B)
+end
+
+function SDL_IntersectFRect(A, B, result)
+    ccall((:SDL_IntersectFRect, libsdl2), SDL_bool, (Ptr{SDL_FRect}, Ptr{SDL_FRect}, Ptr{SDL_FRect}), A, B, result)
+end
+
+function SDL_UnionFRect(A, B, result)
+    ccall((:SDL_UnionFRect, libsdl2), Cvoid, (Ptr{SDL_FRect}, Ptr{SDL_FRect}, Ptr{SDL_FRect}), A, B, result)
+end
+
+function SDL_EncloseFPoints(points, count, clip, result)
+    ccall((:SDL_EncloseFPoints, libsdl2), SDL_bool, (Ptr{SDL_FPoint}, Cint, Ptr{SDL_FRect}, Ptr{SDL_FRect}), points, count, clip, result)
+end
+
+function SDL_IntersectFRectAndLine(rect, X1, Y1, X2, Y2)
+    ccall((:SDL_IntersectFRectAndLine, libsdl2), SDL_bool, (Ptr{SDL_FRect}, Ptr{Cfloat}, Ptr{Cfloat}, Ptr{Cfloat}, Ptr{Cfloat}), rect, X1, Y1, X2, Y2)
 end
 
 @cenum SDL_BlendMode::UInt32 begin
@@ -1966,6 +2022,7 @@ const SDL_GLContext = Ptr{Cvoid}
     SDL_GL_CONTEXT_RELEASE_BEHAVIOR = 24
     SDL_GL_CONTEXT_RESET_NOTIFICATION = 25
     SDL_GL_CONTEXT_NO_ERROR = 26
+    SDL_GL_FLOATBUFFERS = 27
 end
 
 @cenum SDL_GLprofile::UInt32 begin
@@ -2053,6 +2110,14 @@ end
 
 function SDL_GetClosestDisplayMode(displayIndex, mode, closest)
     ccall((:SDL_GetClosestDisplayMode, libsdl2), Ptr{SDL_DisplayMode}, (Cint, Ptr{SDL_DisplayMode}, Ptr{SDL_DisplayMode}), displayIndex, mode, closest)
+end
+
+function SDL_GetPointDisplayIndex(point)
+    ccall((:SDL_GetPointDisplayIndex, libsdl2), Cint, (Ptr{SDL_Point},), point)
+end
+
+function SDL_GetRectDisplayIndex(rect)
+    ccall((:SDL_GetRectDisplayIndex, libsdl2), Cint, (Ptr{SDL_Rect},), rect)
 end
 
 function SDL_GetWindowDisplayIndex(window)
@@ -2619,6 +2684,10 @@ end
     SDL_SCANCODE_APP2 = 284
     SDL_SCANCODE_AUDIOREWIND = 285
     SDL_SCANCODE_AUDIOFASTFORWARD = 286
+    SDL_SCANCODE_SOFTLEFT = 287
+    SDL_SCANCODE_SOFTRIGHT = 288
+    SDL_SCANCODE_CALL = 289
+    SDL_SCANCODE_ENDCALL = 290
     SDL_NUM_SCANCODES = 512
 end
 
@@ -2865,6 +2934,10 @@ const SDL_Keycode = Sint32
     SDLK_APP2 = 1073742108
     SDLK_AUDIOREWIND = 1073742109
     SDLK_AUDIOFASTFORWARD = 1073742110
+    SDLK_SOFTLEFT = 1073742111
+    SDLK_SOFTRIGHT = 1073742112
+    SDLK_CALL = 1073742113
+    SDLK_ENDCALL = 1073742114
 end
 
 @cenum SDL_Keymod::UInt32 begin
@@ -2901,6 +2974,10 @@ end
 
 function SDL_GetKeyboardState(numkeys)
     ccall((:SDL_GetKeyboardState, libsdl2), Ptr{Uint8}, (Ptr{Cint},), numkeys)
+end
+
+function SDL_ResetKeyboard()
+    ccall((:SDL_ResetKeyboard, libsdl2), Cvoid, ())
 end
 
 function SDL_GetModState()
@@ -2945,6 +3022,14 @@ end
 
 function SDL_StopTextInput()
     ccall((:SDL_StopTextInput, libsdl2), Cvoid, ())
+end
+
+function SDL_ClearComposition()
+    ccall((:SDL_ClearComposition, libsdl2), Cvoid, ())
+end
+
+function SDL_IsTextInputShown()
+    ccall((:SDL_IsTextInputShown, libsdl2), SDL_bool, ())
 end
 
 function SDL_SetTextInputRect(rect)
@@ -3050,13 +3135,23 @@ function SDL_ShowCursor(toggle)
     ccall((:SDL_ShowCursor, libsdl2), Cint, (Cint,), toggle)
 end
 
+struct SDL_GUID
+    data::NTuple{16, Uint8}
+end
+
+function SDL_GUIDToString(guid, pszGUID, cbGUID)
+    ccall((:SDL_GUIDToString, libsdl2), Cvoid, (SDL_GUID, Ptr{Cchar}, Cint), guid, pszGUID, cbGUID)
+end
+
+function SDL_GUIDFromString(pchGUID)
+    ccall((:SDL_GUIDFromString, libsdl2), SDL_GUID, (Ptr{Cchar},), pchGUID)
+end
+
 mutable struct _SDL_Joystick end
 
 const SDL_Joystick = _SDL_Joystick
 
-struct SDL_JoystickGUID
-    data::NTuple{16, Uint8}
-end
+const SDL_JoystickGUID = SDL_GUID
 
 const SDL_JoystickID = Sint32
 
@@ -3097,6 +3192,10 @@ end
 
 function SDL_JoystickNameForIndex(device_index)
     ccall((:SDL_JoystickNameForIndex, libsdl2), Ptr{Cchar}, (Cint,), device_index)
+end
+
+function SDL_JoystickPathForIndex(device_index)
+    ccall((:SDL_JoystickPathForIndex, libsdl2), Ptr{Cchar}, (Cint,), device_index)
 end
 
 function SDL_JoystickGetDevicePlayerIndex(device_index)
@@ -3143,6 +3242,31 @@ function SDL_JoystickAttachVirtual(type, naxes, nbuttons, nhats)
     ccall((:SDL_JoystickAttachVirtual, libsdl2), Cint, (SDL_JoystickType, Cint, Cint, Cint), type, naxes, nbuttons, nhats)
 end
 
+struct SDL_VirtualJoystickDesc
+    version::Uint16
+    type::Uint16
+    naxes::Uint16
+    nbuttons::Uint16
+    nhats::Uint16
+    vendor_id::Uint16
+    product_id::Uint16
+    padding::Uint16
+    button_mask::Uint32
+    axis_mask::Uint32
+    name::Ptr{Cchar}
+    userdata::Ptr{Cvoid}
+    Update::Ptr{Cvoid}
+    SetPlayerIndex::Ptr{Cvoid}
+    Rumble::Ptr{Cvoid}
+    RumbleTriggers::Ptr{Cvoid}
+    SetLED::Ptr{Cvoid}
+    SendEffect::Ptr{Cvoid}
+end
+
+function SDL_JoystickAttachVirtualEx(desc)
+    ccall((:SDL_JoystickAttachVirtualEx, libsdl2), Cint, (Ptr{SDL_VirtualJoystickDesc},), desc)
+end
+
 function SDL_JoystickDetachVirtual(device_index)
     ccall((:SDL_JoystickDetachVirtual, libsdl2), Cint, (Cint,), device_index)
 end
@@ -3167,6 +3291,10 @@ function SDL_JoystickName(joystick)
     ccall((:SDL_JoystickName, libsdl2), Ptr{Cchar}, (Ptr{SDL_Joystick},), joystick)
 end
 
+function SDL_JoystickPath(joystick)
+    ccall((:SDL_JoystickPath, libsdl2), Ptr{Cchar}, (Ptr{SDL_Joystick},), joystick)
+end
+
 function SDL_JoystickGetPlayerIndex(joystick)
     ccall((:SDL_JoystickGetPlayerIndex, libsdl2), Cint, (Ptr{SDL_Joystick},), joystick)
 end
@@ -3189,6 +3317,10 @@ end
 
 function SDL_JoystickGetProductVersion(joystick)
     ccall((:SDL_JoystickGetProductVersion, libsdl2), Uint16, (Ptr{SDL_Joystick},), joystick)
+end
+
+function SDL_JoystickGetFirmwareVersion(joystick)
+    ccall((:SDL_JoystickGetFirmwareVersion, libsdl2), Uint16, (Ptr{SDL_Joystick},), joystick)
 end
 
 function SDL_JoystickGetSerial(joystick)
@@ -3387,6 +3519,10 @@ const SDL_GameController = _SDL_GameController
     SDL_CONTROLLER_TYPE_PS5 = 7
     SDL_CONTROLLER_TYPE_AMAZON_LUNA = 8
     SDL_CONTROLLER_TYPE_GOOGLE_STADIA = 9
+    SDL_CONTROLLER_TYPE_NVIDIA_SHIELD = 10
+    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_LEFT = 11
+    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_RIGHT = 12
+    SDL_CONTROLLER_TYPE_NINTENDO_SWITCH_JOYCON_PAIR = 13
 end
 
 @cenum SDL_GameControllerBindType::UInt32 begin
@@ -3467,6 +3603,10 @@ function SDL_GameControllerNameForIndex(joystick_index)
     ccall((:SDL_GameControllerNameForIndex, libsdl2), Ptr{Cchar}, (Cint,), joystick_index)
 end
 
+function SDL_GameControllerPathForIndex(joystick_index)
+    ccall((:SDL_GameControllerPathForIndex, libsdl2), Ptr{Cchar}, (Cint,), joystick_index)
+end
+
 function SDL_GameControllerTypeForIndex(joystick_index)
     ccall((:SDL_GameControllerTypeForIndex, libsdl2), SDL_GameControllerType, (Cint,), joystick_index)
 end
@@ -3491,6 +3631,10 @@ function SDL_GameControllerName(gamecontroller)
     ccall((:SDL_GameControllerName, libsdl2), Ptr{Cchar}, (Ptr{SDL_GameController},), gamecontroller)
 end
 
+function SDL_GameControllerPath(gamecontroller)
+    ccall((:SDL_GameControllerPath, libsdl2), Ptr{Cchar}, (Ptr{SDL_GameController},), gamecontroller)
+end
+
 function SDL_GameControllerGetType(gamecontroller)
     ccall((:SDL_GameControllerGetType, libsdl2), SDL_GameControllerType, (Ptr{SDL_GameController},), gamecontroller)
 end
@@ -3513,6 +3657,10 @@ end
 
 function SDL_GameControllerGetProductVersion(gamecontroller)
     ccall((:SDL_GameControllerGetProductVersion, libsdl2), Uint16, (Ptr{SDL_GameController},), gamecontroller)
+end
+
+function SDL_GameControllerGetFirmwareVersion(gamecontroller)
+    ccall((:SDL_GameControllerGetFirmwareVersion, libsdl2), Uint16, (Ptr{SDL_GameController},), gamecontroller)
 end
 
 function SDL_GameControllerGetSerial(gamecontroller)
@@ -3710,6 +3858,10 @@ function SDL_GetTouchDevice(index)
     ccall((:SDL_GetTouchDevice, libsdl2), SDL_TouchID, (Cint,), index)
 end
 
+function SDL_GetTouchName(index)
+    ccall((:SDL_GetTouchName, libsdl2), Ptr{Cchar}, (Cint,), index)
+end
+
 function SDL_GetTouchDeviceType(touchID)
     ccall((:SDL_GetTouchDeviceType, libsdl2), SDL_TouchDeviceType, (SDL_TouchID,), touchID)
 end
@@ -3758,6 +3910,7 @@ end
     SDL_TEXTEDITING = 770
     SDL_TEXTINPUT = 771
     SDL_KEYMAPCHANGED = 772
+    SDL_TEXTEDITING_EXT = 773
     SDL_MOUSEMOTION = 1024
     SDL_MOUSEBUTTONDOWN = 1025
     SDL_MOUSEBUTTONUP = 1026
@@ -3769,6 +3922,7 @@ end
     SDL_JOYBUTTONUP = 1540
     SDL_JOYDEVICEADDED = 1541
     SDL_JOYDEVICEREMOVED = 1542
+    SDL_JOYBATTERYUPDATED = 1543
     SDL_CONTROLLERAXISMOTION = 1616
     SDL_CONTROLLERBUTTONDOWN = 1617
     SDL_CONTROLLERBUTTONUP = 1618
@@ -3844,6 +3998,15 @@ struct SDL_TextEditingEvent
     timestamp::Uint32
     windowID::Uint32
     text::NTuple{32, Cchar}
+    start::Sint32
+    length::Sint32
+end
+
+struct SDL_TextEditingExtEvent
+    type::Uint32
+    timestamp::Uint32
+    windowID::Uint32
+    text::Ptr{Cchar}
     start::Sint32
     length::Sint32
 end
@@ -3940,6 +4103,13 @@ struct SDL_JoyDeviceEvent
     type::Uint32
     timestamp::Uint32
     which::Sint32
+end
+
+struct SDL_JoyBatteryEvent
+    type::Uint32
+    timestamp::Uint32
+    which::SDL_JoystickID
+    level::SDL_JoystickPowerLevel
 end
 
 struct SDL_ControllerAxisEvent
@@ -4075,8 +4245,6 @@ struct SDL_SysWMEvent
     timestamp::Uint32
     msg::Ptr{SDL_SysWMmsg}
 end
-
-const SDL_compile_time_assert_SDL_Event = NTuple{1, Cint}
 
 function SDL_HasEvent(type)
     ccall((:SDL_HasEvent, libsdl2), SDL_bool, (Uint32,), type)
@@ -4503,6 +4671,10 @@ function SDL_SetHint(name, value)
     ccall((:SDL_SetHint, libsdl2), SDL_bool, (Ptr{Cchar}, Ptr{Cchar}), name, value)
 end
 
+function SDL_ResetHint(name)
+    ccall((:SDL_ResetHint, libsdl2), SDL_bool, (Ptr{Cchar},), name)
+end
+
 function SDL_GetHint(name)
     ccall((:SDL_GetHint, libsdl2), Ptr{Cchar}, (Ptr{Cchar},), name)
 end
@@ -4756,6 +4928,10 @@ end
 
 function SDL_GetRenderer(window)
     ccall((:SDL_GetRenderer, libsdl2), Ptr{SDL_Renderer}, (Ptr{SDL_Window},), window)
+end
+
+function SDL_RenderGetWindow(renderer)
+    ccall((:SDL_RenderGetWindow, libsdl2), Ptr{SDL_Window}, (Ptr{SDL_Renderer},), renderer)
 end
 
 function SDL_GetRendererInfo(renderer, info)
@@ -6636,6 +6812,8 @@ const HAVE_UNSETENV = 1
 
 const HAVE_QSORT = 1
 
+const HAVE_BSEARCH = 1
+
 const HAVE_ABS = 1
 
 const HAVE_BCOPY = 1
@@ -6645,6 +6823,8 @@ const HAVE_MEMSET = 1
 const HAVE_MEMCPY = 1
 
 const HAVE_MEMMOVE = 1
+
+const HAVE_MEMCMP = 1
 
 const HAVE_WCSLEN = 1
 
@@ -6689,6 +6869,8 @@ const HAVE_STRTOUL = 1
 const HAVE_STRTOLL = 1
 
 const HAVE_STRTOULL = 1
+
+const HAVE_STRTOD = 1
 
 const HAVE_ATOI = 1
 
@@ -6864,8 +7046,6 @@ const SDL_VIDEO_METAL = 1
 
 const SDL_POWER_MACOSX = 1
 
-const SDL_ASSEMBLY_ROUTINES = 1
-
 const DYNAPI_NEEDS_DLOPEN = 1
 
 const _DARWIN_C_SOURCE = 1
@@ -6911,6 +7091,8 @@ const SDL_LIL_ENDIAN = 1234
 const SDL_BIG_ENDIAN = 4321
 
 const SDL_BYTEORDER = SDL_LIL_ENDIAN
+
+const SDL_FLOATWORDORDER = SDL_BYTEORDER
 
 const SDL_MUTEX_TIMEDOUT = 1
 
@@ -7054,6 +7236,8 @@ const SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2)
 
 const SDL_IPHONE_MAX_GFORCE = 5.0
 
+const SDL_VIRTUAL_JOYSTICK_DESC_VERSION = 1
+
 const SDL_JOYSTICK_AXIS_MAX = 32767
 
 const SDL_JOYSTICK_AXIS_MIN = -32768
@@ -7186,6 +7370,8 @@ const SDL_HINT_ENABLE_STEAM_CONTROLLERS = "SDL_ENABLE_STEAM_CONTROLLERS"
 
 const SDL_HINT_EVENT_LOGGING = "SDL_EVENT_LOGGING"
 
+const SDL_HINT_FORCE_RAISEWINDOW = "SDL_HINT_FORCE_RAISEWINDOW"
+
 const SDL_HINT_FRAMEBUFFER_ACCELERATION = "SDL_FRAMEBUFFER_ACCELERATION"
 
 const SDL_HINT_GAMECONTROLLERCONFIG = "SDL_GAMECONTROLLERCONFIG"
@@ -7208,6 +7394,8 @@ const SDL_HINT_IME_INTERNAL_EDITING = "SDL_IME_INTERNAL_EDITING"
 
 const SDL_HINT_IME_SHOW_UI = "SDL_IME_SHOW_UI"
 
+const SDL_HINT_IME_SUPPORT_EXTENDED_TEXT = "SDL_IME_SUPPORT_EXTENDED_TEXT"
+
 const SDL_HINT_IOS_HIDE_HOME_INDICATOR = "SDL_IOS_HIDE_HOME_INDICATOR"
 
 const SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS = "SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS"
@@ -7216,9 +7404,17 @@ const SDL_HINT_JOYSTICK_HIDAPI = "SDL_JOYSTICK_HIDAPI"
 
 const SDL_HINT_JOYSTICK_HIDAPI_GAMECUBE = "SDL_JOYSTICK_HIDAPI_GAMECUBE"
 
+const SDL_HINT_JOYSTICK_GAMECUBE_RUMBLE_BRAKE = "SDL_JOYSTICK_GAMECUBE_RUMBLE_BRAKE"
+
 const SDL_HINT_JOYSTICK_HIDAPI_JOY_CONS = "SDL_JOYSTICK_HIDAPI_JOY_CONS"
 
+const SDL_HINT_JOYSTICK_HIDAPI_COMBINE_JOY_CONS = "SDL_JOYSTICK_HIDAPI_COMBINE_JOY_CONS"
+
 const SDL_HINT_JOYSTICK_HIDAPI_LUNA = "SDL_JOYSTICK_HIDAPI_LUNA"
+
+const SDL_HINT_JOYSTICK_HIDAPI_NINTENDO_CLASSIC = "SDL_JOYSTICK_HIDAPI_NINTENDO_CLASSIC"
+
+const SDL_HINT_JOYSTICK_HIDAPI_SHIELD = "SDL_JOYSTICK_HIDAPI_SHIELD"
 
 const SDL_HINT_JOYSTICK_HIDAPI_PS4 = "SDL_JOYSTICK_HIDAPI_PS4"
 
@@ -7238,17 +7434,27 @@ const SDL_HINT_JOYSTICK_HIDAPI_SWITCH = "SDL_JOYSTICK_HIDAPI_SWITCH"
 
 const SDL_HINT_JOYSTICK_HIDAPI_SWITCH_HOME_LED = "SDL_JOYSTICK_HIDAPI_SWITCH_HOME_LED"
 
+const SDL_HINT_JOYSTICK_HIDAPI_JOYCON_HOME_LED = "SDL_JOYSTICK_HIDAPI_JOYCON_HOME_LED"
+
+const SDL_HINT_JOYSTICK_HIDAPI_SWITCH_PLAYER_LED = "SDL_JOYSTICK_HIDAPI_SWITCH_PLAYER_LED"
+
 const SDL_HINT_JOYSTICK_HIDAPI_XBOX = "SDL_JOYSTICK_HIDAPI_XBOX"
 
 const SDL_HINT_JOYSTICK_RAWINPUT = "SDL_JOYSTICK_RAWINPUT"
 
 const SDL_HINT_JOYSTICK_RAWINPUT_CORRELATE_XINPUT = "SDL_JOYSTICK_RAWINPUT_CORRELATE_XINPUT"
 
+const SDL_HINT_JOYSTICK_ROG_CHAKRAM = "SDL_JOYSTICK_ROG_CHAKRAM"
+
 const SDL_HINT_JOYSTICK_THREAD = "SDL_JOYSTICK_THREAD"
 
 const SDL_HINT_KMSDRM_REQUIRE_DRM_MASTER = "SDL_KMSDRM_REQUIRE_DRM_MASTER"
 
 const SDL_HINT_JOYSTICK_DEVICE = "SDL_JOYSTICK_DEVICE"
+
+const SDL_HINT_LINUX_DIGITAL_HATS = "SDL_LINUX_DIGITAL_HATS"
+
+const SDL_HINT_LINUX_HAT_DEADZONES = "SDL_LINUX_HAT_DEADZONES"
 
 const SDL_HINT_LINUX_JOYSTICK_CLASSIC = "SDL_LINUX_JOYSTICK_CLASSIC"
 
@@ -7258,6 +7464,8 @@ const SDL_HINT_MAC_BACKGROUND_APP = "SDL_MAC_BACKGROUND_APP"
 
 const SDL_HINT_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK = "SDL_MAC_CTRL_CLICK_EMULATE_RIGHT_CLICK"
 
+const SDL_HINT_MAC_OPENGL_ASYNC_DISPATCH = "SDL_MAC_OPENGL_ASYNC_DISPATCH"
+
 const SDL_HINT_MOUSE_DOUBLE_CLICK_RADIUS = "SDL_MOUSE_DOUBLE_CLICK_RADIUS"
 
 const SDL_HINT_MOUSE_DOUBLE_CLICK_TIME = "SDL_MOUSE_DOUBLE_CLICK_TIME"
@@ -7266,13 +7474,19 @@ const SDL_HINT_MOUSE_FOCUS_CLICKTHROUGH = "SDL_MOUSE_FOCUS_CLICKTHROUGH"
 
 const SDL_HINT_MOUSE_NORMAL_SPEED_SCALE = "SDL_MOUSE_NORMAL_SPEED_SCALE"
 
+const SDL_HINT_MOUSE_RELATIVE_MODE_CENTER = "SDL_MOUSE_RELATIVE_MODE_CENTER"
+
 const SDL_HINT_MOUSE_RELATIVE_MODE_WARP = "SDL_MOUSE_RELATIVE_MODE_WARP"
 
 const SDL_HINT_MOUSE_RELATIVE_SCALING = "SDL_MOUSE_RELATIVE_SCALING"
 
 const SDL_HINT_MOUSE_RELATIVE_SPEED_SCALE = "SDL_MOUSE_RELATIVE_SPEED_SCALE"
 
+const SDL_HINT_MOUSE_RELATIVE_WARP_MOTION = "SDL_MOUSE_RELATIVE_WARP_MOTION"
+
 const SDL_HINT_MOUSE_TOUCH_EVENTS = "SDL_MOUSE_TOUCH_EVENTS"
+
+const SDL_HINT_MOUSE_AUTO_CAPTURE = "SDL_MOUSE_AUTO_CAPTURE"
 
 const SDL_HINT_NO_SIGNAL_HANDLERS = "SDL_NO_SIGNAL_HANDLERS"
 
@@ -7322,6 +7536,8 @@ const SDL_HINT_TIMER_RESOLUTION = "SDL_TIMER_RESOLUTION"
 
 const SDL_HINT_TOUCH_MOUSE_EVENTS = "SDL_TOUCH_MOUSE_EVENTS"
 
+const SDL_HINT_VITA_TOUCH_MOUSE_DEVICE = "SDL_HINT_VITA_TOUCH_MOUSE_DEVICE"
+
 const SDL_HINT_TV_REMOTE_AS_JOYSTICK = "SDL_TV_REMOTE_AS_JOYSTICK"
 
 const SDL_HINT_VIDEO_ALLOW_SCREENSAVER = "SDL_VIDEO_ALLOW_SCREENSAVER"
@@ -7340,7 +7556,15 @@ const SDL_HINT_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS"
 
 const SDL_HINT_VIDEO_WAYLAND_ALLOW_LIBDECOR = "SDL_VIDEO_WAYLAND_ALLOW_LIBDECOR"
 
+const SDL_HINT_VIDEO_WAYLAND_PREFER_LIBDECOR = "SDL_VIDEO_WAYLAND_PREFER_LIBDECOR"
+
+const SDL_HINT_VIDEO_WAYLAND_MODE_EMULATION = "SDL_VIDEO_WAYLAND_MODE_EMULATION"
+
 const SDL_HINT_VIDEO_WINDOW_SHARE_PIXEL_FORMAT = "SDL_VIDEO_WINDOW_SHARE_PIXEL_FORMAT"
+
+const SDL_HINT_VIDEO_FOREIGN_WINDOW_OPENGL = "SDL_VIDEO_FOREIGN_WINDOW_OPENGL"
+
+const SDL_HINT_VIDEO_FOREIGN_WINDOW_VULKAN = "SDL_VIDEO_FOREIGN_WINDOW_VULKAN"
 
 const SDL_HINT_VIDEO_WIN_D3DCOMPILER = "SDL_VIDEO_WIN_D3DCOMPILER"
 
@@ -7380,6 +7604,10 @@ const SDL_HINT_WINDOWS_NO_CLOSE_ON_ALT_F4 = "SDL_WINDOWS_NO_CLOSE_ON_ALT_F4"
 
 const SDL_HINT_WINDOWS_USE_D3D9EX = "SDL_WINDOWS_USE_D3D9EX"
 
+const SDL_HINT_WINDOWS_DPI_AWARENESS = "SDL_WINDOWS_DPI_AWARENESS"
+
+const SDL_HINT_WINDOWS_DPI_SCALING = "SDL_WINDOWS_DPI_SCALING"
+
 const SDL_HINT_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN = "SDL_WINDOW_FRAME_USABLE_WHILE_CURSOR_HIDDEN"
 
 const SDL_HINT_WINDOW_NO_ACTIVATION_WHEN_SHOWN = "SDL_WINDOW_NO_ACTIVATION_WHEN_SHOWN"
@@ -7394,9 +7622,23 @@ const SDL_HINT_X11_FORCE_OVERRIDE_REDIRECT = "SDL_X11_FORCE_OVERRIDE_REDIRECT"
 
 const SDL_HINT_XINPUT_ENABLED = "SDL_XINPUT_ENABLED"
 
+const SDL_HINT_DIRECTINPUT_ENABLED = "SDL_DIRECTINPUT_ENABLED"
+
 const SDL_HINT_XINPUT_USE_OLD_JOYSTICK_MAPPING = "SDL_XINPUT_USE_OLD_JOYSTICK_MAPPING"
 
 const SDL_HINT_AUDIO_INCLUDE_MONITORS = "SDL_AUDIO_INCLUDE_MONITORS"
+
+const SDL_HINT_X11_WINDOW_TYPE = "SDL_X11_WINDOW_TYPE"
+
+const SDL_HINT_QUIT_ON_LAST_WINDOW_CLOSE = "SDL_QUIT_ON_LAST_WINDOW_CLOSE"
+
+const SDL_HINT_VIDEODRIVER = "SDL_VIDEODRIVER"
+
+const SDL_HINT_AUDIODRIVER = "SDL_AUDIODRIVER"
+
+const SDL_HINT_KMSDRM_DEVICE_INDEX = "SDL_KMSDRM_DEVICE_INDEX"
+
+const SDL_HINT_TRACKPAD_IS_TOUCH_ONLY = "SDL_TRACKPAD_IS_TOUCH_ONLY"
 
 const SDL_MAX_LOG_MESSAGE = 4096
 
@@ -7408,9 +7650,9 @@ const SDL_WINDOW_LACKS_SHAPE = -3
 
 const SDL_MAJOR_VERSION = 2
 
-const SDL_MINOR_VERSION = 0
+const SDL_MINOR_VERSION = 24
 
-const SDL_PATCHLEVEL = 20
+const SDL_PATCHLEVEL = 2
 
 SDL_VERSIONNUM(X, Y, Z) = X * 1000 + Y * 100 + Z
 
@@ -7440,7 +7682,7 @@ const SDL_MIXER_MAJOR_VERSION = 2
 
 const SDL_MIXER_MINOR_VERSION = 6
 
-const SDL_MIXER_PATCHLEVEL = 0
+const SDL_MIXER_PATCHLEVEL = 2
 
 const MIX_MAJOR_VERSION = SDL_MIXER_MAJOR_VERSION
 
