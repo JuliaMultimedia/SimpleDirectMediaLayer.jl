@@ -20,11 +20,7 @@ end
     @test win != C_NULL
 
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
-    if haskey(ENV, "CI") && Sys.isapple()
-        @test_broken renderer != C_NULL
-    else
-        @test renderer != C_NULL
-    end
+    @test renderer != C_NULL
 
     # Close window
     SDL_DestroyWindow(win)
@@ -33,11 +29,7 @@ end
     win = SDL_CreateWindow("Hello World!", 100, 100, 300, 400, SDL_WINDOW_HIDDEN)
     @test win != C_NULL
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
-    if haskey(ENV, "CI") && Sys.isapple()
-        @test_broken renderer != C_NULL
-    else
-        @test renderer != C_NULL
-    end
+    @test renderer != C_NULL
 
     SDL_Quit()
 end
