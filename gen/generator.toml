@@ -37,6 +37,8 @@ printer_blacklist = [
     "SDL_PRIs32",
     "SDL_PRIx32",
     "SDL_PRIX32",
+    "SDL_SIZE_MAX",
+    "SDL_FLT_EPSILON",
     "HAS_BUILTIN_BSWAP16",
     "HAS_BUILTIN_BSWAP32",
     "HAS_BUILTIN_BSWAP64",

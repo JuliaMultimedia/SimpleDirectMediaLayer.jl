@@ -20,7 +20,7 @@ end
     @test win != C_NULL
 
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
-    if get(ENV, "HAS_JOSH_K_SEAL_OF_APPROVAL", "") == "true" && Sys.islinux()
+    if haskey(ENV, "CI") && Sys.isapple()
         @test_broken renderer != C_NULL
     else
         @test renderer != C_NULL
@@ -33,7 +33,11 @@ end
     win = SDL_CreateWindow("Hello World!", 100, 100, 300, 400, SDL_WINDOW_HIDDEN)
     @test win != C_NULL
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE)
-    @test renderer != C_NULL
+    if haskey(ENV, "CI") && Sys.isapple()
+        @test_broken renderer != C_NULL
+    else
+        @test renderer != C_NULL
+    end
 
     SDL_Quit()
 end

@@ -7050,8 +7050,6 @@ const DYNAPI_NEEDS_DLOPEN = 1
 
 const _DARWIN_C_SOURCE = 1
 
-const SDL_SIZE_MAX = SIZE_MAX
-
 const SDL_MAX_SINT8 = Sint8(0x7f)
 
 const SDL_MAX_UINT8 = Uint8(0xff)
@@ -7075,8 +7073,6 @@ const SDL_MAX_SINT64 = Sint64(Clonglong(0x7fffffffffffffff))
 const SDL_MAX_UINT64 = Uint64(Culonglong(0xffffffffffffffff))
 
 const SDL_MIN_UINT64 = Uint64(Culonglong(0x0000000000000000))
-
-const SDL_FLT_EPSILON = FLT_EPSILON
 
 const SDL_PRIs64 = "lld"
 
