@@ -24,6 +24,8 @@ printer_blacklist = [
     "SDL_PRIX64",
     "SDL_FILE",
     "SDL_LINE",
+    "SDL_BYTEORDER",
+    "SDL_FLOATWORDORDER",
     "Mix_SetError",
     "Mix_GetError",
     "Mix_ClearError",

@@ -5,11 +5,3 @@ SDL2_image_jll = "41f3cfe1-fd11-58ad-8074-b9730c29438b"
 SDL2_jll = "ab825dc5-c88e-5901-9575-1e5e20358fcf"
 SDL2_mixer_jll = "7e88e5ca-120e-58e7-9660-b2187fd466c0"
 SDL2_ttf_jll = "ca9d4746-8a27-5104-babe-80f83b336947"
-
-[compat]
-Clang = "0.16"
-SDL2_gfx_jll = "1.0.3"
-SDL2_image_jll = "2.0.5"
-SDL2_jll = "2.0.20"
-SDL2_mixer_jll = "2.0.4"
-SDL2_ttf_jll = "2.0.15"
