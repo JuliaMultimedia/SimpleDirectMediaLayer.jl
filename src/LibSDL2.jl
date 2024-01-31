@@ -6266,411 +6266,411 @@ struct FPSmanager
 end
 
 function SDL_initFramerate(manager)
-    ccall((:SDL_initFramerate, libsdl2_framerate), Cvoid, (Ptr{FPSmanager},), manager)
+    ccall((:SDL_initFramerate, libsdl2_gfx), Cvoid, (Ptr{FPSmanager},), manager)
 end
 
 function SDL_setFramerate(manager, rate)
-    ccall((:SDL_setFramerate, libsdl2_framerate), Cint, (Ptr{FPSmanager}, Uint32), manager, rate)
+    ccall((:SDL_setFramerate, libsdl2_gfx), Cint, (Ptr{FPSmanager}, Uint32), manager, rate)
 end
 
 function SDL_getFramerate(manager)
-    ccall((:SDL_getFramerate, libsdl2_framerate), Cint, (Ptr{FPSmanager},), manager)
+    ccall((:SDL_getFramerate, libsdl2_gfx), Cint, (Ptr{FPSmanager},), manager)
 end
 
 function SDL_getFramecount(manager)
-    ccall((:SDL_getFramecount, libsdl2_framerate), Cint, (Ptr{FPSmanager},), manager)
+    ccall((:SDL_getFramecount, libsdl2_gfx), Cint, (Ptr{FPSmanager},), manager)
 end
 
 function SDL_framerateDelay(manager)
-    ccall((:SDL_framerateDelay, libsdl2_framerate), Uint32, (Ptr{FPSmanager},), manager)
+    ccall((:SDL_framerateDelay, libsdl2_gfx), Uint32, (Ptr{FPSmanager},), manager)
 end
 
 function pixelColor(renderer, x, y, color)
-    ccall((:pixelColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Uint32), renderer, x, y, color)
+    ccall((:pixelColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Uint32), renderer, x, y, color)
 end
 
 function pixelRGBA(renderer, x, y, r, g, b, a)
-    ccall((:pixelRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, r, g, b, a)
+    ccall((:pixelRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, r, g, b, a)
 end
 
 function hlineColor(renderer, x1, x2, y, color)
-    ccall((:hlineColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x1, x2, y, color)
+    ccall((:hlineColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x1, x2, y, color)
 end
 
 function hlineRGBA(renderer, x1, x2, y, r, g, b, a)
-    ccall((:hlineRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, x2, y, r, g, b, a)
+    ccall((:hlineRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, x2, y, r, g, b, a)
 end
 
 function vlineColor(renderer, x, y1, y2, color)
-    ccall((:vlineColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y1, y2, color)
+    ccall((:vlineColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y1, y2, color)
 end
 
 function vlineRGBA(renderer, x, y1, y2, r, g, b, a)
-    ccall((:vlineRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y1, y2, r, g, b, a)
+    ccall((:vlineRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y1, y2, r, g, b, a)
 end
 
 function rectangleColor(renderer, x1, y1, x2, y2, color)
-    ccall((:rectangleColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
+    ccall((:rectangleColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
 end
 
 function rectangleRGBA(renderer, x1, y1, x2, y2, r, g, b, a)
-    ccall((:rectangleRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
+    ccall((:rectangleRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
 end
 
 function roundedRectangleColor(renderer, x1, y1, x2, y2, rad, color)
-    ccall((:roundedRectangleColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, rad, color)
+    ccall((:roundedRectangleColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, rad, color)
 end
 
 function roundedRectangleRGBA(renderer, x1, y1, x2, y2, rad, r, g, b, a)
-    ccall((:roundedRectangleRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, rad, r, g, b, a)
+    ccall((:roundedRectangleRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, rad, r, g, b, a)
 end
 
 function boxColor(renderer, x1, y1, x2, y2, color)
-    ccall((:boxColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
+    ccall((:boxColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
 end
 
 function boxRGBA(renderer, x1, y1, x2, y2, r, g, b, a)
-    ccall((:boxRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
+    ccall((:boxRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
 end
 
 function roundedBoxColor(renderer, x1, y1, x2, y2, rad, color)
-    ccall((:roundedBoxColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, rad, color)
+    ccall((:roundedBoxColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, rad, color)
 end
 
 function roundedBoxRGBA(renderer, x1, y1, x2, y2, rad, r, g, b, a)
-    ccall((:roundedBoxRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, rad, r, g, b, a)
+    ccall((:roundedBoxRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, rad, r, g, b, a)
 end
 
 function lineColor(renderer, x1, y1, x2, y2, color)
-    ccall((:lineColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
+    ccall((:lineColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
 end
 
 function lineRGBA(renderer, x1, y1, x2, y2, r, g, b, a)
-    ccall((:lineRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
+    ccall((:lineRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
 end
 
 function aalineColor(renderer, x1, y1, x2, y2, color)
-    ccall((:aalineColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
+    ccall((:aalineColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, color)
 end
 
 function aalineRGBA(renderer, x1, y1, x2, y2, r, g, b, a)
-    ccall((:aalineRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
+    ccall((:aalineRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, r, g, b, a)
 end
 
 function thickLineColor(renderer, x1, y1, x2, y2, width, color)
-    ccall((:thickLineColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint32), renderer, x1, y1, x2, y2, width, color)
+    ccall((:thickLineColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint32), renderer, x1, y1, x2, y2, width, color)
 end
 
 function thickLineRGBA(renderer, x1, y1, x2, y2, width, r, g, b, a)
-    ccall((:thickLineRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, width, r, g, b, a)
+    ccall((:thickLineRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, width, r, g, b, a)
 end
 
 function circleColor(renderer, x, y, rad, color)
-    ccall((:circleColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, color)
+    ccall((:circleColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, color)
 end
 
 function circleRGBA(renderer, x, y, rad, r, g, b, a)
-    ccall((:circleRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
+    ccall((:circleRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
 end
 
 function arcColor(renderer, x, y, rad, start, _end, color)
-    ccall((:arcColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
+    ccall((:arcColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
 end
 
 function arcRGBA(renderer, x, y, rad, start, _end, r, g, b, a)
-    ccall((:arcRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
+    ccall((:arcRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
 end
 
 function aacircleColor(renderer, x, y, rad, color)
-    ccall((:aacircleColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, color)
+    ccall((:aacircleColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, color)
 end
 
 function aacircleRGBA(renderer, x, y, rad, r, g, b, a)
-    ccall((:aacircleRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
+    ccall((:aacircleRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
 end
 
 function filledCircleColor(renderer, x, y, r, color)
-    ccall((:filledCircleColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, r, color)
+    ccall((:filledCircleColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint32), renderer, x, y, r, color)
 end
 
 function filledCircleRGBA(renderer, x, y, rad, r, g, b, a)
-    ccall((:filledCircleRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
+    ccall((:filledCircleRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, r, g, b, a)
 end
 
 function ellipseColor(renderer, x, y, rx, ry, color)
-    ccall((:ellipseColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
+    ccall((:ellipseColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
 end
 
 function ellipseRGBA(renderer, x, y, rx, ry, r, g, b, a)
-    ccall((:ellipseRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
+    ccall((:ellipseRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
 end
 
 function aaellipseColor(renderer, x, y, rx, ry, color)
-    ccall((:aaellipseColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
+    ccall((:aaellipseColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
 end
 
 function aaellipseRGBA(renderer, x, y, rx, ry, r, g, b, a)
-    ccall((:aaellipseRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
+    ccall((:aaellipseRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
 end
 
 function filledEllipseColor(renderer, x, y, rx, ry, color)
-    ccall((:filledEllipseColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
+    ccall((:filledEllipseColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rx, ry, color)
 end
 
 function filledEllipseRGBA(renderer, x, y, rx, ry, r, g, b, a)
-    ccall((:filledEllipseRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
+    ccall((:filledEllipseRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rx, ry, r, g, b, a)
 end
 
 function pieColor(renderer, x, y, rad, start, _end, color)
-    ccall((:pieColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
+    ccall((:pieColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
 end
 
 function pieRGBA(renderer, x, y, rad, start, _end, r, g, b, a)
-    ccall((:pieRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
+    ccall((:pieRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
 end
 
 function filledPieColor(renderer, x, y, rad, start, _end, color)
-    ccall((:filledPieColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
+    ccall((:filledPieColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x, y, rad, start, _end, color)
 end
 
 function filledPieRGBA(renderer, x, y, rad, start, _end, r, g, b, a)
-    ccall((:filledPieRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
+    ccall((:filledPieRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x, y, rad, start, _end, r, g, b, a)
 end
 
 function trigonColor(renderer, x1, y1, x2, y2, x3, y3, color)
-    ccall((:trigonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
+    ccall((:trigonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
 end
 
 function trigonRGBA(renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
-    ccall((:trigonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
+    ccall((:trigonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
 end
 
 function aatrigonColor(renderer, x1, y1, x2, y2, x3, y3, color)
-    ccall((:aatrigonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
+    ccall((:aatrigonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
 end
 
 function aatrigonRGBA(renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
-    ccall((:aatrigonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
+    ccall((:aatrigonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
 end
 
 function filledTrigonColor(renderer, x1, y1, x2, y2, x3, y3, color)
-    ccall((:filledTrigonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
+    ccall((:filledTrigonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint32), renderer, x1, y1, x2, y2, x3, y3, color)
 end
 
 function filledTrigonRGBA(renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
-    ccall((:filledTrigonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
+    ccall((:filledTrigonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Sint16, Sint16, Sint16, Sint16, Uint8, Uint8, Uint8, Uint8), renderer, x1, y1, x2, y2, x3, y3, r, g, b, a)
 end
 
 function polygonColor(renderer, vx, vy, n, color)
-    ccall((:polygonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
+    ccall((:polygonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
 end
 
 function polygonRGBA(renderer, vx, vy, n, r, g, b, a)
-    ccall((:polygonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
+    ccall((:polygonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
 end
 
 function aapolygonColor(renderer, vx, vy, n, color)
-    ccall((:aapolygonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
+    ccall((:aapolygonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
 end
 
 function aapolygonRGBA(renderer, vx, vy, n, r, g, b, a)
-    ccall((:aapolygonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
+    ccall((:aapolygonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
 end
 
 function filledPolygonColor(renderer, vx, vy, n, color)
-    ccall((:filledPolygonColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
+    ccall((:filledPolygonColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint32), renderer, vx, vy, n, color)
 end
 
 function filledPolygonRGBA(renderer, vx, vy, n, r, g, b, a)
-    ccall((:filledPolygonRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
+    ccall((:filledPolygonRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, r, g, b, a)
 end
 
 function texturedPolygon(renderer, vx, vy, n, texture, texture_dx, texture_dy)
-    ccall((:texturedPolygon, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Ptr{SDL_Surface}, Cint, Cint), renderer, vx, vy, n, texture, texture_dx, texture_dy)
+    ccall((:texturedPolygon, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Ptr{SDL_Surface}, Cint, Cint), renderer, vx, vy, n, texture, texture_dx, texture_dy)
 end
 
 function bezierColor(renderer, vx, vy, n, s, color)
-    ccall((:bezierColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Cint, Uint32), renderer, vx, vy, n, s, color)
+    ccall((:bezierColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Cint, Uint32), renderer, vx, vy, n, s, color)
 end
 
 function bezierRGBA(renderer, vx, vy, n, s, r, g, b, a)
-    ccall((:bezierRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, s, r, g, b, a)
+    ccall((:bezierRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Ptr{Sint16}, Ptr{Sint16}, Cint, Cint, Uint8, Uint8, Uint8, Uint8), renderer, vx, vy, n, s, r, g, b, a)
 end
 
 function gfxPrimitivesSetFont(fontdata, cw, ch)
-    ccall((:gfxPrimitivesSetFont, libsdl2_gfxPrimitives), Cvoid, (Ptr{Cvoid}, Uint32, Uint32), fontdata, cw, ch)
+    ccall((:gfxPrimitivesSetFont, libsdl2_gfx), Cvoid, (Ptr{Cvoid}, Uint32, Uint32), fontdata, cw, ch)
 end
 
 function gfxPrimitivesSetFontRotation(rotation)
-    ccall((:gfxPrimitivesSetFontRotation, libsdl2_gfxPrimitives), Cvoid, (Uint32,), rotation)
+    ccall((:gfxPrimitivesSetFontRotation, libsdl2_gfx), Cvoid, (Uint32,), rotation)
 end
 
 function characterColor(renderer, x, y, c, color)
-    ccall((:characterColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Cchar, Uint32), renderer, x, y, c, color)
+    ccall((:characterColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Cchar, Uint32), renderer, x, y, c, color)
 end
 
 function characterRGBA(renderer, x, y, c, r, g, b, a)
-    ccall((:characterRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Cchar, Uint8, Uint8, Uint8, Uint8), renderer, x, y, c, r, g, b, a)
+    ccall((:characterRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Cchar, Uint8, Uint8, Uint8, Uint8), renderer, x, y, c, r, g, b, a)
 end
 
 function stringColor(renderer, x, y, s, color)
-    ccall((:stringColor, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Ptr{Cchar}, Uint32), renderer, x, y, s, color)
+    ccall((:stringColor, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Ptr{Cchar}, Uint32), renderer, x, y, s, color)
 end
 
 function stringRGBA(renderer, x, y, s, r, g, b, a)
-    ccall((:stringRGBA, libsdl2_gfxPrimitives), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Ptr{Cchar}, Uint8, Uint8, Uint8, Uint8), renderer, x, y, s, r, g, b, a)
+    ccall((:stringRGBA, libsdl2_gfx), Cint, (Ptr{SDL_Renderer}, Sint16, Sint16, Ptr{Cchar}, Uint8, Uint8, Uint8, Uint8), renderer, x, y, s, r, g, b, a)
 end
 
 function SDL_imageFilterMMXdetect()
-    ccall((:SDL_imageFilterMMXdetect, libsdl2_imageFilter), Cint, ())
+    ccall((:SDL_imageFilterMMXdetect, libsdl2_gfx), Cint, ())
 end
 
 function SDL_imageFilterMMXoff()
-    ccall((:SDL_imageFilterMMXoff, libsdl2_imageFilter), Cvoid, ())
+    ccall((:SDL_imageFilterMMXoff, libsdl2_gfx), Cvoid, ())
 end
 
 function SDL_imageFilterMMXon()
-    ccall((:SDL_imageFilterMMXon, libsdl2_imageFilter), Cvoid, ())
+    ccall((:SDL_imageFilterMMXon, libsdl2_gfx), Cvoid, ())
 end
 
 function SDL_imageFilterAdd(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterAdd, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterAdd, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterMean(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterMean, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterMean, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterSub(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterSub, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterSub, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterAbsDiff(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterAbsDiff, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterAbsDiff, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterMult(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterMult, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterMult, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterMultNor(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterMultNor, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterMultNor, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterMultDivby2(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterMultDivby2, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterMultDivby2, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterMultDivby4(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterMultDivby4, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterMultDivby4, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterBitAnd(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterBitAnd, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterBitAnd, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterBitOr(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterBitOr, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterBitOr, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterDiv(Src1, Src2, Dest, length)
-    ccall((:SDL_imageFilterDiv, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
+    ccall((:SDL_imageFilterDiv, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Src2, Dest, length)
 end
 
 function SDL_imageFilterBitNegation(Src1, Dest, length)
-    ccall((:SDL_imageFilterBitNegation, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Dest, length)
+    ccall((:SDL_imageFilterBitNegation, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint), Src1, Dest, length)
 end
 
 function SDL_imageFilterAddByte(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterAddByte, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterAddByte, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterAddUint(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterAddUint, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuint), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterAddUint, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuint), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterAddByteToHalf(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterAddByteToHalf, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterAddByteToHalf, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterSubByte(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterSubByte, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterSubByte, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterSubUint(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterSubUint, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuint), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterSubUint, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuint), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterShiftRight(Src1, Dest, length, N)
-    ccall((:SDL_imageFilterShiftRight, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
+    ccall((:SDL_imageFilterShiftRight, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
 end
 
 function SDL_imageFilterShiftRightUint(Src1, Dest, length, N)
-    ccall((:SDL_imageFilterShiftRightUint, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
+    ccall((:SDL_imageFilterShiftRightUint, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
 end
 
 function SDL_imageFilterMultByByte(Src1, Dest, length, C)
-    ccall((:SDL_imageFilterMultByByte, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
+    ccall((:SDL_imageFilterMultByByte, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, C)
 end
 
 function SDL_imageFilterShiftRightAndMultByByte(Src1, Dest, length, N, C)
-    ccall((:SDL_imageFilterShiftRightAndMultByByte, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar, Cuchar), Src1, Dest, length, N, C)
+    ccall((:SDL_imageFilterShiftRightAndMultByByte, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar, Cuchar), Src1, Dest, length, N, C)
 end
 
 function SDL_imageFilterShiftLeftByte(Src1, Dest, length, N)
-    ccall((:SDL_imageFilterShiftLeftByte, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
+    ccall((:SDL_imageFilterShiftLeftByte, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
 end
 
 function SDL_imageFilterShiftLeftUint(Src1, Dest, length, N)
-    ccall((:SDL_imageFilterShiftLeftUint, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
+    ccall((:SDL_imageFilterShiftLeftUint, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
 end
 
 function SDL_imageFilterShiftLeft(Src1, Dest, length, N)
-    ccall((:SDL_imageFilterShiftLeft, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
+    ccall((:SDL_imageFilterShiftLeft, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, N)
 end
 
 function SDL_imageFilterBinarizeUsingThreshold(Src1, Dest, length, T)
-    ccall((:SDL_imageFilterBinarizeUsingThreshold, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, T)
+    ccall((:SDL_imageFilterBinarizeUsingThreshold, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar), Src1, Dest, length, T)
 end
 
 function SDL_imageFilterClipToRange(Src1, Dest, length, Tmin, Tmax)
-    ccall((:SDL_imageFilterClipToRange, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar, Cuchar), Src1, Dest, length, Tmin, Tmax)
+    ccall((:SDL_imageFilterClipToRange, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cuchar, Cuchar), Src1, Dest, length, Tmin, Tmax)
 end
 
 function SDL_imageFilterNormalizeLinear(Src, Dest, length, Cmin, Cmax, Nmin, Nmax)
-    ccall((:SDL_imageFilterNormalizeLinear, libsdl2_imageFilter), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cint, Cint, Cint, Cint), Src, Dest, length, Cmin, Cmax, Nmin, Nmax)
+    ccall((:SDL_imageFilterNormalizeLinear, libsdl2_gfx), Cint, (Ptr{Cuchar}, Ptr{Cuchar}, Cuint, Cint, Cint, Cint, Cint), Src, Dest, length, Cmin, Cmax, Nmin, Nmax)
 end
 
 function rotozoomSurface(src, angle, zoom, smooth)
-    ccall((:rotozoomSurface, libsdl2_rotozoom), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cint), src, angle, zoom, smooth)
+    ccall((:rotozoomSurface, libsdl2_gfx), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cint), src, angle, zoom, smooth)
 end
 
 function rotozoomSurfaceXY(src, angle, zoomx, zoomy, smooth)
-    ccall((:rotozoomSurfaceXY, libsdl2_rotozoom), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cdouble, Cint), src, angle, zoomx, zoomy, smooth)
+    ccall((:rotozoomSurfaceXY, libsdl2_gfx), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cdouble, Cint), src, angle, zoomx, zoomy, smooth)
 end
 
 function rotozoomSurfaceSize(width, height, angle, zoom, dstwidth, dstheight)
-    ccall((:rotozoomSurfaceSize, libsdl2_rotozoom), Cvoid, (Cint, Cint, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, angle, zoom, dstwidth, dstheight)
+    ccall((:rotozoomSurfaceSize, libsdl2_gfx), Cvoid, (Cint, Cint, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, angle, zoom, dstwidth, dstheight)
 end
 
 function rotozoomSurfaceSizeXY(width, height, angle, zoomx, zoomy, dstwidth, dstheight)
-    ccall((:rotozoomSurfaceSizeXY, libsdl2_rotozoom), Cvoid, (Cint, Cint, Cdouble, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, angle, zoomx, zoomy, dstwidth, dstheight)
+    ccall((:rotozoomSurfaceSizeXY, libsdl2_gfx), Cvoid, (Cint, Cint, Cdouble, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, angle, zoomx, zoomy, dstwidth, dstheight)
 end
 
 function zoomSurface(src, zoomx, zoomy, smooth)
-    ccall((:zoomSurface, libsdl2_rotozoom), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cint), src, zoomx, zoomy, smooth)
+    ccall((:zoomSurface, libsdl2_gfx), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cdouble, Cdouble, Cint), src, zoomx, zoomy, smooth)
 end
 
 function zoomSurfaceSize(width, height, zoomx, zoomy, dstwidth, dstheight)
-    ccall((:zoomSurfaceSize, libsdl2_rotozoom), Cvoid, (Cint, Cint, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, zoomx, zoomy, dstwidth, dstheight)
+    ccall((:zoomSurfaceSize, libsdl2_gfx), Cvoid, (Cint, Cint, Cdouble, Cdouble, Ptr{Cint}, Ptr{Cint}), width, height, zoomx, zoomy, dstwidth, dstheight)
 end
 
 function shrinkSurface(src, factorx, factory)
-    ccall((:shrinkSurface, libsdl2_rotozoom), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cint, Cint), src, factorx, factory)
+    ccall((:shrinkSurface, libsdl2_gfx), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cint, Cint), src, factorx, factory)
 end
 
 function rotateSurface90Degrees(src, numClockwiseTurns)
-    ccall((:rotateSurface90Degrees, libsdl2_rotozoom), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cint), src, numClockwiseTurns)
+    ccall((:rotateSurface90Degrees, libsdl2_gfx), Ptr{SDL_Surface}, (Ptr{SDL_Surface}, Cint), src, numClockwiseTurns)
 end
 
 struct __JL_Ctag_560

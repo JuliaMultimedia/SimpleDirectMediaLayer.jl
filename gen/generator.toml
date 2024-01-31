@@ -1,6 +1,6 @@
 [general]
 library_name = "libsdl2"
-library_names = {"SDL2/SDL_mixer.h" = "libsdl2_mixer", "SDL2/SDL_image.h" = "libsdl2_image", "SDL2/SDL_ttf.h" = "libsdl2_ttf", "SDL2/SDL2_framerate.h" = "libsdl2_framerate", "SDL2/SDL2_gfxPrimitives.h" = "libsdl2_gfxPrimitives", "SDL2/SDL2_imageFilter.h" = "libsdl2_imageFilter", "SDL2/SDL2_rotozoom.h" = "libsdl2_rotozoom"}
+library_names = {"SDL2/SDL_mixer.h" = "libsdl2_mixer", "SDL2/SDL_image.h" = "libsdl2_image", "SDL2/SDL_ttf.h" = "libsdl2_ttf", "SDL2/SDL2_framerate.h" = "libsdl2_gfx", "SDL2/SDL2_gfxPrimitives.h" = "libsdl2_gfx", "SDL2/SDL2_imageFilter.h" = "libsdl2_gfx", "SDL2/SDL2_rotozoom.h" = "libsdl2_gfx"}
 output_file_path = "../src/LibSDL2.jl"
 module_name = "LibSDL2"
 jll_pkg_name = "SDL2_jll"
