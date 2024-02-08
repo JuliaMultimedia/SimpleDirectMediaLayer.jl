@@ -5,6 +5,10 @@ using SimpleDirectMediaLayer.LibSDL2
 
 SDL_Init(SDL_INIT_AUDIO)
 
+if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024) < 0)
+    println("SDL_mixer could not initialize!", Mix_GetError())
+end
+
 #Load the music
 aud_files = dirname(@__FILE__)
 music = Mix_LoadMUS("$aud_files/beat.wav")
