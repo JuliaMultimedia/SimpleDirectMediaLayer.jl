@@ -240,7 +240,7 @@ struct SDL_PixelFormat
     next::Ptr{SDL_PixelFormat}
 end
 
-struct SDL_Rect
+mutable struct SDL_Rect
     x::Cint
     y::Cint
     w::Cint
